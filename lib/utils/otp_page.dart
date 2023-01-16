@@ -65,7 +65,7 @@ class _OptShareCodeState extends State<OptShareCode> {
           child: Column( 
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 const SizedBox(height: 30,),
+                
                  DelayedAnimation(delay: 1500,
                child: SizedBox(
                      child: SizedBox(

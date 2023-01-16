@@ -10,8 +10,10 @@ class Compte extends StatefulWidget {
 class _CompteState extends State<Compte> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
+    return const Scaffold(
+      body: Center(
+        child: Text("Profil"),
+      ),
     );
   }
 }

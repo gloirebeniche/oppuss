@@ -49,7 +49,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                 const SizedBox(height: 30,),
+                 
               DelayedAnimation(delay: transitionAnimate,
                child: SizedBox(
                      child: SizedBox(

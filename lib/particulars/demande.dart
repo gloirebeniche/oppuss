@@ -11,8 +11,10 @@ class Demandes extends StatefulWidget {
 class _DemandesState extends State<Demandes> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.blueAccent,
+  return const Scaffold(
+      body: Center(
+        child: Text("Demande"),
+      ),
     );
   }
 }

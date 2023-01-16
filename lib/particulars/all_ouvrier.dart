@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -11,6 +12,10 @@ class AllOuvrier extends StatefulWidget {
 class _AllOuvrierState extends State<AllOuvrier> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Center(
+        child: Text("Tout les Ouvriers"),
+      ),
+    );
   }
 }
