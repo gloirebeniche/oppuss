@@ -35,6 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: kglobalColor,
+        automaticallyImplyLeading: false,
+        
+        actions: [
+           Padding(  padding: EdgeInsets.only(right: 10),
+          child:IconButton( icon : Icon( Icons.messenger_rounded, color: kPrimaryColor,),
+           onPressed: () {  },),)
+        ],
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -45,16 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Acceuil',
           ),
            BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Demandes',
+            icon: Icon(Icons.search),
+            label: 'Recherche',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
           label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Messages',
+            icon: Icon(Icons.bookmark),
+            label: 'Demandes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

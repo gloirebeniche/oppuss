@@ -1,0 +1,32 @@
+================= LES TACHES ========================
+
+# les interfaces du particuliers
+
+1-  l'acceuil 
+    -  l'ensemble des services 
+2- recherche
+    - AppBar (boutton retour - le nom de l'interface en cours - le boutton annuler)
+    - l'interface par default s'il n'y a pas d'ouvriers (Image d'erreur - message )
+    - la barre de recherches (rechercher un ouvrier)
+    - le modèle des informations de l'ouvriers (Image - nom - prenom - profils - notre d'étoile - prix de depart d'un services)
+    - listeView pour afficher les ouvriers 
+
+3- publier une annonces et un projets
+    - l'interface (TablePage) des annonces, des projets
+    - l'interfaces par defaut s'il n'y a pas de demandes (Image d'erreur -)
+    - le modèle de l'annonces (l'Image - le titre - la descrip)
+
+4- Demandes
+    - l'interface (TablePage)  mes publications (les annonces - projets)
+    - l'interfaces par defaut s'il n'y a pas de demandes (Image d'erreur - message d'erreur)
+    - le modèle de l'annonces (l'Image - le titre - la descrip)
+ 
+ 5- Compte
+    - la photo de profils
+    - les informations du comptes 
+    - un botton si l'utilisateur n'est pas inscrit
+    - conditions générales de l'application
+    - un boutton si l'utilisateur veut Devenir un ouvrier
+    - un boutton si l'utilisateur est déjà inscrire pour se connecter
+    - confiance et sécurité
+    - Centre d'aide 

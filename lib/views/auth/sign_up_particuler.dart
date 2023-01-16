@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/welcome_screen.dart';
+import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/widget/customized_button.dart';
 

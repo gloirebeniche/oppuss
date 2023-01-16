@@ -21,17 +21,7 @@ class WelcomeAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
     
-      appBar: AppBar(
-        backgroundColor: kglobalColor,
-        elevation: 0,
-        leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
-               Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  const LoginScreen()));
-         },),
-      ),
-      
+ 
       body: SafeArea(
         child: Container(
           width: double.infinity,
