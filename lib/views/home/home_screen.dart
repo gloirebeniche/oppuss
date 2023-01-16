@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:oppuss/particulars/all_ouvrier.dart';
 import 'package:oppuss/particulars/compte.dart';
 import 'package:oppuss/particulars/demande.dart';
-import 'package:oppuss/particulars/messages.dart';
+import 'package:oppuss/particulars/publications.dart';
 import 'package:oppuss/utils/theme.dart';
 
 import '../../particulars/acceuil_page.dart';
@@ -19,9 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
       AcceuilePage(),
-      Demandes(), 
       AllOuvrier(),
-      Messages(),
+      Publications(),
+      Demandes(), 
       Compte()
   
   ];
@@ -35,17 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: kglobalColor,
-        automaticallyImplyLeading: false,
-        
-        actions: [
-           Padding(  padding: EdgeInsets.only(right: 10),
-          child:IconButton( icon : Icon( Icons.messenger_rounded, color: kPrimaryColor,),
-           onPressed: () {  },),)
-        ],
-      ),
+   
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

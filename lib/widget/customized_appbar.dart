@@ -3,18 +3,29 @@ import 'package:oppuss/utils/theme.dart';
 
 class CustomizedAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String titleAppBar;
-  final Color backgroundColorAppBar;
+  final bool iconVisibility = true;
 
   const CustomizedAppBar(
-    {super.key,  required this.titleAppBar, required this.backgroundColorAppBar});
+      {super.key,
+      required this.titleAppBar,
+     
+     });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: iconVisibility,
       elevation: 0,
-      backgroundColor: backgroundColorAppBar,
-      title: Text(titleAppBar) ,
-      leading: IconButton(icon: const Icon(Icons.arrow_back, color: kPrimaryColor,), onPressed: () {  },),
+      title: Text(
+        titleAppBar,
+      ),
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back,
+          color: kPrimaryColor,
+        ),
+        onPressed: () {},
+      ),
     );
   }
 
