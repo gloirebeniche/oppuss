@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/customized_button.dart';
 
 // ignore: slash_for_doc_comments
@@ -20,7 +20,18 @@ class WelcomeAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CustomizedAppBar(),
+    
+      appBar: AppBar(
+        backgroundColor: kglobalColor,
+        elevation: 0,
+        leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+               Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  const LoginScreen()));
+         },),
+      ),
+      
       body: SafeArea(
         child: Container(
           width: double.infinity,

@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/welcome_screen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/customized_button.dart';
+
+import 'login_screen.dart';
 
 class SignUpScreenOuvrier extends StatefulWidget {
   const SignUpScreenOuvrier({super.key});
@@ -20,14 +20,17 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kglobalColor,
-        elevation: 0,
-        automaticallyImplyLeading: true,
-       leading: Icon(Icons.arrow_back),
-     
+   
+           appBar: AppBar(
+            backgroundColor: kglobalColor,
+            elevation: 0,
+            leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  const LoginScreen()));
+         },),
       ),
-      backgroundColor:kglobalColor,
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -169,7 +172,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const WelcomeAuth()));
+                                builder: (context) => const LoginScreen()));
                       },
                       child: Column(
                        mainAxisAlignment: MainAxisAlignment.center,

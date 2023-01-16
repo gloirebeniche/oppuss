@@ -7,6 +7,8 @@ import 'package:oppuss/utils/otp_page.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/customized_button.dart';
 
+import 'login_screen.dart';
+
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
 
@@ -27,7 +29,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-         backgroundColor: Colors.white,
+      
+           appBar: AppBar(
+            backgroundColor: kglobalColor,
+            elevation: 0,
+            leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  const LoginScreen()));
+         },),
+      ),
       body: SingleChildScrollView(  
         child: Container(
             margin: const EdgeInsets.symmetric(
@@ -37,6 +49,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+                 const SizedBox(height: 30,),
               DelayedAnimation(delay: transitionAnimate,
                child: SizedBox(
                      child: SizedBox(

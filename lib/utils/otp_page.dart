@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/forgot_password.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/customized_button.dart';
 import 'package:pinput/pinput.dart';
@@ -42,6 +43,18 @@ class _OptShareCodeState extends State<OptShareCode> {
       ),
     );
     return Scaffold(
+      
+      appBar: AppBar(
+        backgroundColor: kglobalColor,
+        elevation: 0,
+        leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+               Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  const ForgotPassword()));
+         },),
+      ),
+      
       body: SingleChildScrollView(
         child: Container(
         margin: const EdgeInsets.symmetric(
@@ -52,11 +65,12 @@ class _OptShareCodeState extends State<OptShareCode> {
           child: Column( 
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                 const SizedBox(height: 30,),
                  DelayedAnimation(delay: 1500,
                child: SizedBox(
                      child: SizedBox(
                   height: 170,
-                  child: SvgPicture.asset("assets/reset.svg"),
+                  child: SvgPicture.asset("assets/reset_login.svg"),
                 ),
                )),
                 const SizedBox(height: 20,),
