@@ -5,6 +5,7 @@ import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/welcome_screen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/customized_button.dart';
 
 class SignUpScreenOuvrier extends StatefulWidget {
@@ -19,7 +20,14 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEDECF2),
+      appBar: AppBar(
+        backgroundColor: kglobalColor,
+        elevation: 0,
+        automaticallyImplyLeading: true,
+       leading: Icon(Icons.arrow_back),
+     
+      ),
+      backgroundColor:kglobalColor,
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(

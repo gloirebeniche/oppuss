@@ -4,6 +4,7 @@ import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/customized_button.dart';
 
 // ignore: slash_for_doc_comments
@@ -19,6 +20,7 @@ class WelcomeAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:  CustomizedAppBar(),
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -28,9 +30,11 @@ class WelcomeAuth extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+           
              DelayedAnimation(delay: transitionAnimate,
               child:  Column(
                 children: const [
+
                  
                  Text("Bienvenue sur OPPUSS.",
                   style: TextStyle(
