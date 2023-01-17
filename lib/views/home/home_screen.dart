@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:oppuss/particulars/account_view.dart';
 import 'package:oppuss/particulars/all_ouvrier.dart';
-import 'package:oppuss/particulars/compte.dart';
 import 'package:oppuss/particulars/demande.dart';
 import 'package:oppuss/particulars/publications.dart';
 import 'package:oppuss/utils/theme.dart';
@@ -22,8 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       AllOuvrier(),
       Publications(),
       Demandes(), 
-      Compte()
-  
+      AccountView()
   ];
 
   void _onItemTapped(int index) {

@@ -25,10 +25,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
             backgroundColor: kglobalColor,
             elevation: 0,
             leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
-                  Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  const LoginScreen()));
+                  Navigator.pop(context);
          },),
       ),
       body: SingleChildScrollView(
