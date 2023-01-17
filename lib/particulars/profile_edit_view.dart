@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/btn_custom.dart';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),  
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: const EdgeInsets.only(left: 14, top: 25, right: 14),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -47,38 +48,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
               buildTextField("Civilité", "Homme", false),
               buildTextField("Téléphone", "064838870", false),
               buildTextField("Adresse de facturation", "242, rue bandza Ouendzé Brazzaville", false),
-              const SizedBox(
-                height: 35,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              
+              Column(
+             
                 children: [
-                  OutlinedButton(
-                    // padding: const EdgeInsets.symmetric(horizontal: 50),
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
-                    child: const Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
+                  BtnCustom(
+                    textColor: kglobalColor,
+                    buttonColor: kPrimaryColor,
+                    buttonText: "Save",
+                    onPressed: (){},
                   ),
-                  ElevatedButton(
-                    // color: Colors.green,
-                    // padding: const EdgeInsets.symmetric(horizontal: 50),
-                    // elevation: 2,
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {  },
-                    child: const Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
+                
                 ],
               )
             ],
