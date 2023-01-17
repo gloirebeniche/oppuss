@@ -48,10 +48,8 @@ class _OptShareCodeState extends State<OptShareCode> {
         backgroundColor: kglobalColor,
         elevation: 0,
         leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
-               Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  const ForgotPassword()));
+                           Navigator.pop(context);
+
          },),
       ),
       

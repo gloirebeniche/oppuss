@@ -3,6 +3,7 @@ import 'package:oppuss/particulars/notification_view.dart';
 import 'package:oppuss/particulars/profile_edit_view.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
+import 'package:oppuss/widget/profil_widget.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -113,45 +114,6 @@ class textProfileManage extends StatelessWidget {
       child: Text(
         text,
         style:  const TextStyle(color: Colors.black54, fontSize: 15,)
-      ),
-    );
-  }
-}
-
-class ProfileMenuWidget extends StatelessWidget {
-  const ProfileMenuWidget({
-    Key? key, required this.text, required this.icon, required this.press,
-  }) : super(key: key);
-
-  final String text;
-  final IconData icon;
-  final VoidCallback press;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: TextButton(
-        onPressed: press,
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 30,
-              color: Colors.blue,),
-            const SizedBox(width: 20,),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                  Text(text,
-                  style: const TextStyle(color: Colors.black, fontSize: 15,)),
-                  const SizedBox(height: 10,),
-                  const Divider(height: 1, thickness: 2,)
-                ],
-              )
-            )
-          ],
-        ),
       ),
     );
   }
