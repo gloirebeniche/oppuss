@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oppuss/particulars/profile_edit_view.dart';
 import 'package:oppuss/utils/theme.dart';
 
 class AccountView extends StatelessWidget {
@@ -21,7 +22,10 @@ class AccountView extends StatelessWidget {
           ProfileMenuWidget(
             text: "Informations personnelles",
             icon: Icons.person,
-            press: (){}
+            press: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const EditProfilePage()));
+            }
           ),
           ProfileMenuWidget(
             text: "Notifications",
