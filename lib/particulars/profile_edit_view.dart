@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oppuss/utils/theme.dart';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: kPrimaryColor,
           ),
           onPressed: () {
             Navigator.pop(context);

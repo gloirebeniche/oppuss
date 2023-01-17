@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oppuss/particulars/notification_view.dart';
 import 'package:oppuss/particulars/profile_edit_view.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -56,7 +57,10 @@ class AccountView extends StatelessWidget {
           ProfileMenuWidget(
             text: "Devenir Ouvrier",
             icon: Icons.work,
-            press: (){}
+            press: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const SignUpScreenOuvrier()));
+            }
           ),
           const SizedBox(height: 20,),
           const textProfileManage(text: "Autres"),

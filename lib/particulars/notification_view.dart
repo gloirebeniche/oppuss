@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oppuss/utils/theme.dart';
 
 class NotificationView extends StatelessWidget {
   const NotificationView({super.key});
@@ -11,8 +12,8 @@ class NotificationView extends StatelessWidget {
         elevation: 1,
         title: const Text("Notification", style: TextStyle(color: Colors.black),),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          color: Colors.grey,
+          icon: const Icon(Icons.arrow_back),
+          color: kPrimaryColor,
           onPressed: () { Navigator.pop(context); },
         ),
       ),
