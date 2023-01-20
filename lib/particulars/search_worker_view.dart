@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
 class SearchWorkerView extends StatefulWidget {
   const SearchWorkerView({super.key});
@@ -12,22 +13,29 @@ class SearchWorkerView extends StatefulWidget {
 
 class _SearchWorkerViewState extends State<SearchWorkerView> {
   //create a dummy list
-  // static List<MovieModel> main_movies = [
-  //   MovieModel("Original", 2020, 9.0),
-  //   MovieModel("Baby boss", 2010, 9.0),
-  //   MovieModel("Dark Matter", 2009, 8.0),
-  // ];
+  static List<ProfileWorkerModel> workers = [
+    ProfileWorkerModel(name: "Walter", firstname: "Elijah", avis: 50, jobs: 100),
+    ProfileWorkerModel(name: "UZUMAKI", firstname: "Naruto", avis: 500, jobs: 250),
+    ProfileWorkerModel(name: "IYUGA", firstname: "Néji", avis: 5, jobs: 100),
+    ProfileWorkerModel(name: "PAMBOU", firstname: "Grâce", avis: 10, jobs: 10),
+    ProfileWorkerModel(name: "PAMBOU", firstname: "Adry Athony", avis: 75, jobs: 80),
+    ProfileWorkerModel(name: "MAPASSI", firstname: "Dony Glène", avis: 50, jobs: 50),
+    ProfileWorkerModel(name: "NGATSÉ", firstname: "Béniche", avis: 25, jobs: 70),
+    ProfileWorkerModel(name: "NZIHOU", firstname: "Michel Jennifer", avis: 50, jobs: 50),
+  ];
 
-  // List<MovieModel> display_list = List.from(main_movies);
+  List<ProfileWorkerModel> display_list = List.from(workers);
 
 
-  // void updateList(String value){
-  //   //this is the function that filter our liste
-  //   setState(() {
-  //     display_list = main_movies.where((element) => element.movie_title!.toLowerCase().contains(value.toLowerCase())).toList();
-
-  //   });
-  // }
+  void updateList(String value){
+    //this is the function that filter our liste
+    setState(() {
+      display_list = workers.where(
+        (element) => element.firstname.toLowerCase().contains(value.toLowerCase())?
+        element.firstname.toLowerCase().contains(value.toLowerCase())
+        :element.name.toLowerCase().contains(value.toLowerCase())).toList();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +52,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
               TextField(
+                onChanged: (value) => updateList(value),
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   filled: true,
@@ -60,44 +69,32 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
               const SizedBox(
                 height: 10.0,
               ),
-              ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  MaterialButton(
-                    onPressed: (){},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: const BorderSide(color: Colors.white)
+              Expanded(
+                child: display_list.isEmpty ?
+                const Center(
+                  child: Text("Aucun ouvrier ne correspond "),
+                )
+                :ListView.builder(
+                  itemCount: display_list.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MaterialButton(
+                      onPressed: (){},
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        side: const BorderSide(color: Colors.white)
+                      ),
+                      elevation: 0,
+                      color: Colors.white,
+                      child: profile_card_view(
+                        fullname: "${display_list[index].firstname} ${display_list[index].name}",
+                        avis: display_list[index].avis,
+                        jobs: display_list[index].jobs,
+                      ),
                     ),
-                    elevation: 0,
-                    color: Colors.white,
-                    child: const profile_card_view(),
                   ),
-                  const SizedBox( height: 10.0, ),
-                  MaterialButton(
-                    onPressed: (){},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: const BorderSide(color: Colors.white)
-                    ),
-                    elevation: 0,
-                    color: Colors.white,
-                    child: const profile_card_view(),
-                  ),
-                  const SizedBox( height: 10.0, ),
-                  MaterialButton(
-                    onPressed: (){},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: const BorderSide(color: Colors.white)
-                    ),
-                    elevation: 0,
-                    color: Colors.white,
-                    child: const profile_card_view(),
-                  ),
-                ],
-              )
+                ),
+              ),
           ],
         ),
       ),
@@ -105,12 +102,27 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   }
 }
 
+/**
+ * 
+ * MaterialButton(
+                    onPressed: (){},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      side: const BorderSide(color: Colors.white)
+                    ),
+                    elevation: 0,
+                    color: Colors.white,
+                    child: const profile_card_view(),
+                  ),
+ */
 
 class profile_card_view extends StatelessWidget {
   const profile_card_view({
-    Key? key,
+    Key? key, required this.fullname, required this.avis, required this.jobs,
   }) : super(key: key);
-
+  final String fullname;
+  final int avis;
+  final int jobs;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -149,10 +161,10 @@ class profile_card_view extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: Text("Elijah Walter",
-                    style: TextStyle(
+                Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: Text(fullname,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
@@ -160,16 +172,16 @@ class profile_card_view extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.star, color: Colors.amber, size: 17,),
-                    Text("4,95",
+                  children: [
+                    const Icon(Icons.star, color: Colors.amber, size: 17,),
+                    const Text("4,95",
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
                         color: Colors.amber),
                     ),
-                    Text(" (105 avis)",
-                      style: TextStyle(
+                    Text(" ($avis avis)",
+                      style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54),
@@ -182,8 +194,8 @@ class profile_card_view extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.black45),
                 ),
-                const Text("50 jobs réalisés",
-                    style: TextStyle(
+                Text("$jobs jobs réalisés",
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
