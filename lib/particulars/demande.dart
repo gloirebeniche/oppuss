@@ -19,7 +19,7 @@ class _DemandesState extends State<Demandes> {
             elevation: 0,
             backgroundColor: kglobalColor,
             automaticallyImplyLeading: false,
-            title:const Text("Mes demandes", style: TextStyle(color: KTextColor),),
+            title:const Text("Mes demandes", style: TextStyle(color: KTextColor, fontSize: 25),),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(

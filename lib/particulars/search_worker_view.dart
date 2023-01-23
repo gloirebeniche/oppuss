@@ -43,7 +43,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
         elevation: 0,
         backgroundColor: kglobalColor,
         automaticallyImplyLeading: false,
-        title:const Text("Trouver les ouvriers", style: TextStyle(color: KTextColor),),
+        title:const Text("Trouver des ouvriers", style: TextStyle(color: KTextColor,fontSize: 25),),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
@@ -77,7 +77,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                 :ListView.builder(
                   itemCount: display_list.length,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(top: 8),
                     child: MaterialButton(
                       onPressed: (){},
                       shape: RoundedRectangleBorder(

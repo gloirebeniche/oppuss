@@ -15,7 +15,7 @@ class AccountView extends StatelessWidget {
           elevation: 0,
           backgroundColor: kglobalColor,
           automaticallyImplyLeading: false,
-          title:const Text("Compte", style: TextStyle(color: KTextColor),),
+          title:const Text("Compte", style: TextStyle(color: KTextColor, fontSize: 25),),
       ),
       body: ListView(
         children: [
