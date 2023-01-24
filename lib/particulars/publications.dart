@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oppuss/utils/theme.dart';
 
 
 class Publications extends StatefulWidget {
@@ -12,6 +13,7 @@ class _PublicationsState extends State<Publications> {
   @override
   Widget build(BuildContext context) {
    return const Scaffold(
+    backgroundColor: KbackgroundColor,
       body: Center(
         child: Text("Publications"),
       ),

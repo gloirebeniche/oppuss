@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/card_offer_view.dart';
 
 
 class Demandes extends StatefulWidget {
@@ -15,43 +16,59 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: KbackgroundColor,
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: kglobalColor,
+            backgroundColor: Kwhite,
             automaticallyImplyLeading: false,
             title:const Text("Mes demandes", style: TextStyle(color: KTextColor, fontSize: 25),),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 20,
-            ),
-            child: Column(
-              children: [
-                Container(
-                  height: 48,
-                    decoration: BoxDecoration(
-                        color: KTextColorSecondary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TabBar(
-                          indicator: BoxDecoration(
-                              color: kPrimaryColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          tabs: [
-                            Tab(
-                              text: 'Annonces',
-                            ),
-                            Tab(
-                              text: 'Projet',
-                            )
-                          ]),
-                    )),
-                  
-              ],
-            ),
-          ),
+          body: Column(
+            children: [
+              const TabBar(
+                tabs: [
+                  Tab(
+                    child:  Text("En cours", style: TextStyle(color: kPrimaryColor, fontSize: 18),),
+                  ),
+                  Tab(
+                    child:  Text("Terminé", style: TextStyle(color: kPrimaryColor, fontSize: 18),),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                      child: ListView(
+                        children: const[
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                           SizedBox(height: 20,),
+                           CardOfferView(),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: Colors.amberAccent,
+                      child: Center(child: Text("Hello Walter"),),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
         ));
   }
 }

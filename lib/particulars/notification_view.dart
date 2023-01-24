@@ -8,7 +8,7 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Kwhite,
         elevation: 1,
         title: const Text("Notification", style: TextStyle(color: Colors.black),),
         leading: IconButton(

@@ -39,9 +39,10 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: KbackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kglobalColor,
+        backgroundColor: Kwhite,
         automaticallyImplyLeading: false,
         title:const Text("Trouver des ouvriers", style: TextStyle(color: KTextColor,fontSize: 25),),
       ),
@@ -51,19 +52,22 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              TextField(
-                onChanged: (value) => updateList(value),
-                style: const TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromARGB(115, 214, 212, 212),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide.none
-                    ),
-                  hintText: "ex : John Doen",
-                  prefixIcon: const Icon(Icons.search),
-                  prefixIconColor: Colors.grey,
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: TextField(
+                  onChanged: (value) => updateList(value),
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 218, 218, 218),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: BorderSide.none
+                      ),
+                    hintText: "ex : John Doen",
+                    prefixIcon: const Icon(Icons.search),
+                    prefixIconColor: Colors.grey,
+                  ),
                 ),
               ),
               const SizedBox(

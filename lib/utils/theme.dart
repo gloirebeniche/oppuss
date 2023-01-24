@@ -5,7 +5,11 @@ const kSecondaryColor = Color(0xFF1E88E5);
 // ignore: constant_identifier_names
 const KTextColor = Color(0xFF263238);
 const kglobalColor = Color(0xFFFAFAFA);
+const Kwhite = Colors.white;
+// ignore: constant_identifier_names
 const KTextColorSecondary = Color(0xFF78909C);
+// ignore: constant_identifier_names
+const KbackgroundColor = Color.fromARGB(255, 243, 243, 243);
 
 const transitionAnimate = 500;
 
