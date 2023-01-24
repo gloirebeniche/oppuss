@@ -28,10 +28,10 @@ class _DemandesState extends State<Demandes> {
               const TabBar(
                 tabs: [
                   Tab(
-                    child:  Text("En cours", style: TextStyle(color: kPrimaryColor, fontSize: 18),),
+                    child:  Text("En cours", style: TextStyle(color: kPrimaryColor, fontSize: 15),),
                   ),
                   Tab(
-                    child:  Text("Terminé", style: TextStyle(color: kPrimaryColor, fontSize: 18),),
+                    child:  Text("Terminé", style: TextStyle(color: kPrimaryColor, fontSize: 15),),
                   ),
                 ],
               ),

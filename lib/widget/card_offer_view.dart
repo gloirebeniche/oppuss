@@ -29,25 +29,25 @@ class CardOfferView extends StatelessWidget {
             ),
             const SizedBox(height: 20,),
             const Text("Pose de lampes et luminaire", style: TextStyle(
-                color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold
+                color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold
               ),
             ),
             const SizedBox(height: 10,),
             const Text("Jeudi 25 janvier 2013 de 12 à 15:30", style: TextStyle(
-                color: Colors.black54, fontSize: 18
+                color: Colors.black54, fontSize: 14
               ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),
-              padding: const EdgeInsets.all(25),
+              padding: const EdgeInsets.all(15),
               color: const Color.fromARGB(255, 218, 229, 248),
               child: Row(
                 children: const [
-                  Icon(Icons.notifications_active_outlined, size: 30, color: Color.fromARGB(255, 44, 154, 245),),
+                  Icon(Icons.notifications_active_outlined, size: 20, color: Color.fromARGB(255, 44, 154, 245),),
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("Vous avez reçu 13 offres", style: TextStyle(
-                      color: Color.fromARGB(255, 44, 154, 245), fontSize: 20, fontWeight: FontWeight.bold
+                      color: Color.fromARGB(255, 44, 154, 245), fontSize: 13, fontWeight: FontWeight.bold
                       ),
                     ),
                   ),
@@ -61,9 +61,9 @@ class CardOfferView extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {  },
                     child:  const Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(10),
                       child: Text('Gérer ma demande', style: 
-                      TextStyle(fontSize: 20),),
+                      TextStyle(fontSize: 15),),
                     ),
                   ),
                 ),
