@@ -1,8 +1,10 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/particular/card_view.dart';
+
+
+
 class SearchWorkerView extends StatefulWidget {
   const SearchWorkerView({super.key});
 
@@ -90,7 +92,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                       ),
                       elevation: 0,
                       color: Colors.white,
-                      child: profile_card_view(
+                      child: SearchWorkerCardView(
                         fullname: "${display_list[index].firstname} ${display_list[index].name}",
                         avis: display_list[index].avis,
                         jobs: display_list[index].jobs,
@@ -120,95 +122,3 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                   ),
  */
 
-class profile_card_view extends StatelessWidget {
-  const profile_card_view({
-    Key? key, required this.fullname, required this.avis, required this.jobs,
-  }) : super(key: key);
-  final String fullname;
-  final int avis;
-  final int jobs;
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children:  [
-          SizedBox(
-            height: 60,
-            width: 60,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                const CircleAvatar(backgroundColor: Colors.grey),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  child: SizedBox(
-                    height: 22,
-                    width: 22,
-                    child: MaterialButton(
-                      onPressed: (){},
-                      padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        side: const BorderSide(color: Colors.white)
-                      ),
-                      color: Colors.white,
-                      child: const Icon(Icons.check_circle, color: Colors.green,),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, top: 5, bottom: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: Text(fullname,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.star, color: Colors.amber, size: 17,),
-                    const Text("4,95",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.amber),
-                    ),
-                    Text(" ($avis avis)",
-                      style: const TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54),
-                    ),
-                  ],
-                ),
-                const Text("Membre depuis 4 mois",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black45),
-                ),
-                Text("$jobs jobs réalisés",
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-} 

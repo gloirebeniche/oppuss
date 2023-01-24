@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 
-import '../utils/theme.dart';
+import '../../utils/theme.dart';
 
 class AcceuilePage extends StatefulWidget {
   const AcceuilePage({super.key});

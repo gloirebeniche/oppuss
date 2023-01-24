@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:oppuss/particulars/account_view.dart';
-import 'package:oppuss/particulars/search_worker_view.dart';
-import 'package:oppuss/particulars/demande.dart';
-import 'package:oppuss/particulars/publications.dart';
+import 'package:oppuss/views/particulars/account_view.dart';
+import 'package:oppuss/views/particulars/search_worker_view.dart';
+import 'package:oppuss/views/particulars/demande.dart';
+import 'package:oppuss/views/particulars/publications.dart';
 import 'package:oppuss/utils/theme.dart';
 
-import '../../particulars/acceuil_page.dart';
+import '../particulars/acceuil_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -5,7 +5,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_button.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 // ignore: slash_for_doc_comments
 /**

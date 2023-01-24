@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/card_offer_view.dart';
 
 
 class Demandes extends StatefulWidget {
@@ -39,24 +38,10 @@ class _DemandesState extends State<Demandes> {
                 child: TabBarView(
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                       child: ListView(
                         children: const[
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
-                           SizedBox(height: 20,),
-                           CardOfferView(),
+                          SizedBox(height: 20,),
                         ],
                       ),
                     ),

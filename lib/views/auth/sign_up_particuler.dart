@@ -5,7 +5,7 @@ import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_button.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 
 class SignUpScreenParticuler extends StatefulWidget {

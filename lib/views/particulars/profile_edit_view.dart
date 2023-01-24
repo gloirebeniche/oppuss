@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/btn_custom.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 
 class EditProfilePage extends StatefulWidget {
