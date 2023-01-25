@@ -14,12 +14,30 @@
 3- publier une annonces et un projets
     - l'interface (TablePage) des annonces, des projets
     - l'interfaces par defaut s'il n'y a pas de demandes (Image d'erreur -)
-    - le modèle de l'annonces (l'Image - le titre - la descrip)
+    - Formulaire de l'annonce:
+        - titre
+        - description
+        - date
+        - photo (min 3)
+        - heure
+        - Montant
+        - Adresse du travail
+        - Numéro de Téléphone
 
-4- Demandes
+
+    - Formulaire du projet:
+        - Titre
+        - Status (Chantier)
+        - Type de Travaux (construction, electricité...)
+        - Description
+        - Adresse
+        - Numero de téléphone
+        - Date
+
+4- Demandes (en cours)
     - l'interface (TablePage)  mes publications (les annonces - projets)
     - l'interfaces par defaut s'il n'y a pas de demandes (Image d'erreur - message d'erreur)
-    - le modèle de l'annonces (l'Image - le titre - la descrip)
+    - le modèle de l'annonces (l'Image - le titre - jour, card(nombre d'offres d'ouvrier par rapport au notes), bouton(gerer ma demande))
  
  5- Compte
     - la photo de profils

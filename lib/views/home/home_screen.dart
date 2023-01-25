@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:oppuss/particulars/account_view.dart';
-import 'package:oppuss/particulars/all_ouvrier.dart';
+import 'package:oppuss/particulars/search_worker_view.dart';
 import 'package:oppuss/particulars/demande.dart';
 import 'package:oppuss/particulars/publications.dart';
 import 'package:oppuss/utils/theme.dart';
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
       AcceuilePage(),
-      AllOuvrier(),
+      SearchWorkerView(),
       Publications(),
       Demandes(), 
       AccountView()
