@@ -61,8 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: kPrimaryColor,
-        unselectedItemColor: KTextColorSecondary,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: secondaryColor,
         
         onTap: _onItemTapped,
       ),

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:oppuss/utils/theme.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
@@ -20,15 +21,15 @@ class ProfileMenuWidget extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 30,
-              color: Colors.blue,),
+              size: 25,
+              color: primaryColor,),
             const SizedBox(width: 20,),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
                   Text(text,
-                  style: const TextStyle(color: Colors.black, fontSize: 15,)),
-                  const SizedBox(height: 10,),
+                  style: const TextStyle(color: black, fontSize: textSize,)),
+                  const SizedBox(height: 5,),
                   const Divider(height: 1, thickness: 2,)
                 ],
               )
@@ -52,8 +53,8 @@ class AboutVersionAppWidget extends StatelessWidget {
       padding: const EdgeInsets.all(30),
       child: Column(
         children: const [
-          Text("Oppus", style: TextStyle(color: Colors.black54, fontSize: 13,)),
-          Text("v1.2.1.1", style: TextStyle(color: Colors.black54, fontSize: 13,))
+          Text("Oppus", style: TextStyle(color: grey2, fontSize: smallTextSize,)),
+          Text("v1.2.1.1", style: TextStyle(color: grey2, fontSize: smallTextSize,))
         ],
       ),
     );
@@ -78,7 +79,7 @@ class ProfilePictureWidget extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  const CircleAvatar(backgroundColor: Colors.grey),
+                  const CircleAvatar(backgroundColor: grey),
                   Positioned(
                     right: 0,
                     bottom: 0,
@@ -90,10 +91,10 @@ class ProfilePictureWidget extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(35),
-                          side: const BorderSide(color: Colors.white)
+                          side: const BorderSide(color: white)
                         ),
-                        color: const Color(0xFFF5F6F9),
-                        child: const Icon(Icons.camera_alt_rounded, color: Colors.grey,),
+                        color: white,
+                        child: const Icon(Icons.camera_alt_rounded, color: grey,),
                       ),
                     ),
                   ),
@@ -101,11 +102,11 @@ class ProfilePictureWidget extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 10),
               child: Text("@KBjeanelie",
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
-                  fontSize: 15,
+                  fontSize: textSize,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey),
               ),
@@ -129,7 +130,7 @@ class TextProfileManageWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: Text(
         text,
-        style:  const TextStyle(color: Colors.black54, fontSize: 15,)
+        style:  const TextStyle(color: grey2, fontSize: smallTextSize,)
       ),
     );
   }

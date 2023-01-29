@@ -46,7 +46,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 child: Text(
                   "Nous Rejoindre",
                   style: GoogleFonts.poppins(
-                    color: kPrimaryColor,
+                    color: primaryColor,
                     fontSize: 25,
                     fontWeight: FontWeight.w600,
                   ),
@@ -142,7 +142,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 delay: transitionAnimate,
                 child: CustomizedButton(
                     buttonText: "S'inscrire",
-                    buttonColor: kPrimaryColor,
+                    buttonColor: primaryColor,
                     textColor: Colors.white,
                     onPressed: () async {
                       // c'est dans cette methode qu'il faut synchroniser des les informations saisies par

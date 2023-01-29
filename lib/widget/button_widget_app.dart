@@ -21,7 +21,7 @@ class BtnCustom extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: buttonColor,
-            border: Border.all(width: 1, color: kSecondaryColor),
+            border: Border.all(width: 1, color: secondaryColor),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Center(
@@ -58,11 +58,10 @@ class CustomizedButton extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: Container(
-            height: 50,
+            height: 45,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: buttonColor,
-              
                 borderRadius: BorderRadius.circular(10)),
             child: Center(
                 child: Text(
@@ -70,7 +69,7 @@ class CustomizedButton extends StatelessWidget {
               style: TextStyle(
                 color: textColor,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: headingTextSize,
               ),
             ))),
       ),

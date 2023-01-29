@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/particular/card_view.dart';
 
 
 class Demandes extends StatefulWidget {
@@ -15,22 +16,22 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: KbackgroundColor,
+          backgroundColor: bgColor,
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: Kwhite,
+            backgroundColor: white,
             automaticallyImplyLeading: false,
-            title:const Text("Mes demandes", style: TextStyle(color: KTextColor, fontSize: 25),),
+            title:const Text("Mes demandes", style: TextStyle(color: textColor, fontSize: 25),),
           ),
           body: Column(
             children: [
               const TabBar(
                 tabs: [
                   Tab(
-                    child:  Text("En cours", style: TextStyle(color: kPrimaryColor, fontSize: 15),),
+                    child:  Text("En cours", style: TextStyle(color: primaryColor, fontSize: 15),),
                   ),
                   Tab(
-                    child:  Text("Terminé", style: TextStyle(color: kPrimaryColor, fontSize: 15),),
+                    child:  Text("Terminé", style: TextStyle(color: primaryColor, fontSize: 15),),
                   ),
                 ],
               ),
@@ -41,6 +42,7 @@ class _DemandesState extends State<Demandes> {
                       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                       child: ListView(
                         children: const[
+                          CardOfferView(),
                           SizedBox(height: 20,),
                         ],
                       ),

@@ -2,6 +2,7 @@
 /// DE TOUS LES INTERFACE QUI NECESSITE UN CARD VIEW POUR LE PARTICULIER
 
 import 'package:flutter/material.dart';
+import 'package:oppuss/utils/theme.dart';
 
 
 class CardOfferView extends StatelessWidget {
@@ -14,7 +15,7 @@ class CardOfferView extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
-        color: Colors.white,
+        color: white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(25),
@@ -31,34 +32,34 @@ class CardOfferView extends StatelessWidget {
                 )
               ),
             ),
-            const SizedBox(height: 20,),
+            spacingHeight2,
             const Text("Pose de lampes et luminaire", style: TextStyle(
-                color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold
+                color: Colors.black, fontSize: headingTextSize, fontWeight: FontWeight.bold
               ),
             ),
             const SizedBox(height: 10,),
             const Text("Jeudi 25 janvier 2013 de 12 à 15:30", style: TextStyle(
-                color: Colors.black54, fontSize: 14
+                color: grey2, fontSize: textSize
               ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),
               padding: const EdgeInsets.all(15),
-              color: const Color.fromARGB(255, 218, 229, 248),
+              color: bgContainerColor,
               child: Row(
                 children: const [
-                  Icon(Icons.notifications_active_outlined, size: 20, color: Color.fromARGB(255, 44, 154, 245),),
+                  Icon(Icons.notifications_active_outlined, size: 20, color: textColorImportant,),
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("Vous avez reçu 13 offres", style: TextStyle(
-                      color: Color.fromARGB(255, 44, 154, 245), fontSize: 13, fontWeight: FontWeight.bold
+                      color: textColorImportant, fontSize: textSize, fontWeight: FontWeight.bold
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            spacingHeight2,
             Row(
                children: [
                 Expanded(
@@ -67,7 +68,7 @@ class CardOfferView extends StatelessWidget {
                     child:  const Padding(
                       padding: EdgeInsets.all(10),
                       child: Text('Gérer ma demande', style: 
-                      TextStyle(fontSize: 15),),
+                      TextStyle(fontSize: textSizeH2),),
                     ),
                   ),
                 ),
@@ -99,7 +100,7 @@ class SearchWorkerCardView extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                const CircleAvatar(backgroundColor: Colors.grey),
+                const CircleAvatar(backgroundColor: grey),
                 Positioned(
                   right: 0,
                   top: 0,
@@ -111,9 +112,9 @@ class SearchWorkerCardView extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
-                        side: const BorderSide(color: Colors.white)
+                        side: const BorderSide(color: white)
                       ),
-                      color: Colors.white,
+                      color: white,
                       child: const Icon(Icons.check_circle, color: Colors.green,),
                     ),
                   ),
@@ -130,9 +131,9 @@ class SearchWorkerCardView extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 5),
                   child: Text(fullname,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: textSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: black),
                   ),
                 ),
                 Row(
@@ -141,29 +142,29 @@ class SearchWorkerCardView extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.amber, size: 17,),
                     const Text("4,95",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: xsTextSize,
                         fontWeight: FontWeight.bold,
-                        color: Colors.amber),
+                        color: starColor),
                     ),
                     Text(" ($avis avis)",
                       style: const TextStyle(
-                        fontSize: 10,
+                        fontSize: xsTextSize,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54),
+                        color: grey2),
                     ),
                   ],
                 ),
                 const Text("Membre depuis 4 mois",
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: xsTextSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black45),
+                      color: grey2),
                 ),
                 Text("$jobs jobs réalisés",
                     style: const TextStyle(
-                      fontSize: 12,
+                      fontSize: smallTextSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: black),
                 ),
               ],
             ),
@@ -195,12 +196,12 @@ class NotificationCardView extends StatelessWidget {
               children: const [
                 Text(
                   "il y a 12 heures",
-                  style: TextStyle(color: Colors.black54),),
+                  style: TextStyle(color: grey2, fontSize: smallTextSize),),
                 Text(
                   "Walter a commenté votre annonce 'Pose de prise RJ45'",
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
+                    color: black,
+                    fontSize: textSize,
                     fontWeight: FontWeight.bold
                   ),
                 ),

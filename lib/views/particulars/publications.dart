@@ -13,7 +13,7 @@ class _PublicationsState extends State<Publications> {
   @override
   Widget build(BuildContext context) {
    return const Scaffold(
-    backgroundColor: KbackgroundColor,
+    backgroundColor: bgColor,
       body: Center(
         child: Text("Publications"),
       ),

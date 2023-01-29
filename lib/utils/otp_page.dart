@@ -45,9 +45,9 @@ class _OptShareCodeState extends State<OptShareCode> {
     return Scaffold(
       
       appBar: AppBar(
-        backgroundColor: kglobalColor,
+        backgroundColor: bgColor,
         elevation: 0,
-        leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+        leading: IconButton(icon: const Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
                            Navigator.pop(context);
 
          },),
@@ -77,7 +77,7 @@ class _OptShareCodeState extends State<OptShareCode> {
                     child: Text(
                       'Vérification du téléphone',
                       style: GoogleFonts.poppins(
-                        color: kPrimaryColor,
+                        color: primaryColor,
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
                       ),
@@ -91,7 +91,7 @@ class _OptShareCodeState extends State<OptShareCode> {
                     child: Text(
                       'Nous devons enregistrer votre numéro pour commencer',
                       style: GoogleFonts.poppins(
-                        color: KTextColorSecondary,
+                        color: secondaryColor,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,                     
                       ),
@@ -121,7 +121,7 @@ class _OptShareCodeState extends State<OptShareCode> {
                DelayedAnimation(delay: 1500, 
               child: CustomizedButton(
                   buttonText: "envoyer le code",
-                  buttonColor: kPrimaryColor,
+                  buttonColor: primaryColor,
                   textColor: Colors.white,
                   onPressed: () async {
 
@@ -141,7 +141,7 @@ class _OptShareCodeState extends State<OptShareCode> {
                     child: Text(
                       'Vous n\'avez pas reçu de code ?',
                       style: GoogleFonts.poppins(
-                        color: KTextColorSecondary,
+                        color: secondaryColor,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -156,7 +156,7 @@ class _OptShareCodeState extends State<OptShareCode> {
                     child:  Text(
                       'Resend',
                       style: GoogleFonts.poppins(
-                        color: kPrimaryColor,
+                        color: primaryColor,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),

@@ -31,9 +31,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
       
            appBar: AppBar(
-            backgroundColor: kglobalColor,
+            backgroundColor: bgColor,
             elevation: 0,
-            leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+            leading: IconButton(icon: const Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
                   // Navigator.push(
                   //             context,
                   //             MaterialPageRoute(
@@ -65,7 +65,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     child: Text(
                       'Vérification du téléphone',
                       style: GoogleFonts.poppins(
-                        color: kPrimaryColor,
+                        color: primaryColor,
                         fontSize: 25,
                         fontWeight: FontWeight.w600,
                       ),
@@ -78,7 +78,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     child: Text(
                       'Nous devons enregistrer votre numéro pour commencer',
                       style: GoogleFonts.poppins(
-                        color: KTextColorSecondary,
+                        color: secondaryColor,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,                     
                       ),
@@ -132,7 +132,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                DelayedAnimation(delay: transitionAnimate, 
               child: CustomizedButton(
                   buttonText: "envoyer le code",
-                  buttonColor: kPrimaryColor,
+                  buttonColor: primaryColor,
                   textColor: Colors.white,
                   onPressed: () async {
 

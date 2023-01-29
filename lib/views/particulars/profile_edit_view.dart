@@ -16,7 +16,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KbackgroundColor,
+      backgroundColor: bgColor,
       appBar: AppBar(
         title: const Text("Information personnelles",
             style: TextStyle(fontSize: 20, color: Colors.black87),
@@ -26,7 +26,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: kPrimaryColor,
+            color: primaryColor,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -54,8 +54,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
              
                 children: [
                   BtnCustom(
-                    textColor: kglobalColor,
-                    buttonColor: kPrimaryColor,
+                    textColor: bgColor,
+                    buttonColor: primaryColor,
                     buttonText: "Save",
                     onPressed: (){},
                   ),

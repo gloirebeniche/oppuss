@@ -16,12 +16,12 @@ class _AcceuilePageState extends State<AcceuilePage> {
     return  Scaffold(
          appBar: AppBar(
         elevation: 0,
-        backgroundColor: kglobalColor,
+        backgroundColor: bgColor,
         automaticallyImplyLeading: false,
         
         actions: [
            Padding(  padding: const EdgeInsets.only(right: 10),
-          child:IconButton( icon : const Icon( Icons.messenger_rounded, color: kPrimaryColor,),
+          child:IconButton( icon : const Icon( Icons.messenger_rounded, color: primaryColor,),
            onPressed: () {     Navigator.push(
                           context,
                           MaterialPageRoute(

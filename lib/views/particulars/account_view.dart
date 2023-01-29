@@ -13,9 +13,9 @@ class AccountView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
-          backgroundColor: kglobalColor,
+          backgroundColor: bgColor,
           automaticallyImplyLeading: false,
-          title:const Text("Compte", style: TextStyle(color: KTextColor, fontSize: 25),),
+          title:const Text("Compte", style: TextStyle(color: textColor, fontSize: 25),),
       ),
       body: ListView(
         children: [

@@ -41,12 +41,12 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KbackgroundColor,
+      backgroundColor: bgColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Kwhite,
+        backgroundColor: white,
         automaticallyImplyLeading: false,
-        title:const Text("Trouver des ouvriers", style: TextStyle(color: KTextColor,fontSize: 25),),
+        title:const Text("Trouver des ouvriers", style: TextStyle(color: textColor,fontSize: 25),),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
