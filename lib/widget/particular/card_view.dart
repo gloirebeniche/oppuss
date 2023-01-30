@@ -5,7 +5,6 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
 
-
 class CardOfferView extends StatelessWidget {
   const CardOfferView({
     Key? key,
@@ -26,40 +25,52 @@ class CardOfferView extends StatelessWidget {
             SizedBox(
               height: 200,
               child: Container(
-                decoration: const BoxDecoration(
-                  image:  DecorationImage(
-                    image: AssetImage("images/undraw_electricity_k2ft.png"),
-                    fit: BoxFit.cover)
-                )
-              ),
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image:
+                              AssetImage("images/undraw_electricity_k2ft.png"),
+                          fit: BoxFit.cover))),
             ),
             spacingHeight2,
-            customeTextStyle("Pose de lampes et luminaire", headingTextSize, textColor, fontWeight: FontWeight.bold),
+            customeTextStyle(
+                "Pose de lampes et luminaire", headingTextSize, textColor,
+                fontWeight: FontWeight.bold),
             spacingHeight,
-            customeTextStyle("Jeudi 25 janvier 2013 de 12 à 15:30", textSize, grey2),
+            customeTextStyle(
+                "Jeudi 25 janvier 2013 de 12 à 15:30", textSize, grey2),
             Container(
               margin: const EdgeInsets.only(top: 20),
               padding: padding,
               color: bgContainerColor,
               child: Row(
-                children:  [
-                  const Icon(EvaIcons.bellOutline, size: 20, color: textColorImportant,),
+                children: [
+                  const Icon(
+                    EvaIcons.bellOutline,
+                    size: 20,
+                    color: textColorImportant,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: customeTextStyle("Vous avez reçu 13 offres", textSize, textColorImportant, fontWeight: FontWeight.bold),
-                    ),
+                    child: customeTextStyle("Vous avez reçu 13 offres",
+                        textSize, textColorImportant,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
             spacingHeight2,
             Row(
-               children: [
+              children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {  },
+                      style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryColor,
+                  ),
+                    onPressed: () {},
                     child: Padding(
                       padding: padding,
-                      child: titleTextStyle("Gérer ma demande", color: white, fontWeight: FontWeight.bold),
+                      child: titleTextStyle("Gérer ma demande",
+                          color: white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -72,10 +83,102 @@ class CardOfferView extends StatelessWidget {
   }
 }
 
+class CardOfferView2 extends StatelessWidget {
+  const CardOfferView2({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        color: white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 200,
+              child: Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("images/mecanik.png"),
+                          fit: BoxFit.cover))),
+            ),
+            spacingHeight2,
+            customeTextStyle(
+                "Réparation de voiture", headingTextSize, textColor,
+                fontWeight: FontWeight.bold),
+            spacingHeight,
+            customeTextStyle(
+                "vendredi 24 septembre 2023 de 8h à 12:30", textSize, grey2),
+           
+       
+             spacingHeight2,
+            Row(
+              children: [
+                Expanded(
+                  
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: whiteSecondar
+                    ),
+                    onPressed: () {},
+                    child: Padding(
+                      padding: padding,
+                      child: titleTextStyle("Voir ma demande",
+                          color: primaryColor, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+              spacingHeight2,
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryColor,
+                  ),
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: padding,
+                          
+                          child: titleTextStyle("Démander à nouveau",
+                              color: white, fontWeight: FontWeight.bold),
+                        ),
+                          const Icon(
+                    EvaIcons.copyOutline,
+                    size: 20,
+                    color: white,
+                  ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class SearchWorkerCardView extends StatelessWidget {
   const SearchWorkerCardView({
-    Key? key, required this.fullname, required this.avis, required this.jobs,
+    Key? key,
+    required this.fullname,
+    required this.avis,
+    required this.jobs,
   }) : super(key: key);
   final String fullname;
   final int avis;
@@ -84,14 +187,14 @@ class SearchWorkerCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Row(
-        children:  [
+        children: [
           SizedBox(
             height: 80,
             width: 80,
             child: Stack(
               fit: StackFit.expand,
               children: const [
-                 CircleAvatar(backgroundColor: grey),
+                CircleAvatar(backgroundColor: grey),
                 // Positioned(
                 //   right: 0,
                 //   top: 0,
@@ -120,21 +223,28 @@ class SearchWorkerCardView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
-                  child: customeTextStyle(fullname, headingTextSize, textColor, fontWeight: FontWeight.bold),
+                  child: customeTextStyle(fullname, headingTextSize, textColor,
+                      fontWeight: FontWeight.bold),
                 ),
                 spacingHeight0,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
+                    const Icon(
+                      EvaIcons.star,
+                      color: Colors.amber,
+                      size: 17,
+                    ),
                     customeTextStyle("4,95", 12, starColor),
-                    customeTextStyle(" ($avis avis)", 12, grey2, fontWeight: FontWeight.bold),
+                    customeTextStyle(" ($avis avis)", 12, grey2,
+                        fontWeight: FontWeight.bold),
                   ],
                 ),
                 spacingHeight0,
                 customeTextStyle("Membre depuis 4 mois", 12, grey2),
                 spacingHeight0,
-                customeTextStyle("$jobs jobs réalisés", textSize, textColor, fontWeight: FontWeight.bold)
+                customeTextStyle("$jobs jobs réalisés", textSize, textColor,
+                    fontWeight: FontWeight.bold)
               ],
             ),
           ),
@@ -143,7 +253,6 @@ class SearchWorkerCardView extends StatelessWidget {
     );
   }
 }
-
 
 class NotificationCardView extends StatelessWidget {
   const NotificationCardView({
@@ -156,7 +265,7 @@ class NotificationCardView extends StatelessWidget {
       padding: padding,
       color: bgContainerColor,
       elevation: 0,
-      onPressed: () {  },
+      onPressed: () {},
       child: Row(
         children: [
           Expanded(
@@ -164,7 +273,11 @@ class NotificationCardView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 customeTextStyle('"il y a 12 heures"', smallTextSize, grey2),
-                customeTextStyle("Walter a commenté votre annonce 'Pose de prise RJ45'", 14, black, fontWeight: FontWeight.bold)
+                customeTextStyle(
+                    "Walter a commenté votre annonce 'Pose de prise RJ45'",
+                    14,
+                    black,
+                    fontWeight: FontWeight.bold)
               ],
             ),
           ),

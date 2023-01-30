@@ -21,7 +21,7 @@ const double xsTextSize = 10;
 const double iconSize = 22;
 
 // CETTE PARTIE CONCERNE LES COULEURS DE L'APP
-HexColor primaryColor = HexColor("#0004FF");
+HexColor primaryColor = HexColor("#2979FF");
 
 const secondaryColor = Color(0xFF1E88E5);
 const textColor = Color(0xFF263238);
@@ -30,6 +30,7 @@ const bgColor = Color(0xFFFAFAFA);
 
 //defaul color
 const white = Colors.white;
+const whiteSecondar = Color(0xFFF5F5F5);
 const black = Colors.black;
 const grey = Color(0xFFBDBDBD);
 const grey2 = Color(0xFF858585);

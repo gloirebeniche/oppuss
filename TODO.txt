@@ -14,18 +14,9 @@
 3- publier une annonces et un projets
     - l'interface (TablePage) des annonces, des projets
     - l'interfaces par defaut s'il n'y a pas de demandes (Image d'erreur -)
-    - Formulaire de l'annonce:
-        - titre
-        - description
-        - date
-        - photo (min 3)
-        - heure
-        - Montant
-        - Adresse du travail
-        - Numéro de Téléphone
+  
 
-
-    - Formulaire du projet:
+    - Formulaire :
         - Titre
         - Status (Chantier)
         - Type de Travaux (construction, electricité...)
