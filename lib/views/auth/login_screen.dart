@@ -108,20 +108,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),),
               DelayedAnimation(delay: transitionAnimate, 
-              child: CustomizedButton(
-                  buttonText: "Se connecter",
-                  buttonColor: primaryColor,
-                  textColor: Colors.white,
-                  onPressed: () async {
-
-                    // c'est dans cette methode qu'il faut synchroniser des les informations saisies par
-                    // par l'utilisateur pour les envoyer dans l'API
-
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  HomeScreen()));
-                  }),),
+              child: CustomButton("Envoyer", (() {
+                    
+                  })),),
               DelayedAnimation(delay: transitionAnimate, 
                   child:  Padding(
                 padding: const EdgeInsets.all(10.0),

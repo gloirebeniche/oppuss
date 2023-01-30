@@ -130,20 +130,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           
               const SizedBox(height: 20,),
                DelayedAnimation(delay: transitionAnimate, 
-              child: CustomizedButton(
-                  buttonText: "envoyer le code",
-                  buttonColor: primaryColor,
-                  textColor: Colors.white,
-                  onPressed: () async {
-
-                    // c'est dans cette methode qu'il faut synchroniser des les informations saisies par
-                    // par l'utilisateur pour les envoyer dans l'API
-
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OptShareCode()));
-                  }),),
+              child: CustomButton("Envoyer", (() {
+                    
+                  })),),
             ],
           ),
         ),

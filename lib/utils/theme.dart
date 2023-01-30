@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -51,11 +53,12 @@ const transitionAnimate = 500;
 Text bigTextStyle(String text, double size, Color color){
   return Text(
     text,
+    textAlign: TextAlign.center,
     style: GoogleFonts.lato(
       color: color,
       fontSize: size,
       letterSpacing: 1,
-      fontWeight: FontWeight.bold
+      fontWeight: FontWeight.bold,
     ),
   );
 }
