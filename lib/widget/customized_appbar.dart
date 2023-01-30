@@ -11,7 +11,7 @@ AppBar CustomAppBar(String title){
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 15),
-              child: icon(EvaIcons.paperPlaneOutline),
+              child: IconButton(icon: const Icon(EvaIcons.paperPlaneOutline), onPressed: () {  },),
             )
           ],
       );
