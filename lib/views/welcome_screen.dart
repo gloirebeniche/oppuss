@@ -3,9 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/login_screen.dart';
-import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
-import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 
 // ignore: slash_for_doc_comments
@@ -31,13 +28,17 @@ class WelcomeAuth extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-             DelayedAnimation(delay: transitionAnimate,
-                child:  Column(
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: Column(
                   children: [
-                    bigTextStyle("Bienvenue sur OPPUSS", bigTextSize2, primaryColor),
+                    bigTextStyle(
+                        "Bienvenue sur OPPUSS", bigTextSize2, primaryColor),
                     spacingHeight1,
-                    bigTextStyle("Trouver l'ouvrier idéal pour tous travaux du BTP", textSizeH2, black)
-                    
+                    bigTextStyle(
+                        "Trouver l'ouvrier idéal pour tous travaux du BTP",
+                        textSizeH2,
+                        black)
                   ],
                 ),
               ),
@@ -50,11 +51,17 @@ class WelcomeAuth extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
-                  DelayedAnimation(delay: transitionAnimate, 
-                    child: CustomButton("Commencer", (() {context.go("/home");})),
+                  DelayedAnimation(
+                    delay: transitionAnimate,
+                    child: CustomButton("Commencer", (() {
+                      context.go("/home");
+                    })),
                   ),
-                  DelayedAnimation(delay: transitionAnimate,
-                    child: CustomOutlinedButton("Devenir ouvrier", (() {})),
+                  DelayedAnimation(
+                    delay: transitionAnimate,
+                    child: CustomOutlinedButton("Devenir ouvrier", (() {
+                      context.go("/worker");
+                    })),
                   ),
                 ],
               )

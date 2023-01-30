@@ -3,8 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/forgot_password.dart';
-import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:pinput/pinput.dart';
 

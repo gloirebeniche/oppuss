@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -49,6 +47,14 @@ Icon icon(IconData iconData) {
 }
 
 Icon icon2(IconData iconData) {
+  return Icon(
+    iconData,
+    size: iconSize,
+    color: primaryColor,
+  );
+}
+
+Icon icon3(IconData iconData,) {
   return Icon(
     iconData,
     size: iconSize,

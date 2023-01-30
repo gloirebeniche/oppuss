@@ -27,7 +27,10 @@ class MyApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(
     routes: [ 
-      GoRoute( path: "/", builder: (context, state) => const WelcomeAuth(),),
+      GoRoute( path: "/", builder: (context, state) => const WelcomeAuth(),
+      routes: [
+         GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
+      ]),
       GoRoute( 
         path: "/home", builder: (context, state) => const HomeScreen(),
         routes: [
@@ -38,8 +41,8 @@ class MyApp extends StatelessWidget {
           //GoRoute( path: "safe", builder: (context, state) => const SafeView(),),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
           //GoRoute( path: "/about", builder: (context, state) => const AboutView(),),
-        ]
-      ),
+        ]),
+     
     ],
   );
 }

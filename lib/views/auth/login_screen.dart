@@ -5,8 +5,8 @@ import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
 import 'package:oppuss/views/welcome_screen.dart';
-import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: bgColor,
+      appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -174,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
-                      Text("Vous n'avez pas de compte ?",
+                      const Text("Vous n'avez pas de compte ?",
                           style: TextStyle(
                             color: Color(0xff1E232C),
                             fontSize: textSize,

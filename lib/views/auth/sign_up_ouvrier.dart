@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 
+import '../../widget/customized_appbar.dart';
 import 'login_screen.dart';
 
 class SignUpScreenOuvrier extends StatefulWidget {
@@ -21,13 +21,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-           appBar: AppBar(
-            backgroundColor: bgColor,
-            elevation: 0,
-            leading: IconButton(icon: Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
-                  Navigator.pop(context);
-         },),
-      ),
+        appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -47,7 +41,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 height: 20,
               ),
               DelayedAnimation(
-                delay: 1700,
+                delay: transitionAnimate,
                 child: Text(
                   "Nous Rejoindre",
                   style: GoogleFonts.poppins(
@@ -161,7 +155,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                        mainAxisAlignment: MainAxisAlignment.center,
                        
                         children:  [
-                          Text("Si vous avec déjà un compte?",
+                          const Text("Si vous avec déjà un compte?",
                               style: TextStyle(
                                 color: Color(0xff1E232C),
                                 fontSize: textSize,

@@ -1,9 +1,5 @@
-
-import 'dart:ui';
-
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/views/particulars/account_view.dart';
 import 'package:oppuss/views/particulars/search_worker_view.dart';
 import 'package:oppuss/views/particulars/demande.dart';

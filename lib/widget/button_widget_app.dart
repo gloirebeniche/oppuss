@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
 
 final ButtonStyle primaryButton = ElevatedButton.styleFrom(
-  minimumSize: Size(327, 50),
+  minimumSize: const Size(327, 50),
   elevation: 1,
   backgroundColor: primaryColor,
   shape: const RoundedRectangleBorder(
@@ -11,7 +11,7 @@ final ButtonStyle primaryButton = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle primaryOutlinedButton = ElevatedButton.styleFrom(
-  minimumSize: Size(327, 50),
+  minimumSize: const Size(327, 50),
   elevation: 1,
   backgroundColor: white,
   shape: const RoundedRectangleBorder(
