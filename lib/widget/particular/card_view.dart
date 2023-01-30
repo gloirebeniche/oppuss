@@ -4,6 +4,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 class CardOfferView extends StatelessWidget {
   const CardOfferView({
@@ -103,63 +104,42 @@ class CardOfferView2 extends StatelessWidget {
             SizedBox(
               height: 200,
               child: Container(
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("images/mecanik.png"),
-                          fit: BoxFit.cover))),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("images/mecanik.png"),
+                    fit: BoxFit.cover)
+                )
+              ),
             ),
             spacingHeight2,
-            customeTextStyle(
-                "Réparation de voiture", headingTextSize, textColor,
-                fontWeight: FontWeight.bold),
+            customeTextStyle( "Réparation de voiture", headingTextSize, textColor, fontWeight: FontWeight.bold),
             spacingHeight,
-            customeTextStyle(
-                "vendredi 24 septembre 2023 de 8h à 12:30", textSize, grey2),
-           
-       
-             spacingHeight2,
+            customeTextStyle("vendredi 24 septembre 2023 de 8h à 12:30", textSize, grey2),
+            spacingHeight2,
             Row(
               children: [
                 Expanded(
-                  
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: whiteSecondar
-                    ),
-                    onPressed: () {},
-                    child: Padding(
-                      padding: padding,
-                      child: titleTextStyle("Voir ma demande",
-                          color: primaryColor, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  child: defaultButton("Voir ma demande", btnColor: whiteSecondar, colorText: textColorImportant, (){}),
                 ),
               ],
             ),
-              spacingHeight2,
+            spacingHeight2,
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: secondaryColor,
-                  ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: secondaryColor,
+                    ),
                     onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: padding,
-                          
-                          child: titleTextStyle("Démander à nouveau",
-                              color: white, fontWeight: FontWeight.bold),
+                          child: titleTextStyle("Démander à nouveau", color: white, fontWeight: FontWeight.bold),
                         ),
-                          const Icon(
-                    EvaIcons.copyOutline,
-                    size: 20,
-                    color: white,
-                  ),
-
+                        icon3(EvaIcons.copyOutline, white),
                       ],
                     ),
                   ),
