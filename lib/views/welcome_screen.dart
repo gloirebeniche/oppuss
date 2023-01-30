@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
@@ -50,9 +51,7 @@ class WelcomeAuth extends StatelessWidget {
               Column(
                 children: <Widget>[
                   DelayedAnimation(delay: transitionAnimate, 
-                    child: CustomButton("Commencer", (() {
-                      
-                    })),
+                    child: CustomButton("Commencer", (() {})),
                   ),
                   DelayedAnimation(delay: transitionAnimate,
                     child: CustomOutlinedButton("Devenir ouvrier", (() {})),
