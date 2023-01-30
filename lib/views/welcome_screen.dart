@@ -50,7 +50,9 @@ class WelcomeAuth extends StatelessWidget {
               Column(
                 children: <Widget>[
                   DelayedAnimation(delay: transitionAnimate, 
-                    child: CustomButton("Commencer", (() {})),
+                    child: CustomButton("Commencer", (() {
+                      
+                    })),
                   ),
                   DelayedAnimation(delay: transitionAnimate,
                     child: CustomOutlinedButton("Devenir ouvrier", (() {})),

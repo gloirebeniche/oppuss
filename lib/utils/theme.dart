@@ -21,8 +21,8 @@ const double xsTextSize = 10;
 const double iconSize = 22;
 
 // CETTE PARTIE CONCERNE LES COULEURS DE L'APP
-HexColor primaryColor = HexColor("#0004FF");
-
+//HexColor primaryColor = HexColor("#0004FF");
+const primaryColor = Color(0xFF2979FF);
 const secondaryColor = Color(0xFF1E88E5);
 const textColor = Color(0xFF263238);
 const textColorImportant = Color.fromARGB(255, 44, 154, 245);
@@ -39,18 +39,27 @@ const iconColor = Colors.black;
 const starColor = Colors.amber;
 const bgContainerColor = Color.fromARGB(255, 218, 229, 248);
 
-Icon icon(IconData iconData){
-  return Icon(iconData, size: iconSize, color: black,);
+Icon icon(IconData iconData) {
+  return Icon(
+    iconData,
+    size: iconSize,
+    color: black,
+  );
 }
 
-Icon icon2(IconData iconData){
-  return Icon(iconData, size: iconSize, color: primaryColor,);
+Icon icon2(IconData iconData) {
+  return Icon(
+    iconData,
+    size: iconSize,
+    color: primaryColor,
+  );
 }
+
 // transition values
 const transitionAnimate = 500;
 
 // Font app
-Text bigTextStyle(String text, double size, Color color){
+Text bigTextStyle(String text, double size, Color color) {
   return Text(
     text,
     textAlign: TextAlign.center,
@@ -63,64 +72,54 @@ Text bigTextStyle(String text, double size, Color color){
   );
 }
 
-Text appbarTextStyle(String text){
+Text appbarTextStyle(String text) {
   return Text(
     text,
     style: GoogleFonts.lato(
-      color: black,
-      fontSize: appbarTextSize,
-      letterSpacing: 0.5,
-      fontWeight: FontWeight.bold
-    ),
+        color: black,
+        fontSize: appbarTextSize,
+        letterSpacing: 0.5,
+        fontWeight: FontWeight.bold),
   );
 }
 
-Text defaultTextStyle(String text){
+Text defaultTextStyle(String text) {
+  return Text(
+    text,
+    style: GoogleFonts.lato(color: black, fontSize: textSize, letterSpacing: 1),
+  );
+}
+
+Text titleTextStyle(String text,
+    {color = Colors.black, fontWeight = FontWeight.normal}) {
   return Text(
     text,
     style: GoogleFonts.lato(
-      color: black,
-      fontSize: textSize,
-      letterSpacing: 1
-    ),
+        color: color,
+        fontSize: textSizeH2,
+        letterSpacing: 0.5,
+        fontWeight: fontWeight),
   );
 }
 
-Text titleTextStyle(String text, {color = Colors.black, fontWeight = FontWeight.normal}){
+Text subtitleTextStyle(String text) {
+  return Text(
+    text,
+    style: GoogleFonts.lato(color: black, fontSize: textSize, letterSpacing: 1),
+  );
+}
+
+Text customeTextStyle(String text, double size, Color color,
+    {FontWeight fontWeight = FontWeight.normal}) {
   return Text(
     text,
     style: GoogleFonts.lato(
-      color: color,
-      fontSize: textSizeH2,
-      letterSpacing: 0.5,
-      fontWeight: fontWeight
-    ),
+        color: color,
+        fontSize: size,
+        letterSpacing: 0.5,
+        fontWeight: fontWeight),
   );
 }
-
-Text subtitleTextStyle(String text){
-  return Text(
-    text,
-    style: GoogleFonts.lato(
-      color: black,
-      fontSize: textSize,
-      letterSpacing: 1
-    ),
-  );
-}
-
-Text customeTextStyle(String text, double size, Color color, {FontWeight fontWeight = FontWeight.normal}){
-  return Text(
-    text,
-    style: GoogleFonts.lato(
-      color: color,
-      fontSize: size,
-      letterSpacing: 0.5,
-      fontWeight: fontWeight
-    ),
-  );
-}
-
 
 // SPACING BEETWEEN APP
 const spacingHeight = SizedBox(height: 10);

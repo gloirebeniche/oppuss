@@ -37,7 +37,7 @@ class BtnCustom extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: buttonColor,
-            border: Border.all(width: 1, color: secondaryColor),
+            border: Border.all(width: 1, color: primaryColor),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Center(
