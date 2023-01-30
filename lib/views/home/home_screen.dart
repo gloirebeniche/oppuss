@@ -10,7 +10,7 @@ import 'package:oppuss/views/particulars/demande.dart';
 import 'package:oppuss/views/particulars/publications.dart';
 import 'package:oppuss/utils/theme.dart';
 
-import '../particulars/acceuil_page.dart';
+import '../particulars/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-      AcceuilePage(),
+      HomePageParticular(),
       SearchWorkerView(),
       Publications(),
       Demandes(), 
