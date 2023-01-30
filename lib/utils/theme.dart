@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 // CETTE PARTIE CONCERNE LES DIFFERENT TAILLE DE LA POLICE
 const double bigTextSize = 50;
@@ -18,7 +19,8 @@ const double xsTextSize = 10;
 const double iconSize = 22;
 
 // CETTE PARTIE CONCERNE LES COULEURS DE L'APP
-const primaryColor = Color(0xFF1976D2);
+HexColor primaryColor = HexColor("#0004FF");
+
 const secondaryColor = Color(0xFF1E88E5);
 const textColor = Color(0xFF263238);
 const textColorImportant = Color.fromARGB(255, 44, 154, 245);

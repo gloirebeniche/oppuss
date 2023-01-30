@@ -32,7 +32,7 @@ class WelcomeAuth extends StatelessWidget {
             children: <Widget>[
              DelayedAnimation(delay: transitionAnimate,
                 child:  Column(
-                  children: const [
+                  children: [
                   Text("Bienvenue sur OPPUSS.",
                       style: TextStyle(fontWeight: FontWeight.bold, color: primaryColor, fontSize: 30),
                       textAlign: TextAlign.center,),

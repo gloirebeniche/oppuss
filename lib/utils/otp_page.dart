@@ -47,7 +47,7 @@ class _OptShareCodeState extends State<OptShareCode> {
       appBar: AppBar(
         backgroundColor: bgColor,
         elevation: 0,
-        leading: IconButton(icon: const Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
+        leading: IconButton(icon: Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
                            Navigator.pop(context);
 
          },),

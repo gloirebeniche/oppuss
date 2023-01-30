@@ -24,7 +24,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
            appBar: AppBar(
             backgroundColor: bgColor,
             elevation: 0,
-            leading: IconButton(icon: const Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
+            leading: IconButton(icon: Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
                   Navigator.pop(context);
          },),
       ),
@@ -169,7 +169,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                       child: Column(
                        mainAxisAlignment: MainAxisAlignment.center,
                        
-                        children: const [
+                        children:  [
                           Text("Si vous avec déjà un compte?",
                               style: TextStyle(
                                 color: Color(0xff1E232C),

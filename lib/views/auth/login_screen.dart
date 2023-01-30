@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children:  [
                       Text("Vous n'avez pas de compte ?",
                           style: TextStyle(
                             color: Color(0xff1E232C),
