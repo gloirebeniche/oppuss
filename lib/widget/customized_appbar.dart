@@ -12,7 +12,6 @@ AppBar CustomAppBar(String title){
             Padding(
               padding: const EdgeInsets.only(right: 15),
               child: icon(EvaIcons.messageCircleOutline),
-
             )
           ],
       );
