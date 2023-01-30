@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
 
 
@@ -17,21 +18,16 @@ class _DemandesState extends State<Demandes> {
         length: 2,
         child: Scaffold(
           backgroundColor: bgColor,
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: white,
-            automaticallyImplyLeading: false,
-            title:const Text("Mes demandes", style: TextStyle(color: textColor, fontSize: 25),),
-          ),
+          appBar: CustomAppBar("Mes demandes"),
           body: Column(
             children: [
-              const TabBar(
+               TabBar(
                 tabs: [
                   Tab(
-                    child:  Text("En cours", style: TextStyle(color: primaryColor, fontSize: 15),),
+                    child:  titleTextStyle("En cours", color: primaryColor),
                   ),
                   Tab(
-                    child:  Text("Terminé", style: TextStyle(color: primaryColor, fontSize: 15),),
+                    child:  titleTextStyle("Terminé", color: primaryColor),
                   ),
                 ],
               ),
@@ -43,13 +39,14 @@ class _DemandesState extends State<Demandes> {
                       child: ListView(
                         children: const[
                           CardOfferView(),
-                          SizedBox(height: 20,),
+                          spacingHeight2,
+                          CardOfferView(),
                         ],
                       ),
                     ),
                     Container(
                       color: Colors.amberAccent,
-                      child: Center(child: Text("Hello Walter"),),
+                      child: const Center(child: Text("Hello Walter"),),
                     ),
                   ],
                 ),

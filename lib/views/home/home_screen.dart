@@ -1,5 +1,9 @@
 
+import 'dart:ui';
+
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/views/particulars/account_view.dart';
 import 'package:oppuss/views/particulars/search_worker_view.dart';
 import 'package:oppuss/views/particulars/demande.dart';
@@ -38,32 +42,36 @@ class _HomeScreenState extends State<HomeScreen> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: icon(EvaIcons.homeOutline),
             label: 'Acceuil',
+            activeIcon: icon(EvaIcons.home)
           ),
            BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: icon(EvaIcons.searchOutline),
             label: 'Recherche',
+            activeIcon: icon(EvaIcons.search)
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-          label: '',
+            icon: icon(EvaIcons.plusSquareOutline),
+            label: '',
+            activeIcon: icon(EvaIcons.plusSquare)
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
+            icon: icon(EvaIcons.bookmarkOutline),
             label: 'Demandes',
+            activeIcon: icon(EvaIcons.bookmark)
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: icon(EvaIcons.personOutline),
             label: 'Compte',
+            activeIcon: icon(EvaIcons.person)
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: primaryColor,
-        unselectedItemColor: secondaryColor,
-        
+        selectedItemColor: textColor,
+        unselectedItemColor: grey2,
         onTap: _onItemTapped,
       ),
     );

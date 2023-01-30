@@ -1,6 +1,7 @@
 /// ICI SE TROUVE TOUS LES WIDGETS CONCERNANT LES CARDS VIEW
 /// DE TOUS LES INTERFACE QUI NECESSITE UN CARD VIEW POUR LE PARTICULIER
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
 
@@ -33,29 +34,20 @@ class CardOfferView extends StatelessWidget {
               ),
             ),
             spacingHeight2,
-            const Text("Pose de lampes et luminaire", style: TextStyle(
-                color: Colors.black, fontSize: headingTextSize, fontWeight: FontWeight.bold
-              ),
-            ),
-            const SizedBox(height: 10,),
-            const Text("Jeudi 25 janvier 2013 de 12 à 15:30", style: TextStyle(
-                color: grey2, fontSize: textSize
-              ),
-            ),
+            customeTextStyle("Pose de lampes et luminaire", headingTextSize, textColor, fontWeight: FontWeight.bold),
+            spacingHeight,
+            customeTextStyle("Jeudi 25 janvier 2013 de 12 à 15:30", textSize, grey2),
             Container(
               margin: const EdgeInsets.only(top: 20),
-              padding: const EdgeInsets.all(15),
+              padding: padding,
               color: bgContainerColor,
               child: Row(
-                children: const [
-                  Icon(Icons.notifications_active_outlined, size: 20, color: textColorImportant,),
+                children:  [
+                  const Icon(EvaIcons.bellOutline, size: 20, color: textColorImportant,),
                   Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text("Vous avez reçu 13 offres", style: TextStyle(
-                      color: textColorImportant, fontSize: textSize, fontWeight: FontWeight.bold
-                      ),
+                    padding: const EdgeInsets.only(left: 10),
+                    child: customeTextStyle("Vous avez reçu 13 offres", textSize, textColorImportant, fontWeight: FontWeight.bold),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -65,10 +57,9 @@ class CardOfferView extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {  },
-                    child:  const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Gérer ma demande', style: 
-                      TextStyle(fontSize: textSizeH2),),
+                    child: Padding(
+                      padding: padding,
+                      child: titleTextStyle("Gérer ma demande", color: white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -95,77 +86,55 @@ class SearchWorkerCardView extends StatelessWidget {
       child: Row(
         children:  [
           SizedBox(
-            height: 60,
-            width: 60,
+            height: 80,
+            width: 80,
             child: Stack(
               fit: StackFit.expand,
-              children: [
-                const CircleAvatar(backgroundColor: grey),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  child: SizedBox(
-                    height: 22,
-                    width: 22,
-                    child: MaterialButton(
-                      onPressed: (){},
-                      padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        side: const BorderSide(color: white)
-                      ),
-                      color: white,
-                      child: const Icon(Icons.check_circle, color: Colors.green,),
-                    ),
-                  ),
-                ),
+              children: const [
+                 CircleAvatar(backgroundColor: grey),
+                // Positioned(
+                //   right: 0,
+                //   top: 0,
+                //   child: SizedBox(
+                //     height: 22,
+                //     width: 22,
+                //     child: MaterialButton(
+                //       onPressed: (){},
+                //       padding: EdgeInsets.zero,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //         side: const BorderSide(color: white)
+                //       ),
+                //       color: white,
+                //       child: const Icon(Icons.check_circle, color: Colors.green,),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 15, top: 5, bottom: 5),
+            padding: padding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
-                  child: Text(fullname,
-                    style: const TextStyle(
-                      fontSize: textSize,
-                      fontWeight: FontWeight.bold,
-                      color: black),
-                  ),
+                  child: customeTextStyle(fullname, headingTextSize, textColor, fontWeight: FontWeight.bold),
                 ),
+                spacingHeight0,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.star, color: Colors.amber, size: 17,),
-                    const Text("4,95",
-                      style: TextStyle(
-                        fontSize: xsTextSize,
-                        fontWeight: FontWeight.bold,
-                        color: starColor),
-                    ),
-                    Text(" ($avis avis)",
-                      style: const TextStyle(
-                        fontSize: xsTextSize,
-                        fontWeight: FontWeight.bold,
-                        color: grey2),
-                    ),
+                    const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
+                    customeTextStyle("4,95", 12, starColor),
+                    customeTextStyle(" ($avis avis)", 12, grey2, fontWeight: FontWeight.bold),
                   ],
                 ),
-                const Text("Membre depuis 4 mois",
-                    style: TextStyle(
-                      fontSize: xsTextSize,
-                      fontWeight: FontWeight.bold,
-                      color: grey2),
-                ),
-                Text("$jobs jobs réalisés",
-                    style: const TextStyle(
-                      fontSize: smallTextSize,
-                      fontWeight: FontWeight.bold,
-                      color: black),
-                ),
+                spacingHeight0,
+                customeTextStyle("Membre depuis 4 mois", 12, grey2),
+                spacingHeight0,
+                customeTextStyle("$jobs jobs réalisés", textSize, textColor, fontWeight: FontWeight.bold)
               ],
             ),
           ),
@@ -184,8 +153,8 @@ class NotificationCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      padding: const EdgeInsets.all(20),
-      color: const Color.fromARGB(255, 215, 220, 228),
+      padding: padding,
+      color: bgContainerColor,
       elevation: 0,
       onPressed: () {  },
       child: Row(
@@ -193,25 +162,13 @@ class NotificationCardView extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "il y a 12 heures",
-                  style: TextStyle(color: grey2, fontSize: smallTextSize),),
-                Text(
-                  "Walter a commenté votre annonce 'Pose de prise RJ45'",
-                  style: TextStyle(
-                    color: black,
-                    fontSize: textSize,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
+              children: [
+                customeTextStyle('"il y a 12 heures"', smallTextSize, grey2),
+                customeTextStyle("Walter a commenté votre annonce 'Pose de prise RJ45'", 14, black, fontWeight: FontWeight.bold)
               ],
             ),
           ),
-          const Icon(Icons.keyboard_arrow_right_sharp,
-            size: 30,
-            color: Colors.grey
-          ),
+          icon(EvaIcons.arrowIosForwardOutline),
         ],
       ),
     );

@@ -34,7 +34,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),  
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 14, top: 25, right: 14),
+        padding: padding,
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();

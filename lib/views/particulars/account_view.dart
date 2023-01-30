@@ -1,8 +1,10 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
 class AccountView extends StatelessWidget {
@@ -11,12 +13,7 @@ class AccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          backgroundColor: bgColor,
-          automaticallyImplyLeading: false,
-          title:const Text("Compte", style: TextStyle(color: textColor, fontSize: 25),),
-      ),
+      appBar: CustomAppBar("Compte"),
       body: ListView(
         children: [
           const ProfilePictureWidget(),
@@ -24,15 +21,15 @@ class AccountView extends StatelessWidget {
           const TextProfileManageWidget(text: "Gérer mon compte"),
           ProfileMenuWidget(
             text: "Informations personnelles",
-            icon: Icons.person,
+            icons: EvaIcons.personOutline,
             press: (){
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => const EditProfilePage()));
-            }
+            },
           ),
           ProfileMenuWidget(
             text: "Notifications",
-            icon: Icons.notifications_active,
+            icons: EvaIcons.bellOutline,
             press: (){
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => const NotificationView()));
@@ -42,22 +39,22 @@ class AccountView extends StatelessWidget {
           const TextProfileManageWidget(text: "Informations utiles"),
           ProfileMenuWidget(
             text: "Paramètre",
-            icon: Icons.settings,
+            icons: EvaIcons.options2Outline,
             press: (){}
           ),
           ProfileMenuWidget(
             text: "Centre d'aide",
-            icon: Icons.help,
+            icons: EvaIcons.questionMarkCircleOutline,
             press: (){}
           ),
           ProfileMenuWidget(
             text: "Confiance et sécurité",
-            icon: Icons.safety_check,
+            icons: EvaIcons.shieldOutline,
             press: (){}
           ),
           ProfileMenuWidget(
             text: "Devenir Ouvrier",
-            icon: Icons.work,
+            icons: EvaIcons.briefcaseOutline,
             press: (){
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => const SignUpScreenOuvrier()));
@@ -67,12 +64,12 @@ class AccountView extends StatelessWidget {
           const TextProfileManageWidget(text: "Autres"),
           ProfileMenuWidget(
             text: "À propos",
-            icon: Icons.info_rounded,
+            icons: EvaIcons.alertCircleOutline,
             press: (){}
           ),
           ProfileMenuWidget(
             text: "Se déconnecter",
-            icon: Icons.logout,
+            icons: EvaIcons.logOutOutline,
             press: (){}
           ),
           const AboutVersionAppWidget()

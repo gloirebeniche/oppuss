@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
 
 
@@ -42,12 +43,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: white,
-        automaticallyImplyLeading: false,
-        title:const Text("Trouver des ouvriers", style: TextStyle(color: textColor,fontSize: 25),),
-      ),
+      appBar: CustomAppBar("Trouver des ouvriers"),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: Column(
@@ -72,9 +68,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10.0,
-              ),
+              spacingHeight1,
               Expanded(
                 child: display_list.isEmpty ?
                 const Center(
