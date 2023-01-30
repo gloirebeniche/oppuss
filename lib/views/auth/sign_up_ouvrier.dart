@@ -141,18 +141,9 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
               spacingHeight1,
               DelayedAnimation(
                 delay: transitionAnimate,
-                child: CustomizedButton(
-                    buttonText: "S'inscrire",
-                    buttonColor: primaryColor,
-                    textColor: white,
-                    onPressed: () async {
-                      // c'est dans cette methode qu'il faut synchroniser des les informations saisies par
-                      // par l'utilisateur pour les envoyer dans l'API
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  const HomeScreen()));
-                    }),
+                child: CustomButton("Envoyer", (() {
+                    
+                  })),
               ),
          
               DelayedAnimation(

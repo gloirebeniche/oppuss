@@ -33,13 +33,10 @@ class WelcomeAuth extends StatelessWidget {
              DelayedAnimation(delay: transitionAnimate,
                 child:  Column(
                   children: [
-                  Text("Bienvenue sur OPPUSS.",
-                      style: TextStyle(fontWeight: FontWeight.bold, color: primaryColor, fontSize: 30),
-                      textAlign: TextAlign.center,),
+                    bigTextStyle("Bienvenue sur OPPUSS", bigTextSize2, primaryColor),
                     spacingHeight1,
-                    Text("Trouver l'ouvrier idéal pour tous travaux du BTP",
-                      style: TextStyle( fontWeight: FontWeight.bold, fontSize: textSizeH2),
-                      textAlign: TextAlign.center)
+                    bigTextStyle("Trouver l'ouvrier idéal pour tous travaux du BTP", textSizeH2, black)
+                    
                   ],
                 ),
               ),
@@ -53,37 +50,11 @@ class WelcomeAuth extends StatelessWidget {
               Column(
                 children: <Widget>[
                   DelayedAnimation(delay: transitionAnimate, 
-              child: CustomizedButton(
-                  buttonText: "Commencer",
-                  buttonColor: primaryColor,
-                  textColor: Colors.white,
-                  onPressed: () async {
-
-                    // c'est dans cette methode qu'il faut synchroniser des les informations saisies par
-                    // par l'utilisateur pour les envoyer dans l'API
-
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  const HomeScreen()));
-                  }),),
-              
-                  DelayedAnimation(delay: transitionAnimate, 
-              child: CustomizedButton(
-                  buttonText: "Devenir Ouvrier",
-                  buttonColor: Colors.white,
-                  textColor: primaryColor,
-                  
-                  onPressed: () async {
-
-                    // c'est dans cette methode qu'il faut synchroniser des les informations saisies par
-                    // par l'utilisateur pour les envoyer dans l'API
-
-                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpScreenOuvrier()));
-                  }),),
+                    child: CustomButton("Commencer", (() {})),
+                  ),
+                  DelayedAnimation(delay: transitionAnimate,
+                    child: CustomOutlinedButton("Devenir ouvrier", (() {})),
+                  ),
                 ],
               )
             ],
