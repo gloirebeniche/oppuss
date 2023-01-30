@@ -6,7 +6,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_button.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -22,12 +22,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-     
-      backgroundColor: Colors.white,
+      backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
-            vertical: 60,
+            vertical: 40,
             horizontal: 30,
           ),
           child: Column(
@@ -35,30 +34,30 @@ class _LoginScreenState extends State<LoginScreen> {
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: SizedBox(
-                  height: 170,
+                  height: 190,
                   child: SvgPicture.asset("assets/login.svg"),
                 ),
               ),
-              const SizedBox(height: 20,),
+              spacingHeight1,
                  DelayedAnimation(
                     delay: transitionAnimate,
                     child: Text(
                       "OPPUSS.",
                       style: GoogleFonts.poppins(
-                        color: kPrimaryColor,
-                        fontSize: 25,
+                        color: primaryColor,
+                        fontSize: appbarTextSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20,),
-          DelayedAnimation(
+                  spacingHeight1,
+          const DelayedAnimation(
             delay: 1500,
             child: TextField(
               decoration: InputDecoration(
                 labelText: 'Votre Email',
                 labelStyle: TextStyle(
-                  color: Colors.grey[400],
+                  color: grey,
                 ),
               ),
             ),
@@ -68,14 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
             child: TextField(
               obscureText: _obscureText,
               decoration: InputDecoration(
-                labelStyle: TextStyle(
-                  color: Colors.grey[400],
+                labelStyle: const TextStyle(
+                  color: grey,
                 ),
                 labelText: 'Mot de passe',
                 suffixIcon: IconButton(
                   icon: const Icon(
                     Icons.visibility,
-                    color: Colors.black,
+                    color: black,
                   ),
                   onPressed: () {
                     setState(() {
@@ -103,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text("Mot de passe oublié?",
                         style: TextStyle(
                           color: Color(0xff6A707C),
-                          fontSize: 15,
+                          fontSize: textSize,
                         )),
                   ),
                 ),
@@ -111,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
               DelayedAnimation(delay: transitionAnimate, 
               child: CustomizedButton(
                   buttonText: "Se connecter",
-                  buttonColor: kPrimaryColor,
+                  buttonColor: primaryColor,
                   textColor: Colors.white,
                   onPressed: () async {
 
@@ -129,7 +128,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Text("Ou Connectez-vous avec :"),
+                    Text("Ou connectez-vous avec :", style: TextStyle(
+                      fontSize: textSize
+                    ),),
                   ],
                 ),
               ),),
@@ -143,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   decoration: BoxDecoration(                    
                     borderRadius: BorderRadius.circular(16),
-                    color: Colors.grey[200],
+                    color: bgColor,
                       ),
                          child: InkWell( 
                               onTap: (() {}
@@ -156,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   decoration: BoxDecoration(                    
                     borderRadius: BorderRadius.circular(16),
-                    color: Colors.grey[200],
+                    color: bgColor,
                       ),
                          child: InkWell( 
                               onTap: (() {}
@@ -183,16 +184,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children:  [
                       Text("Vous n'avez pas de compte ?",
                           style: TextStyle(
                             color: Color(0xff1E232C),
-                            fontSize: 15,
+                            fontSize: textSize,
                           )),
                       Text(" S'inscrire ici",
                           style: TextStyle(
-                            color: Color(0xff35C2C1),
-                            fontSize: 15,
+                            color: primaryColor,
+                            fontSize: textSize,
                           )),
                     ],
                   ),

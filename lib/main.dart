@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:oppuss/views/splash_screen.dart';
+import 'package:oppuss/views/welcome_screen.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  // SystemChrome.setSystemUIOverlayStyle(
+  //     const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(const MyApp());
 }
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     // );
 
     return const MaterialApp(
-      home: SplashScreen(),
+      home: WelcomeAuth(),
       debugShowCheckedModeBanner: false,
     );
   }

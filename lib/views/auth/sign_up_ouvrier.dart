@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_button.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 import 'login_screen.dart';
 
@@ -20,18 +20,18 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
+      backgroundColor: bgColor,
            appBar: AppBar(
-            backgroundColor: kglobalColor,
+            backgroundColor: bgColor,
             elevation: 0,
-            leading: IconButton(icon: const Icon(Icons.arrow_back,color: kPrimaryColor,), onPressed: () { 
+            leading: IconButton(icon: Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
                   Navigator.pop(context);
          },),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
-            vertical: 60,
+            vertical: 10,
             horizontal: 30,
           ),
           child: Column(
@@ -51,44 +51,42 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 child: Text(
                   "Nous Rejoindre",
                   style: GoogleFonts.poppins(
-                    color: kPrimaryColor,
-                    fontSize: 25,
+                    color: primaryColor,
+                    fontSize: appbarTextSize,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              DelayedAnimation(
+              spacingHeight2,
+              const DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: 'Nom d\'utilisateur',
                     labelStyle: TextStyle(
-                      color: Colors.grey[400],
+                      color: grey,
                     ),
                   ),
                 ),
               ),
-              DelayedAnimation(
+              const DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: 'Votre Email',
                     labelStyle: TextStyle(
-                      color: Colors.grey[400],
+                      color: grey,
                     ),
                   ),
                 ),
               ),
-              DelayedAnimation(
+              const DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: 'Profile',
                     labelStyle: TextStyle(
-                      color: Colors.grey[400],
+                      color: grey,
                     ),
                   ),
                 ),
@@ -99,8 +97,8 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 child: TextField(
                   obscureText: _obscureText,
                   decoration: InputDecoration(
-                    labelStyle: TextStyle(
-                      color: Colors.grey[400],
+                    labelStyle: const TextStyle(
+                      color: grey,
                     ),
                     labelText: 'Mot de passe',
                     suffixIcon: IconButton(
@@ -122,14 +120,14 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 child: TextField(
                   obscureText: _obscureText,
                   decoration: InputDecoration(
-                    labelStyle: TextStyle(
-                      color: Colors.grey[400],
+                    labelStyle: const TextStyle(
+                      color: grey,
                     ),
                     labelText: 'Confirmation mot de passe',
                     suffixIcon: IconButton(
                       icon: const Icon(
                         Icons.visibility,
-                        color: Colors.black,
+                        color: black,
                       ),
                       onPressed: () {
                         setState(() {
@@ -140,23 +138,20 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              spacingHeight1,
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: CustomizedButton(
                     buttonText: "S'inscrire",
-                    buttonColor: kPrimaryColor,
-                    textColor: Colors.white,
+                    buttonColor: primaryColor,
+                    textColor: white,
                     onPressed: () async {
                       // c'est dans cette methode qu'il faut synchroniser des les informations saisies par
                       // par l'utilisateur pour les envoyer dans l'API
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  HomeScreen()));
+                              builder: (context) =>  const HomeScreen()));
                     }),
               ),
          
@@ -174,16 +169,16 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                       child: Column(
                        mainAxisAlignment: MainAxisAlignment.center,
                        
-                        children: const [
+                        children:  [
                           Text("Si vous avec déjà un compte?",
                               style: TextStyle(
                                 color: Color(0xff1E232C),
-                                fontSize: 15,
+                                fontSize: textSize,
                               )),
                           Text(" Connectez vous ici",
                               style: TextStyle(
-                                color: Color(0xff35C2C1),
-                                fontSize: 15,
+                                color: primaryColor,
+                                fontSize: textSize,
                               )),
                         ],
                       ),

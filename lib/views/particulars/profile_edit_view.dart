@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/btn_custom.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -16,6 +16,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       appBar: AppBar(
         title: const Text("Information personnelles",
             style: TextStyle(fontSize: 20, color: Colors.black87),
@@ -23,9 +24,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back,
-            color: kPrimaryColor,
+            color: primaryColor,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -33,7 +34,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),  
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 14, top: 25, right: 14),
+        padding: padding,
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -53,8 +54,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
              
                 children: [
                   BtnCustom(
-                    textColor: kglobalColor,
-                    buttonColor: kPrimaryColor,
+                    textColor: bgColor,
+                    buttonColor: primaryColor,
                     buttonText: "Save",
                     onPressed: (){},
                   ),

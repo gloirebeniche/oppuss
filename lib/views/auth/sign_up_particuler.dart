@@ -5,7 +5,7 @@ import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_button.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 
 class SignUpScreenParticuler extends StatefulWidget {
@@ -46,7 +46,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 child: Text(
                   "Nous Rejoindre",
                   style: GoogleFonts.poppins(
-                    color: kPrimaryColor,
+                    color: primaryColor,
                     fontSize: 25,
                     fontWeight: FontWeight.w600,
                   ),
@@ -142,7 +142,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 delay: transitionAnimate,
                 child: CustomizedButton(
                     buttonText: "S'inscrire",
-                    buttonColor: kPrimaryColor,
+                    buttonColor: primaryColor,
                     textColor: Colors.white,
                     onPressed: () async {
                       // c'est dans cette methode qu'il faut synchroniser des les informations saisies par

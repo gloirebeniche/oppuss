@@ -5,7 +5,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
-import 'package:oppuss/widget/customized_button.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 // ignore: slash_for_doc_comments
 /**
@@ -20,8 +20,7 @@ class WelcomeAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
- 
+      backgroundColor: bgColor,
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -31,30 +30,20 @@ class WelcomeAuth extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-           
              DelayedAnimation(delay: transitionAnimate,
-              child:  Column(
-                children: const [
-
-                 
-                 Text("Bienvenue sur OPPUSS.",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: kPrimaryColor,
-                    fontSize: 30
-                  ),
-                  textAlign: TextAlign.center,
-                  ),
-                  Text("Trouver l'ouvrier idéal pour tous travaux du BTP",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15
-                  ),
-                  textAlign: TextAlign.center,
-                  )
-                ],
-              ),),
-               DelayedAnimation(
+                child:  Column(
+                  children: [
+                  Text("Bienvenue sur OPPUSS.",
+                      style: TextStyle(fontWeight: FontWeight.bold, color: primaryColor, fontSize: 30),
+                      textAlign: TextAlign.center,),
+                    spacingHeight1,
+                    Text("Trouver l'ouvrier idéal pour tous travaux du BTP",
+                      style: TextStyle( fontWeight: FontWeight.bold, fontSize: textSizeH2),
+                      textAlign: TextAlign.center)
+                  ],
+                ),
+              ),
+              DelayedAnimation(
                 delay: transitionAnimate,
                 child: SizedBox(
                   height: 170,
@@ -66,7 +55,7 @@ class WelcomeAuth extends StatelessWidget {
                   DelayedAnimation(delay: transitionAnimate, 
               child: CustomizedButton(
                   buttonText: "Commencer",
-                  buttonColor: kPrimaryColor,
+                  buttonColor: primaryColor,
                   textColor: Colors.white,
                   onPressed: () async {
 
@@ -83,7 +72,7 @@ class WelcomeAuth extends StatelessWidget {
               child: CustomizedButton(
                   buttonText: "Devenir Ouvrier",
                   buttonColor: Colors.white,
-                  textColor: kPrimaryColor,
+                  textColor: primaryColor,
                   
                   onPressed: () async {
 

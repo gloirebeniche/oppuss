@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 
 
 class Publications extends StatefulWidget {
@@ -11,8 +13,10 @@ class Publications extends StatefulWidget {
 class _PublicationsState extends State<Publications> {
   @override
   Widget build(BuildContext context) {
-   return const Scaffold(
-      body: Center(
+   return Scaffold(
+      backgroundColor: bgColor,
+      appBar: CustomAppBar("Publication"),
+      body: const Center(
         child: Text("Publications"),
       ),
     );

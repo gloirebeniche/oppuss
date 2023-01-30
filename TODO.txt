@@ -4,7 +4,7 @@
 
 1-  l'acceuil 
     -  l'ensemble des services 
-2- recherche
+2- recherche (Terminé)
     - AppBar (boutton retour - le nom de l'interface en cours - le boutton annuler)
     - l'interface par default s'il n'y a pas d'ouvriers (Image d'erreur - message )
     - la barre de recherches (rechercher un ouvrier)
@@ -39,7 +39,7 @@
     - l'interfaces par defaut s'il n'y a pas de demandes (Image d'erreur - message d'erreur)
     - le modèle de l'annonces (l'Image - le titre - jour, card(nombre d'offres d'ouvrier par rapport au notes), bouton(gerer ma demande))
  
- 5- Compte
+ 5- Compte (Terminé)
     - la photo de profils
     - les informations du comptes 
     - un botton si l'utilisateur n'est pas inscrit
