@@ -6,7 +6,8 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
+
+import '../../widget/customized_appbar.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -52,39 +53,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   spacingHeight1,
-          const DelayedAnimation(
-            delay: 1500,
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Votre Email',
-                labelStyle: TextStyle(
-                  color: grey,
-                ),
-              ),
-            ),
+           DelayedAnimation(
+            delay: transitionAnimate,
+            child:  TextFieldCustomized("titre"),
           ),
             DelayedAnimation(
             delay: transitionAnimate,
-            child: TextField(
-              obscureText: _obscureText,
-              decoration: InputDecoration(
-                labelStyle: const TextStyle(
-                  color: grey,
-                ),
-                labelText: 'Mot de passe',
-                suffixIcon: IconButton(
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                ),
-              ),
-                 ),
+            child: TextFieldPassword("mode de passe"),
           ),
           const SizedBox(height: 10,),
           DelayedAnimation(delay: transitionAnimate, 
@@ -175,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
-                      const Text("Vous n'avez pas de compte ?",
+                     const  Text("Vous n'avez pas de compte ?",
                           style: TextStyle(
                             color: Color(0xff1E232C),
                             fontSize: textSize,
@@ -195,4 +170,42 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  TextField TextFieldCustomized(String title) {
+    return  TextField(
+            decoration: InputDecoration(
+              labelText: title,
+              labelStyle: TextStyle(
+                color: primaryColor,
+                fontSize: bigTextSize5
+              ),
+            ),
+          );
+  }
+
+  TextField TextFieldPassword(String password) {
+    
+    return TextField(
+            obscureText: _obscureText,
+            decoration: InputDecoration(
+              labelStyle:  TextStyle(
+                color: primaryColor,
+                fontSize: bigTextSize5
+              ),
+              labelText: password,
+              suffixIcon: IconButton(
+                icon: const Icon(
+                  Icons.visibility,
+                  color: black,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              ),
+            ),
+               );
+  }
+
 }

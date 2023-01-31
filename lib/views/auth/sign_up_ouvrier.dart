@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,11 +19,25 @@ class SignUpScreenOuvrier extends StatefulWidget {
 
 class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   var _obscureText = true;
+
+  var listProfileWorker = [
+    'Ménuisier',
+    'Mécanicier',
+    'Electricien',
+    'Maçon',
+    'Charpentier',
+    'Plombier',
+    'Carreleur'
+  ];
+  var dropValue = ValueNotifier('');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-        appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
+      appBar: const CustomizeAppBar(
+        colorAppBar: white,
+        title: '',
+      ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -52,94 +68,44 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 ),
               ),
               spacingHeight2,
-              const DelayedAnimation(
-                delay: transitionAnimate,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Nom d\'utilisateur',
-                    labelStyle: TextStyle(
-                      color: grey,
-                    ),
-                  ),
-                ),
-              ),
-              const DelayedAnimation(
-                delay: transitionAnimate,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Votre Email',
-                    labelStyle: TextStyle(
-                      color: grey,
-                    ),
-                  ),
-                ),
-              ),
-              const DelayedAnimation(
-                delay: transitionAnimate,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Profile',
-                    labelStyle: TextStyle(
-                      color: grey,
-                    ),
-                  ),
-                ),
-              ),
-           
+              DelayedAnimation(
+                  delay: transitionAnimate,
+                  child: TextFieldCustomized("Nom d\'utilisateur")),
               DelayedAnimation(
                 delay: transitionAnimate,
-                child: TextField(
-                  obscureText: _obscureText,
-                  decoration: InputDecoration(
-                    labelStyle: const TextStyle(
-                      color: grey,
-                    ),
-                    labelText: 'Mot de passe',
-                    suffixIcon: IconButton(
-                      icon: const Icon(
-                        Icons.visibility,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+                child: TextFieldCustomized("Votre Email"),
               ),
               DelayedAnimation(
-                delay: transitionAnimate,
-                child: TextField(
-                  obscureText: _obscureText,
-                  decoration: InputDecoration(
-                    labelStyle: const TextStyle(
-                      color: grey,
+                  delay: transitionAnimate,
+                  child: ValueListenableBuilder(
+                      valueListenable: dropValue,
+                      builder: (BuildContext context, value, _) {
+                        return DropdownButton<String>(
+                          hint: const Text('data'),
+                          value: (value.isEmpty) ? null : value,
+                          onChanged: (onChanged) =>
+                              dropValue.value = onChanged.toString(),
+                          items: listProfileWorker
+                              .map((e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ))
+                              .toList(),
+                        );
+                      }),
                     ),
-                    labelText: 'Confirmation mot de passe',
-                    suffixIcon: IconButton(
-                      icon: const Icon(
-                        Icons.visibility,
-                        color: black,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ),
+              spacingHeight1,
+              DelayedAnimation(
+                  delay: transitionAnimate,
+                  child: TextFieldPassword("Mot de passe")),
+              DelayedAnimation(
+                  delay: transitionAnimate,
+                  child: TextFieldPassword("'Confirmation mot de passe")),
               spacingHeight1,
               DelayedAnimation(
                 delay: transitionAnimate,
-                child: CustomButton("Envoyer", (() {
-                    
-                  })),
+                child: CustomButton("Envoyer", (() {})),
               ),
-         
               DelayedAnimation(
                   delay: transitionAnimate,
                   child: Padding(
@@ -152,9 +118,8 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                                 builder: (context) => const LoginScreen()));
                       },
                       child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       
-                        children:  [
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           const Text("Si vous avec déjà un compte?",
                               style: TextStyle(
                                 color: Color(0xff1E232C),
@@ -171,6 +136,36 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                   ))
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  TextField TextFieldCustomized(String title) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: title,
+        labelStyle: TextStyle(color: primaryColor, fontSize: bigTextSize5),
+      ),
+    );
+  }
+
+  TextField TextFieldPassword(String password) {
+    return TextField(
+      obscureText: _obscureText,
+      decoration: InputDecoration(
+        labelStyle: TextStyle(color: primaryColor, fontSize: bigTextSize5),
+        labelText: password,
+        suffixIcon: IconButton(
+          icon: const Icon(
+            Icons.visibility,
+            color: black,
+          ),
+          onPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
         ),
       ),
     );
