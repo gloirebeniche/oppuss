@@ -1,4 +1,6 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
@@ -43,32 +45,35 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: CustomAppBar("Trouver des ouvriers"),
+      appBar: AppBar(
+        backgroundColor: bgColor,
+        elevation: 0,
+        title: Container(
+          margin: const EdgeInsets.only(top: 5),
+          height: 50,
+          child: TextField(
+              onChanged: (value) => updateList(value),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                prefixIcon: icon2(EvaIcons.searchOutline),
+                contentPadding: const EdgeInsets.all(0),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(50)
+                ),
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintText: "Recherchez un ouvrier"
+              ),
+            ),
+        ),
+      ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
+        padding: padding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: TextField(
-                  onChanged: (value) => updateList(value),
-                  style: const TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 218, 218, 218),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: BorderSide.none
-                      ),
-                    hintText: "ex : John Doen",
-                    prefixIcon: const Icon(Icons.search),
-                    prefixIconColor: Colors.grey,
-                  ),
-                ),
-              ),
-              spacingHeight1,
               Expanded(
                 child: display_list.isEmpty ?
                 const Center(

@@ -18,6 +18,7 @@ final ButtonStyle primaryOutlinedButton = ElevatedButton.styleFrom(
     borderRadius: BorderRadius.all(Radius.circular(50))
   )
 );
+
 class BtnCustom extends StatelessWidget {
   final String? buttonText;
   final Color? buttonColor;
@@ -80,6 +81,22 @@ Container CustomOutlinedButton(String text, VoidCallback onPressed){
       child: Padding(
         padding: padding,
         child: customeTextStyle(text, headingTextSize, black),),
+    ),
+  );
+}
+
+ElevatedButton defaultButton(String text, VoidCallback onPress, {btnColor = secondaryColor, colorText = textColor}){
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: btnColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(6))
+      )
+    ),
+    onPressed: onPress,
+    child: Padding(
+      padding: padding,
+      child: titleTextStyle(text, color: colorText, fontWeight: FontWeight.bold),
     ),
   );
 }
