@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:oppuss/views/particulars/safe.dart';
 import 'package:oppuss/views/particulars/settings.dart';
 import 'package:oppuss/views/particulars/about.dart';
+import 'package:oppuss/views/particulars/worker_profile.dart';
 import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         path: "/home", builder: (context, state) => const HomeScreen(),
         routes: [
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
+          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile(),),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(),),
            GoRoute(path: "message",builder: (context, state) =>   ChatPage(),),
           GoRoute( path: "settings", builder: (context, state) => const SettingsView(),),
