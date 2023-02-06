@@ -22,6 +22,22 @@ AppBar CustomAppBar(String title, BuildContext context) {
 
 
 
+AppBar CustomAppBar2(String title, Color colorAppBar ) {
+  return AppBar(
+      elevation: 0,
+      title: Text(
+        title,
+      ),
+      backgroundColor: colorAppBar,
+     automaticallyImplyLeading: false,
+     leading: IconButton(icon:icon(EvaIcons.arrowBackOutline) , onPressed: () { 
+        // Navigator.pop(context);
+      },),
+    );
+}
+
+
+
 class CustomizeAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
