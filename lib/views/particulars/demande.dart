@@ -18,7 +18,7 @@ class _DemandesState extends State<Demandes> {
         length: 2,
         child: Scaffold(
           backgroundColor: bgColor,
-          appBar: CustomAppBar("Mes demandes"),
+          appBar: CustomAppBar("Mes demandes",context),
           body: Column(
             children: [
                TabBar(

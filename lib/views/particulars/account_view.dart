@@ -12,7 +12,7 @@ class AccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("Compte"),
+      appBar: CustomAppBar("Compte",context),
       body: ListView(
         children: [
           const ProfilePictureWidget(),

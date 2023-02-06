@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   spacingHeight1,
            DelayedAnimation(
             delay: transitionAnimate,
-            child:  TextFieldCustomized("titre"),
+            child:  TextFieldCustomized("Email"),
           ),
             DelayedAnimation(
             delay: transitionAnimate,
@@ -174,9 +174,12 @@ class _LoginScreenState extends State<LoginScreen> {
   TextField TextFieldCustomized(String title) {
     return  TextField(
             decoration: InputDecoration(
+              floatingLabelStyle: TextStyle(
+                color: primaryColor
+              ),
               labelText: title,
-              labelStyle: TextStyle(
-                color: primaryColor,
+              labelStyle: const TextStyle(
+                color: grey,
                 fontSize: bigTextSize5
               ),
             ),
@@ -188,8 +191,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return TextField(
             obscureText: _obscureText,
             decoration: InputDecoration(
-              labelStyle:  TextStyle(
-                color: primaryColor,
+                floatingLabelStyle: TextStyle(
+                color: primaryColor
+              ),
+              labelStyle:  const TextStyle(
+                color: grey,
                 fontSize: bigTextSize5
               ),
               labelText: password,

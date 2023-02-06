@@ -15,7 +15,7 @@ class _PublicationsState extends State<Publications> {
   Widget build(BuildContext context) {
    return Scaffold(
       backgroundColor: bgColor,
-      appBar: CustomAppBar("Publication"),
+      appBar: CustomAppBar("Publication",context),
       body: const Center(
         child: Text("Publications"),
       ),

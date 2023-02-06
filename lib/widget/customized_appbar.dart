@@ -1,8 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
 
-AppBar CustomAppBar(String title) {
+AppBar CustomAppBar(String title, BuildContext context) {
   return AppBar(
     elevation: 1,
     backgroundColor: white,
@@ -11,25 +12,16 @@ AppBar CustomAppBar(String title) {
     actions: [
       Padding(
         padding: const EdgeInsets.only(right: 15),
-        child: icon(EvaIcons.messageCircleOutline),
+        child:  IconButton(onPressed: (){
+          context.go("/message");
+        }, icon: icon(EvaIcons.messageCircleOutline)),
       )
     ],
   );
 }
 
-AppBar CustomAppBar2(String title, Color colorAppBar ) {
-  return AppBar(
-      elevation: 0,
-      title: Text(
-        title,
-      ),
-      backgroundColor: colorAppBar,
-     automaticallyImplyLeading: false,
-     leading: IconButton(icon:icon(EvaIcons.arrowBackOutline) , onPressed: () { 
-        // Navigator.pop(context);
-      },),
-    );
-}
+
+
 class CustomizeAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;

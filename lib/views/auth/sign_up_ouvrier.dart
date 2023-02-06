@@ -19,15 +19,18 @@ class SignUpScreenOuvrier extends StatefulWidget {
 
 class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   var _obscureText = true;
+  final bool ispassword = true;
 
   var listProfileWorker = [
+    '',
     'Ménuisier',
     'Mécanicier',
     'Electricien',
     'Maçon',
     'Charpentier',
     'Plombier',
-    'Carreleur'
+    'Carreleur',
+    'Autre'
   ];
   var dropValue = ValueNotifier('');
   @override
@@ -75,13 +78,16 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 delay: transitionAnimate,
                 child: TextFieldCustomized("Votre Email"),
               ),
+              spacingWidth1,
               DelayedAnimation(
-                  delay: transitionAnimate,
-                  child: ValueListenableBuilder(
-                      valueListenable: dropValue,
-                      builder: (BuildContext context, value, _) {
-                        return DropdownButton<String>(
-                          hint: const Text('data'),
+                delay: transitionAnimate,
+                child: ValueListenableBuilder(
+                    valueListenable: dropValue,
+                    builder: (BuildContext context, value, _) {
+                      return SizedBox(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          hint: const Text('Votre Profession'),
                           value: (value.isEmpty) ? null : value,
                           onChanged: (onChanged) =>
                               dropValue.value = onChanged.toString(),
@@ -91,17 +97,17 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                                     child: Text(e),
                                   ))
                               .toList(),
-                        );
-                      }),
-                    ),
-              spacingHeight1,
+                        ),
+                      );
+                    }),
+              ),
               DelayedAnimation(
                   delay: transitionAnimate,
                   child: TextFieldPassword("Mot de passe")),
               DelayedAnimation(
                   delay: transitionAnimate,
                   child: TextFieldPassword("'Confirmation mot de passe")),
-              spacingHeight1,
+              spacingHeight2,
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: CustomButton("Envoyer", (() {})),
@@ -122,13 +128,14 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                         children: [
                           const Text("Si vous avec déjà un compte?",
                               style: TextStyle(
-                                color: Color(0xff1E232C),
-                                fontSize: textSize,
+                                color: textColor,
+                                fontSize: textSizeH2,
                               )),
+                          spacingHeight1,
                           Text(" Connectez vous ici",
                               style: TextStyle(
                                 color: primaryColor,
-                                fontSize: textSize,
+                                fontSize: textSizeH2,
                               )),
                         ],
                       ),
@@ -144,30 +151,35 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   TextField TextFieldCustomized(String title) {
     return TextField(
       decoration: InputDecoration(
+        floatingLabelStyle: TextStyle(color: primaryColor),
         labelText: title,
-        labelStyle: TextStyle(color: primaryColor, fontSize: bigTextSize5),
+        labelStyle: const TextStyle(color: grey, fontSize: bigTextSize5),
       ),
     );
   }
 
   TextField TextFieldPassword(String password) {
     return TextField(
-      obscureText: _obscureText,
+      obscureText: ispassword,
       decoration: InputDecoration(
-        labelStyle: TextStyle(color: primaryColor, fontSize: bigTextSize5),
+        floatingLabelStyle: TextStyle(color: primaryColor),
+        labelStyle: const TextStyle(color: grey, fontSize: bigTextSize5),
         labelText: password,
-        suffixIcon: IconButton(
-          icon: const Icon(
-            Icons.visibility,
-            color: black,
-          ),
-          onPressed: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-        ),
+        suffixIcon: ispassword
+            ? IconButton(
+                icon: Icon(
+                  Icons.remove_red_eye,
+                  color: grey,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : null,
       ),
     );
   }
+
 }

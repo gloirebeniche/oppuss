@@ -15,7 +15,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:CustomAppBar("Acceuil"),
+      appBar:CustomAppBar("Acceuil",context),
       body: const Center( child: Text("Acceuil Page"),),
     );
   }

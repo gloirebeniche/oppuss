@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oppuss/modules/chat_page.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
@@ -41,7 +42,9 @@ class MyApp extends StatelessWidget {
           //GoRoute( path: "safe", builder: (context, state) => const SafeView(),),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
           //GoRoute( path: "/about", builder: (context, state) => const AboutView(),),
+        
         ]),
+          GoRoute(path: "/message",builder: (context, state) =>   ChatPage(),),
      
     ],
   );
