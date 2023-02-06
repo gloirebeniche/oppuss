@@ -3,9 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:oppuss/modules/chat_page.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
+import 'package:oppuss/views/particulars/help.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:flutter/services.dart';
+import 'package:oppuss/views/particulars/safe.dart';
+import 'package:oppuss/views/particulars/settings.dart';
+import 'package:oppuss/views/particulars/about.dart';
 import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 
@@ -39,11 +43,11 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(),),
            GoRoute(path: "message",builder: (context, state) =>   ChatPage(),),
-          //GoRoute( path: "settings", builder: (context, state) => const SettingsView(),),
-          //GoRoute( path: "help", builder: (context, state) => const HelpView(),),
-          //GoRoute( path: "safe", builder: (context, state) => const SafeView(),),
+          GoRoute( path: "settings", builder: (context, state) => const SettingsView(),),
+          GoRoute( path: "help", builder: (context, state) => const HelpView(),),
+          GoRoute( path: "safe", builder: (context, state) => const SafeView(),),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
-          //GoRoute( path: "/about", builder: (context, state) => const AboutView(),),
+          GoRoute( path: "about", builder: (context, state) => const AboutView(),),
         
         ]),
          

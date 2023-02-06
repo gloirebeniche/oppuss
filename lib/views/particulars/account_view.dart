@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
@@ -39,17 +40,23 @@ class AccountView extends StatelessWidget {
           ProfileMenuWidget(
             text: "Paramètre",
             icons: EvaIcons.options2Outline,
-            press: (){}
+            press: (){
+                context.go("/home/settings");
+            }
           ),
           ProfileMenuWidget(
             text: "Centre d'aide",
             icons: EvaIcons.questionMarkCircleOutline,
-            press: (){}
+            press: (){
+              context.go("/home/help");
+            }
           ),
           ProfileMenuWidget(
             text: "Confiance et sécurité",
             icons: EvaIcons.shieldOutline,
-            press: (){}
+            press: (){
+              context.go("/home/safe");
+            }
           ),
           ProfileMenuWidget(
             text: "Devenir Ouvrier",
@@ -64,7 +71,9 @@ class AccountView extends StatelessWidget {
           ProfileMenuWidget(
             text: "À propos",
             icons: EvaIcons.alertCircleOutline,
-            press: (){}
+            press: (){
+              context.go("/home/about");
+            }
           ),
           ProfileMenuWidget(
             text: "Se déconnecter",
