@@ -12,31 +12,29 @@ AppBar CustomAppBar(String title, BuildContext context) {
     actions: [
       Padding(
         padding: const EdgeInsets.only(right: 15),
-        child:  IconButton(onPressed: (){
-          context.go("/message");
-        }, icon: icon(EvaIcons.messageCircleOutline)),
+        child: IconButton(
+            onPressed: () {
+              context.go("/home/message");
+            },
+            icon: icon(EvaIcons.messageCircleOutline)),
       )
     ],
   );
 }
 
-
-
-AppBar CustomAppBar2(String title, Color colorAppBar ) {
+AppBar CustomAppBar2(String title, BuildContext context) {
   return AppBar(
-      elevation: 0,
-      title: Text(
-        title,
-      ),
-      backgroundColor: colorAppBar,
-     automaticallyImplyLeading: false,
-     leading: IconButton(icon:icon(EvaIcons.arrowBackOutline) , onPressed: () { 
-        // Navigator.pop(context);
-      },),
-    );
+    elevation: 0,
+    title: appbarTextStyle(title),
+    backgroundColor: white,
+    leading: IconButton(
+      icon: icon(EvaIcons.arrowBackOutline),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ),
+  );
 }
-
-
 
 class CustomizeAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
@@ -59,10 +57,13 @@ class CustomizeAppBar extends StatelessWidget with PreferredSizeWidget {
         title,
       ),
       backgroundColor: colorAppBar,
-     automaticallyImplyLeading: false,
-     leading: IconButton(icon:icon(EvaIcons.arrowBackOutline) , onPressed: () { 
-         Navigator.pop(context);
-      },),
+      automaticallyImplyLeading: false,
+      leading: IconButton(
+        icon: icon(EvaIcons.arrowBackOutline),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 }

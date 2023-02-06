@@ -36,7 +36,7 @@ class ChatDetailPageAppBar extends StatelessWidget implements PreferredSizeWidge
                   ],
                 ),
               ),
-              Icon(Icons.more_vert,color: Colors.grey.shade700,),
+            
             ],
           ),
         ),

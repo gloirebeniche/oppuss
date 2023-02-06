@@ -3,6 +3,7 @@ import 'package:oppuss/components/chat_bubble.dart';
 import 'package:oppuss/components/chat_detail_page_appbar.dart';
 import 'package:oppuss/models/chat_message.dart';
 import 'package:oppuss/models/send_menu_items.dart';
+import 'package:oppuss/utils/theme.dart';
 
 enum MessageType{
   Sender,
@@ -40,9 +41,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           height: MediaQuery.of(context).size.height/2,
           color: Color(0xff737373),
           child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
+            decoration: const BoxDecoration(
+              color: white,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20),topLeft: Radius.circular(20)),
             ),
             child: Column(
               children: <Widget>[

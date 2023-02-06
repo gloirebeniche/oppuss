@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         routes: [
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(),),
+           GoRoute(path: "message",builder: (context, state) =>   ChatPage(),),
           //GoRoute( path: "settings", builder: (context, state) => const SettingsView(),),
           //GoRoute( path: "help", builder: (context, state) => const HelpView(),),
           //GoRoute( path: "safe", builder: (context, state) => const SafeView(),),
@@ -45,8 +46,8 @@ class MyApp extends StatelessWidget {
           //GoRoute( path: "/about", builder: (context, state) => const AboutView(),),
         
         ]),
-          GoRoute(path: "/message",builder: (context, state) =>   ChatPage(),),
-     
+         
+   
       GoRoute( path: "/welcome", builder: (context, state) => const WelcomeAuth()),
     ],
   );
