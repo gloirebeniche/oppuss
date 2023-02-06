@@ -4,12 +4,13 @@ import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
-//import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
+import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 
 void main() {
-  // SystemChrome.setSystemUIOverlayStyle(
-  //     const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(
+  const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(MyApp());
 }
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(
     routes: [ 
-      GoRoute( path: "/", builder: (context, state) => const WelcomeAuth(),
+      GoRoute( path: "/", builder: (context, state) => const SplashScreen(),
       routes: [
          GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
       ]),
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
           //GoRoute( path: "/about", builder: (context, state) => const AboutView(),),
         ]),
-     
+      GoRoute( path: "/welcome", builder: (context, state) => const WelcomeAuth()),
     ],
   );
 }

@@ -30,6 +30,9 @@ AppBar CustomAppBar2(String title, Color colorAppBar ) {
       },),
     );
 }
+
+
+
 class CustomizeAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
