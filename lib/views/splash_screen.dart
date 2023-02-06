@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,10 +15,7 @@ class SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const WelcomeAuth())));
+    Timer(const Duration(seconds: 3),() => context.go("/welcome"));
   }
 
 
@@ -44,7 +42,7 @@ class SplashScreenState extends State<SplashScreen> {
             Column(
               children: [
                 Image.asset(
-                  "assets/blanc.PNG",
+                  "assets/logo_blanc.PNG",
                   height: 300.0,
                   width: 300.0,
                 ),
