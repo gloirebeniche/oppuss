@@ -70,6 +70,7 @@ Container CustomButton(String text, VoidCallback onPressed){
   );
 }
 
+
 Container CustomOutlinedButton(String text, VoidCallback onPressed){
   return Container(
     margin: margin,
@@ -85,18 +86,38 @@ Container CustomOutlinedButton(String text, VoidCallback onPressed){
   );
 }
 
-ElevatedButton defaultButton(String text, VoidCallback onPress, {btnColor = secondaryColor, colorText = textColor}){
+ElevatedButton defaultButton(String text, VoidCallback onPress){
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: btnColor,
+      elevation: 1,
+      backgroundColor: primaryColor,
+      minimumSize: const Size(327, 40),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(6))
+        borderRadius: BorderRadius.all(Radius.circular(10))
       )
     ),
     onPressed: onPress,
     child: Padding(
-      padding: padding,
-      child: titleTextStyle(text, color: colorText, fontWeight: FontWeight.bold),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: titleTextStyle(text, color: white, fontWeight: FontWeight.bold),
+    ),
+  );
+}
+
+OutlinedButton defaultButtonOutlined(String text, VoidCallback onPress, {btnColor = secondaryColor, colorText = textColor}){
+  return OutlinedButton(
+    style: ElevatedButton.styleFrom(
+      elevation: 1,
+      backgroundColor: white,
+      minimumSize: const Size(327, 40),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      )
+    ),
+    onPressed: onPress,
+    child: Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: titleTextStyle(text, color: primaryColor, fontWeight: FontWeight.bold),
     ),
   );
 }
