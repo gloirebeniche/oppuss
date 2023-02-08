@@ -54,11 +54,11 @@ Icon icon2(IconData iconData) {
   );
 }
 
-Icon icon3(IconData iconData, color) {
+Icon icon3(IconData iconData) {
   return Icon(
     iconData,
-    size: iconSize,
-    color: color,
+    size: 25,
+    color: primaryColor,
   );
 }
 

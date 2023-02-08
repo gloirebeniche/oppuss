@@ -3,6 +3,7 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 
@@ -67,7 +68,7 @@ class CardOfferView extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                     backgroundColor: secondaryColor,
                   ),
-                    onPressed: () {},
+                    onPressed: () {context.go("/home/offer_detail");},
                     child: Padding(
                       padding: padding,
                       child: titleTextStyle("Gérer ma demande",
@@ -119,7 +120,7 @@ class CardOfferView2 extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: defaultButton("Voir ma demande", btnColor: whiteSecondar, colorText: textColorImportant, (){}),
+                  child: defaultButton("Voir ma demande", (){}),
                 ),
               ],
             ),
@@ -139,7 +140,7 @@ class CardOfferView2 extends StatelessWidget {
                           padding: padding,
                           child: titleTextStyle("Démander à nouveau", color: white, fontWeight: FontWeight.bold),
                         ),
-                        icon3(EvaIcons.copyOutline, white),
+                        icon3(EvaIcons.copyOutline),
                       ],
                     ),
                   ),
@@ -267,3 +268,5 @@ class NotificationCardView extends StatelessWidget {
     );
   }
 }
+
+
