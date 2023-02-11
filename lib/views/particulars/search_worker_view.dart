@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
 
 

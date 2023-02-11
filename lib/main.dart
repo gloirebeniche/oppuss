@@ -16,8 +16,10 @@ import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 
 void main() {
+  
   SystemChrome.setSystemUIOverlayStyle(
-  const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+ 
   runApp(MyApp());
 }
 
@@ -30,33 +32,67 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: _router,
       debugShowCheckedModeBanner: false,
-    ); 
+    );
   }
 
   final GoRouter _router = GoRouter(
-    routes: [ 
-      GoRoute( path: "/", builder: (context, state) => const SplashScreen(),
-      routes: [
-         GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
-      ]),
-      GoRoute( 
-        path: "/home", builder: (context, state) => const HomeScreen(),
-        routes: [
-          GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
-          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile(),),
-          GoRoute( path: "notification", builder: (context, state) => const NotificationView(),),
-          GoRoute(path: "message",builder: (context, state) =>   ChatPage(),),
-          GoRoute(path: "offer_detail", builder: (context, state) => const OfferDetailView(),),
-          GoRoute( path: "settings", builder: (context, state) => const SettingsView(),),
-          GoRoute( path: "help", builder: (context, state) => const HelpView(),),
-          GoRoute( path: "safe", builder: (context, state) => const SafeView(),),
-          GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier(),),
-          GoRoute( path: "about", builder: (context, state) => const AboutView(),),
-        
-        ]),
-         
-   
-      GoRoute( path: "/welcome", builder: (context, state) => const WelcomeAuth()),
+    routes: [
+      GoRoute(
+          path: "/",
+          builder: (context, state) => const SplashScreen(),
+          routes: [
+            GoRoute(
+              path: "worker",
+              builder: (context, state) => const SignUpScreenOuvrier(),
+            ),
+          ]),
+      GoRoute(
+          path: "/home",
+          builder: (context, state) => const HomeScreen(),
+          routes: [
+            GoRoute(
+              path: "profile",
+              builder: (context, state) => const EditProfilePage(),
+            ),
+            GoRoute(
+              path: "worker_profile",
+              builder: (context, state) => const WorkerProfile(),
+            ),
+            GoRoute(
+              path: "notification",
+              builder: (context, state) => const NotificationView(),
+            ),
+            GoRoute(
+              path: "message",
+              builder: (context, state) => ChatPage(),
+            ),
+            GoRoute(
+              path: "offer_detail",
+              builder: (context, state) => const OfferDetailView(),
+            ),
+            GoRoute(
+              path: "settings",
+              builder: (context, state) => const SettingsView(),
+            ),
+            GoRoute(
+              path: "help",
+              builder: (context, state) => const HelpView(),
+            ),
+            GoRoute(
+              path: "safe",
+              builder: (context, state) => const SafeView(),
+            ),
+            GoRoute(
+              path: "worker",
+              builder: (context, state) => const SignUpScreenOuvrier(),
+            ),
+            GoRoute(
+              path: "about",
+              builder: (context, state) => const AboutView(),
+            ),
+          ]),
+      GoRoute(
+          path: "/welcome", builder: (context, state) => const WelcomeAuth()),
     ],
   );
 }
