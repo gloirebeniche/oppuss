@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
@@ -88,20 +89,23 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                   child: Center(child: defaultButton("Modifer", (){}))
                 ),
                 Container( margin: const EdgeInsets.only(top: 20), child: const Divider(height: 5, thickness: 1,),),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: Row(
-                    children: [
-                      icon3(EvaIcons.messageCircleOutline),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: customeTextStyle("Voir les commentaires (5)", 15, grey2),
+                TextButton(
+                  onPressed: () {context.go("/home/offer_detail/coments/");},
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    child: Row(
+                      children: [
+                        icon3(EvaIcons.messageCircleOutline),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: customeTextStyle("Voir les commentaires (5)", 15, grey2),
+                          ),
                         ),
-                      ),
-                      icon(EvaIcons.arrowIosForwardOutline)
-                    ],
+                        icon(EvaIcons.arrowIosForwardOutline)
+                      ],
+                    ),
                   ),
                 ),
                 Container( margin: const EdgeInsets.only(top: 10), child: const Divider(height: 5, thickness: 1,),),
