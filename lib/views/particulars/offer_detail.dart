@@ -110,17 +110,17 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                   child: customeTextStyle("Offres (10)", 20, black, fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 20),
                   color: grey,
                   child: Column(
                     children: [
-                      cardOffer(),
-                      cardOffer(),
-                      cardOffer(),
-                      cardOffer(),
-                      cardOffer(),
-                      cardOffer(),
-                      cardOffer(),
+                      cardOffer(context),
+                      cardOffer(context),
+                      cardOffer(context),
+                      cardOffer(context),
+                      cardOffer(context),
+                      cardOffer(context),
+                      cardOffer(context),
                     ],
                   ),
                 )

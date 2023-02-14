@@ -1,8 +1,10 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
@@ -173,7 +175,7 @@ Container verifyWorker(){
   );
 }
 
-Container cardOffer (){
+Container cardOffer (BuildContext context){
   return Container(
     margin: const EdgeInsets.only(top: 10, bottom: 10),
     padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
@@ -248,6 +250,9 @@ Container cardOffer (){
                   ],
                 ),
               ),
+              Container(margin: const EdgeInsets.only(top: 10),
+                child: Center(child: defaultButton("Reserver", (){}),)),
+              Center(child: defaultButtonOutlined("Voir le profil", (){context.go("/home/worker_profile");}),)
             ],
           ),
         )
