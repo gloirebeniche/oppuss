@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
       HomePageParticular(),
       SearchWorkerView(),
-      Publications(),
+      AddOffer(),
       Demandes(), 
       AccountView()
   ];
