@@ -46,7 +46,7 @@ class _AddOfferState extends State<AddOffer> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar2("", context),
+        appBar: CustomAppBar("Publication", context),
         body: ListView(
           children: [
             
