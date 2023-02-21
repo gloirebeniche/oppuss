@@ -7,6 +7,8 @@ import 'package:oppuss/views/particulars/coments.dart';
 import 'package:oppuss/views/particulars/help.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/offer_detail.dart';
+import 'package:oppuss/views/particulars/offer_more_detail.dart';
+import 'package:oppuss/views/particulars/offer_update.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:flutter/services.dart';
 import 'package:oppuss/views/particulars/publications.dart';
@@ -57,7 +59,9 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
             routes: [ 
               GoRoute(path: "coments", builder: (context, state) => const ComentView(),),
-              GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile())
+              GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+              GoRoute(path: "update_offer", builder: (context, state) => const UpdateOfferPage() ),
+              GoRoute(path: "view", builder: (context, state) => const OfferMoreDetailPage())
             ]
           ),
           GoRoute( path: "settings", builder: (context, state) => const SettingsView()),

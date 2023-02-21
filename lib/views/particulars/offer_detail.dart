@@ -82,11 +82,11 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 25),
-                  child: Center(child: defaultButtonOutlined("Detail", (){}))
+                  child: Center(child: defaultButtonOutlined("Detail", (){context.go("/home/offer_detail/view/");}))
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 2),
-                  child: Center(child: defaultButton("Modifer", (){}))
+                  child: Center(child: defaultButton("Modifer", (){context.go("/home/offer_detail/update_offer/");}))
                 ),
                 Container( margin: const EdgeInsets.only(top: 20), child: const Divider(height: 5, thickness: 1,),),
                 TextButton(

@@ -89,6 +89,17 @@ Text appbarTextStyle(String text) {
         fontWeight: FontWeight.bold),
   );
 }
+Text appbarTextStyle2(String text) {
+  return Text(
+    text,
+    textAlign: TextAlign.center,
+    style: GoogleFonts.lato(
+        color: black,
+        fontSize: headingTextSize,
+        letterSpacing: 0.5,
+        fontWeight: FontWeight.bold),
+  );
+}
 
 Text defaultTextStyle(String text) {
   return Text(

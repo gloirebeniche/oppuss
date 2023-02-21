@@ -25,7 +25,7 @@ AppBar CustomAppBar(String title, BuildContext context) {
 AppBar CustomAppBar2(String title, BuildContext context) {
   return AppBar(
     elevation: 0,
-    title: appbarTextStyle(title),
+    title: appbarTextStyle2(title),
     backgroundColor: white,
     leading: IconButton(
       icon: icon(EvaIcons.arrowBackOutline),
