@@ -28,7 +28,7 @@ const bgColor = Color(0xFFFAFAFA);
 
 //defaul color
 const white = Colors.white;
-const whiteSecondar = Color(0xFFF5F5F5);
+const whiteSecondar = Color.fromARGB(255, 235, 235, 235);
 const black = Colors.black;
 const grey = Color(0xFFBDBDBD);
 const grey2 = Color(0xFF858585);

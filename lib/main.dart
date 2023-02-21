@@ -11,7 +11,6 @@ import 'package:oppuss/views/particulars/offer_more_detail.dart';
 import 'package:oppuss/views/particulars/offer_update.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:flutter/services.dart';
-import 'package:oppuss/views/particulars/publications.dart';
 import 'package:oppuss/views/particulars/safe.dart';
 import 'package:oppuss/views/particulars/settings.dart';
 import 'package:oppuss/views/particulars/about.dart';
