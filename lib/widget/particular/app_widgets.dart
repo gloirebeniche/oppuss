@@ -252,7 +252,7 @@ Container cardOffer (BuildContext context){
               ),
               Container(margin: const EdgeInsets.only(top: 10),
                 child: Center(child: defaultButton("Reserver", (){}),)),
-              Center(child: defaultButtonOutlined("Voir le profil", (){context.go("/home/worker_profile");}),)
+              Center(child: defaultButtonOutlined("Voir le profil", (){context.go("/home/offer_detail/worker_profile/");}),)
             ],
           ),
         )
