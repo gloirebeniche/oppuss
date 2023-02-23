@@ -1,6 +1,7 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
@@ -254,6 +255,121 @@ Container cardOffer (BuildContext context){
                 child: Center(child: defaultButton("Reserver", (){}),)),
               Center(child: defaultButtonOutlined("Voir le profil", (){context.go("/home/offer_detail/worker_profile/");}),)
             ],
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+
+Container cardAuth(BuildContext context){
+  return Container(
+    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.30, bottom: MediaQuery.of(context).size.height * 0.25),
+    //height: MediaQuery.of(context).size.height * 0.5,
+    child: Center(
+      child: Column(
+        children: [
+          Icon(EvaIcons.person, size: 80, color: primaryColor,),
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+            child: customeTextStyle("Connectez vous pour contacter un ouvrier", textSizeH2, grey2)),
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+            child: defaultButton("Se connecter", (){context.go("/home/login");}),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+
+Container cardMessageAuth(BuildContext context){
+  return Container(
+    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.2),
+    height: MediaQuery.of(context).size.height * 0.5,
+    child: Center(
+      child: Column(
+        children: [
+          Icon(EvaIcons.messageCircleOutline, size: 80, color: primaryColor,),
+          customeTextStyle("Aucune discussion", 18, black, fontWeight: FontWeight.bold),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.all(5),
+            child: customeTextStyle("Faire une demande de travaux pour", textSizeH2, grey2)),
+          Container(
+            child: customeTextStyle("pouvoir discuter avec votre ouvrier", textSizeH2, grey2),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: defaultButton("J'ai besoin d'un travaux", (){}),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+
+Container cardOfferAuth(BuildContext context){
+  return Container(
+    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.2),
+    height: MediaQuery.of(context).size.height * 0.5,
+    child: Center(
+      child: Column(
+        children: [
+          Icon(EvaIcons.maximizeOutline, size: 80, color: primaryColor,),
+          customeTextStyle("Aucune demande", 18, black, fontWeight: FontWeight.bold),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.all(5),
+            child: customeTextStyle("Faire une demande de travaux et trouvez", textSizeH2, grey2)),
+          Container(
+            child: customeTextStyle("un ouvrier en quelque minutes", textSizeH2, grey2),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: defaultButton("J'ai besoin d'un travaux", (){}),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Container cardAuth2(BuildContext context){
+  return Container(
+    color: white,
+    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.05),
+    //width: MediaQuery.of(context).size.height*0.5,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        customeTextStyle("Votre Compte", bigTextSize4, black, fontWeight: FontWeight.bold),
+        Container(
+          margin: const EdgeInsets.only(top: 5),
+          child: customeTextStyle("Inscrivez-vous pour pouvoir planifier vos future", textSizeH2, grey2),),
+        Container(
+          margin: const EdgeInsets.only(top: 5),
+          child: customeTextStyle("travaux et trouver un ouvrier qualifié", textSizeH2, grey2),),
+        
+        Container(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              elevation: 1,
+              backgroundColor: primaryColor,
+              minimumSize: Size(MediaQuery.of(context).size.height*0.4, 50),
+              alignment: Alignment.center,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))
+              )
+            ),
+            onPressed: (){},
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: titleTextStyle("text", color: white, fontWeight: FontWeight.bold),
+            ),
           ),
         )
       ],

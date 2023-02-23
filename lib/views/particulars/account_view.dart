@@ -1,18 +1,141 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oppuss/api/api.dart';
+import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
-class AccountView extends StatelessWidget {
+class AccountView extends StatefulWidget {
   const AccountView({super.key});
 
   @override
+  State<AccountView> createState() => _AccountViewState();
+}
+
+class _AccountViewState extends State<AccountView> {
+
+  late bool isAuth;
+
+  @override
+  void initState(){
+    if (isUserAuth() == false) {
+      isAuth = false;
+    }else{
+      isAuth = true;
+    }
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return isAuth? Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          Container(
+            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.05, left: 15),
+            child: customeTextStyle("Votre Compte", bigTextSize4, black, fontWeight: FontWeight.bold),
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 5, left: 15),
+            child: customeTextStyle("Inscrivez-vous pour pouvoir planifier vos future", textSizeH2, grey2)
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 5, left: 15),
+            child: customeTextStyle("travaux et trouver un ouvrier qualifié", textSizeH2, grey2)
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 1,
+                    backgroundColor: primaryColor,
+                    minimumSize: Size(MediaQuery.of(context).size.height*0.43, 50),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                    )
+                  ),
+                  onPressed: (){context.go("/home/user_register");},
+                  child: customeTextStyle("S'inscrire", 20, white, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 10, left: 15),
+            padding: const EdgeInsets.all(2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                customeTextStyle("Vous avez déjà un compte ?", textSizeH2, grey2),
+                TextButton(
+                  onPressed: (){context.go("/home/login");},
+                  child: customeTextStyle("Connexion", textSizeH2, primaryColor, fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
+          ),
+         
+          Container(
+            margin: const EdgeInsets.only(left: 15),
+            padding: const EdgeInsets.all(2),
+            child: customeTextStyle("Informations utiles", 12, grey2),
+          ),
+          ProfileMenuWidget(
+            text: "Paramètre",
+            icons: EvaIcons.options2Outline,
+            press: (){
+                context.go("/home/settings");
+            }
+          ),
+          ProfileMenuWidget(
+            text: "Centre d'aide",
+            icons: EvaIcons.questionMarkCircleOutline,
+            press: (){
+              context.go("/home/help");
+            }
+          ),
+          ProfileMenuWidget(
+            text: "Confiance et sécurité",
+            icons: EvaIcons.shieldOutline,
+            press: (){
+              context.go("/home/safe");
+            }
+          ),
+          ProfileMenuWidget(
+            text: "Devenir Ouvrier",
+            icons: EvaIcons.briefcaseOutline,
+            press: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const SignUpScreenOuvrier()));
+            }
+          ),
+          const SizedBox(height: 20,),
+          const TextProfileManageWidget(text: "Autres"),
+          ProfileMenuWidget(
+            text: "À propos",
+            icons: EvaIcons.alertCircleOutline,
+            press: (){
+              context.go("/home/about");
+            }
+          ),
+        ],
+      )
+    ) 
+    :Scaffold(
       appBar: CustomAppBar("Compte",context),
       body: ListView(
         children: [

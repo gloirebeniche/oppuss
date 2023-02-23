@@ -114,7 +114,7 @@ Text titleTextStyle(String text,
     text,
     style: GoogleFonts.lato(
         color: color,
-        fontSize: textSizeH2,
+        fontSize: headingTextSize,
         letterSpacing: 0.5,
         fontWeight: fontWeight),
   );

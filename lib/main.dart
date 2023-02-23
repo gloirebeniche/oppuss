@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/modules/chat_page.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/views/particulars/coments.dart';
@@ -17,6 +18,8 @@ import 'package:oppuss/views/particulars/about.dart';
 import 'package:oppuss/views/particulars/worker_profile.dart';
 import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
+
+import 'views/auth/sign_up_particuler.dart';
 
 void main() {
   
@@ -68,7 +71,11 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "safe", builder: (context, state) => const SafeView()),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier()),
           GoRoute( path: "about", builder: (context, state) => const AboutView()),
-          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile())
+          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+
+          //Route pour l'authentification
+          GoRoute(path: "login", builder: (context, state) => const LoginScreen()),
+          GoRoute(path: "user_register", builder: (context, state) => const SignUpScreenParticuler()),
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),

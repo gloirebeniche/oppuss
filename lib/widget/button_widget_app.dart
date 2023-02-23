@@ -91,7 +91,7 @@ ElevatedButton defaultButton(String text, VoidCallback onPress){
     style: ElevatedButton.styleFrom(
       elevation: 1,
       backgroundColor: primaryColor,
-      minimumSize: const Size(327, 40),
+      minimumSize: const Size(327, 50),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10))
       )

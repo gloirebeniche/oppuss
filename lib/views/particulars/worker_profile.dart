@@ -1,12 +1,31 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:oppuss/api/api.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
-class WorkerProfile extends StatelessWidget {
+
+class WorkerProfile extends StatefulWidget {
   const WorkerProfile({super.key});
+
+  @override
+  State<WorkerProfile> createState() => _WorkerProfileState();
+}
+
+class _WorkerProfileState extends State<WorkerProfile> {
+
+  late bool isAuth;
+
+  @override
+  void initState(){
+    if (isUserAuth() == false) {
+      isAuth = false;
+    }else{
+      isAuth = true;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +33,8 @@ class WorkerProfile extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: CustomAppBar2("", context),
-        body: Column(
-          children:const [
+        body: isAuth? cardAuth(context) :Column(
+          children: const [
              ProfilePictureWorker(),
             TabBar(
               labelColor: Colors.black,
