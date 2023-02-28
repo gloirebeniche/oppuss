@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oppuss/api/api.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
@@ -8,7 +11,8 @@ import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 
 import '../../widget/customized_appbar.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,7 +23,73 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
     var _obscureText = true;
-    
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
+    getCurrentUser() async {
+      // Récupérer le jeton d'accès à partir des préférences partagées
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('access_token');
+      try {
+        final http.Response response = await http.get(
+          Uri.parse(api_get_current_user),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token', // inclure le jeton dans les en-têtes
+          },
+        );
+
+        if (response.statusCode == 200) {
+          print(response.body); // afficher la réponse (user courant)
+        } else {
+          // Gestion de l'erreur
+          print(response.statusCode);
+        }
+      } catch (e) {
+        print(e);
+      }
+
+    }
+    Future<bool> _login() async {
+      final String email = _emailController.text.trim().replaceAll(" ", "");
+      final String password = _passwordController.text.trim().replaceAll(" ", "");
+
+      try {
+        final http.Response response = await http.post(
+          Uri.parse(api_login_view),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{"email":email,"password":password})
+        );
+
+        if (response.statusCode == 200) {
+          //print("authentification réussit")
+          final Map<String, dynamic> responseData = jsonDecode(response.body);
+          final String? accessToken = responseData['token']['access'];
+          final String? refreshToken = responseData['token']['refresh'];
+
+          if (accessToken != null && refreshToken != null) {
+            // Stockage des jetons dans les préférences partagées
+            final SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString('access_token', accessToken);
+            prefs.setString('refresh_token', refreshToken);
+            getCurrentUser();
+            return true;
+          } else {
+            // Gestion de l'erreur
+            print("Erreur lors de la récupération des jetons");
+            return false;
+          }
+        }else{
+          return false;
+        } 
+      } catch (e) {
+        print(e);
+        return false;
+      }
+    }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -84,9 +154,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),),
               DelayedAnimation(delay: transitionAnimate, 
-              child: CustomButton("Envoyer", (() {
-                    
-                  })),),
+
+              //========================== Bouton de connexion =======================
+              child: CustomButton("Connexion",
+                () async{
+                  if (await _login()) {
+                    context.go("/home");
+                  }
+                }
+              ),),
               DelayedAnimation(delay: transitionAnimate, 
                   child:  Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -173,6 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextField TextFieldCustomized(String title) {
     return  TextField(
+            controller: _emailController,
             decoration: InputDecoration(
               floatingLabelStyle: TextStyle(
                 color: primaryColor
@@ -186,9 +263,9 @@ class _LoginScreenState extends State<LoginScreen> {
           );
   }
 
-  TextField TextFieldPassword(String password) {
-    
+TextField TextFieldPassword(String password) {
     return TextField(
+            controller: _passwordController,
             obscureText: _obscureText,
             decoration: InputDecoration(
                 floatingLabelStyle: TextStyle(
