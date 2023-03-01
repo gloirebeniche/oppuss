@@ -4,12 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/api.dart';
+import 'package:oppuss/api/auth_provider.dart';
+import 'package:oppuss/models/user.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-
+import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,7 +42,11 @@ class _LoginScreenState extends State<LoginScreen> {
         );
 
         if (response.statusCode == 200) {
-          print(response.body); // afficher la réponse (user courant)
+          final Map<String, dynamic> responseData = jsonDecode(response.body);
+          final User user = User.fromJson(responseData);
+          // Stockage de l'utilisateur dans les préférences partagées
+          prefs.setString('user', jsonEncode(user));
+
         } else {
           // Gestion de l'erreur
           print(response.statusCode);
@@ -74,7 +80,6 @@ class _LoginScreenState extends State<LoginScreen> {
             final SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setString('access_token', accessToken);
             prefs.setString('refresh_token', refreshToken);
-            getCurrentUser();
             return true;
           } else {
             // Gestion de l'erreur
@@ -92,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return  Scaffold(
       backgroundColor: bgColor,
       appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
@@ -159,6 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CustomButton("Connexion",
                 () async{
                   if (await _login()) {
+                    authProvider.checkAuth();
+                    print(authProvider.currentUser?.email);
                     context.go("/home");
                   }
                 }

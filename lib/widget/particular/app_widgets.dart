@@ -63,14 +63,8 @@ class AboutVersionAppWidget extends StatelessWidget {
   }
 }
 
-class ProfilePictureWidget extends StatelessWidget {
-  const ProfilePictureWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
+Center ProfilePictureWidget(String username){
+  return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -105,7 +99,7 @@ class ProfilePictureWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: Text("@KBjeanelie",
+              child: Text("@$username",
                 style: GoogleFonts.lato(
                   textStyle: const TextStyle(
                   fontStyle: FontStyle.italic,
@@ -119,7 +113,6 @@ class ProfilePictureWidget extends StatelessWidget {
         ),
       ),
     );
-  }
 } 
 
 

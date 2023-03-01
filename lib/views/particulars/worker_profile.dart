@@ -1,9 +1,11 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:oppuss/api/api.dart';
+import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
+import 'package:provider/provider.dart';
 
 
 class WorkerProfile extends StatefulWidget {
@@ -29,11 +31,12 @@ class _WorkerProfileState extends State<WorkerProfile> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: CustomAppBar2("", context),
-        body: isAuth? cardAuth(context) :Column(
+        body: !authProvider.isAuthenticated? cardAuth(context) :Column(
           children: const [
              ProfilePictureWorker(),
             TabBar(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/modules/chat_page.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
@@ -18,7 +19,7 @@ import 'package:oppuss/views/particulars/about.dart';
 import 'package:oppuss/views/particulars/worker_profile.dart';
 import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
-
+import 'package:provider/provider.dart';
 import 'views/auth/sign_up_particuler.dart';
 
 void main() {
@@ -35,9 +36,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child : MaterialApp.router(
+        routerConfig: _router,
+        debugShowCheckedModeBanner: false,
+      )
     );
   }
 

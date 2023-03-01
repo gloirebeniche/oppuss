@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/api/api.dart';
+import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
@@ -9,6 +10,7 @@ import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
+import 'package:provider/provider.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
@@ -18,26 +20,19 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
+  String? username;
 
-  late bool isAuth;
-
-  @override
-  void initState(){
-    if (isUserAuth() == false) {
-      isAuth = false;
-    }else{
-      isAuth = true;
-    }
-    super.initState();
-  }
   
   @override
   Widget build(BuildContext context) {
-    return isAuth? Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    final authProvider = Provider.of<AuthProvider>(context);
+    setState(() {
+      username = authProvider.currentUser?.username;
+    });
+    return !authProvider.isAuthenticated? Scaffold(
+      body: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           Container(
             margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.05, left: 15),
             child: customeTextStyle("Votre Compte", bigTextSize4, black, fontWeight: FontWeight.bold),
@@ -139,7 +134,7 @@ class _AccountViewState extends State<AccountView> {
       appBar: CustomAppBar("Compte",context),
       body: ListView(
         children: [
-          const ProfilePictureWidget(),
+          ProfilePictureWidget(username!),
           const SizedBox(height: 10,),
           const TextProfileManageWidget(text: "Gérer mon compte"),
           ProfileMenuWidget(
@@ -201,7 +196,9 @@ class _AccountViewState extends State<AccountView> {
           ProfileMenuWidget(
             text: "Se déconnecter",
             icons: EvaIcons.logOutOutline,
-            press: (){}
+            press: (){
+              authProvider.deleteToken();
+            }
           ),
           const AboutVersionAppWidget()
         ]
