@@ -56,6 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
       }
 
     }
+
+    
     Future<bool> _login() async {
       final String email = _emailController.text.trim().replaceAll(" ", "");
       final String password = _passwordController.text.trim().replaceAll(" ", "");

@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class AuthProvider with ChangeNotifier {
   String? _accesToken;
   String? _refreshToken;
-  late User _currentUser;
+  User? _currentUser;
 
   AuthProvider() {
     _getCurrentUser();
@@ -45,8 +45,8 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> deleteToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('access');
-    await prefs.remove('refresh');
+    await prefs.remove('access_token');
+    await prefs.remove('refresh_token');
     _accesToken = null;
     _refreshToken = null;
     notifyListeners();
