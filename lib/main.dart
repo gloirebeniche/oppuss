@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/modules/chat_page.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/views/particulars/coments.dart';
 import 'package:oppuss/views/particulars/help.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
 import 'package:oppuss/views/particulars/offer_detail.dart';
+import 'package:oppuss/views/particulars/offer_more_detail.dart';
+import 'package:oppuss/views/particulars/offer_update.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:flutter/services.dart';
-import 'package:oppuss/views/particulars/publications.dart';
 import 'package:oppuss/views/particulars/safe.dart';
 import 'package:oppuss/views/particulars/settings.dart';
 import 'package:oppuss/views/particulars/about.dart';
 import 'package:oppuss/views/particulars/worker_profile.dart';
 import 'package:oppuss/views/splash_screen.dart';
 import 'package:oppuss/views/welcome_screen.dart';
+import 'package:provider/provider.dart';
+import 'views/auth/sign_up_particuler.dart';
 
 void main() {
   
@@ -31,9 +36,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child : MaterialApp.router(
+        routerConfig: _router,
+        debugShowCheckedModeBanner: false,
+      )
     );
   }
 
@@ -56,7 +66,10 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "message", builder: (context, state) => ChatPage()),
           GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
             routes: [ 
-              GoRoute(path: "coments", builder: (context, state) => const ComentView(),)
+              GoRoute(path: "coments", builder: (context, state) => const ComentView(),),
+              GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+              GoRoute(path: "update_offer", builder: (context, state) => const UpdateOfferPage() ),
+              GoRoute(path: "view", builder: (context, state) => const OfferMoreDetailPage())
             ]
           ),
           GoRoute( path: "settings", builder: (context, state) => const SettingsView()),
@@ -64,7 +77,11 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "safe", builder: (context, state) => const SafeView()),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier()),
           GoRoute( path: "about", builder: (context, state) => const AboutView()),
-          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile())
+          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+
+          //Route pour l'authentification
+          GoRoute(path: "login", builder: (context, state) => const LoginScreen()),
+          GoRoute(path: "user_register", builder: (context, state) => const SignUpScreenParticuler()),
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),

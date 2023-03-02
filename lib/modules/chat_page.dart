@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/components/chat.dart';
 import 'package:oppuss/models/chat_users.dart';
-import 'package:oppuss/utils/theme.dart';
+
 import 'package:oppuss/widget/customized_appbar.dart';
 
 class ChatPage extends StatefulWidget{
+  const ChatPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ChatPageState createState() => _ChatPageState();
 }
 
@@ -43,8 +46,6 @@ class _ChatPageState extends State<ChatPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-           
-          
             ListView.builder(
               itemCount: chatUsers.length,
               shrinkWrap: true,

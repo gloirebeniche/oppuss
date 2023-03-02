@@ -12,7 +12,7 @@ class _ComentViewState extends State<ComentView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar2("", context),
+      appBar: CustomAppBar2("Questions et réponses", context),
     );
   }
 }

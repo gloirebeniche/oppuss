@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/particular/app_widgets.dart';
 
 class CardOfferView extends StatelessWidget {
   const CardOfferView({
@@ -170,8 +171,8 @@ class SearchWorkerCardView extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 80,
-            width: 80,
+            height: 70,
+            width: 70,
             child: Stack(
               fit: StackFit.expand,
               children: const [
@@ -204,7 +205,7 @@ class SearchWorkerCardView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
-                  child: customeTextStyle(fullname, headingTextSize, textColor,
+                  child: customeTextStyle(fullname, textSizeH2, textColor,
                       fontWeight: FontWeight.bold),
                 ),
                 spacingHeight0,
@@ -224,8 +225,8 @@ class SearchWorkerCardView extends StatelessWidget {
                 spacingHeight0,
                 customeTextStyle("Membre depuis 4 mois", 12, grey2),
                 spacingHeight0,
-                customeTextStyle("$jobs jobs réalisés", textSize, textColor,
-                    fontWeight: FontWeight.bold)
+                customeTextStyle("$jobs jobs réalisés", textSize, textColor,fontWeight: FontWeight.bold),
+                verifyWorker(),
               ],
             ),
           ),

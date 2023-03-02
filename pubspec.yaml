@@ -46,6 +46,9 @@ dependencies:
   simple_animations: ^5.0.0+3
   snippet_coder_utils: ^1.0.13
   intl: ^0.18.0
+  shared_preferences: ^2.0.18
+  provider: ^6.0.5
+  
 
 dev_dependencies:
   flutter_test:
