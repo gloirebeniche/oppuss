@@ -29,7 +29,11 @@ class _AddOfferState extends State<AddOffer> {
   
   List<dynamic> _domaines = [];
 
-  String? id;
+  List<dynamic> _travaux = [];
+
+  String? id_domaine;
+
+  String? id_travaux;
 
 
   Future<void> fill_domaine() async {
@@ -47,7 +51,6 @@ class _AddOfferState extends State<AddOffer> {
     super.initState();
     try {
        fill_domaine();
-       print(_domaines);
     } catch (e) {
       print(e); 
     }
@@ -64,11 +67,24 @@ class _AddOfferState extends State<AddOffer> {
               margin: const EdgeInsets.only(top: 20),
               child: FormHelper.dropDownWidget(
                 context,
-                "Quel est le type de travaux à réaliser ?",
-                id,
+                "Quelle est le domaine d'activité ?",
+                id_domaine,
                 _domaines,
                 (onChanged){
-                  id = onChanged;
+                  id_domaine = onChanged;
+
+                  for (var element in _domaines) {
+                    if (element['id'].toString() == onChanged.toString()) {
+                      setState(() {
+                        _travaux = element['travaux_set'];
+                      });
+                      print(_travaux);
+                    }
+                  }
+
+                  for (var e in _travaux) {
+                    print(e['nom_travaux']);
+                  }
                 },
                 (onValidate){
                   if (onValidate == null) {
@@ -81,6 +97,30 @@ class _AddOfferState extends State<AddOffer> {
                 borderRadius: 10,
                 optionValue: "id",
                 optionLabel: "nom_domaine"
+              ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: FormHelper.dropDownWidget(
+                context,
+                "Quel est le type de travaux à réaliser ?",
+                id_travaux,
+                _travaux,
+                (onChangedVal){
+                  id_travaux = onChangedVal;
+                },
+                (onValidate){
+                  if (onValidate == null) {
+                    return "Please select travaux";
+                  }
+                  return null;
+                },
+                borderColor: grey,
+                borderFocusColor: primaryColor,
+                borderRadius: 10,
+                optionValue: "id",
+                optionLabel: "nom_travaux"
               ),
             ),
 
