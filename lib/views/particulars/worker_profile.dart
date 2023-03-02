@@ -1,19 +1,43 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:oppuss/api/api.dart';
+import 'package:oppuss/api/auth_provider.dart';
+import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
+import 'package:provider/provider.dart';
 
-class WorkerProfile extends StatelessWidget {
+
+class WorkerProfile extends StatefulWidget {
   const WorkerProfile({super.key});
 
   @override
+  State<WorkerProfile> createState() => _WorkerProfileState();
+}
+
+class _WorkerProfileState extends State<WorkerProfile> {
+
+  late bool isAuth;
+
+  @override
+  void initState(){
+    if (isUserAuth() == false) {
+      isAuth = false;
+    }else{
+      isAuth = true;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: CustomAppBar2("", context),
-        body: Column(
-          children:const [
+        body: !authProvider.isAuthenticated? cardAuth(context) :Column(
+          children: const [
              ProfilePictureWorker(),
             TabBar(
               labelColor: Colors.black,
@@ -121,6 +145,56 @@ class ProfilePictureWorker extends StatelessWidget {
             Container(
               width: 140,
               child: verifyWorker(),
+            ),
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 1,
+                      backgroundColor: primaryColor,
+                      minimumSize: const Size(170, 40),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                      )
+                    ),
+                    onPressed: (){},
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: Row(
+                        children: [
+                          const Icon(EvaIcons.phoneCallOutline, color: white, size: 20,),
+                          Padding(padding: const EdgeInsets.only(left: 5), child: customeTextStyle("Appeler", textSizeH2, white))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                  child: OutlinedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 1,
+                      backgroundColor: white,
+                      minimumSize: const Size(170, 40),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                      )
+                    ),
+                    onPressed: (){},
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: Row(
+                        children: [
+                          icon2(EvaIcons.paperPlaneOutline),
+                          Padding(padding: const EdgeInsets.only(left: 5), child: customeTextStyle("Écrire", textSizeH2, primaryColor))
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
             const SizedBox(height: 30,),
           ],

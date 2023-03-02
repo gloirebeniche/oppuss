@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
 
 
@@ -44,7 +45,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: white,
       appBar: AppBar(
         backgroundColor: bgColor,
         elevation: 0,
@@ -69,10 +70,8 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
         ),
       ),
       body: Padding(
-        padding: padding,
+        padding: const EdgeInsets.all(0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
               Expanded(
                 child: display_list.isEmpty ?
@@ -83,18 +82,36 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                   itemCount: display_list.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(top: 8),
-                    child: MaterialButton(
-                      onPressed: (){ context.go("/home/worker_profile");},
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        side: const BorderSide(color: Colors.white)
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                      margin: const EdgeInsets.only(right: 25, left: 10, top: 10, bottom: 10),
+                      decoration:  BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: whiteSecondar,
+                            offset: Offset(2, 2),
+                            blurRadius: 5.0,
+                            spreadRadius: 1
+                          ),
+                          BoxShadow(
+                            color: whiteSecondar,
+                            offset: Offset(-2, -2),
+                            blurRadius: 5.0,
+                            spreadRadius: 1
+                          )
+                        ]
                       ),
-                      elevation: 0,
-                      color: Colors.white,
-                      child: SearchWorkerCardView(
-                        fullname: "${display_list[index].firstname} ${display_list[index].name}",
-                        avis: display_list[index].avis,
-                        jobs: display_list[index].jobs,
+                      child: Column(
+                        children: [
+                          SearchWorkerCardView(
+                            fullname: "${display_list[index].firstname} ${display_list[index].name}",
+                            avis: display_list[index].avis,
+                            jobs: display_list[index].jobs,
+                          ),
+                          defaultButton("Voir le profil", (){context.go("/home/worker_profile");})
+                        ],
                       ),
                     ),
                   ),
