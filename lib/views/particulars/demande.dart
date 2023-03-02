@@ -17,18 +17,7 @@ class Demandes extends StatefulWidget {
 }
 
 class _DemandesState extends State<Demandes> {
-  late bool isAuth;
 
-  @override
-  void initState(){
-    if (isUserAuth() == false) {
-      isAuth = false;
-    }else{
-      isAuth = true;
-    }
-    super.initState();
-  }
-  
   @override
   Widget build(BuildContext context) {
 

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:intl/intl.dart';
 
@@ -24,23 +27,30 @@ class _AddOfferState extends State<AddOffer> {
 
   TextEditingController inputTel = TextEditingController();
   
-  List<dynamic> countrie = [];
-  List<dynamic> statesMaster = [];
-  List<dynamic> states = [];
+  List<dynamic> _domaines = [];
 
-  String? countryId;
-  String? stateId;
+  String? id;
+
+
+  Future<void> fill_domaine() async {
+
+    SharedPreferences  prefs =  await SharedPreferences.getInstance();
+
+    setState(() {
+      _domaines = jsonDecode(prefs.getString('domaines')!);
+    });
+    
+  }
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    countrie.add({"id" : "1", "label": "Congo"});
-    countrie.add({"id" : "2", "label": "RDC"});
-    statesMaster = [
-      {"ID": 1, "Name": "Assam", "ParendId": 1},
-      {"ID": 2, "Name": "Assam", "ParendId": 2},
-      {"ID": 3, "Name": "Assam", "ParendId": 3},
-    ];
+    try {
+       fill_domaine();
+       print(_domaines);
+    } catch (e) {
+      print(e); 
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -55,13 +65,10 @@ class _AddOfferState extends State<AddOffer> {
               child: FormHelper.dropDownWidget(
                 context,
                 "Quel est le type de travaux à réaliser ?",
-                countryId,
-                countrie,
+                id,
+                _domaines,
                 (onChanged){
-                  countryId = onChanged;
-                  states = statesMaster.where(
-                    (stateItem) => stateItem["ParentId"].toString() == onChanged.toString(),).toList();
-                    stateId = null;
+                  id = onChanged;
                 },
                 (onValidate){
                   if (onValidate == null) {
@@ -73,34 +80,7 @@ class _AddOfferState extends State<AddOffer> {
                 borderFocusColor: primaryColor,
                 borderRadius: 10,
                 optionValue: "id",
-                optionLabel: "label"
-              ),
-            ),
-
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              child: FormHelper.dropDownWidget(
-                context,
-                "",
-                countryId,
-                countrie,
-                (onChanged){
-                  countryId = onChanged;
-                  states = statesMaster.where(
-                    (stateItem) => stateItem["ParentId"].toString() == onChanged.toString(),).toList();
-                    stateId = null;
-                },
-                (onValidate){
-                  if (onValidate == null) {
-                    return "Please select country";
-                  }
-                  return null;
-                },
-                borderColor: grey,
-                borderFocusColor: primaryColor,
-                borderRadius: 10,
-                optionValue: "id",
-                optionLabel: "label"
+                optionLabel: "nom_domaine"
               ),
             ),
 

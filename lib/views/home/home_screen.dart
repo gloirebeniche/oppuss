@@ -1,6 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oppuss/api/api.dart';
 import 'package:oppuss/views/particulars/account_view.dart';
 import 'package:oppuss/views/particulars/search_worker_view.dart';
 import 'package:oppuss/views/particulars/demande.dart';
@@ -31,6 +32,16 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
     });
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchDomaines();
+    fetchTravaux();
+    fetchMetier();
+  }
+
 
   @override
   Widget build(BuildContext context) {
