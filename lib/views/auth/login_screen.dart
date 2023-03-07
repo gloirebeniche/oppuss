@@ -223,33 +223,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),),
-                 DelayedAnimation(delay: transitionAnimate, 
-                        child:Padding(
-                        padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const WelcomeAuth()));
-                          },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
-                     const  Text("Vous n'avez pas de compte ?",
-                          style: TextStyle(
-                            color: Color(0xff1E232C),
-                            fontSize: textSize,
-                          )),
-                      Text(" S'inscrire ici",
-                          style: TextStyle(
-                            color: primaryColor,
-                            fontSize: textSize,
-                          )),
-                    ],
-                  ),
-                ),
-              ))
+              //    DelayedAnimation(delay: transitionAnimate, 
+              //           child:Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //         child: InkWell(
+              //             onTap: () {
+              //               context.go("/home/user_register");
+              //             },
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children:  [
+              //        const  Text("Vous n'avez pas de compte ?",
+              //             style: TextStyle(
+              //               color: Color(0xff1E232C),
+              //               fontSize: textSize,
+              //             )),
+              //         Text(" S'inscrire ici",
+              //             style: TextStyle(
+              //               color: primaryColor,
+              //               fontSize: textSize,
+              //             )),
+              //       ],
+              //     ),
+              //   ),
+              // ))
             ],
           ),
         ),

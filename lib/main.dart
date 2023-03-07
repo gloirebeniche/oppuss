@@ -4,6 +4,7 @@ import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/modules/chat_page.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
+import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/views/particulars/coments.dart';
 import 'package:oppuss/views/particulars/help.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),
+      GoRoute(path: "/loading_screen", builder: (context, state) => LoadingScreen())
     ],
   );
 }

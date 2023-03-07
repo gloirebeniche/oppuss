@@ -5,6 +5,7 @@ import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 
 
 class SignUpScreenParticuler extends StatefulWidget {
@@ -20,8 +21,8 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
-      backgroundColor: const Color(0xFFEDECF2),
+      appBar: CustomAppBar2("", context),
+      backgroundColor: white, //const Color(0xFFEDECF2),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -144,35 +145,35 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                   })),
               ),
          
-              DelayedAnimation(
-                  delay: transitionAnimate,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const WelcomeAuth()));
-                      },
-                      child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
+              // DelayedAnimation(
+              //     delay: transitionAnimate,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: InkWell(
+              //         onTap: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (context) => const WelcomeAuth()));
+              //         },
+              //         child: Column(
+              //          mainAxisAlignment: MainAxisAlignment.center,
                        
-                        children: const [
-                          Text("Si vous avec déjà un compte?",
-                              style: TextStyle(
-                                color: Color(0xff1E232C),
-                                fontSize: 15,
-                              )),
-                          Text(" Connectez vous ici",
-                              style: TextStyle(
-                                color: Color(0xff35C2C1),
-                                fontSize: 15,
-                              )),
-                        ],
-                      ),
-                    ),
-                  ))
+              //           children: const [
+              //             Text("Si vous avec déjà un compte?",
+              //                 style: TextStyle(
+              //                   color: Color(0xff1E232C),
+              //                   fontSize: 15,
+              //                 )),
+              //             Text(" Connectez vous ici",
+              //                 style: TextStyle(
+              //                   color: Color(0xff35C2C1),
+              //                   fontSize: 15,
+              //                 )),
+              //           ],
+              //         ),
+              //       ),
+              //     ))
             ],
           ),
         ),

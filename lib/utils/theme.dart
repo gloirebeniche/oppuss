@@ -157,3 +157,39 @@ const spacingWidth5 = SizedBox(width: 40);
 // padding and margin
 const padding = EdgeInsets.symmetric(horizontal: 15, vertical: 15);
 const margin = EdgeInsets.all(15);
+
+
+
+
+void messageBox(BuildContext context){
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Container(
+        height: 60,
+        padding: const EdgeInsets.all(15),
+        decoration: const BoxDecoration(
+          color: Colors.redAccent,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: customeTextStyle("Connection au serveur impossible", textSizeH2, white, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            )
+          ],
+        )
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+    )
+  );
+}

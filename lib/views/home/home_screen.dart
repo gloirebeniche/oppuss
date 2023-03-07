@@ -37,9 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    fetchDomaines();
-    fetchTravaux();
-    fetchMetier();
+    fetchDomaines(context);
+    // fetchTravaux();
+    // fetchMetier();
   }
 
 
