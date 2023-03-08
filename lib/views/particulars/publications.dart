@@ -74,6 +74,7 @@ class _AddOfferState extends State<AddOffer> {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 20),
+            //color: Colors.grey.shade200,
             child: FormHelper.dropDownWidget(
               context,
               "Quelle est le domaine d'activité ?",
@@ -133,21 +134,24 @@ class _AddOfferState extends State<AddOffer> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 25, left: 20, right: 20),
-            child: customeTextStyle("Quel jour vous convient le mieux ?", headingTextSize, black, fontWeight: FontWeight.bold),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.only(left: 20, right: 20),
+            height: 50,
             child: TextField(
               controller: inputDate,
               minLines: 1,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 1.5, color: grey),
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                prefixIcon: icon2(EvaIcons.calendarOutline),
+                contentPadding: const EdgeInsets.all(0),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
-                )
+                ),
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintText: "Quel jour vous convient le mieux ?"
               ),
               onTap: () async{
                 DateTime? pickeddate = await showDatePicker(
@@ -166,11 +170,6 @@ class _AddOfferState extends State<AddOffer> {
             ),
           ),
 
-          
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-            child: customeTextStyle("Quel est l'heure qui vous convient ?", headingTextSize, black, fontWeight: FontWeight.bold),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.only(left: 20, right: 20),
@@ -179,10 +178,16 @@ class _AddOfferState extends State<AddOffer> {
               minLines: 1,
               maxLines: 2,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 1, color: grey),
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                prefixIcon: icon2(EvaIcons.clockOutline),
+                contentPadding: const EdgeInsets.all(0),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
-                )
+                ),
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintText: "Quel est l'heure qui vous convient ?"
               ),
               onTap: () async{
                 TimeOfDay? time = await showTimePicker(
@@ -198,64 +203,73 @@ class _AddOfferState extends State<AddOffer> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-            child: customeTextStyle("Quelle est l'adresse de la prestation ?", headingTextSize, black, fontWeight: FontWeight.bold),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: TextField(
               controller: inputAdress,
+              keyboardType: TextInputType.streetAddress,
               minLines: 1,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 1.5, color: grey),
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                prefixIcon: icon2(EvaIcons.pinOutline),
+                contentPadding: const EdgeInsets.all(0),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
-                )
+                ),
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintText: "Quelle est l'adresse de la prestation ?"
               ),
             ),
           ),
 
-            Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-            child: customeTextStyle("À quel numéro êtes-vous joignable en cas de besoins ?", headingTextSize, black, fontWeight: FontWeight.bold),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: TextField(
               controller: inputTel,
+              keyboardType: TextInputType.phone,
               minLines: 1,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 1.5, color: grey),
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                prefixIcon: icon2(EvaIcons.phoneOutline),
+                contentPadding: const EdgeInsets.all(0),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
-                )
+                ),
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintText: "À quel numéro êtes-vous joignable en cas de besoins ?"
               ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-            child: customeTextStyle("Détail supplementaire (optionnel)", headingTextSize, black, fontWeight: FontWeight.bold),
-          ),
           Container(
             margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: TextField(
               controller: inputDescription,
-              minLines: 3,
-              maxLines: 7,
+              keyboardType: TextInputType.text,
+              minLines: 5,
+              maxLines: 10,
               decoration: InputDecoration(
-                labelText: 'Description',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 1.5, color: grey),
+                filled: true,
+                fillColor: Colors.grey.shade200,
+                prefixIcon: icon2(EvaIcons.clockOutline),
+                contentPadding: const EdgeInsets.all(0),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
-                )
+                ),
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2, height: 3)),
+                hintText: "Détail supplementaire (optionnel)"
               ),
             ),
           ),
+          
           Container(
             padding: padding,
             child: defaultButton("Publier l'offre", (){}),
