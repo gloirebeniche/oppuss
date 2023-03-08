@@ -23,7 +23,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         await http.get(Uri.parse(api_domaine_view));
         context.go("/home");
       }catch(e){
-        messageBox(context);
+        messageBox(context, "Connection au serveur impossible");
       }
     });
     return result;

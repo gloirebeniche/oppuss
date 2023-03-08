@@ -198,8 +198,17 @@ class _AccountViewState extends State<AccountView> {
           ProfileMenuWidget(
             text: "Se déconnecter",
             icons: EvaIcons.logOutOutline,
-            press: (){
+            press: () async{
+              showDialog(context: context, builder: (context){
+                return Center(child: CircularProgressIndicator(color: primaryColor,));
+              });
+              await Future.delayed(const Duration(seconds: 1));
               authProvider.deleteToken();
+              // ignore: use_build_context_synchronously
+              Navigator.pop(context);
+              setState(() {
+                messageBox(context, "Vous êtes déconnecté :(");
+              });
             }
           ),
           const AboutVersionAppWidget()

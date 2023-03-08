@@ -161,7 +161,7 @@ const margin = EdgeInsets.all(15);
 
 
 
-void messageBox(BuildContext context){
+void messageBox(BuildContext context, String message){
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Container(
@@ -179,7 +179,40 @@ void messageBox(BuildContext context){
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(5),
-                    child: customeTextStyle("Connection au serveur impossible", textSizeH2, white, fontWeight: FontWeight.bold),
+                    child: customeTextStyle(message, textSizeH2, white, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            )
+          ],
+        )
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+    )
+  );
+}
+
+void messageBoxSuccess(BuildContext context, String message){
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Container(
+        height: 60,
+        padding: const EdgeInsets.all(15),
+        decoration: const BoxDecoration(
+          color: Colors.greenAccent,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: customeTextStyle(message, textSizeH2, white, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
