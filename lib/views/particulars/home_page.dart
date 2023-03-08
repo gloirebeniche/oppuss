@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/service_home_page.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageParticular extends StatefulWidget {
   const HomePageParticular({super.key});
@@ -37,12 +42,49 @@ class _HomePageParticularState extends State<HomePageParticular> {
 
   int selectedService = -1;
 
+
+  List<dynamic> _domaines = [];
+
+
+  List<dynamic> display_domaine = [];
+
+  void updateList(String value){
+    //this is the function that filter our liste
+    setState(() {
+      display_domaine = _domaines.where(
+        (element) => element["nom_domaine"].toLowerCase().contains(value.toLowerCase())).toList();
+    });
+  }
+
+  Future<void> fill_domaine() async {
+
+    SharedPreferences  prefs =  await SharedPreferences.getInstance();
+
+    setState(() {
+      _domaines = jsonDecode(prefs.getString("domaines")!);
+      display_domaine = List.from(_domaines);
+    });
+    
+  }
+
+  @override
+  void initState()  {
+    super.initState();
+    try {
+       fill_domaine();
+    } catch (e) {
+      print(e); 
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
       body: CustomScrollView(
         slivers: [
+
+          // IMAGE COVER
           const SliverAppBar(
             backgroundColor: white,
             pinned: true,
@@ -57,32 +99,65 @@ class _HomePageParticularState extends State<HomePageParticular> {
               ),
             ),
           ),
+
+          //SEARCH BAR
           SliverAppBar(
             backgroundColor: white,
             elevation: 0,
+            pinned: true,
             bottom: const PreferredSize(
               preferredSize: Size.fromHeight(-10.0), child: SizedBox(),
             ),
             flexibleSpace: Container(
-              padding: padding,
-              child: Center(child: customeTextStyle("TROUVEZ UN PROFESSIONNEL DE CONFIANCE POUR VOS TRAVAUX", 15, black))),
+              margin: const EdgeInsets.only(top: 10, left: 5, right: 5),
+              height: 50,
+              child: TextField(
+                  onChanged: (value) => updateList(value),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey.shade200,
+                    prefixIcon: icon2(EvaIcons.searchOutline),
+                    contentPadding: const EdgeInsets.all(0),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                    hintText: "Construction"
+                  ),
+                ),
+            ),
+            
           ),
-          // SliverList(delegate: SliverChildBuilderDelegate(
-          //   ((context, index) {
-          //     return Padding(
-          //       padding: padding,
-          //       child: Container(
-          //         decoration: BoxDecoration(
-          //           color: grey,
-          //           borderRadius: BorderRadius.circular(20)
-          //         ),
-          //         height: 200,
-          //         width: MediaQuery.of(context).size.width*0.1,
-          //       ),
-          //     );
-          //   }),
-          //   childCount: 20
-          // ))
+
+          // LISTE DES DOMAINE METIER
+          SliverList(delegate: SliverChildBuilderDelegate(
+            ((context, index) {
+              //recuperation d'un domaine metier
+              final domaine = display_domaine[index];
+              return GestureDetector(
+                child: Container(
+                  //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Stack(
+                    children: [
+                       ColorFiltered(
+                        colorFilter: const ColorFilter.mode(
+                          Colors.black,
+                          BlendMode.dstATop,
+                        ),
+                        child: Image.network(domaine["image"], fit: BoxFit.cover,),),
+                      Positioned.fill(child: Center(
+                        child: customeTextStyle(domaine["nom_domaine"], 22, white, fontWeight: FontWeight.bold),
+                      ))
+                    ],
+                  )
+                ),
+              );
+            }),
+            childCount: display_domaine.length
+          ))
         ],
       ),
     );

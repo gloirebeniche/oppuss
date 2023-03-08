@@ -13,10 +13,9 @@ const String api_domaine_view = "http://10.0.2.2:8000/api/ref-btp/domaines/";
 const String api_travaux_view = "http://10.0.2.2:8000/api/ref-btp/travaux/";
 const String api_metier_view = "http://10.0.2.2:8000/api/ref-btp/metier/";
 
-final headers = {
-  'Content-Type': 'application/json; charset=UTF-8',
-};
-Future<void> fetchDomaines(BuildContext context) async {
+
+Future<void> fetchDomaines() async {
+
     final response = await http.get(Uri.parse(api_domaine_view));
   
     final decodedResponse = utf8.decode(response.bodyBytes);
@@ -27,8 +26,6 @@ Future<void> fetchDomaines(BuildContext context) async {
 
       prefs.setString('domaines', decodedResponse);
 
-      print(decodedResponse);
-
     } else {
       // Sinon, on lance une exception avec le message d'erreur renvoyé par l'API Django
       throw Exception('Erreur lors de la récupération des domaines: ${response.reasonPhrase}');
@@ -37,7 +34,7 @@ Future<void> fetchDomaines(BuildContext context) async {
 
 Future<void> fetchTravaux() async {
 
-  final response = await http.get(Uri.parse(api_travaux_view), headers: headers);
+  final response = await http.get(Uri.parse(api_travaux_view));
   
   final decodedResponse = utf8.decode(response.bodyBytes);
 
@@ -55,17 +52,16 @@ Future<void> fetchTravaux() async {
 
 Future<void> fetchMetier() async {
 
-  final response = await http.get(Uri.parse(api_metier_view), headers: headers);
+  final response = await http.get(Uri.parse(api_metier_view));
   
   final decodedResponse = utf8.decode(response.bodyBytes);
 
   if (response.statusCode == 200) {
     // Si la requête a réussi, on enregistre dans les domaines dans les fichier de préference de l'app
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    
-    
+
     prefs.setString('metiers', decodedResponse);
-    
+
   } else {
     // Sinon, on lance une exception avec le message d'erreur renvoyé par l'API Django
     throw Exception('Erreur lors de la récupération des metiers: ${response.reasonPhrase}');

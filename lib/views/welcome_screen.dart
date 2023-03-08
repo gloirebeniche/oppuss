@@ -7,6 +7,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: slash_for_doc_comments
 /**
@@ -58,14 +59,16 @@ class WelcomeAuth extends StatelessWidget {
                     DelayedAnimation(
                       delay: transitionAnimate,
                       child: CustomButton("Commencer", (() async {
-                        context.go("/home");
-                        // try {
-                        //   await http.get(Uri.parse(api_domaine_view));
-                        //   context.go("/home");
-                        // }catch(e){
-                        //   print("Aucune connexion avec le serveur");
-                        //   context.go("/loading_screen");
-                        // }
+                        try {
+                          await http.get(Uri.parse(api_domaine_view));
+                          fetchDomaines();
+                          fetchMetier();
+                          fetchTravaux();
+                          context.go("/home");
+                        }catch(e){
+                          print("Aucune connexion avec le serveur");
+                          context.go("/loading_screen");
+                        }
                         
                       })),
                     ),

@@ -37,9 +37,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
     //this is the function that filter our liste
     setState(() {
       display_list = workers.where(
-        (element) => element.firstname.toLowerCase().contains(value.toLowerCase())?
-        element.firstname.toLowerCase().contains(value.toLowerCase())
-        :element.name.toLowerCase().contains(value.toLowerCase())).toList();
+        (element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
     });
   }
   @override

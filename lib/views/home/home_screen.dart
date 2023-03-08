@@ -33,16 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    fetchDomaines(context);
-    // fetchTravaux();
-    // fetchMetier();
-  }
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
