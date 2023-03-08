@@ -133,6 +133,7 @@ class _AccountViewState extends State<AccountView> {
     ) 
     :Scaffold(
       appBar: CustomAppBar("Compte",context),
+      backgroundColor: white,
       body: ListView(
         children: [
           ProfilePictureWidget(username!),
