@@ -7,7 +7,6 @@ import 'package:oppuss/views/particulars/search_worker_view.dart';
 import 'package:oppuss/views/particulars/demande.dart';
 import 'package:oppuss/views/particulars/publications.dart';
 import 'package:oppuss/utils/theme.dart';
-
 import '../particulars/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
