@@ -59,10 +59,10 @@ class _AddOfferState extends State<AddOffer> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: white,
         appBar: CustomAppBar("Publication", context),
         body: ListView(
           children: [
-            
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: FormHelper.dropDownWidget(

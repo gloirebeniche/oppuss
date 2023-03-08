@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/modules/chat_page.dart';
+import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/fullsreen.dart';

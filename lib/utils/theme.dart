@@ -155,7 +155,7 @@ const spacingWidth4 = SizedBox(width: 30);
 const spacingWidth5 = SizedBox(width: 40);
 
 // padding and margin
-const padding = EdgeInsets.symmetric(horizontal: 15, vertical: 15);
+const padding = EdgeInsets.symmetric(horizontal: 25, vertical: 15);
 const margin = EdgeInsets.all(15);
 
 

@@ -58,6 +58,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
+                  keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: 'Nom d\'utilisateur',
                     labelStyle: TextStyle(
@@ -69,6 +70,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Votre Email',
                     labelStyle: TextStyle(
@@ -80,8 +82,9 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
-                    labelText: 'Profile',
+                    labelText: 'Télephone',
                     labelStyle: TextStyle(
                       color: Colors.grey[400],
                     ),
@@ -92,6 +95,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: TextField(
+                  keyboardType: TextInputType.text,
                   obscureText: _obscureText,
                   decoration: InputDecoration(
                     labelStyle: TextStyle(
@@ -140,7 +144,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
               ),
               DelayedAnimation(
                 delay: transitionAnimate,
-                child: CustomButton("Envoyer", (() {
+                child: CustomButton("S'inscrire", (() {
                     
                   })),
               ),

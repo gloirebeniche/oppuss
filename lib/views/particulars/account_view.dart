@@ -30,6 +30,7 @@ class _AccountViewState extends State<AccountView> {
       username = authProvider.currentUser?.username;
     });
     return !authProvider.isAuthenticated? Scaffold(
+      backgroundColor: white,
       body: ListView(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,12 +40,12 @@ class _AccountViewState extends State<AccountView> {
           ),
 
           Container(
-            margin: const EdgeInsets.only(top: 5, left: 15),
+            margin: const EdgeInsets.only(top: 10, left: 15,),
             child: customeTextStyle("Inscrivez-vous pour pouvoir planifier vos future", textSizeH2, grey2)
           ),
 
           Container(
-            margin: const EdgeInsets.only(top: 5, left: 15),
+            margin: const EdgeInsets.only(top: 6, left: 15),
             child: customeTextStyle("travaux et trouver un ouvrier qualifié", textSizeH2, grey2)
           ),
 
@@ -71,14 +72,14 @@ class _AccountViewState extends State<AccountView> {
 
           Container(
             margin: const EdgeInsets.only(top: 10, left: 15),
-            padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.all(4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 customeTextStyle("Vous avez déjà un compte ?", textSizeH2, grey2),
                 TextButton(
                   onPressed: (){context.go("/home/login");},
-                  child: customeTextStyle("Connexion", textSizeH2, primaryColor, fontWeight: FontWeight.bold),
+                  child: customeTextStyle("Se connecter", textSizeH2, primaryColor, fontWeight: FontWeight.bold),
                 )
               ],
             ),
@@ -86,7 +87,7 @@ class _AccountViewState extends State<AccountView> {
          
           Container(
             margin: const EdgeInsets.only(left: 15),
-            padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.all(4),
             child: customeTextStyle("Informations utiles", 12, grey2),
           ),
           ProfileMenuWidget(

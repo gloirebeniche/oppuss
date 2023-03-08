@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/models/service_home_page.dart';
+import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 
 class HomePageParticular extends StatefulWidget {
@@ -39,25 +40,52 @@ class _HomePageParticularState extends State<HomePageParticular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("Acceuil", context),
-        body: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.0,
-                  crossAxisSpacing: 25.0,
-                  mainAxisSpacing: 25.0,
-                ),
-                itemCount: services.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return serviceContainer(
-                      services[index].imageURL, services[index].name, index);
-                }),
-              
-        ))
-        );
+      backgroundColor: white,
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            backgroundColor: white,
+            pinned: true,
+            elevation: 0,
+            expandedHeight: 300.0,
+            stretch: true,
+            flexibleSpace: FlexibleSpaceBar(
+              stretchModes: [StretchMode.zoomBackground],
+              background: Image(
+                image: AssetImage("assets/home.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SliverAppBar(
+            backgroundColor: white,
+            elevation: 0,
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(-10.0), child: SizedBox(),
+            ),
+            flexibleSpace: Container(
+              padding: padding,
+              child: Center(child: customeTextStyle("TROUVEZ UN PROFESSIONNEL DE CONFIANCE POUR VOS TRAVAUX", 15, black))),
+          ),
+          // SliverList(delegate: SliverChildBuilderDelegate(
+          //   ((context, index) {
+          //     return Padding(
+          //       padding: padding,
+          //       child: Container(
+          //         decoration: BoxDecoration(
+          //           color: grey,
+          //           borderRadius: BorderRadius.circular(20)
+          //         ),
+          //         height: 200,
+          //         width: MediaQuery.of(context).size.width*0.1,
+          //       ),
+          //     );
+          //   }),
+          //   childCount: 20
+          // ))
+        ],
+      ),
+    );
   }
 
   serviceContainer(String image, String name, int index) {
@@ -98,3 +126,27 @@ class _HomePageParticularState extends State<HomePageParticular> {
     );
   }
 }
+
+
+
+// Scaffold(
+//       backgroundColor: Colors.grey,
+//         appBar: CustomAppBar("Acceuil", context),
+//         body: Container(
+//           child: Padding(
+//             padding: const EdgeInsets.all(30.0),
+//             child: GridView.builder(
+//                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                   crossAxisCount: 2,
+//                   childAspectRatio: 1.0,
+//                   crossAxisSpacing: 25.0,
+//                   mainAxisSpacing: 25.0,
+//                 ),
+//                 itemCount: services.length,
+//                 itemBuilder: (BuildContext context, int index) {
+//                   return serviceContainer(
+//                       services[index].imageURL, services[index].name, index);
+//                 }),
+              
+//         ))
+//         );

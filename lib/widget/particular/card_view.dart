@@ -223,7 +223,10 @@ class SearchWorkerCardView extends StatelessWidget {
                   ],
                 ),
                 spacingHeight0,
-                customeTextStyle("Membre depuis 4 mois", 12, grey2),
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: customeTextStyle("Membre depuis 4 mois", 12, grey2),
+                ),
                 spacingHeight0,
                 customeTextStyle("$jobs jobs réalisés", textSize, textColor,fontWeight: FontWeight.bold),
                 verifyWorker(),

@@ -58,20 +58,21 @@ class WelcomeAuth extends StatelessWidget {
                     DelayedAnimation(
                       delay: transitionAnimate,
                       child: CustomButton("Commencer", (() async {
-                        try {
-                          await http.get(Uri.parse(api_domaine_view));
-                          context.go("/home");
-                        }catch(e){
-                          print("Aucune connexion avec le serveur");
-                          context.go("/loading_screen");
-                        }
+                        context.go("/home");
+                        // try {
+                        //   await http.get(Uri.parse(api_domaine_view));
+                        //   context.go("/home");
+                        // }catch(e){
+                        //   print("Aucune connexion avec le serveur");
+                        //   context.go("/loading_screen");
+                        // }
                         
                       })),
                     ),
                     DelayedAnimation(
                       delay: transitionAnimate,
                       child: CustomOutlinedButton("Devenir ouvrier", (() {
-                        context.go("/worker");
+                        //context.go("/worker");
                       })),
                     ),
                   ],
