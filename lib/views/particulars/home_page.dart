@@ -136,6 +136,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
               //recuperation d'un domaine metier
               final domaine = display_domaine[index];
               return GestureDetector(
+                onTap: (){},
                 child: Container(
                   //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
                   width: MediaQuery.of(context).size.width,

@@ -28,7 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      if (index == 2) {
+        context.go('/home/add_offer');
+      }else{
+        _selectedIndex = index;
+      }
     });
   }
 
