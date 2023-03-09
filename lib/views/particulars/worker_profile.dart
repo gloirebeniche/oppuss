@@ -17,18 +17,6 @@ class WorkerProfile extends StatefulWidget {
 
 class _WorkerProfileState extends State<WorkerProfile> {
 
-  late bool isAuth;
-
-  @override
-  void initState(){
-    if (isUserAuth() == false) {
-      isAuth = false;
-    }else{
-      isAuth = true;
-    }
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);

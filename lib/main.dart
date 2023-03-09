@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/modules/chat_page.dart';
+import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
+import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
 import 'package:oppuss/views/particulars/coments.dart';
 import 'package:oppuss/views/particulars/help.dart';
@@ -13,6 +15,7 @@ import 'package:oppuss/views/particulars/offer_more_detail.dart';
 import 'package:oppuss/views/particulars/offer_update.dart';
 import 'package:oppuss/views/particulars/profile_edit_view.dart';
 import 'package:flutter/services.dart';
+import 'package:oppuss/views/particulars/publications.dart';
 import 'package:oppuss/views/particulars/safe.dart';
 import 'package:oppuss/views/particulars/settings.dart';
 import 'package:oppuss/views/particulars/about.dart';
@@ -61,7 +64,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) => const HomeScreen(),
         routes: [
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
-          //GoRoute( path: "add_offer", builder: (context, state) => const AddOffer(),),
+          GoRoute( path: "add_offer", builder: (context, state) => const AddOffer(),),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(), ),
           GoRoute( path: "message", builder: (context, state) => ChatPage()),
           GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
@@ -85,6 +88,7 @@ class MyApp extends StatelessWidget {
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),
+      GoRoute(path: "/loading_screen", builder: (context, state) => LoadingScreen())
     ],
   );
 }

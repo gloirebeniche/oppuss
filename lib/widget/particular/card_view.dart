@@ -16,6 +16,7 @@ class CardOfferView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 10),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: white,
@@ -223,7 +224,10 @@ class SearchWorkerCardView extends StatelessWidget {
                   ],
                 ),
                 spacingHeight0,
-                customeTextStyle("Membre depuis 4 mois", 12, grey2),
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: customeTextStyle("Membre depuis 4 mois", 12, grey2),
+                ),
                 spacingHeight0,
                 customeTextStyle("$jobs jobs réalisés", textSize, textColor,fontWeight: FontWeight.bold),
                 verifyWorker(),

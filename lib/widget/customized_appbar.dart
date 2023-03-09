@@ -5,7 +5,7 @@ import 'package:oppuss/utils/theme.dart';
 
 AppBar CustomAppBar(String title, BuildContext context) {
   return AppBar(
-    elevation: 1,
+    elevation: 1.5,
     backgroundColor: white,
     title: appbarTextStyle(title),
     automaticallyImplyLeading: false,

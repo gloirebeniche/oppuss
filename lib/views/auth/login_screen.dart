@@ -62,46 +62,62 @@ class _LoginScreenState extends State<LoginScreen> {
       final String email = _emailController.text.trim().replaceAll(" ", "");
       final String password = _passwordController.text.trim().replaceAll(" ", "");
 
-      try {
-        final http.Response response = await http.post(
-          Uri.parse(api_login_view),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode(<String, String>{"email":email,"password":password})
-        );
-
-        if (response.statusCode == 200) {
-          //print("authentification réussit")
-          final Map<String, dynamic> responseData = jsonDecode(response.body);
-          final String? accessToken = responseData['token']['access'];
-          final String? refreshToken = responseData['token']['refresh'];
-
-          if (accessToken != null && refreshToken != null) {
-            // Stockage des jetons dans les préférences partagées
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setString('access_token', accessToken);
-            prefs.setString('refresh_token', refreshToken);
-            return true;
-          } else {
-            // Gestion de l'erreur
-            print("Erreur lors de la récupération des jetons");
-            return false;
-          }
-        }else{
-          return false;
-        } 
-      } catch (e) {
-        print(e);
+      if (email.isEmpty || password.isEmpty) {
+        setState(() {
+          messageBox(context, "Veillez remplir tous les champs");
+        });
         return false;
       }
+      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+        setState(() {
+          messageBox(context, "Veillez entrer une adresse mail valid");
+        });
+        return false;
+      }else{
+        try {
+          
+          final http.Response response = await http.post(
+            Uri.parse(api_login_view),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(<String, String>{"email":email,"password":password})
+          );
+
+          if (response.statusCode == 200) {
+            
+            final Map<String, dynamic> responseData = jsonDecode(response.body);
+            final String? accessToken = responseData['token']['access'];
+            final String? refreshToken = responseData['token']['refresh'];
+
+            if (accessToken != null && refreshToken != null) {
+              // Stockage des jetons dans les préférences partagées
+              final SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString('access_token', accessToken);
+              prefs.setString('refresh_token', refreshToken);
+              return true;
+            } else {
+              // Gestion de l'erreur
+              messageBox(context, "Erreur lors de la récupération des jetons");
+              return false;
+            }
+          }else{
+            messageBox(context, "Email ou mot de passe incorect");
+            return false;
+          } 
+        } catch (e) {
+          print(e);
+          return false;
+        }
+      }
+      
     }
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return  Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: white,
       appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
       body: SingleChildScrollView(
         child: Container(
@@ -167,9 +183,17 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CustomButton("Connexion",
                 () async{
                   if (await _login()) {
+                    showDialog(context: context, builder: (context){
+                      return Center(child: CircularProgressIndicator(color: primaryColor,));
+                    });
                     authProvider.checkAuth();
-                    print(authProvider.currentUser?.email);
+                    await Future.delayed(const Duration(seconds: 1));
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                    messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
+                    // ignore: use_build_context_synchronously
                     context.go("/home");
+                    
                   }
                 }
               ),),
@@ -223,33 +247,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),),
-                 DelayedAnimation(delay: transitionAnimate, 
-                        child:Padding(
-                        padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const WelcomeAuth()));
-                          },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
-                     const  Text("Vous n'avez pas de compte ?",
-                          style: TextStyle(
-                            color: Color(0xff1E232C),
-                            fontSize: textSize,
-                          )),
-                      Text(" S'inscrire ici",
-                          style: TextStyle(
-                            color: primaryColor,
-                            fontSize: textSize,
-                          )),
-                    ],
-                  ),
-                ),
-              ))
+              //    DelayedAnimation(delay: transitionAnimate, 
+              //           child:Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //         child: InkWell(
+              //             onTap: () {
+              //               context.go("/home/user_register");
+              //             },
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children:  [
+              //        const  Text("Vous n'avez pas de compte ?",
+              //             style: TextStyle(
+              //               color: Color(0xff1E232C),
+              //               fontSize: textSize,
+              //             )),
+              //         Text(" S'inscrire ici",
+              //             style: TextStyle(
+              //               color: primaryColor,
+              //               fontSize: textSize,
+              //             )),
+              //       ],
+              //     ),
+              //   ),
+              // ))
             ],
           ),
         ),

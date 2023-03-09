@@ -37,17 +37,15 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
     //this is the function that filter our liste
     setState(() {
       display_list = workers.where(
-        (element) => element.firstname.toLowerCase().contains(value.toLowerCase())?
-        element.firstname.toLowerCase().contains(value.toLowerCase())
-        :element.name.toLowerCase().contains(value.toLowerCase())).toList();
+        (element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
     });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: Colors.grey,
       appBar: AppBar(
-        backgroundColor: bgColor,
+        backgroundColor: white,
         elevation: 0,
         title: Container(
           margin: const EdgeInsets.only(top: 5),
@@ -84,25 +82,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
                       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                      margin: const EdgeInsets.only(right: 25, left: 10, top: 10, bottom: 10),
-                      decoration:  BoxDecoration(
-                        color: white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: whiteSecondar,
-                            offset: Offset(2, 2),
-                            blurRadius: 5.0,
-                            spreadRadius: 1
-                          ),
-                          BoxShadow(
-                            color: whiteSecondar,
-                            offset: Offset(-2, -2),
-                            blurRadius: 5.0,
-                            spreadRadius: 1
-                          )
-                        ]
-                      ),
+                      color: white,
                       child: Column(
                         children: [
                           SearchWorkerCardView(

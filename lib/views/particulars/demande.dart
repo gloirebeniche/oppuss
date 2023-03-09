@@ -17,18 +17,7 @@ class Demandes extends StatefulWidget {
 }
 
 class _DemandesState extends State<Demandes> {
-  late bool isAuth;
 
-  @override
-  void initState(){
-    if (isUserAuth() == false) {
-      isAuth = false;
-    }else{
-      isAuth = true;
-    }
-    super.initState();
-  }
-  
   @override
   Widget build(BuildContext context) {
 
@@ -36,36 +25,40 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: bgColor,
+          backgroundColor: Colors.grey,
           appBar: CustomAppBar("Mes demandes",context),
           body: Column(
             children: [
-               TabBar(
-                tabs: [
-                  Tab(
-                    child:  titleTextStyle("En cours", color: primaryColor),
-                  ),
-                  Tab(
-                    child:  titleTextStyle("Terminé", color: primaryColor),
-                  ),
-                ],
+              Container(
+                color: white,
+                child: TabBar(
+                  tabs: [
+                    Tab(
+                      child:  titleTextStyle("En cours", color: primaryColor),
+                    ),
+                    Tab(
+                      child:  titleTextStyle("Terminé", color: primaryColor),
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                 child: TabBarView(
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                      padding: const EdgeInsets.only(left: 5, right: 5),
                       child: !authProvider.isAuthenticated? cardOfferAuth(context)
                       :ListView(
                           children: const[
                             CardOfferView(),
-                            spacingHeight2,
                             CardOfferView(),
-                            spacingHeight2,
                             CardOfferView(),
-                            spacingHeight2,
                             CardOfferView(),
-                            spacingHeight2,
+                            CardOfferView(),
+                            CardOfferView(),
+                            CardOfferView(),
+                            CardOfferView(),
+                            CardOfferView(),
                             CardOfferView(),
                         ],
                       ),
