@@ -136,7 +136,7 @@ class _AccountViewState extends State<AccountView> {
       backgroundColor: white,
       body: ListView(
         children: [
-          ProfilePictureWidget(username!),
+          ProfilePictureWidget(username ?? "person"),
           const SizedBox(height: 10,),
           const TextProfileManageWidget(text: "Gérer mon compte"),
           ProfileMenuWidget(

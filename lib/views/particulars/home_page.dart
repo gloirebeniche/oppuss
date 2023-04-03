@@ -61,7 +61,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
     SharedPreferences  prefs =  await SharedPreferences.getInstance();
 
     setState(() {
-      _domaines = jsonDecode(prefs.getString("domaines")!);
+      _domaines = jsonDecode(prefs?.getString("domaines") ?? '');
       display_domaine = List.from(_domaines);
     });
     
@@ -123,7 +123,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
                       borderRadius: BorderRadius.circular(10)
                     ),
                     hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
-                    hintText: "Construction"
+                    hintText: "Quelle travaux souhaitez vous réalisé ?"
                   ),
                 ),
             ),
