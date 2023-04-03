@@ -9,7 +9,6 @@ import 'package:oppuss/models/user.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
-import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
