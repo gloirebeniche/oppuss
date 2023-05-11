@@ -66,7 +66,8 @@ class _DemandesState extends State<Demandes> {
                     ),
                     Container(
                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-                      child: !authProvider.isAuthenticated? cardOfferAuth(context): ListView(
+                      child: //!authProvider.isAuthenticated? cardOfferAuth(context): 
+                      ListView(
                         children: const[
                           CardOfferView2(),
                           spacingHeight2,

@@ -103,55 +103,52 @@ class CardOfferView2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 15),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: white,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 5,
+            spreadRadius: 2,
+            color: grey,
+            offset: Offset(0, 3)
+          )
+        ]
       ),
       child: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 200,
               child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("images/mecanik.png"),
-                    fit: BoxFit.cover)
-                )
-              ),
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image:
+                              AssetImage("images/undraw_electricity_k2ft.png"),
+                          fit: BoxFit.cover))),
             ),
             spacingHeight2,
-            customeTextStyle( "Réparation de voiture", headingTextSize, textColor, fontWeight: FontWeight.bold),
+            customeTextStyle(
+                "Pose de lampes et luminaire", headingTextSize, textColor,
+                fontWeight: FontWeight.bold),
             spacingHeight,
-            customeTextStyle("vendredi 24 septembre 2023 de 8h à 12:30", textSize, grey2),
+            customeTextStyle(
+                "Jeudi 25 janvier 2013 de 12 à 15:30", textSize, grey2),
+            
             spacingHeight2,
-            Row(
+            Column(
               children: [
-                Expanded(
-                  child: defaultButton("Voir ma demande", (){}),
-                ),
-              ],
-            ),
-            spacingHeight2,
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: secondaryColor,
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: padding,
-                          child: titleTextStyle("Démander à nouveau", color: white, fontWeight: FontWeight.bold),
-                        ),
-                        icon3(EvaIcons.copyOutline),
-                      ],
+                Container(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {context.go("/home/offer_detail");},
+                    child: Padding(
+                      padding: padding,
+                      child: titleTextStyle("Voir ma demande",
+                          color: textColorImportant, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
