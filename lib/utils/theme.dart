@@ -131,6 +131,7 @@ Text customeTextStyle(String text, double size, Color color,
     {FontWeight fontWeight = FontWeight.normal}) {
   return Text(
     text,
+    textAlign: TextAlign.justify,
     style: GoogleFonts.lato(
         color: color,
         fontSize: size,
