@@ -5,15 +5,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
+const String urlbase = "http://192.168.1.78:8000/";
 // ignore: constant_identifier_names
-const String api_worker_profile_view = "http://10.0.2.2:8000/api/user/profile";
-const String api_login_view = "http://10.0.2.2:8000/api/user/login/";
-const String api_user_register = "http://10.0.2.2:8000/api/user/register-client/";
-const String api_get_current_user = "http://10.0.2.2:8000/api/user/get_current_user/";
+const String api_worker_profile_view = "${urlbase}api/user/profile";
+const String api_login_view = "${urlbase}api/user/login/";
+const String api_user_register = "${urlbase}api/user/register-client/";
+const String api_get_current_user = "${urlbase}api/user/get_current_user/";
 
-const String api_domaine_view = "http://10.0.2.2:8000/api/ref-btp/domaines/";
-const String api_travaux_view = "http://10.0.2.2:8000/api/ref-btp/travaux/";
-const String api_metier_view = "http://10.0.2.2:8000/api/ref-btp/metier/";
+const String api_domaine_view = "${urlbase}api/ref-btp/domaines/";
+const String api_travaux_view = "${urlbase}api/ref-btp/travaux/";
+const String api_metier_view = "${urlbase}api/ref-btp/metier/";
 
 
 Future<void> fetchDomaines() async {

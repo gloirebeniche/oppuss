@@ -16,13 +16,21 @@ class CardOfferView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 15),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: white,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 5,
+            spreadRadius: 2,
+            color: grey,
+            offset: Offset(0, 3)
+          )
+        ]
       ),
       child: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

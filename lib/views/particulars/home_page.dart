@@ -15,33 +15,10 @@ class HomePageParticular extends StatefulWidget {
 }
 
 class _HomePageParticularState extends State<HomePageParticular> {
-  final List<Map> myList =
-      List.generate(100000, (index) => {"id": index, "name": "Card $index"})
+  final List<Map> myList = List.generate(100000, (index) => {"id": index, "name": "Card $index"})
           .toList();
-  List<ServiceHomePage> services = [
-    ServiceHomePage('Cleaning',
-        'https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-cleaning-labour-day-vitaliy-gorbachev-flat-vitaly-gorbachev.png'),
-    ServiceHomePage('Plumber',
-        'https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-plumber-labour-day-vitaliy-gorbachev-flat-vitaly-gorbachev.png'),
-    ServiceHomePage('Electrician',
-        'https://img.icons8.com/external-wanicon-flat-wanicon/2x/external-multimeter-car-service-wanicon-flat-wanicon.png'),
-    ServiceHomePage('Painter',
-        'https://img.icons8.com/external-itim2101-flat-itim2101/2x/external-painter-male-occupation-avatar-itim2101-flat-itim2101.png'),
-    ServiceHomePage('Carpenter', 'https://img.icons8.com/fluency/2x/drill.png'),
-    ServiceHomePage('Gardener',
-        'https://img.icons8.com/external-itim2101-flat-itim2101/2x/external-gardener-male-occupation-avatar-itim2101-flat-itim2101.png'),
-    ServiceHomePage(
-        'Tailor', 'https://img.icons8.com/fluency/2x/sewing-machine.png'),
-    ServiceHomePage(
-        'Maid', 'https://img.icons8.com/color/2x/housekeeper-female.png'),
-    ServiceHomePage('Driver',
-        'https://img.icons8.com/external-sbts2018-lineal-color-sbts2018/2x/external-driver-women-profession-sbts2018-lineal-color-sbts2018.png'),
-    ServiceHomePage('Cook',
-        'https://img.icons8.com/external-wanicon-flat-wanicon/2x/external-cooking-daily-routine-wanicon-flat-wanicon.png'),
-  ];
 
   int selectedService = -1;
-
 
   List<dynamic> _domaines = [];
 
@@ -57,14 +34,9 @@ class _HomePageParticularState extends State<HomePageParticular> {
   }
 
   Future<void> fill_domaine() async {
-
-    SharedPreferences  prefs =  await SharedPreferences.getInstance();
-
     setState(() {
-      _domaines = jsonDecode(prefs?.getString("domaines") ?? '');
       display_domaine = List.from(_domaines);
     });
-    
   }
 
   @override
@@ -83,7 +55,6 @@ class _HomePageParticularState extends State<HomePageParticular> {
       backgroundColor: white,
       body: CustomScrollView(
         slivers: [
-
           // IMAGE COVER
           const SliverAppBar(
             backgroundColor: white,
@@ -129,36 +100,37 @@ class _HomePageParticularState extends State<HomePageParticular> {
             ),
             
           ),
-
+          
           // LISTE DES DOMAINE METIER
-          SliverList(delegate: SliverChildBuilderDelegate(
-            ((context, index) {
-              //recuperation d'un domaine metier
-              final domaine = display_domaine[index];
-              return GestureDetector(
-                onTap: (){},
-                child: Container(
-                  //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Stack(
-                    children: [
-                       ColorFiltered(
-                        colorFilter: const ColorFilter.mode(
-                          Colors.black,
-                          BlendMode.dstATop,
-                        ),
-                        child: Image.network(domaine["image"], fit: BoxFit.cover,),),
-                      Positioned.fill(child: Center(
-                        child: customeTextStyle(domaine["nom_domaine"], 22, white, fontWeight: FontWeight.bold),
-                      ))
-                    ],
-                  )
-                ),
-              );
-            }),
-            childCount: display_domaine.length
-          ))
+            SliverList(delegate: SliverChildBuilderDelegate(
+              ((context, index) {
+                //recuperation d'un domaine metier
+                final domaine = display_domaine[index];
+                return GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(top: 20),
+                    child: Stack(
+                      children: [
+                        ColorFiltered(
+                          colorFilter: const ColorFilter.mode(
+                            Colors.black,
+                            BlendMode.dstATop,
+                          ),
+                          child: Image.network(domaine["image"], fit: BoxFit.cover,),),
+                        Positioned.fill(child: Center(
+                          child: customeTextStyle(domaine["nom_domaine"], 22, white, fontWeight: FontWeight.bold),
+                        ))
+                      ],
+                    )
+                  ),
+                );
+              }),
+              childCount: display_domaine.length
+            )
+            )
         ],
       ),
     );

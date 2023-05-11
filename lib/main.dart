@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),
-      GoRoute(path: "/loading_screen", builder: (context, state) => LoadingScreen())
+      GoRoute(path: "/loading_screen", builder: (context, state) => const LoadingScreen())
     ],
   );
 }

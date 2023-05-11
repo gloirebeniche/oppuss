@@ -25,7 +25,7 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Colors.grey,
+          backgroundColor: white,
           appBar: CustomAppBar("Mes demandes",context),
           body: Column(
             children: [
@@ -47,8 +47,9 @@ class _DemandesState extends State<Demandes> {
                   children: [
                     Container(
                       padding: const EdgeInsets.only(left: 5, right: 5),
-                      child: !authProvider.isAuthenticated? cardOfferAuth(context)
-                      :ListView(
+                      child: 
+                      //!authProvider.isAuthenticated? cardOfferAuth(context):
+                      ListView(
                           children: const[
                             CardOfferView(),
                             CardOfferView(),
