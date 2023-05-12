@@ -139,11 +139,11 @@ Container certifyWorker(){
       borderRadius: BorderRadius.circular(20),
       color: Colors.blue,),
     child: Row(
-      children: const [
-        Icon(Icons.verified, size: 15, color: Colors.white,),
+      children: [
+        const Icon(EvaIcons.checkmarkCircle2, size: 15, color: Colors.white,),
         Padding(
-          padding: EdgeInsets.only(left: 5),
-          child: Text("Ouvrier certifier et vérifier", style: TextStyle(color: Colors.white),),
+          padding: const EdgeInsets.only(left: 5),
+          child: customeTextStyle("Ouvrier certifier et vérifier", 13, white),
         )
       ],
     ),
@@ -166,6 +166,19 @@ Container verifyWorker(){
         )
       ],
     ),
+  );
+}
+
+
+
+Container competences(String label){
+  return Container(
+    margin: const EdgeInsets.only(top: 20, left: 5),
+    padding: const EdgeInsets.fromLTRB(10,10,10,10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(50),
+      color: Colors.grey.shade200,),
+    child: customeTextStyle(label, 12, black, fontWeight: FontWeight.bold)
   );
 }
 
@@ -254,6 +267,70 @@ Container cardOffer (BuildContext context){
     ),
   );
 }
+
+Container cardWorker (String fullname){
+  return Container(
+    margin: const EdgeInsets.only(top: 10),
+    color: Colors.white,
+    child: Column(
+      children: [
+        Row(
+          children: [
+            const CircleAvatar(
+              backgroundColor: white,
+              radius: 40,
+              backgroundImage: AssetImage("assets/worker.jpg"),
+              ),
+            Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  customeTextStyle(fullname, 15, black),
+                  Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
+                        customeTextStyle("4,95", 13, black),
+                        customeTextStyle("(105 avis)", 12, black)
+                      ],
+                    ),
+                  ),
+                  certifyWorker()
+                ],
+              ),
+            ),
+          ],
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              customeTextStyle("Charpentier", 15, black),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Row(
+                  children: [
+                    const Icon(EvaIcons.briefcase),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: customeTextStyle("5 à 9 d'expériences", 15, black),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
+    ),
+  );
+}
+
 
 
 Container cardAuth(BuildContext context){

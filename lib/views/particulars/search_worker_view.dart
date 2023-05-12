@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
 
 
@@ -43,7 +44,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         backgroundColor: white,
         elevation: 0,
@@ -81,15 +82,17 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                      padding: const EdgeInsets.only(left: 20, bottom: 10),
                       color: white,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SearchWorkerCardView(
-                            fullname: "${display_list[index].firstname} ${display_list[index].name}",
-                            avis: display_list[index].avis,
-                            jobs: display_list[index].jobs,
-                          ),
+                          cardWorker("${display_list[index].firstname} ${display_list[index].name}"),
+                          // SearchWorkerCardView(
+                          //   fullname: "${display_list[index].firstname} ${display_list[index].name}",
+                          //   avis: display_list[index].avis,
+                          //   jobs: display_list[index].jobs,
+                          // ),
                           defaultButton("Voir le profil", (){context.go("/home/worker_profile");})
                         ],
                       ),
