@@ -82,10 +82,10 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
-                      padding: const EdgeInsets.only(left: 20, bottom: 10),
+                      padding: padding,
                       color: white,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           cardWorker("${display_list[index].firstname} ${display_list[index].name}"),
                           // SearchWorkerCardView(

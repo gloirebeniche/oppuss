@@ -25,7 +25,7 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: white,
+          backgroundColor: Colors.grey.shade200,
           appBar: CustomAppBar("Mes demandes",context),
           body: Column(
             children: [
@@ -46,7 +46,6 @@ class _DemandesState extends State<Demandes> {
                 child: TabBarView(
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 5, right: 5),
                       child: 
                       //!authProvider.isAuthenticated? cardOfferAuth(context):
                       ListView(
@@ -65,18 +64,17 @@ class _DemandesState extends State<Demandes> {
                       ),
                     ),
                     Container(
-                     padding: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                       child: //!authProvider.isAuthenticated? cardOfferAuth(context): 
                       ListView(
                         children: const[
                           CardOfferView2(),
-                          spacingHeight2,
                           CardOfferView2(),
-                           spacingHeight2,
                           CardOfferView2(),
-                           spacingHeight2,
                           CardOfferView2(),
-                           spacingHeight2,
+                          CardOfferView2(),
+                          CardOfferView2(),
+                          CardOfferView2(),
+                          CardOfferView2(),
                           CardOfferView2(),
                         ],
                       ),

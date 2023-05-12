@@ -22,7 +22,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                 customeTextStyle("Titre", 15, grey2),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("Construction de maison", 17, black),
+                  child: customeTextStyle("Construction de maison", 15, black),
                 ),
               ],
             ),
@@ -41,7 +41,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: customeTextStyle("« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non ferment um diam nisl sit amet erat.", 
-                  17, black),
+                  13, black),
                 ),
               ],
             ),
@@ -59,7 +59,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                 customeTextStyle("Date", 15, grey2),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("25/01/2023", 17, black),
+                  child: customeTextStyle("25/01/2023", 13, black),
                 ),
               ],
             ),
@@ -77,7 +77,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                 customeTextStyle("Heure", 15, grey2),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("12:30 ", 17, black),
+                  child: customeTextStyle("12:30 ", 13, black),
                 ),
               ],
             ),
@@ -95,7 +95,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                 customeTextStyle("Adresse", 15, grey2),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("242 rue Bandza, Ouendze Brazzaville", 17, black),
+                  child: customeTextStyle("242 rue Bandza, Ouendze Brazzaville", 13, black),
                 ),
               ],
             ),
@@ -113,7 +113,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                 customeTextStyle("Numéro de téléphone", 15, grey2),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("+242 06 483 8870", 17, black),
+                  child: customeTextStyle("+242 06 483 8870", 13, black),
                 ),
               ],
             ),

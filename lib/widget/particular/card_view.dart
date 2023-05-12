@@ -16,19 +16,9 @@ class CardOfferView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 15),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-        color: white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            spreadRadius: 2,
-            color: grey,
-            offset: Offset(0, 3)
-          )
-        ]
-      ),
+      margin: const EdgeInsets.only(top: 5),
+      width: double.infinity,
+      color: white,
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -74,17 +64,7 @@ class CardOfferView extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                    backgroundColor: secondaryColor,
-                  ),
-                    onPressed: () {context.go("/home/offer_detail");},
-                    child: Padding(
-                      padding: padding,
-                      child: titleTextStyle("Gérer ma demande",
-                          color: white, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail");})
                 ),
               ],
             )
@@ -103,19 +83,9 @@ class CardOfferView2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 15),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-        color: white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            spreadRadius: 2,
-            color: grey,
-            offset: Offset(0, 3)
-          )
-        ]
-      ),
+      margin: const EdgeInsets.only(top: 5),
+      width: double.infinity,
+      color: white,
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -143,14 +113,7 @@ class CardOfferView2 extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {context.go("/home/offer_detail");},
-                    child: Padding(
-                      padding: padding,
-                      child: titleTextStyle("Voir ma demande",
-                          color: textColorImportant, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  child: defaultButtonOutlined("Voir ma demande", () {context.go("/home/offer_detail");})
                 ),
               ],
             )

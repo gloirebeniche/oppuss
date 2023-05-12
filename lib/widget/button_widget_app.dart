@@ -93,7 +93,7 @@ ElevatedButton defaultButton(String text, VoidCallback onPress){
       backgroundColor: primaryColor,
       minimumSize: const Size(350, 40),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))
+        borderRadius: BorderRadius.all(Radius.circular(5))
       )
     ),
     onPressed: onPress,
@@ -109,15 +109,15 @@ OutlinedButton defaultButtonOutlined(String text, VoidCallback onPress, {btnColo
     style: ElevatedButton.styleFrom(
       elevation: 1,
       backgroundColor: white,
-      minimumSize: const Size(327, 40),
+      minimumSize: const Size(350, 40),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))
+        borderRadius: BorderRadius.all(Radius.circular(5))
       )
     ),
     onPressed: onPress,
     child: Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: titleTextStyle(text, color: primaryColor, fontWeight: FontWeight.bold),
+      child: titleTextStyle(text, color: textColorImportant, fontWeight: FontWeight.bold),
     ),
   );
 }

@@ -184,47 +184,33 @@ Container competences(String label){
 
 Container cardOffer (BuildContext context){
   return Container(
-    margin: const EdgeInsets.only(top: 10, bottom: 10),
-    padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+    margin: const EdgeInsets.only(top: 5),
+    padding: padding,
     color: Colors.white,
     child: Column(
       children: [
         Row(
           children: [
-            SizedBox(
-              height: 60,
-              width: 60,
-              child: Stack(
-                fit: StackFit.expand,
-                children:const [
-                   CircleAvatar(backgroundColor: Colors.grey),
-                ],
+             const CircleAvatar(
+              backgroundColor: white,
+              radius: 40,
+              backgroundImage: AssetImage("assets/worker.jpg"),
               ),
-            ),
             Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text("Elijah Walter", style: TextStyle(color: Colors.black, fontSize: 15),),
+                  customeTextStyle("Elijah Walter", 15, black),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.star, color: Colors.amber, size: 17,),
-                        Text("4,95",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.black),
-                        ),
-                        Text(" (105 avis)",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54),
-                        ),
+                      children: [
+                        const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
+                        customeTextStyle("4,95", 13, black),
+                        customeTextStyle("(105 avis)", 12, black)
                       ],
                     ),
                   ),
@@ -244,22 +230,21 @@ Container cardOffer (BuildContext context){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Charpentier", style : TextStyle(color: Colors.grey, fontSize: 17)),
+              customeTextStyle("Charpentier", 15, black),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Row(
-                  children: const [
-                    Icon(Icons.badge),
+                  children: [
+                    const Icon(EvaIcons.briefcase),
                     Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text("5 à 9 d'expériences", style : TextStyle(color: Colors.black, fontSize: 15)),
+                      padding: const EdgeInsets.only(left: 10),
+                      child: customeTextStyle("5 à 9 d'expériences", 15, black),
                     )
                   ],
                 ),
               ),
-              Container(margin: const EdgeInsets.only(top: 10),
-                child: Center(child: defaultButton("Reserver", (){}),)),
-              Center(child: defaultButtonOutlined("Voir le profil", (){context.go("/home/offer_detail/worker_profile/");}),)
+              defaultButton("Reserver", (){}),
+              defaultButtonOutlined("Voir le profil", (){context.go("/home/offer_detail/worker_profile/");})
             ],
           ),
         )
@@ -267,6 +252,7 @@ Container cardOffer (BuildContext context){
     ),
   );
 }
+
 
 Container cardWorker (String fullname){
   return Container(
@@ -331,7 +317,48 @@ Container cardWorker (String fullname){
   );
 }
 
-
+Container cardComent(){
+  return Container(
+    color: white,
+    width: double.infinity,
+    margin: const EdgeInsets.only(top: 5),
+    child: Row(
+      children: [
+        const CircleAvatar(
+        backgroundColor: white,
+        radius: 40,
+        backgroundImage: AssetImage("assets/worker.jpg"),
+      ),
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Non de l'ouvrier
+                    customeTextStyle("Bakary", 15, black, fontWeight: FontWeight.bold),
+                    // date
+                    customeTextStyle("il y a 4 jours", 11, grey2)
+                  ],
+                ),
+                // contenue
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: customeTextStyle(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. ",
+                    13, black
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  ); 
+        
+}
 
 Container cardAuth(BuildContext context){
   return Container(
