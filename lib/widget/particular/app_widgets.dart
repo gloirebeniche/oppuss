@@ -70,13 +70,13 @@ Center ProfilePictureWidget(String username){
         child: Column(
           children:  [
             SizedBox(
-              height: 170,
-              width: 170,
+              height: 120,
+              width: 120,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
                   const CircleAvatar(
-                    backgroundImage: AssetImage('assets/worker.jpg')),
+                    backgroundImage: AssetImage('assets/user.png')),
                   Positioned(
                     right: 0,
                     bottom: 0,

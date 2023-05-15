@@ -173,7 +173,7 @@ class _AccountViewState extends State<AccountView> {
             }
           ),
           ProfileMenuWidget(
-            text: "Confiance et sécurité",
+            text: "Confidentialité et sécurité",
             icons: EvaIcons.shieldOutline,
             press: (){
               context.go("/home/safe");
