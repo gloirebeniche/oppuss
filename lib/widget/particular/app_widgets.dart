@@ -56,7 +56,7 @@ class AboutVersionAppWidget extends StatelessWidget {
       child: Column(
         children: [
           customeTextStyle("Oppus", smallTextSize, grey2),
-          customeTextStyle("v2.1.1", smallTextSize, grey)
+          customeTextStyle("v3.1.1", smallTextSize, grey)
         ],
       ),
     );
@@ -70,12 +70,13 @@ Center ProfilePictureWidget(String username){
         child: Column(
           children:  [
             SizedBox(
-              height: 110,
-              width: 110,
+              height: 170,
+              width: 170,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  const CircleAvatar(backgroundColor: grey),
+                  const CircleAvatar(
+                    backgroundImage: AssetImage('assets/worker.jpg')),
                   Positioned(
                     right: 0,
                     bottom: 0,

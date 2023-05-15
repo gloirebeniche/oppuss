@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -17,22 +19,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(
-        title: const Text("Information personnelles",
-            style: TextStyle(fontSize: 20, color: Colors.black87),
-          ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: primaryColor,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),  
-      ),
+      appBar: CustomAppBar2("Information personnelles", context),
       body: Container(
         padding: padding,
         child: GestureDetector(
@@ -53,12 +40,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               Column(
              
                 children: [
-                  BtnCustom(
-                    textColor: bgColor,
-                    buttonColor: primaryColor,
-                    buttonText: "Save",
-                    onPressed: (){},
-                  ),
+                  defaultButton("Sauvegarder", (){})
                 
                 ],
               )
@@ -74,6 +56,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
         obscureText: isPasswordTextField ? showPassword : false,
+        style: GoogleFonts.lato(
+          color: black,
+          fontSize: 15
+        ),
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
                 ? IconButton(
@@ -92,10 +78,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+            hintStyle: GoogleFonts.lato(
+              color: black,
+              fontSize: 13
             )),
       ),
     );
