@@ -22,7 +22,7 @@ class WelcomeAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -37,13 +37,8 @@ class WelcomeAuth extends StatelessWidget {
                   delay: transitionAnimate,
                   child: Column(
                     children: [
-                      bigTextStyle(
-                          "Bienvenue sur OPPUSS", bigTextSize2, primaryColor),
-                      spacingHeight1,
-                      bigTextStyle(
-                          "Trouver l'ouvrier idéal pour tous travaux du BTP",
-                          textSizeH2,
-                          black)
+                      customeTextStyle("Bienvenue sur OPPUSS", primaryColor, size: 40, align: TextAlign.center),
+                      customeTextStyle("Trouver l'ouvrier idéal pour tous travaux du BTP", black, size: 15, align: TextAlign.center)
                     ],
                   ),
                 ),

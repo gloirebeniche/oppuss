@@ -25,7 +25,7 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: bgColor,
           appBar: CustomAppBar("Mes demandes",context),
           body: Column(
             children: [
@@ -34,10 +34,10 @@ class _DemandesState extends State<Demandes> {
                 child: TabBar(
                   tabs: [
                     Tab(
-                      child:  titleTextStyle("En cours", color: primaryColor),
+                      child: customeTextStyle("En cours", textColorImportant, size: headingTextSize)
                     ),
                     Tab(
-                      child:  titleTextStyle("Terminé", color: primaryColor),
+                      child:  customeTextStyle("Clôturé",textColorImportant, size: headingTextSize),
                     ),
                   ],
                 ),
@@ -49,17 +49,17 @@ class _DemandesState extends State<Demandes> {
                       child: 
                       //!authProvider.isAuthenticated? cardOfferAuth(context):
                       ListView(
-                          children: const[
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
-                            CardOfferView(),
+                          children: [
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
+                            CardOfferView(context),
                         ],
                       ),
                     ),

@@ -19,10 +19,10 @@ class OfferMoreDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Titre", 15, grey2),
+                customeTextStyle("Titre",grey2, size: headingTextSize),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("Construction de maison", 15, black),
+                  child: customeTextStyle("Construction de maison",black),
                 ),
               ],
             ),
@@ -37,11 +37,11 @@ class OfferMoreDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Description", 15, grey2),
+                customeTextStyle("Description",grey2, size: headingTextSize),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: customeTextStyle("« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non ferment um diam nisl sit amet erat.", 
-                  13, black),
+                  black),
                 ),
               ],
             ),
@@ -56,10 +56,10 @@ class OfferMoreDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Date", 15, grey2),
+                customeTextStyle("Date",grey2, size: headingTextSize),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("25/01/2023", 13, black),
+                  child: customeTextStyle("25/01/2023",black),
                 ),
               ],
             ),
@@ -74,10 +74,10 @@ class OfferMoreDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Heure", 15, grey2),
+                customeTextStyle("Heure",grey2, size: headingTextSize),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("12:30 ", 13, black),
+                  child: customeTextStyle("12:30 ",black),
                 ),
               ],
             ),
@@ -92,10 +92,10 @@ class OfferMoreDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Adresse", 15, grey2),
+                customeTextStyle("Adresse", grey2, size: headingTextSize),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("242 rue Bandza, Ouendze Brazzaville", 13, black),
+                  child: customeTextStyle("242 rue Bandza, Ouendze Brazzaville",black),
                 ),
               ],
             ),
@@ -110,10 +110,10 @@ class OfferMoreDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Numéro de téléphone", 15, grey2),
+                customeTextStyle("Numéro de téléphone",grey2, size: headingTextSize),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("+242 06 483 8870", 13, black),
+                  child: customeTextStyle("+242 06 483 8870",black),
                 ),
               ],
             ),

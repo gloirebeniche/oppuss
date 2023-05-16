@@ -61,10 +61,10 @@ class _WorkerProfileState extends State<WorkerProfile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Jean-Elie KUBEMBULA", 15, black, fontWeight: FontWeight.bold),
-                customeTextStyle("Plombier", 13, black),
-                customeTextStyle("Brazzaville, République du Congo", 13, black),
-                customeTextStyle("50 Travaux réalisé", 14, black, fontWeight: FontWeight.bold),
+                customeTextStyle("Jean-Elie KUBEMBULA",black, fontWeight: FontWeight.bold),
+                customeTextStyle("Plombier",black),
+                customeTextStyle("Brazzaville, République du Congo",black),
+                customeTextStyle("50 Travaux réalisé",black, fontWeight: FontWeight.bold),
                 defaultButtonOutlined("Message", (){context.go("/home/message");})
               ],
             ),
@@ -79,14 +79,14 @@ class _WorkerProfileState extends State<WorkerProfile> {
                   color: white,
                   width: double.infinity,
                   margin: const EdgeInsets.only(top: 5),
-                  child: customeTextStyle("À propos", 20, black)),
+                  child: customeTextStyle("À propos", size:appbarTextSize, black)),
                 Container(
                   color: white,
                   padding: const EdgeInsets.only(left: 25, right: 25, bottom: 5),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: customeTextStyle(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. ", 
-                    13, black),
+                    black),
                   ),
                 ),
 
@@ -99,7 +99,7 @@ class _WorkerProfileState extends State<WorkerProfile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      customeTextStyle("Expérience", 20, black),
+                      customeTextStyle("Expérience", size:appbarTextSize, black),
                       experience_card(),
                       experience_card(),
                       experience_card(),
@@ -119,7 +119,7 @@ class _WorkerProfileState extends State<WorkerProfile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      customeTextStyle("Licences & Certifications", 20, black),
+                      customeTextStyle("Licences & Certifications",size:appbarTextSize, black),
                       certification_card(),
                       certification_card(),
                       certification_card(),
@@ -137,7 +137,7 @@ class _WorkerProfileState extends State<WorkerProfile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      customeTextStyle("Compétences professionel", 20, black),
+                      customeTextStyle("Compétences professionel", size:appbarTextSize, black),
                       Wrap(
                         children: [
                           competences("Travail en équipe"),
@@ -163,23 +163,23 @@ class _WorkerProfileState extends State<WorkerProfile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      customeTextStyle("Avis & Commentaire", 20, black),
+                      customeTextStyle("Avis & Commentaire", size:appbarTextSize, black),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
-                      const Divider(thickness: 0.5, color: grey),
+                       Divider(thickness: 0.5, color: grey),
                       testimonyWidget(),
                     ]
                   ),
@@ -210,11 +210,11 @@ Container experience_card(){
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Plombier", 15, black, fontWeight: FontWeight.bold),
-                customeTextStyle("SOGECOP : CDD", 13, black),
-                customeTextStyle("déc.2022 - janv 2023", 13, black),
-                customeTextStyle("Brazzaville, République du Congo", 13, black),
-                customeTextStyle("Description: ici", 13, black),
+                customeTextStyle("Plombier", black, fontWeight: FontWeight.bold),
+                customeTextStyle("SOGECOP : CDD", black),
+                customeTextStyle("déc.2022 - janv 2023", black),
+                customeTextStyle("Brazzaville, République du Congo", black),
+                customeTextStyle("Description: ici", black),
               ],
             ),
           ),
@@ -242,11 +242,11 @@ Container certification_card(){
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("L'essentiel de Python 3", 15, black, fontWeight: FontWeight.bold),
-                customeTextStyle("Par : LinkedIn", 13, black),
-                customeTextStyle("Diplôme : Licence", 13, black),
-                customeTextStyle("Domaine d'étude : Génie Logiciel", 13, black),
-                customeTextStyle("Date de délivrance : mai 2023", 13, black),
+                customeTextStyle("L'essentiel de Python 3", black, fontWeight: FontWeight.bold),
+                customeTextStyle("Par : LinkedIn", black),
+                customeTextStyle("Diplôme : Licence", black),
+                customeTextStyle("Domaine d'étude : Génie Logiciel", black),
+                customeTextStyle("Date de délivrance : mai 2023",  black),
               ],
             ),
           ),
@@ -272,7 +272,7 @@ Container testimonyWidget(){
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
-                child: customeTextStyle("Philippe", 13, black, fontWeight: FontWeight.bold),
+                child: customeTextStyle("Philippe", black, fontWeight: FontWeight.bold),
               ),
               const Icon(EvaIcons.star, color: Colors.amber, size: 20,),
               const Icon(EvaIcons.star, color: Colors.amber, size: 20,),
@@ -280,13 +280,13 @@ Container testimonyWidget(){
               const Icon(EvaIcons.star, color: Colors.amber, size: 20,)
               ],
             ),
-            customeTextStyle("il y a 7 jours", 13, grey)
+            customeTextStyle("il y a 7 jours", grey)
           ],
         ),
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: customeTextStyle("Philipe a été d'un professionnaliste incroyable! Il a été très agréable également. Il a vraiment du coeur à réaliser un travail impécable. Nousle recommandons chaleureusement et les yeux fermés",
-          13, black),
+          black),
         )
       ],
     )

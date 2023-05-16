@@ -64,9 +64,9 @@ class _AddOfferState extends State<AddOffer> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: (){ Navigator.pop(context); },
-          icon: const Icon(EvaIcons.close, color: black, size: 35,),
+          icon: Icon(EvaIcons.close, color: black, size: 35,),
         ),
-        title: appbarTextStyle("Nouvelle demande"),
+        title: customeTextStyle("Nouvelle demande", black),
         backgroundColor: white,
         elevation: 0,
       ),
@@ -144,13 +144,13 @@ class _AddOfferState extends State<AddOffer> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.calendarOutline),
+                prefixIcon: icon(EvaIcons.calendarOutline),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 21, color: grey2)),
                 hintText: "Quel jour vous convient le mieux ?"
               ),
               onTap: () async{
@@ -180,13 +180,13 @@ class _AddOfferState extends State<AddOffer> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.clockOutline),
+                prefixIcon: icon(EvaIcons.clockOutline),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintStyle: GoogleFonts.lato(textStyle:  TextStyle(fontSize: 12, color: grey2)),
                 hintText: "Quel est l'heure qui vous convient ?"
               ),
               onTap: () async{
@@ -213,13 +213,13 @@ class _AddOfferState extends State<AddOffer> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.pinOutline),
+                prefixIcon: icon(EvaIcons.pinOutline),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 15, color: grey2)),
                 hintText: "Quelle est l'adresse de la prestation ?"
               ),
             ),
@@ -235,13 +235,13 @@ class _AddOfferState extends State<AddOffer> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.phoneOutline),
+                prefixIcon: icon(EvaIcons.phoneOutline),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 15, color: grey2)),
                 hintText: "À quel numéro êtes-vous joignable en cas de besoins ?"
               ),
             ),
@@ -258,13 +258,13 @@ class _AddOfferState extends State<AddOffer> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.clockOutline),
+                prefixIcon: icon(EvaIcons.clockOutline),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2, height: 3)),
+                hintStyle: GoogleFonts.lato(textStyle:  TextStyle(fontSize: 15, color: grey2, height: 3)),
                 hintText: "Détail supplementaire (optionnel)"
               ),
             ),

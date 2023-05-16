@@ -105,7 +105,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
 
             Padding(
               padding: const EdgeInsets.only(top: 25, left: 20, right: 20),
-              child: customeTextStyle("Quel jour vous convient le mieux ?", headingTextSize, black, fontWeight: FontWeight.bold),
+              child: customeTextStyle("Quel jour vous convient le mieux ?", black, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.only(top: 15),
@@ -115,7 +115,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
                 minLines: 1,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 1.5, color: grey),
+                    borderSide:  BorderSide(width: 1.5, color: grey),
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
@@ -139,7 +139,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
             
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("Quel est l'heure qui vous convient ?", headingTextSize, black, fontWeight: FontWeight.bold),
+              child: customeTextStyle("Quel est l'heure qui vous convient ?", black, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.only(top: 15),
@@ -150,7 +150,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
                 maxLines: 2,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 1, color: grey),
+                    borderSide:  BorderSide(width: 1, color: grey),
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
@@ -170,7 +170,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
 
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("Quelle est l'adresse de la prestation ?", headingTextSize, black, fontWeight: FontWeight.bold),
+              child: customeTextStyle("Quelle est l'adresse de la prestation ?", black, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.only(top: 15),
@@ -180,7 +180,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
                 minLines: 1,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 1.5, color: grey),
+                    borderSide:  BorderSide(width: 1.5, color: grey),
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
@@ -189,7 +189,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
 
              Padding(
               padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("À quel numéro êtes-vous joignable en cas de besoins ?", headingTextSize, black, fontWeight: FontWeight.bold),
+              child: customeTextStyle("À quel numéro êtes-vous joignable en cas de besoins ?", black, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.only(top: 15),
@@ -199,7 +199,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
                 minLines: 1,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 1.5, color: grey),
+                    borderSide:  BorderSide(width: 1.5, color: grey),
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),
@@ -208,7 +208,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
 
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("Détail supplementaire (optionnel)", headingTextSize, black, fontWeight: FontWeight.bold),
+              child: customeTextStyle("Détail supplementaire (optionnel)", black, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.only(top: 15),
@@ -220,7 +220,7 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
                 decoration: InputDecoration(
                   labelText: 'Description',
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 1.5, color: grey),
+                    borderSide:  BorderSide(width: 1.5, color: grey),
                     borderRadius: BorderRadius.circular(10)
                   )
                 ),

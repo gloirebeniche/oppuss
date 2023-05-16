@@ -8,14 +8,8 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
-class CardOfferView extends StatelessWidget {
-  const CardOfferView({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+Container CardOfferView(BuildContext context){
+  return Container(
       margin: const EdgeInsets.only(top: 5),
       width: double.infinity,
       color: white,
@@ -33,17 +27,16 @@ class CardOfferView extends StatelessWidget {
                               AssetImage("images/undraw_electricity_k2ft.png"),
                           fit: BoxFit.cover))),
             ),
-            spacingHeight2,
             customeTextStyle(
-                "Pose de lampes et luminaire", headingTextSize, textColor,
+                "Pose de lampes et luminaire", size:headingTextSize, black,
                 fontWeight: FontWeight.bold),
-            spacingHeight,
+            
             customeTextStyle(
-                "Jeudi 25 janvier 2013 de 12 à 15:30", textSize, grey2),
+                "Jeudi 25 janvier 2013 de 12 à 15:30",grey2),
             Container(
               margin: const EdgeInsets.only(top: 20),
               padding: padding,
-              color: bgContainerColor,
+              color: notification_bg,
               child: Row(
                 children: [
                   const Icon(
@@ -54,13 +47,13 @@ class CardOfferView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: customeTextStyle("Vous avez reçu 13 offres",
-                        textSize, textColorImportant,
+                        textColorImportant,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
-            spacingHeight2,
+            
             Row(
               children: [
                 Expanded(
@@ -72,8 +65,8 @@ class CardOfferView extends StatelessWidget {
         ),
       ),
     );
-  }
 }
+
 
 class CardOfferView2 extends StatelessWidget {
   const CardOfferView2({
@@ -100,15 +93,15 @@ class CardOfferView2 extends StatelessWidget {
                               AssetImage("images/undraw_electricity_k2ft.png"),
                           fit: BoxFit.cover))),
             ),
-            spacingHeight2,
-            customeTextStyle(
-                "Pose de lampes et luminaire", headingTextSize, textColor,
-                fontWeight: FontWeight.bold),
-            spacingHeight,
-            customeTextStyle(
-                "Jeudi 25 janvier 2013 de 12 à 15:30", textSize, grey2),
             
-            spacingHeight2,
+            customeTextStyle(
+                "Pose de lampes et luminaire", size:headingTextSize, black,
+                fontWeight: FontWeight.bold),
+            
+            customeTextStyle(
+                "Jeudi 25 janvier 2013 de 12 à 15:30", grey2),
+            
+            
             Column(
               children: [
                 Container(
@@ -144,7 +137,7 @@ class SearchWorkerCardView extends StatelessWidget {
             width: 70,
             child: Stack(
               fit: StackFit.expand,
-              children: const [
+              children: [
                 CircleAvatar(backgroundColor: grey),
                 // Positioned(
                 //   right: 0,
@@ -174,10 +167,9 @@ class SearchWorkerCardView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
-                  child: customeTextStyle(fullname, textSizeH2, textColor,
+                  child: customeTextStyle(fullname, black,
                       fontWeight: FontWeight.bold),
                 ),
-                spacingHeight0,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -186,18 +178,16 @@ class SearchWorkerCardView extends StatelessWidget {
                       color: Colors.amber,
                       size: 17,
                     ),
-                    customeTextStyle("4,95", 12, starColor),
-                    customeTextStyle(" ($avis avis)", 12, grey2,
+                    customeTextStyle("4,95", black),
+                    customeTextStyle(" ($avis avis)", grey2,
                         fontWeight: FontWeight.bold),
                   ],
                 ),
-                spacingHeight0,
                 Padding(
                   padding: const EdgeInsets.only(top: 2),
-                  child: customeTextStyle("Membre depuis 4 mois", 12, grey2),
+                  child: customeTextStyle("Membre depuis 4 mois", grey2),
                 ),
-                spacingHeight0,
-                customeTextStyle("$jobs jobs réalisés", textSize, textColor,fontWeight: FontWeight.bold),
+                customeTextStyle("$jobs jobs réalisés", black,fontWeight: FontWeight.bold),
                 verifyWorker(),
               ],
             ),
@@ -217,8 +207,9 @@ class NotificationCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: padding,
-      color: bgContainerColor,
+      color: white,
       elevation: 0,
+      animationDuration: Duration(seconds: 160),
       onPressed: () {},
       child: Row(
         children: [
@@ -226,10 +217,10 @@ class NotificationCardView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle('"il y a 12 heures"', smallTextSize, grey2),
+                customeTextStyle('"il y a 12 heures"', grey2),
                 customeTextStyle(
                     "Walter a commenté votre annonce 'Pose de prise RJ45'",
-                    14,
+
                     black,
                     fontWeight: FontWeight.bold)
               ],

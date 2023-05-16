@@ -133,7 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SvgPicture.asset("assets/login.svg"),
                 ),
               ),
-              spacingHeight1,
                  DelayedAnimation(
                     delay: transitionAnimate,
                     child: Text(
@@ -145,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  spacingHeight1,
+                  
            DelayedAnimation(
             delay: transitionAnimate,
             child:  TextFieldCustomized("Email"),
@@ -285,9 +284,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: primaryColor
               ),
               labelText: title,
-              labelStyle: const TextStyle(
+              labelStyle: TextStyle(
                 color: grey,
-                fontSize: bigTextSize5
+                fontSize: textSize
               ),
             ),
           );
@@ -301,9 +300,9 @@ TextField TextFieldPassword(String password) {
                 floatingLabelStyle: TextStyle(
                 color: primaryColor
               ),
-              labelStyle:  const TextStyle(
+              labelStyle:  TextStyle(
                 color: grey,
-                fontSize: bigTextSize5
+                fontSize: 20
               ),
               labelText: password,
               suffixIcon: IconButton(

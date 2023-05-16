@@ -7,7 +7,7 @@ AppBar CustomAppBar(String title, BuildContext context) {
   return AppBar(
     elevation: 1.5,
     backgroundColor: white,
-    title: appbarTextStyle(title),
+    title: customeTextStyle(title, black, size: appbarTextSize),
     automaticallyImplyLeading: false,
     actions: [
       Padding(
@@ -25,7 +25,7 @@ AppBar CustomAppBar(String title, BuildContext context) {
 AppBar CustomAppBar2(String title, BuildContext context) {
   return AppBar(
     elevation: 0,
-    title: appbarTextStyle2(title),
+    title: customeTextStyle(title, black, size: appbarTextSize),
     backgroundColor: white,
     leading: IconButton(
       icon: icon(EvaIcons.arrowBackOutline),

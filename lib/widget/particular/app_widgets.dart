@@ -24,14 +24,15 @@ class ProfileMenuWidget extends StatelessWidget {
         onPressed: press,
         child: Row(
           children: [
-            icon2(icons),
-            spacingWidth2,
+            icon(icons, color: primaryColor, iconSize: 25),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
-                  customeTextStyle(text, 14, black, fontWeight: FontWeight.bold),
-                  spacingHeight,
+                  Padding(
+                    padding: padding,
+                    child: customeTextStyle(text, black, fontWeight: FontWeight.bold, size: headingTextSize),
+                  ),
                   const Divider(height: 1, thickness: 2,)
                 ],
               )
@@ -55,8 +56,8 @@ class AboutVersionAppWidget extends StatelessWidget {
       padding: const EdgeInsets.all(30),
       child: Column(
         children: [
-          customeTextStyle("Oppus", smallTextSize, grey2),
-          customeTextStyle("v3.1.1", smallTextSize, grey)
+          customeTextStyle("Oppus", grey2),
+          customeTextStyle("v3.1.1", grey)
         ],
       ),
     );
@@ -91,7 +92,7 @@ Center ProfilePictureWidget(String username){
                           side: const BorderSide(color: white)
                         ),
                         color: white,
-                        child: const Icon(EvaIcons.cameraOutline, color: iconColor,),
+                        child: icon(EvaIcons.cameraOutline),
                       ),
                     ),
                   ),
@@ -102,7 +103,7 @@ Center ProfilePictureWidget(String username){
               padding: const EdgeInsets.only(top: 10),
               child: Text("@$username",
                 style: GoogleFonts.lato(
-                  textStyle: const TextStyle(
+                  textStyle:  TextStyle(
                   fontStyle: FontStyle.italic,
                   fontSize: textSize,
                   fontWeight: FontWeight.bold,
@@ -126,7 +127,7 @@ class TextProfileManageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: customeTextStyle(text, 12, grey2),
+      child: customeTextStyle(text,  grey2),
     );
   }
 }
@@ -144,7 +145,7 @@ Container certifyWorker(){
         const Icon(EvaIcons.checkmarkCircle2, size: 15, color: Colors.white,),
         Padding(
           padding: const EdgeInsets.only(left: 5),
-          child: customeTextStyle("Ouvrier certifier et vérifier", 13, white),
+          child: customeTextStyle("Ouvrier certifier et vérifier", white),
         )
       ],
     ),
@@ -179,7 +180,7 @@ Container competences(String label){
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(50),
       color: Colors.grey.shade200,),
-    child: customeTextStyle(label, 12, black, fontWeight: FontWeight.bold)
+    child: customeTextStyle(label, black, fontWeight: FontWeight.bold)
   );
 }
 
@@ -203,15 +204,15 @@ Container cardOffer (BuildContext context){
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  customeTextStyle("Elijah Walter", 15, black),
+                  customeTextStyle("Elijah Walter", black, size: headingTextSize, fontWeight: FontWeight.bold),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
-                        customeTextStyle("4,95", 13, black),
-                        customeTextStyle("(105 avis)", 12, black)
+                        customeTextStyle("4,95", black),
+                        customeTextStyle("(105 avis)", black)
                       ],
                     ),
                   ),
@@ -231,7 +232,7 @@ Container cardOffer (BuildContext context){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customeTextStyle("Charpentier", 15, black),
+              customeTextStyle("Charpentier",black),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Row(
@@ -239,7 +240,7 @@ Container cardOffer (BuildContext context){
                     const Icon(EvaIcons.briefcase),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: customeTextStyle("5 à 9 d'expériences", 15, black),
+                      child: customeTextStyle("5 à 9 d'expériences",black),
                     )
                   ],
                 ),
@@ -274,15 +275,15 @@ Container cardWorker (String fullname){
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  customeTextStyle(fullname, 15, black),
+                  customeTextStyle(fullname, black),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
-                        customeTextStyle("4,95", 13, black),
-                        customeTextStyle("(105 avis)", 12, black)
+                        customeTextStyle("4,95", black),
+                        customeTextStyle("(105 avis)", black)
                       ],
                     ),
                   ),
@@ -297,7 +298,7 @@ Container cardWorker (String fullname){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customeTextStyle("Charpentier", 15, black),
+              customeTextStyle("Charpentier", black),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Row(
@@ -305,7 +306,7 @@ Container cardWorker (String fullname){
                     const Icon(EvaIcons.briefcase),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: customeTextStyle("5 à 9 d'expériences", 15, black),
+                      child: customeTextStyle("5 à 9 d'expériences",  black),
                     )
                   ],
                 ),
@@ -339,16 +340,16 @@ Container cardComent(){
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // Non de l'ouvrier
-                    customeTextStyle("Bakary", 15, black, fontWeight: FontWeight.bold),
+                    customeTextStyle("Bakary", black, fontWeight: FontWeight.bold),
                     // date
-                    customeTextStyle("il y a 4 jours", 11, grey2)
+                    customeTextStyle("il y a 4 jours", size:11, grey2)
                   ],
                 ),
                 // contenue
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: customeTextStyle(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. ",
-                    13, black
+                    black
                   ),
                 )
               ],
@@ -371,7 +372,7 @@ Container cardAuth(BuildContext context){
           Icon(EvaIcons.person, size: 80, color: primaryColor,),
           Container(
             margin: const EdgeInsets.only(top: 8),
-            child: customeTextStyle("Connectez vous pour contacter un ouvrier", textSizeH2, grey2)),
+            child: customeTextStyle("Connectez vous pour contacter un ouvrier", grey2)),
           Container(
             margin: const EdgeInsets.only(top: 8),
             child: defaultButton("Se connecter", (){context.go("/home/login");}),
@@ -391,13 +392,13 @@ Container cardMessageAuth(BuildContext context){
       child: Column(
         children: [
           Icon(EvaIcons.messageCircleOutline, size: 80, color: primaryColor,),
-          customeTextStyle("Aucune discussion", 18, black, fontWeight: FontWeight.bold),
+          customeTextStyle("Aucune discussion",  black, fontWeight: FontWeight.bold),
           Container(
             margin: const EdgeInsets.only(top: 10),
             padding: const EdgeInsets.all(5),
-            child: customeTextStyle("Faire une demande de travaux pour", textSizeH2, grey2)),
+            child: customeTextStyle("Faire une demande de travaux pour", grey2)),
           Container(
-            child: customeTextStyle("pouvoir discuter avec votre ouvrier", textSizeH2, grey2),
+            child: customeTextStyle("pouvoir discuter avec votre ouvrier", grey2),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
@@ -418,13 +419,13 @@ Container cardOfferAuth(BuildContext context){
       child: Column(
         children: [
           Icon(EvaIcons.maximizeOutline, size: 80, color: primaryColor,),
-          customeTextStyle("Aucune demande", 18, black, fontWeight: FontWeight.bold),
+          customeTextStyle("Aucune demande",  black, fontWeight: FontWeight.bold),
           Container(
             margin: const EdgeInsets.only(top: 10),
             padding: const EdgeInsets.all(5),
-            child: customeTextStyle("Faire une demande de travaux et trouvez", textSizeH2, grey2)),
+            child: customeTextStyle("Faire une demande de travaux et trouvez",  grey2)),
           Container(
-            child: customeTextStyle("un ouvrier en quelque minutes", textSizeH2, grey2),
+            child: customeTextStyle("un ouvrier en quelque minutes", grey2),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
@@ -444,13 +445,13 @@ Container cardAuth2(BuildContext context){
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        customeTextStyle("Votre Compte", bigTextSize4, black, fontWeight: FontWeight.bold),
+        customeTextStyle("Votre Compte", black, fontWeight: FontWeight.bold),
         Container(
           margin: const EdgeInsets.only(top: 5),
-          child: customeTextStyle("Inscrivez-vous pour pouvoir planifier vos future", textSizeH2, grey2),),
+          child: customeTextStyle("Inscrivez-vous pour pouvoir planifier vos future", grey2),),
         Container(
           margin: const EdgeInsets.only(top: 5),
-          child: customeTextStyle("travaux et trouver un ouvrier qualifié", textSizeH2, grey2),),
+          child: customeTextStyle("travaux et trouver un ouvrier qualifié", grey2),),
         
         Container(
           child: ElevatedButton(
@@ -466,7 +467,7 @@ Container cardAuth2(BuildContext context){
             onPressed: (){},
             child: Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: titleTextStyle("text", color: white, fontWeight: FontWeight.bold),
+              child: customeTextStyle("text", black),
             ),
           ),
         )

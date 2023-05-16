@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/service_home_page.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageParticular extends StatefulWidget {
@@ -52,7 +51,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: bgColor,
       body: CustomScrollView(
         slivers: [
           // IMAGE COVER
@@ -87,13 +86,13 @@ class _HomePageParticularState extends State<HomePageParticular> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.grey.shade200,
-                    prefixIcon: icon2(EvaIcons.searchOutline),
+                    prefixIcon: icon(EvaIcons.searchOutline),
                     contentPadding: const EdgeInsets.all(0),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10)
                     ),
-                    hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                    hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 11, color: grey2)),
                     hintText: "Quelle travaux souhaitez vous réalisé ?"
                   ),
                 ),
@@ -121,7 +120,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
                           ),
                           child: Image.network(domaine["image"], fit: BoxFit.cover,),),
                         Positioned.fill(child: Center(
-                          child: customeTextStyle(domaine["nom_domaine"], 22, white, fontWeight: FontWeight.bold),
+                          child: customeTextStyle(domaine["nom_domaine"], white, fontWeight: FontWeight.bold, size: 22),
                         ))
                       ],
                     )

@@ -15,7 +15,7 @@ class _ComentViewState extends State<ComentView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar2("Questions et réponses", context),
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: bgColor,
       body: ListView(
         children: [
           cardComent(),

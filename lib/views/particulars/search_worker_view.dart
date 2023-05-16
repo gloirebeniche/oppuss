@@ -44,7 +44,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: bgColor,
       appBar: AppBar(
         backgroundColor: white,
         elevation: 0,
@@ -56,13 +56,13 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.searchOutline),
+                prefixIcon: icon(EvaIcons.searchOutline, color: primaryColor),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(50)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: headingTextSize, color: grey2)),
                 hintText: "Recherchez un ouvrier"
               ),
             ),
@@ -74,8 +74,8 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
           children: [
               Expanded(
                 child: display_list.isEmpty ?
-                const Center(
-                  child: Text("Aucun ouvrier ne correspond "),
+                 Center(
+                  child: customeTextStyle("Aucun ouvrier ne correspond ", black),
                 )
                 :ListView.builder(
                   itemCount: display_list.length,
@@ -106,18 +106,4 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
     );
   }
 }
-
-/**
- * 
- * MaterialButton(
-                    onPressed: (){},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: const BorderSide(color: Colors.white)
-                    ),
-                    elevation: 0,
-                    color: Colors.white,
-                    child: const profile_card_view(),
-                  ),
- */
 

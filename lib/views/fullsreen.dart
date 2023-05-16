@@ -48,7 +48,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 const CircularProgressIndicator(),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("Chargement...", 18, black),
+                  child: customeTextStyle("Chargement...", size:appbarTextSize, black),
                 ),
               ],
             ),

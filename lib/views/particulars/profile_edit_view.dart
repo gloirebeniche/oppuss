@@ -18,7 +18,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: white,
       appBar: CustomAppBar2("Information personnelles", context),
       body: Container(
         padding: padding,
