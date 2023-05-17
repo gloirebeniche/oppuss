@@ -20,7 +20,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       try {
         result = true;
-        await http.get(Uri.parse(api_domaine_view));
+        await http.get(Uri.parse("api_domaine_view"));
         context.go("/home");
       }catch(e){
         messageBox(context, "Connection au serveur impossible");

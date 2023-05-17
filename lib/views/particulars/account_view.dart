@@ -204,7 +204,7 @@ class _AccountViewState extends State<AccountView> {
                 return Center(child: CircularProgressIndicator(color: primaryColor,));
               });
               await Future.delayed(const Duration(seconds: 1));
-              authProvider.deleteToken();
+              authProvider.logout();
               // ignore: use_build_context_synchronously
               Navigator.pop(context);
               setState(() {

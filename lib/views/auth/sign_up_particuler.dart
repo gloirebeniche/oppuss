@@ -54,7 +54,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
       });
       return false;
     }else{
-      final url = Uri.parse(api_user_register);
+      final url = Uri.parse("api_user_register");
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
