@@ -2,11 +2,15 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oppuss/api/api.dart';
+import 'package:oppuss/models/gestion_qualification.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 
 
@@ -20,26 +24,44 @@ class SearchWorkerView extends StatefulWidget {
 
 class _SearchWorkerViewState extends State<SearchWorkerView> {
   //create a dummy list
-  static List<ProfileWorkerModel> workers = [
-    ProfileWorkerModel(name: "Walter", firstname: "Elijah", avis: 50, jobs: 100),
-    ProfileWorkerModel(name: "UZUMAKI", firstname: "Naruto", avis: 500, jobs: 250),
-    ProfileWorkerModel(name: "IYUGA", firstname: "Néji", avis: 5, jobs: 100),
-    ProfileWorkerModel(name: "PAMBOU", firstname: "Grâce", avis: 10, jobs: 10),
-    ProfileWorkerModel(name: "PAMBOU", firstname: "Adry Athony", avis: 75, jobs: 80),
-    ProfileWorkerModel(name: "MAPASSI", firstname: "Dony Glène", avis: 50, jobs: 50),
-    ProfileWorkerModel(name: "NGATSÉ", firstname: "Béniche", avis: 25, jobs: 70),
-    ProfileWorkerModel(name: "NZIHOU", firstname: "Michel Jennifer", avis: 50, jobs: 50),
-  ];
+  static List<Worker> workers = [];
 
-  List<ProfileWorkerModel> display_list = List.from(workers);
+  List<Worker> displayWorker = List.from(workers);
 
 
-  void updateList(String value){
-    //this is the function that filter our liste
-    setState(() {
-      display_list = workers.where(
-        (element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
-    });
+  // void updateList(String value){
+  //   //this is the function that filter our liste
+  //   setState(() {
+  //     display_list = workers.where(
+  //       (element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
+  //   });
+  // }
+  Future<void> fetchData() async {
+    // Appel API pour récupérer les données
+    var response = await http.get(Uri.parse(apiGetWorkers));
+    if (response.statusCode == 200) {
+      // Permettre au donnée d'accepter les caractère spéciaux
+      var jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+      List<Worker> newData = [];
+      for (var item in jsonData) {
+        newData.add(Worker.fromJson(item));
+      }
+      setState(() {
+        workers = newData;
+        displayWorker = workers;
+      });
+      print(displayWorker);
+    } else {
+      // Gérer les erreurs lors de l'appel à l'API
+      print('Erreur de récupération des données depuis l\'API');
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
   }
   @override
   Widget build(BuildContext context) {
@@ -52,7 +74,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
           margin: const EdgeInsets.only(top: 5),
           height: 50,
           child: TextField(
-              onChanged: (value) => updateList(value),
+              onChanged: (value) => "",
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
@@ -73,12 +95,12 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
         child: Column(
           children: [
               Expanded(
-                child: display_list.isEmpty ?
+                child: displayWorker.isEmpty ?
                  Center(
                   child: customeTextStyle("Aucun ouvrier ne correspond ", black),
                 )
                 :ListView.builder(
-                  itemCount: display_list.length,
+                  itemCount: displayWorker.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
@@ -87,7 +109,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          cardWorker("${display_list[index].firstname} ${display_list[index].name}"),
+                          cardWorker(displayWorker[index].username, displayWorker[index].anneeExperience, displayWorker[index].metier.nomMetier, displayWorker[index].nombreDavis),
                           // SearchWorkerCardView(
                           //   fullname: "${display_list[index].firstname} ${display_list[index].name}",
                           //   avis: display_list[index].avis,

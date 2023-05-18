@@ -256,7 +256,7 @@ Container cardOffer (BuildContext context){
 }
 
 
-Container cardWorker (String fullname){
+Container cardWorker (String fullname, int nombreExperience, String metier, int nombreAvis){
   return Container(
     margin: const EdgeInsets.only(top: 10),
     color: Colors.white,
@@ -275,7 +275,7 @@ Container cardWorker (String fullname){
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  customeTextStyle(fullname, black),
+                  customeTextStyle(fullname.toUpperCase(), black, size: 15, fontWeight: FontWeight.bold),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
@@ -283,7 +283,7 @@ Container cardWorker (String fullname){
                       children: [
                         const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
                         customeTextStyle("4,95", black),
-                        customeTextStyle("(105 avis)", black)
+                        customeTextStyle("($nombreAvis avis)", black)
                       ],
                     ),
                   ),
@@ -298,7 +298,7 @@ Container cardWorker (String fullname){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customeTextStyle("Charpentier", black),
+              customeTextStyle(metier, black),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Row(
@@ -306,7 +306,7 @@ Container cardWorker (String fullname){
                     const Icon(EvaIcons.briefcase),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: customeTextStyle("5 à 9 d'expériences",  black),
+                      child: customeTextStyle("$nombreExperience d'expériences",  black),
                     )
                   ],
                 ),
