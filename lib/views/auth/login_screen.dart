@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/auth_provider.dart';
-import 'package:oppuss/models/user.dart';
+import 'package:oppuss/models/account.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';

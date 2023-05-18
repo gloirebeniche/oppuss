@@ -1,4 +1,4 @@
-const String urlBase = "http://localhost:8000/api/";
+const String urlBase = "http://192.168.1.74:8000/api/";
 
 // API URL SUR LE PACKAGES GESTION DES COMPTE
 const String apiGestionCompte = '${urlBase}gestion/compte';
@@ -9,7 +9,7 @@ const String apiLogout = '';
 const String apiGetCurrentUser = '$apiGestionCompte/employeur/get_current_user/';
 
 // API URL SUR LE PACKAGES REFERENTIEL DU BTP
-const String apiReferentielBTP = '${urlBase}api/referentiel-btp';
+const String apiReferentielBTP = '${urlBase}referentiel-btp';
 
 const String apiDomaines = '$apiReferentielBTP/domaines';
 const String apiTravaux = '$apiReferentielBTP/travaux';

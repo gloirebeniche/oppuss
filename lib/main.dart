@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/api/auth_provider.dart';
