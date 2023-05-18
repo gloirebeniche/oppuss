@@ -275,7 +275,7 @@ Container cardWorker (String fullname, int nombreExperience, String metier, int 
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  customeTextStyle(fullname.toUpperCase(), black, size: 15, fontWeight: FontWeight.bold),
+                  customeTextStyle(fullname, black, size: 15, fontWeight: FontWeight.bold),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(

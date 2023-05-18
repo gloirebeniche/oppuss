@@ -72,7 +72,9 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
             routes: [ 
               GoRoute(path: "coments", builder: (context, state) => const ComentView(),),
-              GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+              GoRoute( path: "worker_profile/:worker_id", builder: (context, state) => WorkerProfile(
+                worker_id:state.params['worker_id']
+              )),
               GoRoute(path: "update_offer", builder: (context, state) => const UpdateOfferPage() ),
               GoRoute(path: "view", builder: (context, state) => const OfferMoreDetailPage())
             ]
@@ -82,7 +84,9 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "safe", builder: (context, state) => const SafeView()),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier()),
           GoRoute( path: "about", builder: (context, state) => const AboutView()),
-          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+          GoRoute( path: "worker_profile/:worker_id", builder: (context, state) => WorkerProfile(
+            worker_id:state.params['worker_id']
+          )),
 
           //Route pour l'authentification
           GoRoute(path: "login", builder: (context, state) => const LoginScreen()),
