@@ -1,14 +1,14 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
-import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
-import 'package:oppuss/widget/particular/card_view.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -109,13 +109,14 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          cardWorker(displayWorker[index].username, displayWorker[index].anneeExperience, displayWorker[index].metier.nomMetier, displayWorker[index].nombreDavis),
+                          cardWorker("${displayWorker[index].prenom} ${displayWorker[index].nom.toUpperCase()}",
+                          displayWorker[index].anneeExperience, displayWorker[index].metier.nomMetier, displayWorker[index].nombreDavis),
                           // SearchWorkerCardView(
                           //   fullname: "${display_list[index].firstname} ${display_list[index].name}",
                           //   avis: display_list[index].avis,
                           //   jobs: display_list[index].jobs,
                           // ),
-                          defaultButton("Voir le profil", (){context.go("/home/worker_profile");})
+                          defaultButton("Voir le profil", (){context.go("/home/worker_profile/${displayWorker[index].id}");})
                         ],
                       ),
                     ),
