@@ -7,6 +7,7 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/models/service_home_page.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/fullsreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageParticular extends StatefulWidget {
@@ -20,9 +21,8 @@ class _HomePageParticularState extends State<HomePageParticular> {
   int selectedService = -1;
 
   List<Domaine> domaines = [];
-
-
   List<Domaine> domaineFilters = [];
+  late bool isLoading;
 
   void updateList(String value){
     //this is the function that filter our liste
@@ -33,6 +33,9 @@ class _HomePageParticularState extends State<HomePageParticular> {
   }
 
   Future<void> fetchData() async {
+    setState(() {
+      isLoading = true;
+    });
     // Appel API pour récupérer les données
     var response = await http.get(Uri.parse(apiDomaines));
     if (response.statusCode == 200) {
@@ -45,8 +48,9 @@ class _HomePageParticularState extends State<HomePageParticular> {
       setState(() {
         domaines = newData; // Mettre à jour l'état avec les nouvelles données
         domaineFilters = domaines;
+        Future.delayed(const Duration(seconds: 3));
+        isLoading = false;
       });
-      print(domaineFilters);
     } else {
       // Gérer les erreurs lors de l'appel à l'API
       print('Erreur de récupération des données depuis l\'API');
@@ -63,7 +67,8 @@ class _HomePageParticularState extends State<HomePageParticular> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: RefreshIndicator(
+      body: isLoading? const LoadingScreen()
+      :RefreshIndicator(
         onRefresh: fetchData,
         child: CustomScrollView(
           slivers: [
