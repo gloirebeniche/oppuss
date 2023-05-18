@@ -4,7 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 // CETTE PARTIE CONCERNE LES DIFFERENT TAILLE DE LA POLICE
 const double appbarTextSize = 22;
-const double headingTextSize = 15;
+const double headingTextSize = 16;
 const double textSize = 13;
 const double smallTextSize = 11;
 const double xsTextSize = 9;
@@ -37,7 +37,7 @@ const transitionAnimate = 500;
 // Font app
 Text customeTextStyle(String text, Color color,
   {FontWeight fontWeight = FontWeight.normal,
-  double size = 13,
+  double size = 14,
   double letterSpace = 0.5,
   TextAlign align = TextAlign.start}) {
   return Text(

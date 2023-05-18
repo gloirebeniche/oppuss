@@ -27,91 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
 
-    getCurrentEmployeur() async {
-      // Récupérer le jeton d'accès à partir des préférences partagées
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('access_token');
-      try {
-        final http.Response response = await http.get(
-          Uri.parse("api_get_current_Employeur"),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $token', // inclure le jeton dans les en-têtes
-          },
-        );
-
-        if (response.statusCode == 200) {
-          final Map<String, dynamic> responseData = jsonDecode(response.body);
-          final Employeur user = Employeur.fromJson(responseData);
-          // Stockage de l'utilisateur dans les préférences partagées
-          prefs.setString('Employeur', jsonEncode(Employeur));
-
-        } else {
-          // Gestion de l'erreur
-          print(response.statusCode);
-        }
-      } catch (e) {
-        print(e);
-      }
-
-    }
-
-    
-    Future<bool> _login() async {
-      final String email = _emailController.text.trim().replaceAll(" ", "");
-      final String password = _passwordController.text.trim().replaceAll(" ", "");
-
-      if (email.isEmpty || password.isEmpty) {
-        setState(() {
-          messageBox(context, "Veillez remplir tous les champs");
-        });
-        return false;
-      }
-      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
-        setState(() {
-          messageBox(context, "Veillez entrer une adresse mail valid");
-        });
-        return false;
-      }else{
-        try {
-          
-          final http.Response response = await http.post(
-            Uri.parse("api_login_view"),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{"email":email,"password":password})
-          );
-
-          if (response.statusCode == 200) {
-            
-            final Map<String, dynamic> responseData = jsonDecode(response.body);
-            final String? accessToken = responseData['token']['access'];
-            final String? refreshToken = responseData['token']['refresh'];
-
-            if (accessToken != null && refreshToken != null) {
-              // Stockage des jetons dans les préférences partagées
-              final SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString('access_token', accessToken);
-              prefs.setString('refresh_token', refreshToken);
-              return true;
-            } else {
-              // Gestion de l'erreur
-              messageBox(context, "Erreur lors de la récupération des jetons");
-              return false;
-            }
-          }else{
-            messageBox(context, "Email ou mot de passe incorect");
-            return false;
-          } 
-        } catch (e) {
-          print(e);
-          return false;
-        }
-      }
-      
-    }
-
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -179,20 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
               //========================== Bouton de connexion =======================
               child: CustomButton("Connexion",
-                () async{
-                  if (await _login()) {
-                    showDialog(context: context, builder: (context){
-                      return Center(child: CircularProgressIndicator(color: primaryColor,));
-                    });
-                    authProvider.logout();
-                    await Future.delayed(const Duration(seconds: 1));
-                    // ignore: use_build_context_synchronously
-                    Navigator.pop(context);
-                    messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
-                    // ignore: use_build_context_synchronously
-                    context.go("/home");
-                    
-                  }
+                () {
+                 
                 }
               ),),
               DelayedAnimation(delay: transitionAnimate, 
