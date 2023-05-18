@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/models/worker.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
 
 
@@ -43,7 +44,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: bgColor,
       appBar: AppBar(
         backgroundColor: white,
         elevation: 0,
@@ -55,13 +56,13 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon2(EvaIcons.searchOutline),
+                prefixIcon: icon(EvaIcons.searchOutline, color: primaryColor),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(50)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: textSizeH2, color: grey2)),
+                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: headingTextSize, color: grey2)),
                 hintText: "Recherchez un ouvrier"
               ),
             ),
@@ -73,23 +74,25 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
           children: [
               Expanded(
                 child: display_list.isEmpty ?
-                const Center(
-                  child: Text("Aucun ouvrier ne correspond "),
+                 Center(
+                  child: customeTextStyle("Aucun ouvrier ne correspond ", black),
                 )
                 :ListView.builder(
                   itemCount: display_list.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                      padding: padding,
                       color: white,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SearchWorkerCardView(
-                            fullname: "${display_list[index].firstname} ${display_list[index].name}",
-                            avis: display_list[index].avis,
-                            jobs: display_list[index].jobs,
-                          ),
+                          cardWorker("${display_list[index].firstname} ${display_list[index].name}"),
+                          // SearchWorkerCardView(
+                          //   fullname: "${display_list[index].firstname} ${display_list[index].name}",
+                          //   avis: display_list[index].avis,
+                          //   jobs: display_list[index].jobs,
+                          // ),
                           defaultButton("Voir le profil", (){context.go("/home/worker_profile");})
                         ],
                       ),
@@ -103,18 +106,4 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
     );
   }
 }
-
-/**
- * 
- * MaterialButton(
-                    onPressed: (){},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: const BorderSide(color: Colors.white)
-                    ),
-                    elevation: 0,
-                    color: Colors.white,
-                    child: const profile_card_view(),
-                  ),
- */
 

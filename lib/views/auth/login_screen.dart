@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/user.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
-import 'package:oppuss/views/welcome_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,13 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
 
-    getCurrentUser() async {
+    getCurrentEmployeur() async {
       // Récupérer le jeton d'accès à partir des préférences partagées
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('access_token');
       try {
         final http.Response response = await http.get(
-          Uri.parse(api_get_current_user),
+          Uri.parse("api_get_current_Employeur"),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $token', // inclure le jeton dans les en-têtes
@@ -43,9 +42,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> responseData = jsonDecode(response.body);
-          final User user = User.fromJson(responseData);
+          final Employeur user = Employeur.fromJson(responseData);
           // Stockage de l'utilisateur dans les préférences partagées
-          prefs.setString('user', jsonEncode(user));
+          prefs.setString('Employeur', jsonEncode(Employeur));
 
         } else {
           // Gestion de l'erreur
@@ -77,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
         try {
           
           final http.Response response = await http.post(
-            Uri.parse(api_login_view),
+            Uri.parse("api_login_view"),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -134,7 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SvgPicture.asset("assets/login.svg"),
                 ),
               ),
-              spacingHeight1,
                  DelayedAnimation(
                     delay: transitionAnimate,
                     child: Text(
@@ -146,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  spacingHeight1,
+                  
            DelayedAnimation(
             delay: transitionAnimate,
             child:  TextFieldCustomized("Email"),
@@ -186,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     showDialog(context: context, builder: (context){
                       return Center(child: CircularProgressIndicator(color: primaryColor,));
                     });
-                    authProvider.checkAuth();
+                    authProvider.logout();
                     await Future.delayed(const Duration(seconds: 1));
                     // ignore: use_build_context_synchronously
                     Navigator.pop(context);
@@ -252,7 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //           padding: const EdgeInsets.all(8.0),
               //         child: InkWell(
               //             onTap: () {
-              //               context.go("/home/user_register");
+              //               context.go("/home/Employeur_register");
               //             },
               //     child: Row(
               //       mainAxisAlignment: MainAxisAlignment.center,
@@ -286,9 +284,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: primaryColor
               ),
               labelText: title,
-              labelStyle: const TextStyle(
+              labelStyle: TextStyle(
                 color: grey,
-                fontSize: bigTextSize5
+                fontSize: textSize
               ),
             ),
           );
@@ -302,9 +300,9 @@ TextField TextFieldPassword(String password) {
                 floatingLabelStyle: TextStyle(
                 color: primaryColor
               ),
-              labelStyle:  const TextStyle(
+              labelStyle:  TextStyle(
                 color: grey,
-                fontSize: bigTextSize5
+                fontSize: 20
               ),
               labelText: password,
               suffixIcon: IconButton(

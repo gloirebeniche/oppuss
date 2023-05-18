@@ -1,32 +1,30 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 
 class AuthProvider with ChangeNotifier {
-  String? _accesToken;
+  String? _accessToken;
   String? _refreshToken;
-  User? _currentUser;
+  Employeur? _currentUser;
 
   AuthProvider() {
-    _getCurrentUser();
+    _checkAuth();
   }
 
-  String? get accessToken => _accesToken;
+  String? get accessToken => _accessToken;
   String? get refreshToken => _refreshToken;
-  User? get currentUser => _currentUser;
+  Employeur? get currentUser => _currentUser;
 
-
-  Future<void> _getCurrentUser() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String token = prefs.getString('access_token') ?? '';
-
+  Future<void> _getCurrentUser(String token) async {
     try {
       final response = await http.get(
-        Uri.parse(api_get_current_user),
+        Uri.parse(apiGetCurrentUser),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -35,7 +33,7 @@ class AuthProvider with ChangeNotifier {
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-        _currentUser = User.fromJson(responseData);
+        _currentUser = Employeur.fromJson(responseData);
         notifyListeners();
       }
     } catch (e) {
@@ -43,25 +41,74 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> deleteToken() async {
+  Future<void> _saveTokens(String accessToken, String refreshToken) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('access_token', accessToken);
+    await prefs.setString('refresh_token', refreshToken);
+  }
+
+  Future<void> _deleteTokens() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('access_token');
     await prefs.remove('refresh_token');
-    _accesToken = null;
+    _accessToken = null;
     _refreshToken = null;
     notifyListeners();
   }
 
-  Future<void> checkAuth() async {
+  Future<void> _checkAuth() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _accesToken = prefs.getString('access_token');
+    _accessToken = prefs.getString('access_token');
     _refreshToken = prefs.getString('refresh_token');
-    _getCurrentUser();
+    if (_accessToken != null) {
+      await _getCurrentUser(_accessToken!);
+    }
     notifyListeners();
   }
 
+  Future<void> login(String email, String password) async {
+    try {
+      final response = await http.post(
+        Uri.parse(apiLogin),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password,
+        }),
+      );
 
-  bool get isAuthenticated => _accesToken != null;
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        _accessToken = responseData['access_token'];
+        _refreshToken = responseData['refresh_token'];
+        await _getCurrentUser(_accessToken!);
+        await _saveTokens(_accessToken!, _refreshToken!);
+        notifyListeners();
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      final response = await http.post(
+        Uri.parse(apiLogout),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $_accessToken',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        await _deleteTokens();
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  bool get isAuthenticated => _accessToken != null;
 }
-
-

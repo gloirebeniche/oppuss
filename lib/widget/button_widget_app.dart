@@ -65,7 +65,7 @@ Container CustomButton(String text, VoidCallback onPressed){
       style: primaryButton,
       child: Padding(
         padding: padding,
-        child: customeTextStyle(text, headingTextSize, white),),
+        child: customeTextStyle(text, size:headingTextSize, white),),
     ),
   );
 }
@@ -81,7 +81,7 @@ Container CustomOutlinedButton(String text, VoidCallback onPressed){
       style: primaryOutlinedButton,
       child: Padding(
         padding: padding,
-        child: customeTextStyle(text, headingTextSize, black),),
+        child: customeTextStyle(text, size:headingTextSize, black),),
     ),
   );
 }
@@ -91,33 +91,33 @@ ElevatedButton defaultButton(String text, VoidCallback onPress){
     style: ElevatedButton.styleFrom(
       elevation: 1,
       backgroundColor: primaryColor,
-      minimumSize: const Size(327, 50),
+      minimumSize: const Size(350, 40),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))
+        borderRadius: BorderRadius.all(Radius.circular(5))
       )
     ),
     onPressed: onPress,
     child: Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: titleTextStyle(text, color: white, fontWeight: FontWeight.bold),
+      child: customeTextStyle(text, white, size: headingTextSize, fontWeight: FontWeight.bold)
     ),
   );
 }
 
-OutlinedButton defaultButtonOutlined(String text, VoidCallback onPress, {btnColor = secondaryColor, colorText = textColor}){
+OutlinedButton defaultButtonOutlined(String text, VoidCallback onPress, {btnColor = secondaryColor, colorText = black}){
   return OutlinedButton(
     style: ElevatedButton.styleFrom(
       elevation: 1,
       backgroundColor: white,
-      minimumSize: const Size(327, 40),
+      minimumSize: const Size(350, 40),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))
+        borderRadius: BorderRadius.all(Radius.circular(5))
       )
     ),
     onPressed: onPress,
     child: Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: titleTextStyle(text, color: primaryColor, fontWeight: FontWeight.bold),
+      child: customeTextStyle(text, textColorImportant, size: headingTextSize, fontWeight: FontWeight.bold)
     ),
   );
 }

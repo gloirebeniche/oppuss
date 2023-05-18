@@ -70,7 +70,6 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                   ),
                 ),
               ),
-              spacingHeight2,
               DelayedAnimation(
                   delay: transitionAnimate,
                   child: TextFieldCustomized("Nom d\'utilisateur")),
@@ -78,7 +77,6 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                 delay: transitionAnimate,
                 child: TextFieldCustomized("Votre Email"),
               ),
-              spacingWidth1,
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: ValueListenableBuilder(
@@ -107,7 +105,6 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
               DelayedAnimation(
                   delay: transitionAnimate,
                   child: TextFieldPassword("'Confirmation mot de passe")),
-              spacingHeight2,
               DelayedAnimation(
                 delay: transitionAnimate,
                 child: CustomButton("Envoyer", (() {})),
@@ -128,14 +125,14 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                         children: [
                           const Text("Si vous avec déjà un compte?",
                               style: TextStyle(
-                                color: textColor,
-                                fontSize: textSizeH2,
+                                color: black,
+                                fontSize: 11,
                               )),
-                          spacingHeight1,
+                          
                           Text(" Connectez vous ici",
                               style: TextStyle(
                                 color: primaryColor,
-                                fontSize: textSizeH2,
+                                fontSize: 12,
                               )),
                         ],
                       ),
@@ -153,7 +150,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
       decoration: InputDecoration(
         floatingLabelStyle: TextStyle(color: primaryColor),
         labelText: title,
-        labelStyle: const TextStyle(color: grey, fontSize: bigTextSize5),
+        labelStyle:  TextStyle(color: grey, fontSize: 23),
       ),
     );
   }
@@ -163,7 +160,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
       obscureText: ispassword,
       decoration: InputDecoration(
         floatingLabelStyle: TextStyle(color: primaryColor),
-        labelStyle: const TextStyle(color: grey, fontSize: bigTextSize5),
+        labelStyle:  TextStyle(color: grey, fontSize: 23),
         labelText: password,
         suffixIcon: ispassword
             ? IconButton(

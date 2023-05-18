@@ -20,7 +20,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       try {
         result = true;
-        await http.get(Uri.parse(api_domaine_view));
+        await http.get(Uri.parse("api_domaine_view"));
         context.go("/home");
       }catch(e){
         messageBox(context, "Connection au serveur impossible");
@@ -48,7 +48,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 const CircularProgressIndicator(),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: customeTextStyle("Chargement...", 18, black),
+                  child: customeTextStyle("Chargement...", size:appbarTextSize, black),
                 ),
               ],
             ),

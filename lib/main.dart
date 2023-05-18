@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
           GoRoute( path: "add_offer", builder: (context, state) => const AddOffer(),),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(), ),
-          GoRoute( path: "message", builder: (context, state) => ChatPage()),
+          GoRoute( path: "message", builder: (context, state) => const ChatPage()),
           GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
             routes: [ 
               GoRoute(path: "coments", builder: (context, state) => const ComentView(),),
@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),
-      GoRoute(path: "/loading_screen", builder: (context, state) => LoadingScreen())
+      GoRoute(path: "/loading_screen", builder: (context, state) => const LoadingScreen())
     ],
   );
 }
