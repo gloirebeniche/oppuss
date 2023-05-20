@@ -3,7 +3,7 @@ const String urlBase = "http://192.168.1.74:8000/api/";
 // API URL SUR LE PACKAGES GESTION DES COMPTE
 const String apiGestionCompte = '${urlBase}gestion/compte';
 
-const String apiLogin = '$apiGestionCompte/login';
+const String apiLogin = '$apiGestionCompte/login/';
 const String apiRegister = '$apiGestionCompte/employeur/register/';
 const String apiLogout = '';
 const String apiGetCurrentUser = '$apiGestionCompte/employeur/get_current_user/';
