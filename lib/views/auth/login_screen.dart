@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,6 +25,18 @@ class _LoginScreenState extends State<LoginScreen> {
     var _obscureText = true;
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
+  
+  bool isEmailValid(String email) {
+    // Expression régulière pour vérifier le format de l'adresse e-mail
+    RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,}$');
+    
+    // Vérifie si la chaîne de caractères correspond à l'expression régulière
+    if (regex.hasMatch(email)) {
+      return true; // L'adresse e-mail est valide
+    } else {
+      return false; // L'adresse e-mail est invalide
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +106,18 @@ class _LoginScreenState extends State<LoginScreen> {
               //========================== Bouton de connexion =======================
               child: CustomButton("Connexion",
                 () {
-                 
+                  if (isEmailValid(_emailController.text.trim()) && _passwordController.text.trim().isNotEmpty) {
+                    authProvider.login(_emailController.text, _passwordController.text);
+                    showDialog(context: context, builder: (context){
+                      return Center(child: CircularProgressIndicator(color: primaryColor,));
+                    });
+                    Future.delayed(const Duration(seconds: 2));
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                    messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
+                    // ignore: use_build_context_synchronously
+                    context.go("/home");
+                  }
                 }
               ),),
               DelayedAnimation(delay: transitionAnimate, 
@@ -120,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   decoration: BoxDecoration(                    
                     borderRadius: BorderRadius.circular(16),
-                    color: bgColor,
+                    color: white,
                       ),
                          child: InkWell( 
                               onTap: (() {}
@@ -133,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   decoration: BoxDecoration(                    
                     borderRadius: BorderRadius.circular(16),
-                    color: bgColor,
+                    color: white,
                       ),
                          child: InkWell( 
                               onTap: (() {}

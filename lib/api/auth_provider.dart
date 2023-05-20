@@ -87,6 +87,7 @@ class AuthProvider with ChangeNotifier {
         await _saveTokens(_accessToken!, _refreshToken!);
         notifyListeners();
       }
+      print(response.body);
     } catch (e) {
       print(e);
     }
