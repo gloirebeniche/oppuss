@@ -66,7 +66,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> login(String email, String password) async {
+  Future<bool> login(String email, String password) async {
     try {
       final response = await http.post(
         Uri.parse(apiLogin),
@@ -86,16 +86,19 @@ class AuthProvider with ChangeNotifier {
         await _getCurrentUser(_accessToken!);
         await _saveTokens(_accessToken!, _refreshToken!);
         notifyListeners();
+        return true;
+      }else{
+        return false;
       }
-      print(response.body);
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
-  Future<void> logout() async {
+  Future<bool> logout() async {
     try {
-      final response = await http.post(
+      final response = await http.get(
         Uri.parse(apiLogout),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -105,9 +108,13 @@ class AuthProvider with ChangeNotifier {
 
       if (response.statusCode == 200) {
         await _deleteTokens();
+        return true;
+      }else{
+        return false;
       }
     } catch (e) {
       print(e);
+      return false;
     }
   }
 

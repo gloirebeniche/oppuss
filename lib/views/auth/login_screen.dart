@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -105,18 +107,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
               //========================== Bouton de connexion =======================
               child: CustomButton("Connexion",
-                () {
+                () async {
                   if (isEmailValid(_emailController.text.trim()) && _passwordController.text.trim().isNotEmpty) {
-                    authProvider.login(_emailController.text, _passwordController.text);
-                    showDialog(context: context, builder: (context){
-                      return Center(child: CircularProgressIndicator(color: primaryColor,));
-                    });
-                    Future.delayed(const Duration(seconds: 2));
-                    // ignore: use_build_context_synchronously
-                    Navigator.pop(context);
-                    messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
-                    // ignore: use_build_context_synchronously
-                    context.go("/home");
+                    if(await authProvider.login(_emailController.text, _passwordController.text)){
+                      showDialog(context: context, builder: (context){
+                        return Center(child: CircularProgressIndicator(color: primaryColor,));
+                      });
+                      await Future.delayed(const Duration(seconds: 2));
+                      Navigator.pop(context);
+                      setState(() {
+                        messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
+                      });
+                      context.go("/home");
+                    }else{
+                      setState(() {
+                        messageBox(context, "username or password incorect");
+                      });
+                    }
+                    
                   }
                 }
               ),),

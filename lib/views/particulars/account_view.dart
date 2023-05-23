@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -204,12 +206,19 @@ class _AccountViewState extends State<AccountView> {
                 return Center(child: CircularProgressIndicator(color: primaryColor,));
               });
               await Future.delayed(const Duration(seconds: 1));
-              authProvider.logout();
-              // ignore: use_build_context_synchronously
-              Navigator.pop(context);
-              setState(() {
-                messageBox(context, "Vous êtes déconnecté :(");
-              });
+              if (await authProvider.logout()) {
+                
+                Navigator.pop(context);
+                setState(() {
+                  messageBoxSuccess(context, "Vous êtes déconnecté ");
+                });
+              }else{
+                Navigator.pop(context);
+                setState(() {
+                  messageBox(context, "ERROR : impossible de se déconnecter");
+                });
+              }
+              
             }
           ),
           const AboutVersionAppWidget()
