@@ -1,12 +1,12 @@
 const String urlBase = "http://10.10.10.20:8000/api/";
 
 // API URL SUR LE PACKAGES GESTION DES COMPTE
-const String apiGestionCompte = '${urlBase}auth';
+const String apiAuthentification = '${urlBase}auth';
 
-const String apiLogin = '$apiGestionCompte/login/';
-const String apiLogout = '$apiGestionCompte/logout/';
-const String apiRegister = '$apiGestionCompte/employeur/register/';
-const String apiGetCurrentUser = '$apiGestionCompte/employeur/get_current_user/';
+const String apiLogin = '$apiAuthentification/login/';
+const String apiLogout = '$apiAuthentification/logout/';
+const String apiRegister = '$apiAuthentification/employeur/register/';
+const String apiGetCurrentUser = '$apiAuthentification/employeur/get-current-user/';
 
 // API URL SUR LE PACKAGES REFERENTIEL DU BTP
 const String apiReferentielBTP = '${urlBase}referentiel-btp';
@@ -26,4 +26,4 @@ const String apiReservation = '$apiGestionOffres/reservations/';
 const String apiAppreciation = '$apiGestionOffres/appreciations/';
 
 // API URL SUR LA RÉCUPERATION DE TOUS LES OUVRIER
-const String apiGetWorkers = '$apiGestionCompte/workers/';
+const String apiGetWorkers = '$apiAuthentification/workers/';
