@@ -8,7 +8,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
-Container CardOfferView(BuildContext context){
+Container CardOfferView(BuildContext context, String nom_travaux, String day, String hours){
   return Container(
       margin: const EdgeInsets.only(top: 5),
       width: double.infinity,
@@ -28,11 +28,11 @@ Container CardOfferView(BuildContext context){
                           fit: BoxFit.cover))),
             ),
             customeTextStyle(
-                "Pose de lampes et luminaire", size:headingTextSize, black,
+                nom_travaux, size:headingTextSize, black,
                 fontWeight: FontWeight.bold),
             
             customeTextStyle(
-                "Jeudi 25 janvier 2013 de 12 à 15:30",grey2),
+                "${formatDateString(day)} à partir de $hours",grey2),
             Container(
               margin: const EdgeInsets.only(top: 20),
               padding: padding,

@@ -50,7 +50,6 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
         workers = newData;
         displayWorker = workers;
       });
-      print(displayWorker);
     } else {
       // Gérer les erreurs lors de l'appel à l'API
       print('Erreur de récupération des données depuis l\'API');

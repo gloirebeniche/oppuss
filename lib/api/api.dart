@@ -16,7 +16,7 @@ const String apiMetier = '$apiReferentielBTP/metier';
 
 
 // API URL SUR LE PACKAGES GESTION DES OFFRES
-const String apiGestionOffres = '${urlBase}gestion/offres/';
+const String apiGestionOffres = '${urlBase}gestion/offres';
 
 const String apiOffres = '$apiGestionOffres/offres/';
 const String apiOffreArchive = '$apiGestionOffres/offres-archive/';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 // CETTE PARTIE CONCERNE LES DIFFERENT TAILLE DE LA POLICE
 const double appbarTextSize = 22;
@@ -121,4 +123,12 @@ void messageBoxSuccess(BuildContext context, String message){
       elevation: 0,
     )
   );
+}
+
+
+String formatDateString(String dateString) {
+  initializeDateFormatting('fr_FR', null); // Initialisation des données de localisation pour le français
+  DateTime dateObjet = DateFormat('yyyy-MM-dd').parse(dateString);
+  String dateFormatee = DateFormat('EEEE d MMMM yyyy', 'fr_FR').format(dateObjet);
+  return dateFormatee;
 }
