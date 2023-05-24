@@ -47,34 +47,17 @@ class _DemandesState extends State<Demandes> {
                   children: [
                     Container(
                       child: 
-                      //!authProvider.isAuthenticated? cardOfferAuth(context):
+                      !authProvider.isAuthenticated? cardOfferAuth(context):
                       ListView(
                           children: [
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
-                            CardOfferView(context),
                             CardOfferView(context),
                         ],
                       ),
                     ),
                     Container(
-                      child: //!authProvider.isAuthenticated? cardOfferAuth(context): 
+                      child: !authProvider.isAuthenticated? cardOfferAuth(context): 
                       ListView(
                         children: const[
-                          CardOfferView2(),
-                          CardOfferView2(),
-                          CardOfferView2(),
-                          CardOfferView2(),
-                          CardOfferView2(),
-                          CardOfferView2(),
-                          CardOfferView2(),
-                          CardOfferView2(),
                           CardOfferView2(),
                         ],
                       ),

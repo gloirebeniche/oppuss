@@ -17,7 +17,6 @@ const textColorImportant = Color.fromARGB(255, 44, 154, 245);
 //defaul color
 const white = Colors.white;
 const black = Colors.black;
-Color notification_bg = Colors.blueAccent.shade200;
 Color grey = Colors.grey;
 Color grey1 = Colors.grey.shade400;
 Color grey2 = Colors.grey.shade700;

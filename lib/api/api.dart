@@ -2,7 +2,6 @@ const String urlBase = "http://10.10.10.20:8000/api/";
 
 // API URL SUR LE PACKAGES GESTION DES COMPTE
 const String apiAuthentification = '${urlBase}auth';
-
 const String apiLogin = '$apiAuthentification/login/';
 const String apiLogout = '$apiAuthentification/logout/';
 const String apiRegister = '$apiAuthentification/employeur/register/';
@@ -26,4 +25,6 @@ const String apiReservation = '$apiGestionOffres/reservations/';
 const String apiAppreciation = '$apiGestionOffres/appreciations/';
 
 // API URL SUR LA RÉCUPERATION DE TOUS LES OUVRIER
-const String apiGetWorkers = '$apiAuthentification/workers/';
+const String apiGestionCompte = "${urlBase}gestion/compte";
+const String apiGetWorkers = '$apiGestionCompte/workers/';
+const String apiGetEmployeurs = '$apiGestionCompte/employeurs/';

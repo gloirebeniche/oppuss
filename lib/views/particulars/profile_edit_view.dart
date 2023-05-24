@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -18,18 +20,33 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
+  final TextEditingController _usernameUpadeController = TextEditingController();
+  final TextEditingController _firstnameUpadeController = TextEditingController();
+  final TextEditingController _lastnameUpadeController = TextEditingController();
+  final TextEditingController _emailUpadeController = TextEditingController();
+  final TextEditingController _passwordUpadeController = TextEditingController();
+  final TextEditingController _genderUpadeController = TextEditingController();
+  final TextEditingController _telUpadeController = TextEditingController();
+  final TextEditingController _adressUpadeController = TextEditingController();
 
-  Future<void> fetchData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // Utilisez la clé correspondante à votre objet dans le cache
-    var myObject = prefs.getString('myObjectKey');
+  Future<void> updateEmployeur(int employeurId, Map<String, dynamic> updatedData) async {
 
-    if (myObject != null) {
-      // Faites quelque chose avec l'objet récupéré du cache
-      print('Objet récupéré du cache : $myObject');
+    final apiUrl = '$apiGetEmployeurs/$employeurId'; 
+
+    final response = await http.put(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(updatedData),
+    );
+
+    if (response.statusCode == 200) {
+      setState(() {
+        messageBoxSuccess(context, "Sauvegardé");
+      });
     } else {
-      // L'objet n'a pas été trouvé dans le cache
-      print('Objet non trouvé dans le cache');
+      print('Erreur lors de la mise à jour de l\'employeur');
+      print('Code de statut : ${response.statusCode}');
+      print('Réponse : ${response.body}');
     }
   }
 

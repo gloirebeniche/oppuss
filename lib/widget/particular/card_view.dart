@@ -36,7 +36,7 @@ Container CardOfferView(BuildContext context){
             Container(
               margin: const EdgeInsets.only(top: 20),
               padding: padding,
-              color: notification_bg,
+              color: Colors.transparent,
               child: Row(
                 children: [
                   const Icon(
