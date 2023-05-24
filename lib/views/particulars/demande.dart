@@ -57,7 +57,7 @@ class _DemandesState extends State<Demandes> {
     setState(() {
       fetchData(authProvider.accessToken??'');
     });
-    return !authProvider.isAuthenticated? const LoginScreen() : DefaultTabController(
+    return DefaultTabController(
         length: 2,
         child: Scaffold(
           backgroundColor: bgColor,

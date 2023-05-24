@@ -32,9 +32,7 @@ class _AccountViewState extends State<AccountView> {
     setState(() {
       username = authProvider.currentUser?.username;
     });
-    return !authProvider.isAuthenticated? const LoginScreen()
-    :
-    Scaffold(
+    return Scaffold(
       appBar: CustomAppBar("Compte",context),
       backgroundColor: white,
       body: ListView(
