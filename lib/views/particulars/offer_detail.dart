@@ -1,9 +1,15 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oppuss/api/api.dart';
+import 'package:oppuss/models/gestion_offres.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+
 
 class OfferDetailView extends StatefulWidget {
   const OfferDetailView({super.key});
@@ -13,6 +19,31 @@ class OfferDetailView extends StatefulWidget {
 }
 
 class _OfferDetailViewState extends State<OfferDetailView> {
+
+  late Offre monOffres;
+
+  fetchData(String token) async {
+    try {
+      final response = await http.get(
+        Uri.parse("$apiOffres/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        //permettre au donnée d'accepter les caractère spéciaux
+        final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+        return true;
+      }else{
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

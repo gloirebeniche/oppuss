@@ -1,14 +1,17 @@
-import 'dart:convert';
-
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oppuss/api/api.dart';
+import 'package:oppuss/api/auth_provider.dart';
+import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:intl/intl.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class AddOffer extends StatefulWidget {
   const AddOffer({super.key});
@@ -29,37 +32,49 @@ class _AddOfferState extends State<AddOffer> {
 
   TextEditingController inputTel = TextEditingController();
   
-  List<dynamic> _domaines = [];
+  List<Domaine> _domaines = [];
 
-  List<dynamic> _travaux = [];
+  List<Travaux> _travaux = [];
 
-  String? id_domaine;
+  int? id_domaine;
 
-  String? id_travaux;
+  int? id_travaux;
 
 
-  Future<void> fill_domaine() async {
+  Future<void> fetchData() async {
 
-    SharedPreferences  prefs =  await SharedPreferences.getInstance();
-
-    setState(() {
-      _domaines = jsonDecode(prefs.getString('domaines')!);
-    });
+    try {
+      final response = await http.get(Uri.parse(apiDomaines));
+      if (response.statusCode == 200) {
+        // Permettre au donnée d'accepter les caractère spéciaux
+        var jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+        List<Domaine> newData = [];
+        for (var item in jsonData) {
+          newData.add(Domaine.fromJson(item));
+        }
+        setState(() {
+          _domaines = newData;
+          id_domaine = _domaines[0].id;
+        });
+      } else {
+        // Gérer les erreurs lors de l'appel à l'API
+        print('Erreur de récupération des données depuis l\'API');
+      }
+    } catch (e) {
+      
+    }
     
   }
 
   @override
   void initState()  {
     super.initState();
-    try {
-       fill_domaine();
-    } catch (e) {
-      print(e); 
-    }
+    fetchData();
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final authProvider = Provider.of<AuthProvider>(context);
+    return !authProvider.isAuthenticated? const LoginScreen() : Scaffold(
       backgroundColor: white,
       appBar: AppBar(
         leading: IconButton(
@@ -82,19 +97,7 @@ class _AddOfferState extends State<AddOffer> {
               _domaines,
               (onChanged){
                 id_domaine = onChanged;
-
-                for (var element in _domaines) {
-                  if (element['id'].toString() == onChanged.toString()) {
-                    setState(() {
-                      _travaux = element['travaux_set'];
-                    });
-                    print(_travaux);
-                  }
-                }
-
-                for (var e in _travaux) {
-                  print(e['nom_travaux']);
-                }
+                
               },
               (onValidate){
                 if (onValidate == null) {
@@ -110,29 +113,29 @@ class _AddOfferState extends State<AddOffer> {
             ),
           ),
 
-          Container(
-            margin: const EdgeInsets.only(top: 20),
-            child: FormHelper.dropDownWidget(
-              context,
-              "Quel est le type de travaux à réaliser ?",
-              id_travaux,
-              _travaux,
-              (onChangedVal){
-                id_travaux = onChangedVal;
-              },
-              (onValidate){
-                if (onValidate == null) {
-                  return "Please select travaux";
-                }
-                return null;
-              },
-              borderColor: grey,
-              borderFocusColor: primaryColor,
-              borderRadius: 10,
-              optionValue: "id",
-              optionLabel: "nom_travaux"
-            ),
-          ),
+          // Container(
+          //   margin: const EdgeInsets.only(top: 20),
+          //   child: FormHelper.dropDownWidget(
+          //     context,
+          //     "Quel est le type de travaux à réaliser ?",
+          //     id_travaux,
+          //     _travaux,
+          //     (onChangedVal){
+          //       id_travaux = onChangedVal;
+          //     },
+          //     (onValidate){
+          //       if (onValidate == null) {
+          //         return "Please select travaux";
+          //       }
+          //       return null;
+          //     },
+          //     borderColor: grey,
+          //     borderFocusColor: primaryColor,
+          //     borderRadius: 10,
+          //     optionValue: "id",
+          //     optionLabel: "nom_travaux"
+          //   ),
+          // ),
 
           Container(
             margin: const EdgeInsets.only(top: 15),

@@ -39,7 +39,7 @@ class WorkerProfile extends StatelessWidget {
       return Scaffold(
         appBar: CustomAppBar2("", context),
         backgroundColor: Colors.grey.shade300,
-        body: //!authProvider.isAuthenticated? cardAuth(context) :
+        body: !authProvider.isAuthenticated? cardAuth(context) :
         FutureBuilder<Worker>(
           future: fetchData(),
           builder: (context, snapshot) {

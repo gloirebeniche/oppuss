@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
   
+
   bool isEmailValid(String email) {
     // Expression régulière pour vérifier le format de l'adresse e-mail
     RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,}$');
@@ -45,7 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
     final authProvider = Provider.of<AuthProvider>(context);
     return  Scaffold(
       backgroundColor: white,
-      appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
+      appBar: AppBar(
+        backgroundColor: white,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(

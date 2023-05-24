@@ -3,6 +3,7 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
@@ -56,7 +57,7 @@ class _DemandesState extends State<Demandes> {
     setState(() {
       fetchData(authProvider.accessToken??'');
     });
-    return DefaultTabController(
+    return !authProvider.isAuthenticated? const LoginScreen() : DefaultTabController(
         length: 2,
         child: Scaffold(
           backgroundColor: bgColor,
