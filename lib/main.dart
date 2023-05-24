@@ -69,7 +69,9 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "add_offer", builder: (context, state) => const AddOffer(),),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(), ),
           GoRoute( path: "message", builder: (context, state) => const ChatPage()),
-          GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
+          GoRoute( path: "offer_detail/:id_offre", builder: (context, state) => OfferDetailView(
+            id_offre:state.params['id_offre']
+          ),
             routes: [ 
               GoRoute(path: "coments", builder: (context, state) => const ComentView(),),
               GoRoute( path: "worker_profile/:worker_id", builder: (context, state) => WorkerProfile(

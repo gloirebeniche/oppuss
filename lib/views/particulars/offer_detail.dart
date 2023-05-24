@@ -12,7 +12,8 @@ import 'package:http/http.dart' as http;
 
 
 class OfferDetailView extends StatefulWidget {
-  const OfferDetailView({super.key});
+  final dynamic id_offre;
+  const OfferDetailView({super.key, required this.id_offre});
 
   @override
   State<OfferDetailView> createState() => _OfferDetailViewState();
@@ -21,6 +22,11 @@ class OfferDetailView extends StatefulWidget {
 class _OfferDetailViewState extends State<OfferDetailView> {
 
   late Offre monOffres;
+  
+  @override
+  void initState() {
+    super.initState();
+  }
 
   fetchData(String token) async {
     try {

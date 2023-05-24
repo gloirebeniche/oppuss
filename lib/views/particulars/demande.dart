@@ -88,7 +88,8 @@ class _DemandesState extends State<Demandes> {
                         itemBuilder: (context, index) => CardOfferView(context,
                           my_offres[index].idTravaux.nomtravaux!,
                           my_offres[index].jour,
-                          my_offres[index].heure
+                          my_offres[index].heure,
+                          my_offres[index].id
                         )
                       )
                     ),

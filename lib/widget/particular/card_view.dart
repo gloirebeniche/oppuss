@@ -8,7 +8,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
-Container CardOfferView(BuildContext context, String nom_travaux, String day, String hours){
+Container CardOfferView(BuildContext context, String nom_travaux, String day, String hours, int id){
   return Container(
       margin: const EdgeInsets.only(top: 5),
       width: double.infinity,
@@ -57,7 +57,7 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
             Row(
               children: [
                 Expanded(
-                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail");})
+                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail/$id");})
                 ),
               ],
             )
