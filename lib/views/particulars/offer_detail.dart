@@ -8,6 +8,9 @@ import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
+import '../../api/auth_provider.dart';
 
 
 
@@ -16,22 +19,20 @@ class OfferDetailView extends StatefulWidget {
   const OfferDetailView({super.key, required this.id_offre});
 
   @override
-  State<OfferDetailView> createState() => _OfferDetailViewState();
+  // ignore: no_logic_in_create_state
+  State<OfferDetailView> createState() => _OfferDetailViewState(id_offre);
 }
 
 class _OfferDetailViewState extends State<OfferDetailView> {
 
-  late Offre monOffres;
-  
-  @override
-  void initState() {
-    super.initState();
-  }
+  late Offre monOffres = Offre.defaultValues();
+  dynamic id = 0;
+  _OfferDetailViewState(id_offre){id = id_offre;}
 
-  fetchData(String token) async {
+  Future<bool>fetchData(String token) async {
     try {
       final response = await http.get(
-        Uri.parse("$apiOffres/"),
+        Uri.parse(apiOffres + id),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -41,6 +42,10 @@ class _OfferDetailViewState extends State<OfferDetailView> {
       if (response.statusCode == 200) {
         //permettre au donnée d'accepter les caractère spéciaux
         final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+        setState(() {
+          monOffres = Offre.fromJson(jsonData);
+          print(monOffres);
+        });
         return true;
       }else{
         return false;
@@ -49,6 +54,13 @@ class _OfferDetailViewState extends State<OfferDetailView> {
       print(e);
       return false;
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    fetchData(authProvider.accessToken!);
   }
   @override
   Widget build(BuildContext context) {
@@ -85,11 +97,11 @@ class _OfferDetailViewState extends State<OfferDetailView> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: customeTextStyle("Construction de boutique", size:18, black, fontWeight: FontWeight.bold),
+                  child: customeTextStyle(monOffres.idTravaux.nomtravaux ??'', size:18, black, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  child: customeTextStyle("Mardi 28 février 2023 de 12h:00 à 14h:30 (2h:30)",black),
+                  child: customeTextStyle("à partir de ${monOffres.heure}", black),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 25),
@@ -99,7 +111,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                       icon(EvaIcons.pin, color: textColorImportant),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: customeTextStyle("51 rue Nkouma, Moungali Brazzavile", black),
+                        child: customeTextStyle(monOffres.lieu, black),
                       )
                     ],
                   ),
@@ -119,15 +131,15 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 25),
-                  child: Center(child: defaultButtonOutlined("Detail", (){context.go("/home/offer_detail/view/");}))
+                  child: Center(child: defaultButtonOutlined("Detail", (){context.go("/home/offer_detail/$id/view/$id");}))
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 2),
-                  child: Center(child: defaultButton("Modifer", (){context.go("/home/offer_detail/update_offer/");}))
+                  child: Center(child: defaultButton("Modifer", (){context.go("/home/offer_detail/$id/update_offer/");}))
                 ),
                 Container( margin: const EdgeInsets.only(top: 20), child: const Divider(height: 5, thickness: 1,),),
                 TextButton(
-                  onPressed: () {context.go("/home/offer_detail/coments/");},
+                  onPressed: () {context.go("/home/offer_detail/$id/coments/");},
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     padding: const EdgeInsets.only(left: 5, right: 5),

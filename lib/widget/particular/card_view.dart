@@ -57,7 +57,7 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
             Row(
               children: [
                 Expanded(
-                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail/$id");})
+                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail/$id/");})
                 ),
               ],
             )

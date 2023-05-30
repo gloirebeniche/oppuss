@@ -20,9 +20,9 @@ class Demandes extends StatefulWidget {
 }
 
 class _DemandesState extends State<Demandes> {
-  List<Offre> my_offres = [];
+  List<Offre> myOffres = [];
 
-  fetchData(String token) async {
+  Future<bool> fetchData(String token) async {
     try {
       final response = await http.get(
         Uri.parse(apiOffres),
@@ -33,17 +33,16 @@ class _DemandesState extends State<Demandes> {
       );
 
       if (response.statusCode == 200) {
-        //permettre au donnée d'accepter les caractère spéciaux
         final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
         List<Offre> newData = [];
         for (var offre in jsonData) {
           newData.add(Offre.fromJson(offre));
         }
         setState(() {
-          my_offres = newData;
+          myOffres = newData;
         });
         return true;
-      }else{
+      } else {
         return false;
       }
     } catch (e) {
@@ -51,12 +50,16 @@ class _DemandesState extends State<Demandes> {
       return false;
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    fetchData(authProvider.accessToken ?? '');
+  }
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    setState(() {
-      fetchData(authProvider.accessToken??'');
-    });
     return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -84,12 +87,12 @@ class _DemandesState extends State<Demandes> {
                       child: 
                       !authProvider.isAuthenticated? cardOfferAuth(context):
                       ListView.builder(
-                        itemCount: my_offres.length,
+                        itemCount: myOffres.length,
                         itemBuilder: (context, index) => CardOfferView(context,
-                          my_offres[index].idTravaux.nomtravaux!,
-                          my_offres[index].jour,
-                          my_offres[index].heure,
-                          my_offres[index].id
+                          myOffres[index].idTravaux.nomtravaux!,
+                          myOffres[index].jour,
+                          myOffres[index].heure,
+                          myOffres[index].id
                         )
                       )
                     ),

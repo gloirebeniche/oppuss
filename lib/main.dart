@@ -78,7 +78,9 @@ class MyApp extends StatelessWidget {
                 worker_id:state.params['worker_id']
               )),
               GoRoute(path: "update_offer", builder: (context, state) => const UpdateOfferPage() ),
-              GoRoute(path: "view", builder: (context, state) => const OfferMoreDetailPage())
+              GoRoute(path: "view/:idOffre", builder: (context, state) => OfferMoreDetailPage(
+                idOffre:state.params['idOffre']
+              ))
             ]
           ),
           GoRoute( path: "settings", builder: (context, state) => const SettingsView()),

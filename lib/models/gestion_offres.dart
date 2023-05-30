@@ -85,4 +85,21 @@ class Offre {
       updatedAt: DateTime.parse(json['updated_at']),
     );
   }
+
+  factory Offre.defaultValues() {
+    return Offre(
+      id: 0,
+      idDomaine: Domaine(),
+      idTravaux: Travaux(),
+      employeur: Employeur(id: 0, email: '', username: '', password: '', isActive: false, isAdmin: false, createdAt: DateTime.now(), updatedAt: DateTime.now()),
+      commentaires: [],
+      jour: '',
+      heure: '',
+      description: '',
+      lieu: '',
+      statut: false,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+  }
 }
