@@ -63,7 +63,7 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: bgColor,
+          backgroundColor: white,
           appBar: CustomAppBar("Mes demandes",context),
           body: Column(
             children: [
@@ -85,7 +85,7 @@ class _DemandesState extends State<Demandes> {
                   children: [
                     Container(
                       child: 
-                      !authProvider.isAuthenticated? cardOfferAuth(context):
+                      myOffres.isEmpty ? cardOfferAuth(context) :
                       ListView.builder(
                         itemCount: myOffres.length,
                         itemBuilder: (context, index) => CardOfferView(context,

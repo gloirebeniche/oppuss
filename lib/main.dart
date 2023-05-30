@@ -55,12 +55,12 @@ class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
     routes: [
       GoRoute(path: "/", builder: (context, state) => const SplashScreen(),
-          routes: [
-            GoRoute(
-              path: "worker",
-              builder: (context, state) => const SignUpScreenOuvrier(),
-            ),
-          ]),
+        routes: [
+          GoRoute(
+            path: "worker",
+            builder: (context, state) => const SignUpScreenOuvrier(),
+          ),
+        ]),
       GoRoute(
         path: "/home",
         builder: (context, state) => const HomeScreen(),
@@ -73,7 +73,6 @@ class MyApp extends StatelessWidget {
             id_offre:state.params['id_offre']
           ),
             routes: [ 
-              
               GoRoute(path: "coments/:idOffre", builder: (context, state) => ComentView(
                 idOffre:state.params['idOffre']
               ),),

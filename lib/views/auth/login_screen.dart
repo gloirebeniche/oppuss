@@ -47,10 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final authProvider = Provider.of<AuthProvider>(context);
     return  Scaffold(
       backgroundColor: white,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-      ),
+      appBar: CustomAppBar2("", context),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(

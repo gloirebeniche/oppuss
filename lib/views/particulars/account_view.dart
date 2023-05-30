@@ -28,7 +28,7 @@ class _AccountViewState extends State<AccountView> {
   
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     setState(() {
       username = authProvider.currentUser?.username;
     });
@@ -108,7 +108,8 @@ class _AccountViewState extends State<AccountView> {
                 
                 Navigator.pop(context);
                 setState(() {
-                  messageBoxSuccess(context, "Vous êtes déconnecté ");
+                  
+                  messageBox(context, "Vous êtes déconnecté ");
                 });
               }else{
                 Navigator.pop(context);
