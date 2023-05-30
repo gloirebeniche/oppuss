@@ -319,7 +319,7 @@ Container cardWorker (String fullname, int nombreExperience, String metier, int 
   );
 }
 
-Container cardComent(){
+Container cardComent(String fullname, String coments, DateTime date){
   return Container(
     color: white,
     width: double.infinity,
@@ -340,17 +340,15 @@ Container cardComent(){
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // Non de l'ouvrier
-                    customeTextStyle("Bakary", black, fontWeight: FontWeight.bold),
+                    customeTextStyle(fullname, black, fontWeight: FontWeight.bold),
                     // date
-                    customeTextStyle("il y a 4 jours", size:11, grey2)
+                    customeTextStyle(formatRelativeTime(date), size:11, grey2)
                   ],
                 ),
                 // contenue
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: customeTextStyle(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. ",
-                    black
-                  ),
+                  child: customeTextStyle(coments,black),
                 )
               ],
             ),

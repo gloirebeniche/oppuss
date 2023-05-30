@@ -132,3 +132,21 @@ String formatDateString(String dateString) {
   String dateFormatee = DateFormat('EEEE d MMMM yyyy', 'fr_FR').format(dateObjet);
   return dateFormatee;
 }
+
+String formatRelativeTime(DateTime dateTime) {
+  final now = DateTime.now();
+  final difference = now.difference(dateTime);
+
+  if (difference.inSeconds < 60) {
+    return 'il y a ${difference.inSeconds} secondes';
+  } else if (difference.inMinutes < 60) {
+    return 'il y a ${difference.inMinutes} minutes';
+  } else if (difference.inHours < 24) {
+    return 'il y a ${difference.inHours} heures';
+  } else if (difference.inDays < 30) {
+    return 'il y a ${difference.inDays} jours';
+  } else {
+    final months = difference.inDays ~/ 30;
+    return 'il y a $months mois';
+  }
+}

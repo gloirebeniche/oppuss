@@ -139,7 +139,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 ),
                 Container( margin: const EdgeInsets.only(top: 20), child: const Divider(height: 5, thickness: 1,),),
                 TextButton(
-                  onPressed: () {context.go("/home/offer_detail/$id/coments/");},
+                  onPressed: () {context.go("/home/offer_detail/$id/coments/$id");},
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     padding: const EdgeInsets.only(left: 5, right: 5),
@@ -149,7 +149,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: customeTextStyle("Voir les commentaires (5)", black),
+                            child: customeTextStyle("Voir les commentaires (${monOffres.commentaires.length})", black),
                           ),
                         ),
                         icon(EvaIcons.arrowIosForwardOutline)
