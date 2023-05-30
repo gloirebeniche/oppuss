@@ -101,7 +101,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  child: customeTextStyle("à partir de ${monOffres.heure}", black),
+                  child: customeTextStyle("${formatDateString(monOffres.jour)} à partir de ${monOffres.heure}", black),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 25),
