@@ -1,7 +1,7 @@
 class Travaux {
     int? id;
     String? nomtravaux;
-    String? iddomaine;
+    int? iddomaine;
 
     Travaux({this.id, this.nomtravaux, this.iddomaine}); 
 

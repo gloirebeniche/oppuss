@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
@@ -22,48 +23,43 @@ class AddOffer extends StatefulWidget {
 
 class _AddOfferState extends State<AddOffer> {
   
-  TextEditingController inputDescription = TextEditingController();
-  
-  TextEditingController inputDate = TextEditingController();
-  
-  TextEditingController inputHour = TextEditingController();
-  
-  TextEditingController inputAdress = TextEditingController();
+  List<Domaine> domaines = [];
 
-  TextEditingController inputTel = TextEditingController();
-  
-  List<Domaine> _domaines = [];
+  List<Domaine> domaineFilters = [];
+  String? idDomaine;
+  String? stateId;
 
-  List<Travaux> _travaux = [];
-
-  int? id_domaine;
-
-  int? id_travaux;
-
-
+  void updateList(String value){
+    //this is the function that filter our liste
+    setState(() {
+      domaineFilters = domaines.where(
+        (element) => element.nomdomaine!.toLowerCase().contains(value.toLowerCase())).toList();
+    });
+  }
   Future<void> fetchData() async {
-
     try {
-      final response = await http.get(Uri.parse(apiDomaines));
+      // appele à l'api pour récuperer les domaine metier
+      var response = await http.get(Uri.parse(apiDomaines));
+
       if (response.statusCode == 200) {
         // Permettre au donnée d'accepter les caractère spéciaux
         var jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+        
         List<Domaine> newData = [];
         for (var item in jsonData) {
           newData.add(Domaine.fromJson(item));
         }
+
         setState(() {
-          _domaines = newData;
-          id_domaine = _domaines[0].id;
+          domaines = newData; // Mettre à jour l'état avec les nouvelles données
+          domaineFilters = domaines;
         });
-      } else {
-        // Gérer les erreurs lors de l'appel à l'API
-        print('Erreur de récupération des données depuis l\'API');
+        print(domaines);
       }
+
     } catch (e) {
-      
+      throw("ERROR : Connexion au serveur échoué");
     }
-    
   }
 
   @override
@@ -71,214 +67,76 @@ class _AddOfferState extends State<AddOffer> {
     super.initState();
     fetchData();
   }
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    return !authProvider.isAuthenticated? const LoginScreen() : Scaffold(
-      backgroundColor: white,
+    return Scaffold(
+      backgroundColor: Colors.blueGrey.shade600,
       appBar: AppBar(
         leading: IconButton(
           onPressed: (){ Navigator.pop(context); },
-          icon: Icon(EvaIcons.close, color: black, size: 35,),
+          icon: const Icon(EvaIcons.close, color: white, size: 35,),
         ),
-        title: customeTextStyle("Nouvelle demande", black),
-        backgroundColor: white,
+        title: customeTextStyle("", black),
         elevation: 0,
+        backgroundColor: Colors.blueGrey.shade600,
       ),
-      body: ListView(
+      body: Column(
         children: [
+          customeTextStyle("Choisir", white, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("un domaine BTP", white, size: 25, fontWeight: FontWeight.bold),
           Container(
-            margin: const EdgeInsets.only(top: 20),
-            //color: Colors.grey.shade200,
-            child: FormHelper.dropDownWidget(
-              context,
-              "Quelle est le domaine d'activité ?",
-              id_domaine,
-              _domaines,
-              (onChanged){
-                id_domaine = onChanged;
-                
-              },
-              (onValidate){
-                if (onValidate == null) {
-                  return "Please select country";
-                }
-                return null;
-              },
-              borderColor: grey,
-              borderFocusColor: primaryColor,
-              borderRadius: 10,
-              optionValue: "id",
-              optionLabel: "nom_domaine"
-            ),
-          ),
-
-          // Container(
-          //   margin: const EdgeInsets.only(top: 20),
-          //   child: FormHelper.dropDownWidget(
-          //     context,
-          //     "Quel est le type de travaux à réaliser ?",
-          //     id_travaux,
-          //     _travaux,
-          //     (onChangedVal){
-          //       id_travaux = onChangedVal;
-          //     },
-          //     (onValidate){
-          //       if (onValidate == null) {
-          //         return "Please select travaux";
-          //       }
-          //       return null;
-          //     },
-          //     borderColor: grey,
-          //     borderFocusColor: primaryColor,
-          //     borderRadius: 10,
-          //     optionValue: "id",
-          //     optionLabel: "nom_travaux"
-          //   ),
-          // ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            height: 50,
+            margin: margin,
             child: TextField(
-              controller: inputDate,
-              minLines: 1,
+              onChanged: (value) => updateList(value),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                prefixIcon: icon(EvaIcons.calendarOutline),
+                prefixIcon: icon(EvaIcons.searchOutline),
                 contentPadding: const EdgeInsets.all(0),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10)
                 ),
-                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 21, color: grey2)),
-                hintText: "Quel jour vous convient le mieux ?"
-              ),
-              onTap: () async{
-                DateTime? pickeddate = await showDatePicker(
-                  context: context, 
-                  initialDate: DateTime.now(), 
-                  firstDate: DateTime.now(), 
-                  lastDate: DateTime(2100)
-                );
-
-                if (pickeddate != null) {
-                  setState(() {
-                    inputDate.text = DateFormat("dd/MM/yyyy").format(pickeddate);
-                  });
-                }
-              },
-            ),
-          ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: TextField(
-              controller: inputHour,
-              minLines: 1,
-              maxLines: 2,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade200,
-                prefixIcon: icon(EvaIcons.clockOutline),
-                contentPadding: const EdgeInsets.all(0),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                hintStyle: GoogleFonts.lato(textStyle:  TextStyle(fontSize: 12, color: grey2)),
-                hintText: "Quel est l'heure qui vous convient ?"
-              ),
-              onTap: () async{
-                TimeOfDay? time = await showTimePicker(
-                  context: context, 
-                  initialTime: TimeOfDay.now());
-
-                if (time != null) {
-                  setState(() {
-                    inputHour.text = time.format(context).toLowerCase();
-                  });
-                }
-              },
-            ),
-          ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: TextField(
-              controller: inputAdress,
-              keyboardType: TextInputType.streetAddress,
-              minLines: 1,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade200,
-                prefixIcon: icon(EvaIcons.pinOutline),
-                contentPadding: const EdgeInsets.all(0),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 15, color: grey2)),
-                hintText: "Quelle est l'adresse de la prestation ?"
-              ),
-            ),
-          ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: TextField(
-              controller: inputTel,
-              keyboardType: TextInputType.phone,
-              minLines: 1,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade200,
-                prefixIcon: icon(EvaIcons.phoneOutline),
-                contentPadding: const EdgeInsets.all(0),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: 15, color: grey2)),
-                hintText: "À quel numéro êtes-vous joignable en cas de besoins ?"
-              ),
-            ),
-          ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: TextField(
-              controller: inputDescription,
-              keyboardType: TextInputType.text,
-              minLines: 5,
-              maxLines: 10,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade200,
-                prefixIcon: icon(EvaIcons.clockOutline),
-                contentPadding: const EdgeInsets.all(0),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                hintStyle: GoogleFonts.lato(textStyle:  TextStyle(fontSize: 15, color: grey2, height: 3)),
-                hintText: "Détail supplementaire (optionnel)"
+                hintStyle: GoogleFonts.lato(textStyle: const TextStyle(fontSize: 13, color: black)),
+                hintText: "Rechercher un domaine BTP"
               ),
             ),
           ),
           
-          Container(
-            padding: padding,
-            child: defaultButton("Publier l'offre", (){}),
+          Expanded(
+            child: Container(
+              child: ListView(
+                children: [
+                  Center(
+                    child: Wrap(
+                      children: [
+                        for(var domaine in domaineFilters)
+                          GestureDetector(
+                            onTap: () => context.go("/home/add_offer/add_travaux/${domaine.id}"),
+                            child: Container(
+                              margin: margin,
+                              width: MediaQuery.of(context).size.height * 0.20,
+                              height: MediaQuery.of(context).size.height * 0.20,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(domaine.image!),
+                                  fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(15)
+                              ),
+                              child: Center(child: customeTextStyle(domaine.nomdomaine!, white, fontWeight: FontWeight.bold, align: TextAlign.center, size: headingTextSize)),
+                            ),
+                          )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           )
         ],
-      ),
+      )
     );
   }
 }

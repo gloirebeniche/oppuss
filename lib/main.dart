@@ -9,6 +9,8 @@ import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
+import 'package:oppuss/views/particulars/add_day.dart';
+import 'package:oppuss/views/particulars/add_travaux.dart';
 import 'package:oppuss/views/particulars/coments.dart';
 import 'package:oppuss/views/particulars/help.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
@@ -66,7 +68,19 @@ class MyApp extends StatelessWidget {
         builder: (context, state) => const HomeScreen(),
         routes: [
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
-          GoRoute( path: "add_offer", builder: (context, state) => const AddOffer(),),
+          GoRoute( 
+            path: "add_offer", builder: (context, state) => const AddOffer(),
+            routes: [
+              GoRoute( 
+                path: "add_travaux/:idDomaine", builder: (context, state) => AddTravaux(
+                  idDomaine:state.params['idDomaine']
+                ), 
+                routes: [
+                  GoRoute( path: "addDay", builder: (context, state) => AddDay(),)
+                ]
+              ),
+            ]
+          ),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(), ),
           GoRoute( path: "message", builder: (context, state) => const ChatPage()),
           GoRoute( path: "offer_detail/:id_offre", builder: (context, state) => OfferDetailView(
