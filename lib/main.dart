@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/api/auth_provider.dart';
@@ -7,6 +9,8 @@ import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
 import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/views/home/home_screen.dart';
+import 'package:oppuss/views/particulars/add_day.dart';
+import 'package:oppuss/views/particulars/add_travaux.dart';
 import 'package:oppuss/views/particulars/coments.dart';
 import 'package:oppuss/views/particulars/help.dart';
 import 'package:oppuss/views/particulars/notification_view.dart';
@@ -53,26 +57,49 @@ class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
     routes: [
       GoRoute(path: "/", builder: (context, state) => const SplashScreen(),
-          routes: [
-            GoRoute(
-              path: "worker",
-              builder: (context, state) => const SignUpScreenOuvrier(),
-            ),
-          ]),
+        routes: [
+          GoRoute(
+            path: "worker",
+            builder: (context, state) => const SignUpScreenOuvrier(),
+          ),
+        ]),
       GoRoute(
         path: "/home",
         builder: (context, state) => const HomeScreen(),
         routes: [
           GoRoute( path: "profile", builder: (context, state) => const EditProfilePage(),),
-          GoRoute( path: "add_offer", builder: (context, state) => const AddOffer(),),
+          GoRoute( 
+            path: "add_offer", builder: (context, state) => const AddOffer(),
+            routes: [
+              GoRoute( 
+                path: "add_travaux/:idDomaine", builder: (context, state) => AddTravaux(
+                  idDomaine:state.params['idDomaine']
+                ), 
+                routes: [
+                  GoRoute( path: "addDay", builder: (context, state) => AddDay(),)
+                ]
+              ),
+            ]
+          ),
           GoRoute( path: "notification", builder: (context, state) => const NotificationView(), ),
           GoRoute( path: "message", builder: (context, state) => const ChatPage()),
-          GoRoute( path: "offer_detail", builder: (context, state) => const OfferDetailView(),
+          GoRoute( path: "offer_detail/:id_offre", builder: (context, state) => OfferDetailView(
+            id_offre:state.params['id_offre']
+          ),
             routes: [ 
-              GoRoute(path: "coments", builder: (context, state) => const ComentView(),),
-              GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+              GoRoute(path: "coments/:idOffre", builder: (context, state) => ComentView(
+                idOffre:state.params['idOffre']
+              ),),
+              
+              GoRoute(path: "view/:idOffre", builder: (context, state) => OfferMoreDetailPage(
+                idOffre:state.params['idOffre']
+              )),
+              
+              GoRoute( path: "worker_profile/:worker_id", builder: (context, state) => WorkerProfile(
+                worker_id:state.params['worker_id']
+              )),
+
               GoRoute(path: "update_offer", builder: (context, state) => const UpdateOfferPage() ),
-              GoRoute(path: "view", builder: (context, state) => const OfferMoreDetailPage())
             ]
           ),
           GoRoute( path: "settings", builder: (context, state) => const SettingsView()),
@@ -80,7 +107,9 @@ class MyApp extends StatelessWidget {
           GoRoute( path: "safe", builder: (context, state) => const SafeView()),
           GoRoute( path: "worker", builder: (context, state) => const SignUpScreenOuvrier()),
           GoRoute( path: "about", builder: (context, state) => const AboutView()),
-          GoRoute( path: "worker_profile", builder: (context, state) => const WorkerProfile()),
+          GoRoute( path: "worker_profile/:worker_id", builder: (context, state) => WorkerProfile(
+            worker_id:state.params['worker_id']
+          )),
 
           //Route pour l'authentification
           GoRoute(path: "login", builder: (context, state) => const LoginScreen()),

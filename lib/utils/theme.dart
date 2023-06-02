@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 // CETTE PARTIE CONCERNE LES DIFFERENT TAILLE DE LA POLICE
 const double appbarTextSize = 22;
-const double headingTextSize = 15;
+const double headingTextSize = 16;
 const double textSize = 13;
 const double smallTextSize = 11;
 const double xsTextSize = 9;
@@ -17,7 +19,6 @@ const textColorImportant = Color.fromARGB(255, 44, 154, 245);
 //defaul color
 const white = Colors.white;
 const black = Colors.black;
-Color notification_bg = Colors.blueAccent.shade200;
 Color grey = Colors.grey;
 Color grey1 = Colors.grey.shade400;
 Color grey2 = Colors.grey.shade700;
@@ -32,12 +33,12 @@ Icon icon(IconData iconData, {color = black, double iconSize = 22}) {
 }
 
 // transition values
-const transitionAnimate = 500;
+const transitionAnimate = 100;
 
 // Font app
 Text customeTextStyle(String text, Color color,
   {FontWeight fontWeight = FontWeight.normal,
-  double size = 13,
+  double size = 14,
   double letterSpace = 0.5,
   TextAlign align = TextAlign.start}) {
   return Text(
@@ -122,4 +123,30 @@ void messageBoxSuccess(BuildContext context, String message){
       elevation: 0,
     )
   );
+}
+
+
+String formatDateString(String dateString) {
+  initializeDateFormatting('fr_FR', null); // Initialisation des données de localisation pour le français
+  DateTime dateObjet = DateFormat('yyyy-MM-dd').parse(dateString);
+  String dateFormatee = DateFormat('EEEE d MMMM yyyy', 'fr_FR').format(dateObjet);
+  return dateFormatee;
+}
+
+String formatRelativeTime(DateTime dateTime) {
+  final now = DateTime.now();
+  final difference = now.difference(dateTime);
+
+  if (difference.inSeconds < 60) {
+    return 'il y a ${difference.inSeconds} secondes';
+  } else if (difference.inMinutes < 60) {
+    return 'il y a ${difference.inMinutes} minutes';
+  } else if (difference.inHours < 24) {
+    return 'il y a ${difference.inHours} heures';
+  } else if (difference.inDays < 30) {
+    return 'il y a ${difference.inDays} jours';
+  } else {
+    final months = difference.inDays ~/ 30;
+    return 'il y a $months mois';
+  }
 }

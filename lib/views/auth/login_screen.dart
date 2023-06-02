@@ -1,10 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/auth_provider.dart';
-import 'package:oppuss/models/user.dart';
+import 'package:oppuss/models/account.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
@@ -13,7 +16,6 @@ import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,98 +28,26 @@ class _LoginScreenState extends State<LoginScreen> {
     var _obscureText = true;
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
+  
 
-    getCurrentEmployeur() async {
-      // Récupérer le jeton d'accès à partir des préférences partagées
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('access_token');
-      try {
-        final http.Response response = await http.get(
-          Uri.parse("api_get_current_Employeur"),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $token', // inclure le jeton dans les en-têtes
-          },
-        );
-
-        if (response.statusCode == 200) {
-          final Map<String, dynamic> responseData = jsonDecode(response.body);
-          final Employeur user = Employeur.fromJson(responseData);
-          // Stockage de l'utilisateur dans les préférences partagées
-          prefs.setString('Employeur', jsonEncode(Employeur));
-
-        } else {
-          // Gestion de l'erreur
-          print(response.statusCode);
-        }
-      } catch (e) {
-        print(e);
-      }
-
-    }
-
+  bool isEmailValid(String email) {
+    // Expression régulière pour vérifier le format de l'adresse e-mail
+    RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,}$');
     
-    Future<bool> _login() async {
-      final String email = _emailController.text.trim().replaceAll(" ", "");
-      final String password = _passwordController.text.trim().replaceAll(" ", "");
-
-      if (email.isEmpty || password.isEmpty) {
-        setState(() {
-          messageBox(context, "Veillez remplir tous les champs");
-        });
-        return false;
-      }
-      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
-        setState(() {
-          messageBox(context, "Veillez entrer une adresse mail valid");
-        });
-        return false;
-      }else{
-        try {
-          
-          final http.Response response = await http.post(
-            Uri.parse("api_login_view"),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{"email":email,"password":password})
-          );
-
-          if (response.statusCode == 200) {
-            
-            final Map<String, dynamic> responseData = jsonDecode(response.body);
-            final String? accessToken = responseData['token']['access'];
-            final String? refreshToken = responseData['token']['refresh'];
-
-            if (accessToken != null && refreshToken != null) {
-              // Stockage des jetons dans les préférences partagées
-              final SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString('access_token', accessToken);
-              prefs.setString('refresh_token', refreshToken);
-              return true;
-            } else {
-              // Gestion de l'erreur
-              messageBox(context, "Erreur lors de la récupération des jetons");
-              return false;
-            }
-          }else{
-            messageBox(context, "Email ou mot de passe incorect");
-            return false;
-          } 
-        } catch (e) {
-          print(e);
-          return false;
-        }
-      }
-      
+    // Vérifie si la chaîne de caractères correspond à l'expression régulière
+    if (regex.hasMatch(email)) {
+      return true; // L'adresse e-mail est valide
+    } else {
+      return false; // L'adresse e-mail est invalide
     }
+  }
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return  Scaffold(
       backgroundColor: white,
-      appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
+      appBar: CustomAppBar2("", context),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -179,18 +109,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
               //========================== Bouton de connexion =======================
               child: CustomButton("Connexion",
-                () async{
-                  if (await _login()) {
-                    showDialog(context: context, builder: (context){
-                      return Center(child: CircularProgressIndicator(color: primaryColor,));
-                    });
-                    authProvider.logout();
-                    await Future.delayed(const Duration(seconds: 1));
-                    // ignore: use_build_context_synchronously
-                    Navigator.pop(context);
-                    messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
-                    // ignore: use_build_context_synchronously
-                    context.go("/home");
+                () async {
+                  if (isEmailValid(_emailController.text.trim()) && _passwordController.text.trim().isNotEmpty) {
+                    if(await authProvider.login(_emailController.text, _passwordController.text)){
+                      showDialog(context: context, builder: (context){
+                        return Center(child: CircularProgressIndicator(color: primaryColor,));
+                      });
+                      await Future.delayed(const Duration(seconds: 2));
+                      Navigator.pop(context);
+                      setState(() {
+                        messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
+                      });
+                      context.go("/home");
+                    }else{
+                      setState(() {
+                        messageBox(context, "username or password incorect");
+                      });
+                    }
                     
                   }
                 }
@@ -217,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   decoration: BoxDecoration(                    
                     borderRadius: BorderRadius.circular(16),
-                    color: bgColor,
+                    color: white,
                       ),
                          child: InkWell( 
                               onTap: (() {}
@@ -230,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   decoration: BoxDecoration(                    
                     borderRadius: BorderRadius.circular(16),
-                    color: bgColor,
+                    color: white,
                       ),
                          child: InkWell( 
                               onTap: (() {}
