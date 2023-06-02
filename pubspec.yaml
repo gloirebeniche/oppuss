@@ -48,6 +48,17 @@ dependencies:
   intl: ^0.18.0
   shared_preferences: ^2.0.18
   provider: ^6.0.5
+
+  # plugin que j'ai ajouter pour ameliorer les interface
+  calendar_date_picker2: ^0.5.2
+  infinite_carousel: ^1.0.3
+  shaky_animated_listview: ^0.0.5
+  flutter_credit_card: ^3.0.6
+  flutter_form_builder: ^9.0.0
+  animations: ^2.0.7
+  loading_animation_widget: ^1.2.0+4
+  rating_dialog: ^2.0.4
+  material_dialogs: ^1.1.4
   
 
 dev_dependencies:
