@@ -36,7 +36,7 @@ AppBar CustomAppBar2(String title, BuildContext context) {
   );
 }
 
-class CustomizeAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomizeAppBar extends StatelessWidget {
   @override
   final Size preferredSize;
 

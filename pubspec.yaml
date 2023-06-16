@@ -50,7 +50,7 @@ dependencies:
   provider: ^6.0.5
 
   # plugin que j'ai ajouter pour ameliorer les interface
-  calendar_date_picker2: ^0.5.2
+  table_calendar: ^3.0.9
   infinite_carousel: ^1.0.3
   shaky_animated_listview: ^0.0.5
   flutter_credit_card: ^3.0.6

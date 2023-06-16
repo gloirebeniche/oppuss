@@ -1,13 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/auth_provider.dart';
-import 'package:oppuss/models/account.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
@@ -15,7 +12,7 @@ import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
 // ignore: depend_on_referenced_packages
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

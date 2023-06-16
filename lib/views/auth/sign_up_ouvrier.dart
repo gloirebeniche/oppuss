@@ -37,10 +37,6 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: const CustomizeAppBar(
-        colorAppBar: white,
-        title: '',
-      ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
