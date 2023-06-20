@@ -1,15 +1,14 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/auth_provider.dart';
-import 'package:oppuss/views/particulars/account_view.dart';
-import 'package:oppuss/views/particulars/search_worker_view.dart';
-import 'package:oppuss/views/particulars/demande.dart';
-import 'package:oppuss/views/particulars/publications.dart';
+import 'package:oppuss/views/particulars/search/search_worker_view.dart';
+import 'package:oppuss/views/particulars/demande/demande.dart';
+import 'package:oppuss/views/particulars/publier/publications.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:provider/provider.dart';
-import '../particulars/home_page.dart';
+import 'account/account_view.dart';
+import 'home/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

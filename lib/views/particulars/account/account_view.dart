@@ -3,17 +3,15 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/login_screen.dart';
-import 'package:oppuss/views/particulars/notification_view.dart';
-import 'package:oppuss/views/particulars/profile_edit_view.dart';
-import 'package:oppuss/views/auth/sign_up_ouvrier.dart';
-import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:provider/provider.dart';
+
+import '../../auth/sign_up_ouvrier.dart';
+import 'notification_view.dart';
+import 'profile_edit_view.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});

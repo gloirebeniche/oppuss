@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:oppuss/models/account.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
 import 'package:oppuss/models/ref_btp.dart';
@@ -40,8 +41,8 @@ class Offre {
   final Travaux idTravaux;
   final Employeur employeur;
   final List<Commentaire> commentaires;
-  final String jour;
-  final String heure;
+  final DateTime jour;
+  final TimeOfDay heure;
   final String description;
   final String lieu;
   final bool statut;
@@ -70,14 +71,24 @@ class Offre {
         commentaireList.add(Commentaire.fromJson(commentaireJson));
       }
     }
+
+    // Conversion de la date
+    var jour = DateTime.parse(json['jour']);
+
+    // Conversion de l'heure
+    var heureParts = json['heure'].split(':');
+    var heure = TimeOfDay(
+      hour: int.parse(heureParts[0]),
+      minute: int.parse(heureParts[1]),
+    );
     return Offre(
       id: json['id'],
       idDomaine: Domaine.fromJson(json['id_domaine']),
       idTravaux: Travaux.fromJson(json['id_travaux']),
       employeur: Employeur.fromJson(json['employeur']),
       commentaires: commentaireList,
-      jour: json['jour'],
-      heure: json['heure'],
+      jour: jour,
+      heure: heure,
       description: json['description'],
       lieu: json['lieu'],
       statut: json['statut'],
@@ -93,8 +104,8 @@ class Offre {
       idTravaux: Travaux(),
       employeur: Employeur(id: 0, email: '', username: '', password: '', isActive: false, isAdmin: false, createdAt: DateTime.now(), updatedAt: DateTime.now()),
       commentaires: [],
-      jour: '',
-      heure: '',
+      jour: DateTime.now(),
+      heure: TimeOfDay.now(),
       description: '',
       lieu: '',
       statut: false,

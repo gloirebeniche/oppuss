@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/api/api.dart';
+import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
@@ -9,9 +10,6 @@ import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-
-import '../../api/auth_provider.dart';
-
 
 
 class OfferDetailView extends StatefulWidget {

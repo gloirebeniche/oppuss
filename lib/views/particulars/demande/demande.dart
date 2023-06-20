@@ -3,7 +3,6 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:oppuss/widget/particular/card_view.dart';
@@ -20,7 +19,7 @@ class Demandes extends StatefulWidget {
 }
 
 class _DemandesState extends State<Demandes> {
-  List<Offre> myOffres = [];
+  List<dynamic> myOffres = [];
 
   Future<bool> fetchData(String token) async {
     try {
@@ -34,13 +33,14 @@ class _DemandesState extends State<Demandes> {
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-        List<Offre> newData = [];
-        for (var offre in jsonData) {
-          newData.add(Offre.fromJson(offre));
-        }
-        setState(() {
-          myOffres = newData;
-        });
+        print(jsonData.toString());
+        // List<dynamic> newData = [];
+        // for (var offre in jsonData) {
+        //   newData.add(Offre.fromJson(offre));
+        // }
+        // setState(() {
+        //   myOffres = newData;
+        // });
         return true;
       } else {
         return false;
@@ -90,8 +90,8 @@ class _DemandesState extends State<Demandes> {
                         itemCount: myOffres.length,
                         itemBuilder: (context, index) => CardOfferView(context,
                           myOffres[index].idTravaux.nomtravaux!,
-                          myOffres[index].jour,
-                          myOffres[index].heure,
+                          myOffres[index].jour as String,
+                          myOffres[index].heure as String,
                           myOffres[index].id
                         )
                       )

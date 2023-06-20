@@ -1,17 +1,8 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
-
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:oppuss/api/api.dart';
-import 'package:oppuss/api/auth_provider.dart';
-import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 
 class AddDay extends StatefulWidget {
