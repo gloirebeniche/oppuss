@@ -32,7 +32,7 @@ class AuthProvider with ChangeNotifier {
       );
 
       if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
+        final responseData = jsonDecode(utf8.decode(response.bodyBytes));
         _currentUser = Employeur.fromJson(responseData);
         notifyListeners();
       }
