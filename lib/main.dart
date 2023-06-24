@@ -122,6 +122,7 @@ class MyApp extends StatelessWidget {
         ]
       ),
       GoRoute(path: "/welcome", builder: (context, state) => const WelcomeAuth()),
+      GoRoute(path: "/register", builder: (context, state) => const SignUpScreenParticuler()),
       GoRoute(path: "/loading_screen", builder: (context, state) => const LoadingScreen())
     ],
   );

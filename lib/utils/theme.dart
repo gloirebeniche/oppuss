@@ -33,7 +33,7 @@ Icon icon(IconData iconData, {color = black, double iconSize = 22}) {
 }
 
 // transition values
-const transitionAnimate = 100;
+const transitionAnimate = 50;
 
 // Font app
 Text customeTextStyle(String text, Color color,

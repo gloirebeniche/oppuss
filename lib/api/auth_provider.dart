@@ -96,6 +96,37 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+   Future<bool> register(String email, String username, String password) async {
+    try {
+      final response = await http.post(
+        Uri.parse(apiRegister),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'username': username,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        _accessToken = responseData['access_token'];
+        _refreshToken = responseData['refresh_token'];
+        await getCurrentUser(_accessToken!);
+        await _saveTokens(_accessToken!, _refreshToken!);
+        notifyListeners();
+        return true;
+      }else{
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future<bool> logout() async {
     try {
       final response = await http.get(
