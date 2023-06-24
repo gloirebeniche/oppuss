@@ -19,6 +19,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  
   bool showPassword = false;
   final TextEditingController _usernameUpadeController = TextEditingController();
   final TextEditingController _firstnameUpadeController = TextEditingController();
@@ -28,10 +29,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _genderUpadeController = TextEditingController();
   final TextEditingController _telUpadeController = TextEditingController();
   final TextEditingController _adressUpadeController = TextEditingController();
+  var p = '';
+  var id = 0;
 
-  Future<void> updateEmployeur(int employeurId, Map<String, dynamic> updatedData) async {
+  Future<void> updateEmployeur(int? employeurId, Map<String, dynamic> updatedData) async {
 
-    final apiUrl = '$apiGetEmployeurs/$employeurId'; 
+    final apiUrl = '$apiGetEmployeurs$employeurId/'; 
 
     final response = await http.put(
       Uri.parse(apiUrl),
@@ -51,8 +54,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     final authProvider = Provider.of<AuthProvider>(context);
+    _usernameUpadeController.text = authProvider.currentUser!.username;
+    _firstnameUpadeController.text = authProvider.currentUser!.firstName!;
+    _lastnameUpadeController.text = authProvider.currentUser!.lastName!;
+    _emailUpadeController.text = authProvider.currentUser!.email;
+    _genderUpadeController.text = authProvider.currentUser!.gender!;
+    _telUpadeController.text = authProvider.currentUser!.phoneNumber!;
+    p = authProvider.currentUser!.password;
+    id = authProvider.currentUser!.id;
+    
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    print(_genderUpadeController.text);
     return Scaffold(
       backgroundColor: white,
       appBar: CustomAppBar2("Information personnelles", context),
@@ -64,20 +85,33 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
           child: ListView(
             children: [
-              buildTextField("Non d'utilisateur", authProvider.currentUser?.username??'', false),
-              buildTextField("Prenom", authProvider.currentUser?.firstName??'', false),
-              buildTextField("Nom de la famille", authProvider.currentUser?.lastName??'', false),
-              buildTextField("E-mail", authProvider.currentUser?.email??'', false),
-              buildTextField("Password", "********", true),
-              buildTextField("Civilité", authProvider.currentUser?.gender??'', false),
-              buildTextField("Téléphone", authProvider.currentUser?.phoneNumber??'', false),
-              buildTextField("Adresse de facturation", authProvider.currentUser?.address??'', false),
+              buildTextField("Non d'utilisateur", _usernameUpadeController.text, false, _usernameUpadeController),
+              buildTextField("Prenom", _firstnameUpadeController.text, false, _firstnameUpadeController),
+              buildTextField("Nom de la famille", _lastnameUpadeController.text, false, _lastnameUpadeController),
+              buildTextField("E-mail", _emailUpadeController.text, false, _emailUpadeController),
+              buildTextField("Password", "********", false, _passwordUpadeController),
+              buildTextField("Civilité", _genderUpadeController.text, false, _genderUpadeController),
+              buildTextField("Téléphone", _telUpadeController.text, false, _telUpadeController),
+              buildTextField("Adresse de facturation", _adressUpadeController.text, false, _adressUpadeController),
               
               Column(
              
                 children: [
-                  defaultButton("Sauvegarder", (){})
-                
+                  defaultButton("Sauvegarder", (){
+                    _passwordUpadeController.text = p;
+                     var data = {
+                      'username' : _usernameUpadeController.text,
+                      "password" : _passwordUpadeController.text,
+                      'prenom' : _firstnameUpadeController.text,
+                      'nom' : _lastnameUpadeController.text,
+                      'email' : _emailUpadeController.text,
+                      'civilite' : _genderUpadeController.text,
+                      'tel': _telUpadeController.text,
+                      'adress' : _adressUpadeController.text
+                     };
+
+                     updateEmployeur(id, data);
+                  })
                 ],
               )
             ],
@@ -87,10 +121,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField, TextEditingController c) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
+        controller: c,
         obscureText: isPasswordTextField ? showPassword : false,
         style: GoogleFonts.lato(
           color: black,

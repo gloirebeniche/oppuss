@@ -114,7 +114,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Date",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle(formatDateString(monOffre.jour as String),black),
+                          child: customeTextStyle(formatDateString(monOffre.jour.toString()),black),
                         ),
                       ],
                     ),
@@ -132,7 +132,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Heure",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle(monOffre.heure as String,black),
+                          child: customeTextStyle(monOffre.heure.toString(),black),
                         ),
                       ],
                     ),

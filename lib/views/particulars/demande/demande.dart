@@ -19,7 +19,7 @@ class Demandes extends StatefulWidget {
 }
 
 class _DemandesState extends State<Demandes> {
-  List<dynamic> myOffres = [];
+  List<Offre> myOffres = [];
 
   Future<bool> fetchData(String token) async {
     try {
@@ -33,14 +33,13 @@ class _DemandesState extends State<Demandes> {
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-        print(jsonData.toString());
-        // List<dynamic> newData = [];
-        // for (var offre in jsonData) {
-        //   newData.add(Offre.fromJson(offre));
-        // }
-        // setState(() {
-        //   myOffres = newData;
-        // });
+        List<Offre> newData = [];
+        for (var offre in jsonData) {
+          newData.add(Offre.fromJson(offre));
+        }
+        setState(() {
+          myOffres = newData;
+        });
         return true;
       } else {
         return false;
@@ -90,8 +89,8 @@ class _DemandesState extends State<Demandes> {
                         itemCount: myOffres.length,
                         itemBuilder: (context, index) => CardOfferView(context,
                           myOffres[index].idTravaux.nomtravaux!,
-                          myOffres[index].jour as String,
-                          myOffres[index].heure as String,
+                          myOffres[index].jour.toString(),
+                          myOffres[index].heure.toString(),
                           myOffres[index].id
                         )
                       )
