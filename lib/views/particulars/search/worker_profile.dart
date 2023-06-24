@@ -8,7 +8,6 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';

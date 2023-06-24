@@ -9,6 +9,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddOffer extends StatefulWidget {
   const AddOffer({super.key});
@@ -110,7 +111,11 @@ class _AddOfferState extends State<AddOffer> {
                       children: [
                         for(var domaine in domaineFilters)
                           GestureDetector(
-                            onTap: () => context.go("/home/add_offer/add_travaux/${domaine.id}"),
+                            onTap: () async {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString('id_domaine', domaine.id.toString());
+                              context.go("/home/add_offer/add_travaux/${domaine.id}");
+                            },
                             child: Container(
                               margin: margin,
                               width: MediaQuery.of(context).size.height * 0.20,

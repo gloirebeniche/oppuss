@@ -102,7 +102,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                      };
 
                      updateEmployeur(authProvider.currentUser?.id, data);
-                     authProvider.getCurrentUser(authProvider!.accessToken!);
+                     authProvider.getCurrentUser(authProvider.accessToken!);
                   })
                 ],
               )

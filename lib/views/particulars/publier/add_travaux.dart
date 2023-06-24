@@ -10,6 +10,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddTravaux extends StatefulWidget {
   final dynamic idDomaine;
@@ -86,7 +87,9 @@ class _AddTravauxState extends State<AddTravaux> {
                               borderRadius: BorderRadius.circular(15),
                               color: white,),
                             child: TextButton(
-                              onPressed: () {
+                              onPressed: () async {
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                prefs.setString('id_travaux', item.id.toString());
                                 context.go('/home/add_offer/add_travaux/$id/addDay');
                               },
                               child: Row(
