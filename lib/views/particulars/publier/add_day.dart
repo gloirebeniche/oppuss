@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 
 class AddDay extends StatefulWidget {
@@ -35,11 +36,17 @@ class _AddDayState extends State<AddDay> {
     _pageController.dispose();
     super.dispose();
   }
+
+  bool isLastPage() {
+    return _pageController.hasClients && _pageController.page == 5;
+  }
+
   @override
   Widget build(BuildContext context) {
 
     List<Widget> widget = [
 
+      // DESCRIPTION ICI
       Container(
         padding: padding,
         child: Column(
@@ -83,33 +90,35 @@ class _AddDayState extends State<AddDay> {
       //   ),
       // ),
 
-      // Container(
-      //   padding: padding,
-      //   child: Column(
-      //     children: [
-      //       customeTextStyle("Quels jours vous convient le mieux ?" , white, fontWeight: FontWeight.bold, size: 28),
-      //       Container(
-      //         margin: const EdgeInsets.only(top: 50),
-      //         decoration: BoxDecoration(
-      //           color: white,
-      //           borderRadius: BorderRadius.circular(10)
-      //         ),
-      //         child: TableCalendar(
-      //           locale: "fr_FR",
-      //           headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
-      //           availableGestures: AvailableGestures.all,
-      //           selectedDayPredicate: (day) => isSameDay(day, today),
-      //           focusedDay: DateTime.now(), 
-      //           firstDay: DateTime.now(), 
-      //           lastDay: DateTime.utc(2025),
-      //           onDaySelected: _onDaySelected,
-      //         ),
-      //       )
-      //     ],
-      //   ),
-      // ),
+      // JOUR DE L'OFFRE
+      Container(
+        padding: padding,
+        child: Column(
+          children: [
+            customeTextStyle("Quels jours vous convient le mieux ?" , white, fontWeight: FontWeight.bold, size: 28),
+            Container(
+              margin: const EdgeInsets.only(top: 50),
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: TableCalendar(
+                locale: "fr_FR",
+                headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
+                availableGestures: AvailableGestures.all,
+                selectedDayPredicate: (day) => isSameDay(day, today),
+                focusedDay: DateTime.now(), 
+                firstDay: DateTime.now(), 
+                lastDay: DateTime.utc(2025),
+                onDaySelected: _onDaySelected,
+              ),
+            )
+          ],
+        ),
+      ),
 
 
+      // HEURE DU RENDEZ-VOUS
       Container(
         padding: padding,
         child: Column(
@@ -138,6 +147,7 @@ class _AddDayState extends State<AddDay> {
         ),
       ),
 
+      // ADRESSE DE L'OFFRE
       Container(
         padding: padding,
         child: Column(
@@ -172,6 +182,7 @@ class _AddDayState extends State<AddDay> {
         ),
       ),
 
+      // NUMERO DE TELEPHONE DE L'OFFRE
       Container(
         padding: padding,
         child: Column(
@@ -207,6 +218,7 @@ class _AddDayState extends State<AddDay> {
       ),
 
     ];
+
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade600,
       appBar: AppBar(
@@ -226,21 +238,33 @@ class _AddDayState extends State<AddDay> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-              Expanded(child: Padding(
+              Expanded(
+                child: Padding(
                 padding: const EdgeInsets.all(2),
                 child: defaultButtonOutlined("Precedent", () { 
                   _pageController.previousPage(duration: const Duration(milliseconds: 300),
                     curve: Curves.ease);
                 }),
               )),
-              Expanded(child: Padding(
-                padding: const EdgeInsets.all(2),
-                child: defaultButton("Suivant", () {
-                  _pageController.nextPage(duration: const Duration(milliseconds: 300),
-                    curve: Curves.ease
-                  );
-                 }),
-              ))
+              
+              if(isLastPage())
+                Expanded(child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: defaultButton("Publier", () {
+                    
+                  }),
+                ))
+              else
+                Expanded(child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: defaultButton("Suivant", () {
+                    _pageController.nextPage(duration: const Duration(milliseconds: 300),
+                      
+                      curve: Curves.ease
+                    );
+                  }),
+                ))
+              
             ],)
           )
         ],

@@ -20,6 +20,7 @@ class Demandes extends StatefulWidget {
 
 class _DemandesState extends State<Demandes> {
   List<Offre> myOffres = [];
+  List<Offre> myOffresAchived = [];
 
   Future<bool> fetchData(String token) async {
     try {
@@ -30,15 +31,28 @@ class _DemandesState extends State<Demandes> {
           'Authorization': 'Bearer $token',
         },
       );
+      final response2 = await http.get(
+        Uri.parse(apiOffreArchive),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
+        },
+      );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 && response2.statusCode == 200) {
         final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+        final jsonData2 = jsonDecode(utf8.decode(response2.bodyBytes));
         List<Offre> newData = [];
+        List<Offre> newData2 = [];
         for (var offre in jsonData) {
           newData.add(Offre.fromJson(offre));
         }
+        for (var offre in jsonData2) {
+          newData2.add(Offre.fromJson(offre));
+        }
         setState(() {
           myOffres = newData;
+          myOffresAchived = newData2;
         });
         return true;
       } else {
@@ -96,12 +110,16 @@ class _DemandesState extends State<Demandes> {
                       )
                     ),
                     Container(
-                      child: !authProvider.isAuthenticated? cardOfferAuth(context): 
-                      ListView(
-                        children: const[
-                          CardOfferView2(),
-                        ],
-                      ),
+                      child: myOffresAchived.isEmpty ? cardOfferAuth(context) :
+                      ListView.builder(
+                        itemCount: myOffres.length,
+                        itemBuilder: (context, index) => CardOfferAchivedView(context,
+                          myOffres[index].idTravaux.nomtravaux!,
+                          myOffres[index].jour.toString(),
+                          myOffres[index].heure.toString(),
+                          myOffres[index].id
+                        )
+                      )
                     ),
                   ],
                 ),

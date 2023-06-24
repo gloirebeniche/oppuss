@@ -3,6 +3,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
@@ -44,7 +45,7 @@ class WorkerProfile extends StatelessWidget {
           future: fetchData(),
           builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const LoadingScreen();
+                return Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),);
               } else if (snapshot.hasError) {
                 return const Text('Erreur de récupération des données depuis l\'API');
               }else if(snapshot.hasData){

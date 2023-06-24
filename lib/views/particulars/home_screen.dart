@@ -19,6 +19,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  
+  late AuthProvider authProvider;
+
   static const List<Widget> _widgetOptions = <Widget>[
       HomePageParticular(),
       SearchWorkerView(),
@@ -30,14 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onItemTapped(int index) {
     setState(() {
       if (index == 2) {
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
         if (!authProvider.isAuthenticated) {
           context.go("/home/login");
         }else{
           context.go('/home/add_offer');
         }
       }else if(index == 3){
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
         if (!authProvider.isAuthenticated) {
           context.go("/home/login");
         }else{
@@ -47,7 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         
       }else if(index == 4){
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
         if (!authProvider.isAuthenticated) {
           context.go("/home/login");
         }else{
@@ -62,6 +62,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authProvider = Provider.of<AuthProvider>(context, listen: false);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

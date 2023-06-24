@@ -19,7 +19,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  
+  late AuthProvider authProvider;
   bool showPassword = false;
   final TextEditingController _usernameUpadeController = TextEditingController();
   final TextEditingController _firstnameUpadeController = TextEditingController();
@@ -29,8 +29,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _genderUpadeController = TextEditingController();
   final TextEditingController _telUpadeController = TextEditingController();
   final TextEditingController _adressUpadeController = TextEditingController();
-  var p = '';
-  var id = 0;
+  var p;
+
 
   Future<void> updateEmployeur(int? employeurId, Map<String, dynamic> updatedData) async {
 
@@ -54,26 +54,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    final authProvider = Provider.of<AuthProvider>(context);
-    _usernameUpadeController.text = authProvider.currentUser!.username;
-    _firstnameUpadeController.text = authProvider.currentUser!.firstName!;
-    _lastnameUpadeController.text = authProvider.currentUser!.lastName!;
-    _emailUpadeController.text = authProvider.currentUser!.email;
-    _genderUpadeController.text = authProvider.currentUser!.gender!;
-    _telUpadeController.text = authProvider.currentUser!.phoneNumber!;
-    p = authProvider.currentUser!.password;
-    id = authProvider.currentUser!.id;
-    
-
-  }
-
-  @override
   Widget build(BuildContext context) {
+    authProvider = Provider.of<AuthProvider>(context);
+    setState(() {
+      _usernameUpadeController.text = authProvider.currentUser!.username;
+      _firstnameUpadeController.text = authProvider.currentUser!.firstName!;
+      _lastnameUpadeController.text = authProvider.currentUser!.lastName!;
+      _emailUpadeController.text = authProvider.currentUser!.email;
+      _genderUpadeController.text = authProvider.currentUser!.gender!;
+      _telUpadeController.text = authProvider.currentUser!.phoneNumber!;
+      p = authProvider.currentUser!.password;
+    });
 
-    print(_genderUpadeController.text);
     return Scaffold(
       backgroundColor: white,
       appBar: CustomAppBar2("Information personnelles", context),
@@ -98,10 +90,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
              
                 children: [
                   defaultButton("Sauvegarder", (){
-                    _passwordUpadeController.text = p;
                      var data = {
                       'username' : _usernameUpadeController.text,
-                      "password" : _passwordUpadeController.text,
+                      "password" : _passwordUpadeController.text.isEmpty ? p : _passwordUpadeController.text,
                       'prenom' : _firstnameUpadeController.text,
                       'nom' : _lastnameUpadeController.text,
                       'email' : _emailUpadeController.text,
@@ -110,7 +101,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       'adress' : _adressUpadeController.text
                      };
 
-                     updateEmployeur(id, data);
+                     updateEmployeur(authProvider.currentUser?.id, data);
+                     authProvider.getCurrentUser(authProvider!.accessToken!);
                   })
                 ],
               )

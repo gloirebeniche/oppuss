@@ -67,15 +67,8 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
     );
 }
 
-
-class CardOfferView2 extends StatelessWidget {
-  const CardOfferView2({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+Container CardOfferAchivedView(BuildContext context, String nom_travaux, String day, String hours, int id){
+  return Container(
       margin: const EdgeInsets.only(top: 5),
       width: double.infinity,
       color: white,
@@ -93,29 +86,28 @@ class CardOfferView2 extends StatelessWidget {
                               AssetImage("images/undraw_electricity_k2ft.png"),
                           fit: BoxFit.cover))),
             ),
-            
             customeTextStyle(
-                "Pose de lampes et luminaire", size:headingTextSize, black,
+                nom_travaux, size:headingTextSize, black,
                 fontWeight: FontWeight.bold),
             
-            customeTextStyle(
-                "Jeudi 25 janvier 2013 de 12 à 15:30", grey2),
+            customeTextStyle("${formatDateString(day)} à partir de $hours",grey2),
             
-            
-            Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  child: defaultButtonOutlined("Voir ma demande", () {context.go("/home/offer_detail");})
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: defaultButtonOutlined("Voir ma demande", (){context.go("/home/offer_detail/$id/");})
+                  ),
+                ],
+              ),
             )
           ],
         ),
       ),
     );
-  }
 }
+
 
 class SearchWorkerCardView extends StatelessWidget {
   const SearchWorkerCardView({

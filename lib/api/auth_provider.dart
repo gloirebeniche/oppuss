@@ -21,7 +21,7 @@ class AuthProvider with ChangeNotifier {
   String? get refreshToken => _refreshToken;
   Employeur? get currentUser => _currentUser;
 
-  Future<void> _getCurrentUser(String token) async {
+  Future<void> getCurrentUser(String token) async {
     try {
       final response = await http.get(
         Uri.parse(apiGetCurrentUser),
@@ -61,7 +61,7 @@ class AuthProvider with ChangeNotifier {
     _accessToken = prefs.getString('access_token');
     _refreshToken = prefs.getString('refresh_token');
     if (_accessToken != null) {
-      await _getCurrentUser(_accessToken!);
+      await getCurrentUser(_accessToken!);
     }
     notifyListeners();
   }
@@ -83,7 +83,7 @@ class AuthProvider with ChangeNotifier {
         final responseData = jsonDecode(response.body);
         _accessToken = responseData['access_token'];
         _refreshToken = responseData['refresh_token'];
-        await _getCurrentUser(_accessToken!);
+        await getCurrentUser(_accessToken!);
         await _saveTokens(_accessToken!, _refreshToken!);
         notifyListeners();
         return true;

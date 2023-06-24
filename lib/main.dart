@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/modules/chat_page.dart';
 import 'package:oppuss/utils/theme.dart';
@@ -28,12 +29,16 @@ import 'views/particulars/demande/offer_more_detail.dart';
 import 'views/particulars/demande/offer_update.dart';
 import 'views/particulars/publier/add_day.dart';
 import 'views/particulars/publier/add_travaux.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
   
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
  
+  await initializeDateFormatting();
   runApp(MyApp());
 }
 
