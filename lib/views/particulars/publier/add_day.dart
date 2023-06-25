@@ -246,6 +246,7 @@ class _AddDayState extends State<AddDay> {
                   child: defaultButton("Publier", () async {
                     if (_adressController.text.isNotEmpty) {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
+                      print(prefs.getString("id_domaine"));
                       final response = await http.post(
                         Uri.parse(apiOffres),
                         headers: <String, String>{
@@ -255,8 +256,8 @@ class _AddDayState extends State<AddDay> {
                         body: jsonEncode(<String, dynamic>{
                           'jour': DateFormat("yyyy-MM-dd").format(today),
                           'heure': TimeOfDay(hour: time.hour, minute: time.minute).format(context),
-                          'id_domaine': prefs.getString("id_domaine"),
-                          'id_travaux': prefs.getString("id_travaux"),
+                          'id_domaine_id': prefs.getString("id_domaine"),
+                          'id_travaux_id': prefs.getString("id_travaux"),
                           'lieu': _adressController.text,
                           'description': _descriptionController.text
                         }),
