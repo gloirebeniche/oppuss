@@ -1,7 +1,8 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps, use_build_context_synchronously
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:oppuss/api/api.dart';
@@ -256,8 +257,8 @@ class _AddDayState extends State<AddDay> {
                         body: jsonEncode(<String, dynamic>{
                           'jour': DateFormat("yyyy-MM-dd").format(today),
                           'heure': TimeOfDay(hour: time.hour, minute: time.minute).format(context),
-                          'id_domaine_id': prefs.getString("id_domaine"),
-                          'id_travaux_id': prefs.getString("id_travaux"),
+                          'id_domaine': prefs.getString("id_domaine"),
+                          'id_travaux': prefs.getString("id_travaux"),
                           'lieu': _adressController.text,
                           'description': _descriptionController.text
                         }),
@@ -265,8 +266,9 @@ class _AddDayState extends State<AddDay> {
 
                       if (response.statusCode == 201) {
                         messageBoxSuccess(context, "L'offre a été publier avec succès :)");
+                        context.go('/home');
                       } else {
-                        print(response.body);
+                        messageBox(context, "ERROR: Impossible de créer l'offre");
                       }
                     } else {
                       messageBox(context, "Adresse ou numero de telephone invalid");
