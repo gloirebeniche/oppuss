@@ -28,3 +28,4 @@ const String apiAppreciation = '$apiGestionOffres/appreciations/';
 const String apiGestionCompte = "${urlBase}gestion/compte";
 const String apiGetWorkers = '$apiGestionCompte/workers/';
 const String apiGetEmployeurs = '$apiGestionCompte/employeurs/';
+

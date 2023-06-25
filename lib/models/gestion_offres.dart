@@ -37,8 +37,8 @@ class Commentaire {
 
 class Offre {
   final int id;
-  final Domaine idDomaine;
-  final Travaux idTravaux;
+  final int idDomaine;
+  final int idTravaux;
   final Employeur employeur;
   final List<Commentaire> commentaires;
   final DateTime jour;
@@ -83,8 +83,8 @@ class Offre {
     );
     return Offre(
       id: json['id'],
-      idDomaine: Domaine.fromJson(json['id_domaine']),
-      idTravaux: Travaux.fromJson(json['id_travaux']),
+      idDomaine: json['id_domaine'],
+      idTravaux: json['id_travaux'],
       employeur: Employeur.fromJson(json['employeur']),
       commentaires: commentaireList,
       jour: jour,
@@ -100,8 +100,8 @@ class Offre {
   factory Offre.defaultValues() {
     return Offre(
       id: 0,
-      idDomaine: Domaine(),
-      idTravaux: Travaux(),
+      idDomaine: 1,
+      idTravaux: 2,
       employeur: Employeur(id: 0, email: '', username: '', password: '', isActive: false, isAdmin: false, createdAt: DateTime.now(), updatedAt: DateTime.now()),
       commentaires: [],
       jour: DateTime.now(),

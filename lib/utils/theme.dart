@@ -3,6 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+import '../api/api.dart';
+import '../models/ref_btp.dart';
+
 
 // CETTE PARTIE CONCERNE LES DIFFERENT TAILLE DE LA POLICE
 const double appbarTextSize = 22;
@@ -149,4 +155,17 @@ String formatRelativeTime(DateTime dateTime) {
     final months = difference.inDays ~/ 30;
     return 'il y a $months mois';
   }
+}
+
+
+Future<String> getTravauxLabel(int i) async {
+  final response = await http.get(Uri.parse("$apiTravaux/$i/"));
+  Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
+  return travaux.nomtravaux ?? 'NOT FOUND';
+}
+
+Future<String> getDomainLabel(int i) async {
+  final response = await http.get(Uri.parse("$apiDomaines/$i/"));
+  Domaine domaine = Domaine.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
+  return domaine.nomdomaine ?? 'NOT FOUND';
 }

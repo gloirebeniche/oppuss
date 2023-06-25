@@ -69,6 +69,7 @@ class _DemandesState extends State<Demandes> {
     super.initState();
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     fetchData(authProvider.accessToken ?? '');
+
   }
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,7 @@ class _DemandesState extends State<Demandes> {
                       ListView.builder(
                         itemCount: myOffres.length,
                         itemBuilder: (context, index) => CardOfferView(context,
-                          myOffres[index].idTravaux.nomtravaux!,
+                          getTravauxLabel(myOffres[index].idTravaux).then((value) => value).toString(),
                           myOffres[index].jour.toString(),
                           myOffres[index].heure.toString(),
                           myOffres[index].id
@@ -114,7 +115,7 @@ class _DemandesState extends State<Demandes> {
                       ListView.builder(
                         itemCount: myOffres.length,
                         itemBuilder: (context, index) => CardOfferAchivedView(context,
-                          myOffres[index].idTravaux.nomtravaux!,
+                          "myOffres[index].idTravaux.nomtravaux!",
                           myOffres[index].jour.toString(),
                           myOffres[index].heure.toString(),
                           myOffres[index].id

@@ -60,7 +60,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Domaine d'activité",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle(monOffre.idDomaine.nomdomaine!,black),
+                          child: customeTextStyle("monOffre.idDomaine.nomdomaine!",black),
                         ),
                       ],
                     ),
@@ -78,7 +78,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Nom Travaux",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle(monOffre.idTravaux.nomtravaux!,black),
+                          child: customeTextStyle("monOffre.idTravaux.nomtravaux!",black),
                         ),
                       ],
                     ),

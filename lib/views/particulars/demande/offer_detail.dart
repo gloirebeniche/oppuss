@@ -95,7 +95,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: customeTextStyle(monOffres.idTravaux.nomtravaux ??'', size:18, black, fontWeight: FontWeight.bold),
+                  child: customeTextStyle("monOffres.idTravaux.nomtravaux" ??'', size:18, black, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
