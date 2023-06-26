@@ -1,9 +1,11 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
+import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
@@ -24,10 +26,17 @@ class OfferDetailView extends StatefulWidget {
 class _OfferDetailViewState extends State<OfferDetailView> {
 
   late Offre monOffres = Offre.defaultValues();
+  late bool isLoading;
+  
   dynamic id = 0;
   _OfferDetailViewState(id_offre){id = id_offre;}
 
+  String nom_travaux = "";
+
   Future<bool>fetchData(String token) async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       final response = await http.get(
         Uri.parse(apiOffres + id),
@@ -42,7 +51,12 @@ class _OfferDetailViewState extends State<OfferDetailView> {
         final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
         setState(() {
           monOffres = Offre.fromJson(jsonData);
-          print(monOffres);
+        });
+        var reponse = await http.get(Uri.parse("$apiTravaux/${monOffres.idTravaux}/"));
+        Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(reponse.bodyBytes)));
+        setState(() {
+          nom_travaux = travaux.nomtravaux!;
+          isLoading = false;
         });
         return true;
       }else{
@@ -64,7 +78,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      body: ListView(
+      body: isLoading? Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),): ListView(
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.20,
@@ -95,11 +109,11 @@ class _OfferDetailViewState extends State<OfferDetailView> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: customeTextStyle("monOffres.idTravaux.nomtravaux" ??'', size:18, black, fontWeight: FontWeight.bold),
+                  child: customeTextStyle(nom_travaux, size:18, black, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  child: customeTextStyle("${monOffres.jour} à partir de ${monOffres.heure}", black),
+                  child: customeTextStyle("${formatDateString(monOffres.jour.toString())} à partir de ${monOffres.heure.hour}:${monOffres.heure.minute}", black),
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 25),

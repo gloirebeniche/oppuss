@@ -31,11 +31,14 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                 nom_travaux, size:headingTextSize, black,
                 fontWeight: FontWeight.bold),
             
-            customeTextStyle(
-                "${formatDateString(day)} à partir de $hours",grey2),
             Container(
-              margin: const EdgeInsets.only(top: 20),
-              padding: padding,
+              margin: EdgeInsets.only(top: 5),
+              child: customeTextStyle(
+                  "${formatDateString(day)} à partir de $hours",grey2),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(10),
               color: Colors.transparent,
               child: Row(
                 children: [
@@ -45,7 +48,7 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                     color: textColorImportant,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 0),
                     child: customeTextStyle("Vous avez reçu 13 offres",
                         textColorImportant,
                         fontWeight: FontWeight.bold),

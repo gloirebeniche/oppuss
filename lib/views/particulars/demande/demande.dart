@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
@@ -9,6 +10,8 @@ import 'package:oppuss/widget/particular/card_view.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import '../../../models/ref_btp.dart';
 
 
 class Demandes extends StatefulWidget {
@@ -21,8 +24,13 @@ class Demandes extends StatefulWidget {
 class _DemandesState extends State<Demandes> {
   List<Offre> myOffres = [];
   List<Offre> myOffresAchived = [];
+  
+  late bool isLoading;
 
   Future<bool> fetchData(String token) async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       final response = await http.get(
         Uri.parse(apiOffres),
@@ -53,6 +61,7 @@ class _DemandesState extends State<Demandes> {
         setState(() {
           myOffres = newData;
           myOffresAchived = newData2;
+          isLoading = false;
         });
         return true;
       } else {
@@ -77,9 +86,9 @@ class _DemandesState extends State<Demandes> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: white,
+          backgroundColor: grey,
           appBar: CustomAppBar("Mes demandes",context),
-          body: Column(
+          body: isLoading? Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),): Column(
             children: [
               Container(
                 color: white,
@@ -102,13 +111,33 @@ class _DemandesState extends State<Demandes> {
                       myOffres.isEmpty ? cardOfferAuth(context) :
                       ListView.builder(
                         itemCount: myOffres.length,
-                        itemBuilder: (context, index) => CardOfferView(context,
-                          getTravauxLabel(myOffres[index].idTravaux).then((value) => value).toString(),
-                          myOffres[index].jour.toString(),
-                          myOffres[index].heure.toString(),
-                          myOffres[index].id
-                        )
+                        itemBuilder: (context, index) {
+                          return FutureBuilder<http.Response>(
+                            future: http.get(Uri.parse("$apiTravaux/${myOffres[index].idTravaux}/")),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return CircularProgressIndicator(); // Affichez un indicateur de chargement pendant que la requête est en cours
+                              } else if (snapshot.hasError) {
+                                return Text("Erreur : ${snapshot.error}");
+                              } else {
+                                if (snapshot.hasData) {
+                                  Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(snapshot.data!.bodyBytes)));
+                                  return CardOfferView(
+                                    context,
+                                    travaux.nomtravaux!,
+                                    myOffres[index].jour.toString(),
+                                    "${myOffres[index].heure.hour}:${myOffres[index].heure.minute}",
+                                    myOffres[index].id
+                                  );
+                                } else {
+                                  return Text("Aucune donnée");
+                                }
+                              }
+                            },
+                          );
+                        },
                       )
+
                     ),
                     Container(
                       child: myOffresAchived.isEmpty ? cardOfferAuth(context) :

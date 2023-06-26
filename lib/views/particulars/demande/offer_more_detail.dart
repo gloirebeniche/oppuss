@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
@@ -10,11 +11,17 @@ import 'dart:convert';
 
 import 'package:provider/provider.dart';
 
+import '../../../models/ref_btp.dart';
+
 
 class OfferMoreDetailPage extends StatelessWidget {
   final dynamic idOffre;
-  const OfferMoreDetailPage({super.key,  required this.idOffre});
-
+  
+  String? nom_travaux;
+  
+  String? nom_domaine;
+  OfferMoreDetailPage({super.key,  required this.idOffre});
+  
   Future<Offre> fetchData(String token) async {
     final response = await http.get(
       Uri.parse(apiOffres + idOffre),
@@ -26,7 +33,15 @@ class OfferMoreDetailPage extends StatelessWidget {
     if (response.statusCode == 200) {
       //permettre au donnée d'accepter les caractère spéciaux
       final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-      return Offre.fromJson(jsonData);
+      Offre offre = Offre.fromJson(jsonData);
+
+      var r1 = await http.get(Uri.parse("$apiTravaux/${offre.idTravaux}/"));
+      var r2 = await http.get(Uri.parse("$apiDomaines/${offre.idDomaine}/"));
+      Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(r1.bodyBytes)));
+      Domaine domaine = Domaine.fromJson(jsonDecode(utf8.decode(r2.bodyBytes)));
+      nom_travaux = travaux.nomtravaux;
+      nom_domaine = domaine.nomdomaine;
+      return offre;
     }else{
       throw Exception('Erreur de récupération des données depuis l\'API');
     }
@@ -41,7 +56,7 @@ class OfferMoreDetailPage extends StatelessWidget {
         future: fetchData(authProvider.accessToken!),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingScreen();
+            return Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),);
           } else if (snapshot.hasError) {
             return const Text('Erreur de récupération des données depuis l\'API');
           }else if(snapshot.hasData){ 
@@ -60,7 +75,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Domaine d'activité",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle("monOffre.idDomaine.nomdomaine!",black),
+                          child: customeTextStyle(nom_domaine ?? '',black),
                         ),
                       ],
                     ),
@@ -78,7 +93,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Nom Travaux",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle("monOffre.idTravaux.nomtravaux!",black),
+                          child: customeTextStyle(nom_travaux ?? '',black),
                         ),
                       ],
                     ),
@@ -132,7 +147,7 @@ class OfferMoreDetailPage extends StatelessWidget {
                         customeTextStyle("Heure",grey2, size: headingTextSize),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: customeTextStyle(monOffre.heure.toString(),black),
+                          child: customeTextStyle("${monOffre.heure.hour}:${monOffre.heure.minute}",black),
                         ),
                       ],
                     ),
@@ -183,4 +198,5 @@ class OfferMoreDetailPage extends StatelessWidget {
       )
     );
   }
+  
 }
