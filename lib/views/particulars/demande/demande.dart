@@ -68,7 +68,6 @@ class _DemandesState extends State<Demandes> {
         return false;
       }
     } catch (e) {
-      print(e);
       return false;
     }
   }
@@ -82,7 +81,7 @@ class _DemandesState extends State<Demandes> {
   }
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+
     return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -116,7 +115,7 @@ class _DemandesState extends State<Demandes> {
                             future: http.get(Uri.parse("$apiTravaux/${myOffres[index].idTravaux}/")),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState == ConnectionState.waiting) {
-                                return CircularProgressIndicator(); // Affichez un indicateur de chargement pendant que la requête est en cours
+                                return const CircularProgressIndicator(); // Affichez un indicateur de chargement pendant que la requête est en cours
                               } else if (snapshot.hasError) {
                                 return Text("Erreur : ${snapshot.error}");
                               } else {
@@ -130,7 +129,7 @@ class _DemandesState extends State<Demandes> {
                                     myOffres[index].id
                                   );
                                 } else {
-                                  return Text("Aucune donnée");
+                                  return const Text("Aucune donnée");
                                 }
                               }
                             },

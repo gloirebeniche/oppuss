@@ -37,7 +37,6 @@ AppBar CustomAppBar2(String title, BuildContext context) {
 }
 
 class CustomizeAppBar extends StatelessWidget {
-  @override
   final Size preferredSize;
 
   final String title;

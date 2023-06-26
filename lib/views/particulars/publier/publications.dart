@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/api.dart';
-import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddOffer extends StatefulWidget {
@@ -69,7 +67,7 @@ class _AddOfferState extends State<AddOffer> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade600,
       appBar: AppBar(

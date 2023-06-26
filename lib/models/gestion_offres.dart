@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oppuss/models/account.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
-import 'package:oppuss/models/ref_btp.dart';
 
 class Commentaire {
   final int id;

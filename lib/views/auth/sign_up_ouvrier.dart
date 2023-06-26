@@ -1,13 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-
-import '../../widget/customized_appbar.dart';
 import 'login_screen.dart';
 
 class SignUpScreenOuvrier extends StatefulWidget {

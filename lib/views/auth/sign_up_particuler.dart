@@ -4,18 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
-import 'dart:convert';
-
 // ignore: depend_on_referenced_packages
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreenParticuler extends StatefulWidget {
   const SignUpScreenParticuler({super.key});
@@ -65,7 +59,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       //appBar: CustomAppBar2("", context),
       backgroundColor: white, //const Color(0xFFEDECF2),

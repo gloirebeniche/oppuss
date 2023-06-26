@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -63,7 +65,6 @@ class _OfferDetailViewState extends State<OfferDetailView> {
         return false;
       }
     } catch (e) {
-      print(e);
       return false;
     }
   }

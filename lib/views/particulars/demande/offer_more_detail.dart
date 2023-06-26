@@ -1,10 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
