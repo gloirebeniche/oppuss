@@ -80,6 +80,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
   }
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: white,
       body: isLoading? Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),): ListView(
@@ -204,7 +205,26 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                                             iconColor: Colors.grey,
                                           ),
                                           IconsButton(
-                                            onPressed: () {},
+                                            onPressed: () async {
+                                              setState(() {
+                                                Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),);
+                                              });
+                                              final response = await http.delete(
+                                                Uri.parse("${apiOffres + id}/"),
+                                                headers: <String, String>{
+                                                  'Content-Type': 'application/json; charset=UTF-8',
+                                                  'Authorization': 'Bearer ${authProvider.accessToken}',
+                                                },
+                                              );
+                                              if (response.statusCode == 204) {
+                                                setState(() {
+                                                  messageBoxSuccess(context, "message");
+                                                  context.go("/home");
+                                                });
+                                              } else {
+                                                
+                                              }
+                                            },
                                             text: 'Supprimer',
                                             iconData: EvaIcons.trash2Outline,
                                             color: Colors.red,
