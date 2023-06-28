@@ -4,6 +4,9 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
@@ -142,15 +145,95 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 25),
-                  child: Center(child: defaultButtonOutlined("Detail", (){context.go("/home/offer_detail/$id/view/$id");}))
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 2),
-                  child: Center(child: defaultButton("Modifer", (){context.go("/home/offer_detail/$id/update_offer/");}))
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.all(5),
+                        child: Center(child: defaultButtonOutlined("Detail", (){context.go("/home/offer_detail/$id/view/$id");}))
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 15),
+                        padding: const EdgeInsets.all(5),
+                        child: Center(child: defaultButton("Modifer", (){
+                          Dialogs.bottomMaterialDialog(
+                            //msg: 'Are you sure? you can\'t undo this action',
+                            title: 'Modifier',
+                            context: context,
+                            actions: [
+                              Column(
+                                children: [
+                                  Divider(height: 1, thickness: 1, color: grey,),
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                      context.go("/home/offer_detail/$id/update_offer/");
+                                    },
+                                    child: Row(
+                                      children: [
+                                        icon(EvaIcons.edit2Outline),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 15),
+                                          child: customeTextStyle("Modifier ma demande", black, size: 15),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  
+                                  Divider(height: 1, thickness: 1, color: grey,),
+
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                      Dialogs.materialDialog(
+                                        msg: "Êtes-vous sûr de vouloir supprimer ??",
+                                        title: "Suppression",
+                                        color: Colors.white,
+                                        context: context,
+                                        actions: [
+                                          IconsOutlineButton(
+                                            onPressed: () {Navigator.pop(context);},
+                                            text: 'Annuler',
+                                            iconData: EvaIcons.closeCircleOutline,
+                                            textStyle: const TextStyle(color: Colors.grey),
+                                            iconColor: Colors.grey,
+                                          ),
+                                          IconsButton(
+                                            onPressed: () {},
+                                            text: 'Supprimer',
+                                            iconData: EvaIcons.trash2Outline,
+                                            color: Colors.red,
+                                            textStyle: const TextStyle(color: Colors.white),
+                                            iconColor: Colors.white,
+                                          ),
+                                        ]);
+                                      },
+                                    child: Row(
+                                      children: [
+                                        icon(EvaIcons.trash2Outline, color: Colors.red),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 15),
+                                          child: customeTextStyle("Annuler ma demande", Colors.red, size: 15),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, thickness: 1, color: grey,),
+                                ],
+                              )
+                            ]);
+                        }))
+                      ),
+                    ),
+                  ],
                 ),
                 Container( margin: const EdgeInsets.only(top: 20), child: const Divider(height: 5, thickness: 1,),),
+                
                 TextButton(
                   onPressed: () {context.go("/home/offer_detail/$id/coments/$id");},
                   child: Container(
