@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+import 'package:oppuss/views/welcome_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'particulars/home_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -11,15 +14,33 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
 
-    Timer(const Duration(seconds: 2),() => context.go("/welcome"));
+  Future<void> checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLaunch = (prefs.getBool('first_launch') ?? true);
+
+    if (isFirstLaunch) {
+      await prefs.setBool('first_launch', false);
+      Timer(const Duration(seconds: 2), () {
+        Get.to(() => const WelcomeAuth(),
+            transition: Transition.fadeIn,
+            duration: const Duration(milliseconds: 300));
+      });
+    } else {
+      Timer(const Duration(seconds: 2), () {
+        Get.off(() => const HomeScreen(),
+            transition: Transition.fadeIn,
+            duration: const Duration(milliseconds: 300));
+      });
+    }
   }
 
-
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkFirstSeen();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

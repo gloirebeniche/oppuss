@@ -59,6 +59,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   rating_dialog: ^2.0.4
   material_dialogs: ^1.1.4
+  get:
   flutter_localizations:
     sdk: flutter
   
