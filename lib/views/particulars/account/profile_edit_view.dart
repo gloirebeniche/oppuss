@@ -56,15 +56,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     authProvider = Provider.of<AuthProvider>(context);
-    setState(() {
-      _usernameUpadeController.text = authProvider.currentUser!.username;
-      _firstnameUpadeController.text = authProvider.currentUser!.firstName!;
-      _lastnameUpadeController.text = authProvider.currentUser!.lastName!;
-      _emailUpadeController.text = authProvider.currentUser!.email;
-      _genderUpadeController.text = authProvider.currentUser!.gender!;
-      _telUpadeController.text = authProvider.currentUser!.phoneNumber!;
-      p = authProvider.currentUser!.password;
-    });
+    // setState(() {
+    //   _usernameUpadeController.text = authProvider.currentUser!.username;
+    //   _firstnameUpadeController.text = authProvider.currentUser!.firstName!;
+    //   _lastnameUpadeController.text = authProvider.currentUser!.lastName!;
+    //   _emailUpadeController.text = authProvider.currentUser!.email;
+    //   _genderUpadeController.text = authProvider.currentUser!.gender!;
+    //   _telUpadeController.text = authProvider.currentUser!.phoneNumber!;
+    //   p = authProvider.currentUser!.password;
+    // });
 
     return Scaffold(
       backgroundColor: white,

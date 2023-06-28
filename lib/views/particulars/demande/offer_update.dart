@@ -1,12 +1,23 @@
+// ignore_for_file: unnecessary_brace_in_string_interps, use_build_context_synchronously
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:oppuss/api/api.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:table_calendar/table_calendar.dart';
+import 'package:http/http.dart' as http;
+import '../../../api/auth_provider.dart';
+import '../../../models/gestion_offres.dart';
+import '../../../models/ref_btp.dart';
 
 class UpdateOfferPage extends StatefulWidget {
-  const UpdateOfferPage({super.key});
+  final dynamic idOffre;
+  const UpdateOfferPage({super.key, this.idOffre}); //required this.idDomaine;
 
   @override
   State<UpdateOfferPage> createState() => _UpdateOfferPageState();
@@ -14,224 +25,296 @@ class UpdateOfferPage extends StatefulWidget {
 
 class _UpdateOfferPageState extends State<UpdateOfferPage> {
   
-  TextEditingController inputDescription = TextEditingController();
+  DateTime today = DateTime.now();
   
-  TextEditingController inputDate = TextEditingController();
+  TimeOfDay time = TimeOfDay.now();
   
-  TextEditingController inputHour = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   
-  TextEditingController inputAdress = TextEditingController();
+  final TextEditingController _adressController = TextEditingController();
 
-  TextEditingController inputTel = TextEditingController();
-  
-  List<dynamic> countrie = [];
-  List<dynamic> statesMaster = [];
-  List<dynamic> states = [];
+  String nom_travaux = "";
 
-  String? countryId;
-  String? stateId;
+  int id_domaine = 0;
+  int id_travaux = 0;
+  
+  //final TextEditingController _telController = TextEditingController();
+
+
+  Future<Offre> fetchData(String token) async {
+    final response = await http.get(
+      Uri.parse("$apiOffres${widget.idOffre}/"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    if (response.statusCode == 200) {
+      //permettre au donnée d'accepter les caractère spéciaux
+      final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+      
+      Offre offre = Offre.fromJson(jsonData);
+      
+      var r1 = await http.get(Uri.parse("$apiTravaux/${offre.idTravaux}/"));
+      
+      Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(r1.bodyBytes)));
+      
+      setState(() { nom_travaux = travaux.nomtravaux!; });
+
+      return offre;
+
+    }else{
+      throw Exception('Erreur de récupération des données depuis l\'API');
+    }
+  }
+
+  void _onDaySelected(DateTime day, DateTime focusedDay){
+    setState(() {
+      today = day;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    countrie.add({"id" : "1", "label": "Congo"});
-    countrie.add({"id" : "2", "label": "RDC"});
-    statesMaster = [
-      {"ID": 1, "Name": "Assam", "ParendId": 1},
-      {"ID": 2, "Name": "Assam", "ParendId": 2},
-      {"ID": 3, "Name": "Assam", "ParendId": 3},
-    ];
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    fetchData(authProvider.accessToken!).then((offre) {
+      setState(() {
+        _adressController.text = offre.lieu;
+        _descriptionController.text = offre.description;
+        today = offre.jour;
+        time = offre.heure;
+        id_domaine = offre.idDomaine;
+        id_travaux = offre.idTravaux;
+      });
+    }).catchError((error) {
+      // Handle any potential errors
+    });
   }
+
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
-        appBar: CustomAppBar2("Modifier mon offre", context),
-        body: ListView(
-          children: [
-            
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: FormHelper.dropDownWidget(
-                context,
-                "Quel est le type de travaux à réaliser ?",
-                countryId,
-                countrie,
-                (onChanged){
-                  countryId = onChanged;
-                  states = statesMaster.where(
-                    (stateItem) => stateItem["ParentId"].toString() == onChanged.toString(),).toList();
-                    stateId = null;
-                },
-                (onValidate){
-                  if (onValidate == null) {
-                    return "Please select country";
-                  }
-                  return null;
-                },
-                borderColor: grey,
-                borderFocusColor: primaryColor,
-                borderRadius: 10,
-                optionValue: "id",
-                optionLabel: "label"
-              ),
-            ),
-
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              child: FormHelper.dropDownWidget(
-                context,
-                "",
-                countryId,
-                countrie,
-                (onChanged){
-                  countryId = onChanged;
-                  states = statesMaster.where(
-                    (stateItem) => stateItem["ParentId"].toString() == onChanged.toString(),).toList();
-                    stateId = null;
-                },
-                (onValidate){
-                  if (onValidate == null) {
-                    return "Please select country";
-                  }
-                  return null;
-                },
-                borderColor: grey,
-                borderFocusColor: primaryColor,
-                borderRadius: 10,
-                optionValue: "id",
-                optionLabel: "label"
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 25, left: 20, right: 20),
-              child: customeTextStyle("Quel jour vous convient le mieux ?", black, fontWeight: FontWeight.bold),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextField(
-                controller: inputDate,
-                minLines: 1,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:  BorderSide(width: 1.5, color: grey),
+      backgroundColor: Colors.blueGrey.shade600,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.blueGrey.shade600,
+      ),
+      body: ListView(
+        children: [
+          // JOUR DE L'OFFRE
+          Container(
+            padding: padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customeTextStyle("Quels jours vous convient le mieux ?" , white, fontWeight: FontWeight.bold, size: 18),
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    color: white,
                     borderRadius: BorderRadius.circular(10)
-                  )
+                  ),
+                  child: TableCalendar(
+                    locale: "fr_FR",
+                    headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
+                    availableGestures: AvailableGestures.all,
+                    selectedDayPredicate: (day) => isSameDay(day, today),
+                    focusedDay: DateTime.now(), 
+                    firstDay: DateTime.now(), 
+                    lastDay: DateTime.utc(2025),
+                    onDaySelected: _onDaySelected,
+                  ),
+                )
+              ],
+            ),
+          ),
+
+          // HEURE DU RENDEZ-VOUS
+          Container(
+            padding: padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customeTextStyle("Nous estimons l'heure du rendez-vous, cela vous convient-il ?", white, fontWeight: FontWeight.bold, size: 18),
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: customeTextStyle("${time.hour}:${time.minute}", white, fontWeight: FontWeight.bold, size: 20)
                 ),
-                onTap: () async{
-                  DateTime? pickeddate = await showDatePicker(
-                    context: context, 
-                    initialDate: DateTime.now(), 
-                    firstDate: DateTime.now(), 
-                    lastDate: DateTime(2100)
-                  );
 
-                  if (pickeddate != null) {
-                    setState(() {
-                      inputDate.text = DateFormat("dd/MM/yyyy").format(pickeddate);
-                    });
-                  }
-                },
-              ),
-            ),
+                SizedBox(
+                  height: 40,
+                  width: 120,
+                  child: defaultButton("Choisir", () async { 
+                    TimeOfDay? newTime = await showTimePicker(
+                      context: context, 
+                      initialTime: time);
 
-            
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("Quel est l'heure qui vous convient ?", black, fontWeight: FontWeight.bold),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextField(
-                controller: inputHour,
-                minLines: 1,
-                maxLines: 2,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:  BorderSide(width: 1, color: grey),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-                onTap: () async{
-                  TimeOfDay? time = await showTimePicker(
-                    context: context, 
-                    initialTime: TimeOfDay.now());
+                    if (newTime == null) return;
 
-                  if (time != null) {
-                    setState(() {
-                      inputHour.text = time.format(context).toLowerCase();
-                    });
-                  }
-                },
-              ),
+                    setState(() { time = newTime; });
+                  }),
+                )
+              ],
             ),
+          ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("Quelle est l'adresse de la prestation ?", black, fontWeight: FontWeight.bold),
+          // ADRESSE DE L'OFFRE
+          Container(
+            padding: padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customeTextStyle("Quelle est l'adresse de la prestation ?", white, fontWeight: FontWeight.bold, size: 18),
+                Container(
+                  height: 50,
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    color: white,
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    children:  [
+                      Expanded(
+                        child: TextField(
+                          controller: _adressController,
+                          cursorColor: black,
+                          cursorHeight: 20,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            hintText: "246 rue Bandza, Brazzaville",
+                            hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: headingTextSize, color: grey2)),
+                            border: const OutlineInputBorder(borderSide: BorderSide.none)
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextField(
-                controller: inputAdress,
-                minLines: 1,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:  BorderSide(width: 1.5, color: grey),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-              ),
-            ),
+          ),
 
-             Padding(
-              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("À quel numéro êtes-vous joignable en cas de besoins ?", black, fontWeight: FontWeight.bold),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextField(
-                controller: inputTel,
-                minLines: 1,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:  BorderSide(width: 1.5, color: grey),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-              ),
-            ),
+          // // NUMERO DE TELEPHONE DE L'OFFRE
+          // Container(
+          //   padding: padding,
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       customeTextStyle("À quel numéro de téléphone l'ouvrier pourra-t-l vous joindre ?", white, fontWeight: FontWeight.bold, size: 18),
+          //       Container(
+          //         height: 50,
+          //         margin: const EdgeInsets.only(top: 10),
+          //         decoration: BoxDecoration(
+          //           color: white,
+          //           borderRadius: BorderRadius.circular(5)
+          //         ),
+          //         child: Column(
+          //           children:  [
+          //             Expanded(
+          //               child: TextField(
+          //                 controller: _telController,
+          //                 cursorColor: black,
+          //                 cursorHeight: 20,
+          //                 keyboardType: TextInputType.phone,
+          //                 decoration: InputDecoration(
+          //                   hintText: "06 483 8870",
+          //                   hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: headingTextSize, color: grey2)),
+          //                   border: const OutlineInputBorder(borderSide: BorderSide.none)
+          //                 ),
+          //               )
+          //             ),
+          //           ],
+          //         ),
+          //       )
+          //     ],
+          //   ),
+          // ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-              child: customeTextStyle("Détail supplementaire (optionnel)", black, fontWeight: FontWeight.bold),
+          // DESCRIPTION ICI
+          Container(
+            padding: padding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customeTextStyle("Quel est votre besoins ?", white, fontWeight: FontWeight.bold, size: 17),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  margin: const EdgeInsets.only(top: 5),
+                  decoration: BoxDecoration(
+                    color: white,
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    children:  [
+                      Expanded(
+                        child: TextField(
+                          controller: _descriptionController,
+                          cursorColor: black,
+                          cursorHeight: 20,
+                          keyboardType: TextInputType.multiline,
+                          decoration: InputDecoration(
+                            hintText: "Votre description...",
+                            hintStyle: GoogleFonts.lato(textStyle: TextStyle(fontSize: headingTextSize, color: grey2)),
+                            border: const OutlineInputBorder(borderSide: BorderSide.none)
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextField(
-                controller: inputDescription,
-                minLines: 3,
-                maxLines: 7,
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:  BorderSide(width: 1.5, color: grey),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-              ),
-            ),
-            Container(
-              padding: padding,
-              child: defaultButton("Mettre à jour", (){}),
-            )
-          ],
-        ),
-      );
+          ),
+          
+
+          // BOUTON PUBLIER
+          Container(
+            margin: margin,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              Expanded(child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: defaultButton("Modifier", () async {
+                    if (_adressController.text.isNotEmpty) {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      final response = await http.put(
+                        Uri.parse("$apiOffres${widget.idOffre}/"),
+                        headers: <String, String>{
+                          'Content-Type': 'application/json; charset=UTF-8',
+                          'Authorization': 'Bearer ${authProvider.accessToken}',
+                        },
+                        body: jsonEncode(<String, dynamic>{
+                          'jour': DateFormat("yyyy-MM-dd").format(today),
+                          'heure': TimeOfDay(hour: time.hour, minute: time.minute).format(context),
+                          'id_domaine': id_domaine,
+                          'id_travaux': id_travaux,
+                          'lieu': _adressController.text,
+                          'description': _descriptionController.text
+                        }),
+                      );
+
+                     
+                      if (response.statusCode == 200) {
+                        messageBoxSuccess(context, "L'offre a été modifier avec succès :)");
+                        context.go('/home/offer_detail/${widget.idOffre}');
+                      } else {
+                        messageBox(context, "ERROR: Impossible de créer l'offre");
+                      }
+                    } else {
+                      messageBox(context, "Adresse ou numero de telephone invalid");
+                    }
+                  }),
+              ))
+              
+            ],)
+          )
+        ],
+      )
+    );
   }
+
 }

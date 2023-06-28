@@ -172,7 +172,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                                   TextButton(
                                     onPressed: (){
                                       Navigator.pop(context);
-                                      context.go("/home/offer_detail/$id/update_offer/");
+                                      context.go("/home/offer_detail/$id/update_offer/$id");
                                     },
                                     child: Row(
                                       children: [
