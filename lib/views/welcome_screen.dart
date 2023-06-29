@@ -54,13 +54,13 @@ class WelcomeAuth extends StatelessWidget {
                     DelayedAnimation(
                       delay: transitionAnimate,
                       child: CustomButton("Commencer", (){
-                        Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 300));
+                        Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                       }),
                     ),
                     DelayedAnimation(
                       delay: transitionAnimate,
                       child: CustomOutlinedButton("S'inscrire", (() {
-                        Get.to(() => const SignUpScreenParticuler(), transition: Transition.fadeIn, duration: const Duration(milliseconds: 300));
+                        Get.to(() => const SignUpScreenParticuler(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                       })),
                     ),
                   ],

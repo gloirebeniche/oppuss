@@ -1,8 +1,8 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
@@ -12,11 +12,16 @@ import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_offres.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/demande/offer_more_detail.dart';
+import 'package:oppuss/views/particulars/demande/offer_update.dart';
+import 'package:oppuss/views/particulars/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+
+import 'coments.dart';
 
 
 class OfferDetailView extends StatefulWidget {
@@ -44,7 +49,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
     });
     try {
       final response = await http.get(
-        Uri.parse(apiOffres + id),
+        Uri.parse(apiOffres + id.toString()),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $token',
@@ -65,6 +70,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
         });
         return true;
       }else{
+        
         return false;
       }
     } catch (e) {
@@ -154,7 +160,9 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                       child: Container(
                         margin: const EdgeInsets.only(top: 15),
                         padding: const EdgeInsets.all(5),
-                        child: Center(child: defaultButtonOutlined("Detail", (){context.go("/home/offer_detail/$id/view/$id");}))
+                        child: Center(child: defaultButtonOutlined("Detail", (){
+                          Get.to(() => OfferMoreDetailPage(idOffre: id,), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
+                        }))
                       ),
                     ),
                     Expanded(
@@ -173,7 +181,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                                   TextButton(
                                     onPressed: (){
                                       Navigator.pop(context);
-                                      context.go("/home/offer_detail/$id/update_offer/$id");
+                                      Get.to(() => UpdateOfferPage(idOffre: id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
                                     },
                                     child: Row(
                                       children: [
@@ -210,16 +218,21 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                                                 Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),);
                                               });
                                               final response = await http.delete(
-                                                Uri.parse("${apiOffres + id}/"),
+                                                Uri.parse("${apiOffres + id.toString()}/"),
                                                 headers: <String, String>{
                                                   'Content-Type': 'application/json; charset=UTF-8',
                                                   'Authorization': 'Bearer ${authProvider.accessToken}',
                                                 },
                                               );
                                               if (response.statusCode == 204) {
+                                                showDialog(context: context, builder:(context) {
+                                                  return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
+                                                },);
+                                                await Future.delayed(const Duration(seconds: 2));
                                                 setState(() {
-                                                  messageBoxSuccess(context, "message");
-                                                  context.go("/home");
+                                                  messageBoxSuccess(context, "Offre supprimer avec succès");
+                                                 
+                                                  Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                                                 });
                                               } else {
                                                 
@@ -255,7 +268,10 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 Container( margin: const EdgeInsets.only(top: 20), child: const Divider(height: 5, thickness: 1,),),
                 
                 TextButton(
-                  onPressed: () {context.go("/home/offer_detail/$id/coments/$id");},
+                  onPressed: () {
+                    //context.go("/home/offer_detail/$id/coments/$id");
+                    Get.to(() => ComentView(idOffre: id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
+                    },
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     padding: const EdgeInsets.only(left: 5, right: 5),

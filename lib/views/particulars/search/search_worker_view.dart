@@ -2,7 +2,7 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
@@ -12,6 +12,8 @@ import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import 'worker_profile.dart';
 
 
 
@@ -26,9 +28,9 @@ class SearchWorkerView extends StatefulWidget {
 class _SearchWorkerViewState extends State<SearchWorkerView> {
   late bool isLoading;
   //create a dummy list
-  static List<Worker> workers = [];
+  static List<Staff> workers = [];
 
-  List<Worker> displayWorker = List.from(workers);
+  List<Staff> displayWorker = List.from(workers);
 
 
   void updateList(String value){
@@ -47,9 +49,9 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
     if (response.statusCode == 200) {
       // Permettre au donnée d'accepter les caractère spéciaux
       var jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-      List<Worker> newData = [];
+      List<Staff> newData = [];
       for (var item in jsonData) {
-        newData.add(Worker.fromJson(item));
+        newData.add(Staff.fromJson(item));
       }
       setState(() {
         workers = newData;
@@ -123,7 +125,9 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                           //   avis: display_list[index].avis,
                           //   jobs: display_list[index].jobs,
                           // ),
-                          defaultButton("Voir le profil", (){context.go("/home/worker_profile/${displayWorker[index].id}");})
+                          defaultButton("Voir le profil", (){
+                            Get.to(() => WorkerProfile(worker_id: displayWorker[index].id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
+                          })
                         ],
                       ),
                     ),

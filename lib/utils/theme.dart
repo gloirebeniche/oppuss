@@ -40,6 +40,7 @@ Icon icon(IconData iconData, {color = black, double iconSize = 22}) {
 
 // transition values
 const transitionAnimate = 50;
+const durationAnime = 300;
 
 // Font app
 Text customeTextStyle(String text, Color color,

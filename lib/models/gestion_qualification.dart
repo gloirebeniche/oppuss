@@ -123,7 +123,7 @@ class Competence {
   }
 }
 
-class Worker {
+class Staff {
   int id;
   Metier metier;
   List<Experience> experiences;
@@ -148,7 +148,7 @@ class Worker {
   int nombreDavis;
   int anneeExperience;
 
-  Worker({
+  Staff({
     required this.id,
     required this.metier,
     required this.experiences,
@@ -174,8 +174,8 @@ class Worker {
     required this.anneeExperience,
   });
 
-  factory Worker.fromJson(Map<String, dynamic> json) {
-    return Worker(
+  factory Staff.fromJson(Map<String, dynamic> json) {
+    return Staff(
       id: json['id'],
       metier: Metier.fromJson(json['metier']),
       experiences: List<Experience>.from(json['experiences'].map((x) => Experience.fromJson(x))),

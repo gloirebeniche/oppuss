@@ -1,14 +1,13 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:oppuss/views/particulars/publier/add_travaux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddOffer extends StatefulWidget {
@@ -51,7 +50,6 @@ class _AddOfferState extends State<AddOffer> {
           domaines = newData; // Mettre à jour l'état avec les nouvelles données
           domaineFilters = domaines;
         });
-        print(domaines);
       }
 
     } catch (e) {
@@ -114,7 +112,8 @@ class _AddOfferState extends State<AddOffer> {
                             onTap: () async {
                               SharedPreferences prefs = await SharedPreferences.getInstance();
                               prefs.setString('id_domaine', domaine.id.toString());
-                              context.go("/home/add_offer/add_travaux/${domaine.id}");
+                              //context.go("/home/add_offer/add_travaux/${domaine.id}");
+                              Get.to(() => AddTravaux(idDomaine: domaine.id,), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
                             },
                             child: Container(
                               margin: margin,

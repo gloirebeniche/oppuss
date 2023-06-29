@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:convert';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/publier/add_travaux.dart';
 
 
 class HomePageParticular extends StatefulWidget {
@@ -126,7 +127,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
                   //recuperation d'un domaine metier
                   final domaine = domaineFilters[index];
                   return GestureDetector(
-                    onTap: () => context.go("/home/add_offer/add_travaux/${domaine.id}"),
+                    onTap: () => Get.to(() => AddTravaux(idDomaine: domaine.id), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime)),
                     child: Container(
                       //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
                       width: MediaQuery.of(context).size.width,

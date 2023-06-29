@@ -25,7 +25,7 @@ class OfferMoreDetailPage extends StatelessWidget {
   
   Future<Offre> fetchData(String token) async {
     final response = await http.get(
-      Uri.parse(apiOffres + idOffre),
+      Uri.parse(apiOffres + idOffre.toString()),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token',

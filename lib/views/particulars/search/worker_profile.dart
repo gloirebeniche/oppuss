@@ -2,7 +2,6 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
@@ -20,12 +19,12 @@ class WorkerProfile extends StatelessWidget {
    WorkerProfile({super.key, required this.worker_id});
 
 
-    Future<Worker> fetchData() async {
+    Future<Staff> fetchData() async {
       // Appel API pour récupérer les données
-      var response = await http.get(Uri.parse(apiGetWorkers + worker_id));
+      var response = await http.get(Uri.parse(apiGetWorkers + worker_id.toString()));
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-        Worker worker = Worker.fromJson(jsonData);
+        Staff worker = Staff.fromJson(jsonData);
         return worker;
       } else {
         throw Exception('Erreur de récupération des données depuis l\'API');
@@ -40,7 +39,7 @@ class WorkerProfile extends StatelessWidget {
         appBar: CustomAppBar2("", context),
         backgroundColor: Colors.grey.shade300,
         body: !authProvider.isAuthenticated? cardAuth(context) :
-        FutureBuilder<Worker>(
+        FutureBuilder<Staff>(
           future: fetchData(),
           builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -48,7 +47,7 @@ class WorkerProfile extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return const Text('Erreur de récupération des données depuis l\'API');
               }else if(snapshot.hasData){
-                Worker worker = snapshot.data!;
+                Staff worker = snapshot.data!;
                 return RefreshIndicator(
                   onRefresh: fetchData,
                   child: ListView(
@@ -91,10 +90,14 @@ class WorkerProfile extends StatelessWidget {
                             customeTextStyle(worker.metier.nomMetier, black),
                             customeTextStyle(worker.adress!,black),
                             customeTextStyle("${worker.nombreJobs.toString()} Travaux réalisé",black, fontWeight: FontWeight.bold),
-                            defaultButtonOutlined("Message", (){context.go("/home/message");})
+                            defaultButtonOutlined("Message", (){
+                              //Get.to(() => WorkerProfile(worker_id: displayWorker[index].id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
+                            })
                           ],
                         ),
                       ),
+                      
+                      
                       SizedBox(
                         width: double.infinity,
                         child: Column(

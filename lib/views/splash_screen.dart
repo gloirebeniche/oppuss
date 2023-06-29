@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oppuss/views/welcome_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/theme.dart';
 import 'particulars/home_screen.dart';
 
 
@@ -22,15 +23,10 @@ class SplashScreenState extends State<SplashScreen> {
     if (isFirstLaunch) {
       await prefs.setBool('first_launch', false);
       Timer(const Duration(seconds: 2), () {
-        Get.to(() => const WelcomeAuth(),
-            transition: Transition.fadeIn,
-            duration: const Duration(milliseconds: 300));
+        Get.off(() => const WelcomeAuth(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
       });
     } else {
-      Timer(const Duration(seconds: 2), () {
-        Get.off(() => const HomeScreen(),
-            transition: Transition.fadeIn,
-            duration: const Duration(milliseconds: 300));
+      Timer(const Duration(seconds: 2), () {Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
       });
     }
   }

@@ -3,8 +3,10 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/demande/offer_detail.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
@@ -32,13 +34,13 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                 fontWeight: FontWeight.bold),
             
             Container(
-              margin: EdgeInsets.only(top: 5),
+              margin: const EdgeInsets.only(top: 5),
               child: customeTextStyle(
                   "${formatDateString(day)} à partir de $hours",grey2),
             ),
             Container(
               margin: const EdgeInsets.only(top: 10),
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               color: Colors.transparent,
               child: Row(
                 children: [
@@ -60,7 +62,9 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
             Row(
               children: [
                 Expanded(
-                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail/$id/");})
+                  child: defaultButton("Gérer ma demande", (){
+                    Get.to(() => OfferDetailView(id_offre: id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
+                  })
                 ),
               ],
             )

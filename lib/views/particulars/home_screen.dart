@@ -1,7 +1,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:oppuss/api/auth_provider.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/particulars/search/search_worker_view.dart';
 import 'package:oppuss/views/particulars/demande/demande.dart';
 import 'package:oppuss/views/particulars/publier/publications.dart';
@@ -34,13 +35,15 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       if (index == 2) {
         if (!authProvider.isAuthenticated) {
-          context.go("/home/login");
+          Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
         }else{
-          context.go('/home/add_offer');
+          //context.go('/home/add_offer');
+          Get.to(() => const AddOffer(), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime));
         }
       }else if(index == 3){
         if (!authProvider.isAuthenticated) {
-          context.go("/home/login");
+          //context.go("/home/login");
+          Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
         }else{
           setState(() {
             _selectedIndex = 3;
@@ -49,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
         
       }else if(index == 4){
         if (!authProvider.isAuthenticated) {
-          context.go("/home/login");
+          //context.go("/home/login");
+          Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
         }else{
           setState(() {
             _selectedIndex = 4;
@@ -71,7 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: white,
+      body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -82,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: primaryColor,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            backgroundColor: white,
             icon: icon(EvaIcons.homeOutline),
             label: 'Acceuil',
             activeIcon: icon(EvaIcons.home, color: primaryColor)

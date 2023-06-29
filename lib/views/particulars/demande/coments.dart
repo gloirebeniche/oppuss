@@ -16,9 +16,8 @@ class ComentView extends StatelessWidget {
   const ComentView({super.key, required this.idOffre});
 
   Future<Offre> fetchData(String token) async {
-    print(idOffre);
     final response = await http.get(
-      Uri.parse(apiOffres + idOffre),
+      Uri.parse(apiOffres + idOffre.toString()),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token',

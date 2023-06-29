@@ -2,14 +2,18 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/account/about.dart';
+import 'package:oppuss/views/particulars/account/help.dart';
+import 'package:oppuss/views/particulars/account/safe.dart';
+import 'package:oppuss/views/particulars/account/settings.dart';
+import 'package:oppuss/views/particulars/home_screen.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:provider/provider.dart';
-
-import '../../auth/sign_up_ouvrier.dart';
 import 'notification_view.dart';
 import 'profile_edit_view.dart';
 
@@ -42,16 +46,14 @@ class _AccountViewState extends State<AccountView> {
             text: "Informations personnelles",
             icons: EvaIcons.personOutline,
             press: (){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const EditProfilePage()));
+              Get.to(() => const EditProfilePage(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             },
           ),
           ProfileMenuWidget(
             text: "Notifications",
             icons: EvaIcons.bellOutline,
             press: (){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const NotificationView()));
+              Get.to(() => const NotificationView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           const SizedBox(height: 20,),
@@ -60,29 +62,28 @@ class _AccountViewState extends State<AccountView> {
             text: "Paramètre",
             icons: EvaIcons.options2Outline,
             press: (){
-                context.go("/home/settings");
+              Get.to(() => const SettingsView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
             text: "Centre d'aide",
             icons: EvaIcons.questionMarkCircleOutline,
             press: (){
-              context.go("/home/help");
+              Get.to(() => const HelpView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
             text: "Confidentialité et sécurité",
             icons: EvaIcons.shieldOutline,
             press: (){
-              context.go("/home/safe");
+              Get.to(() => const SafeView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
             text: "Devenir Ouvrier",
             icons: EvaIcons.briefcaseOutline,
             press: (){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const SignUpScreenOuvrier()));
+              
             }
           ),
           const SizedBox(height: 20,),
@@ -91,7 +92,7 @@ class _AccountViewState extends State<AccountView> {
             text: "À propos",
             icons: EvaIcons.alertCircleOutline,
             press: (){
-              context.go("/home/about");
+              Get.to(() => const AboutView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
@@ -99,7 +100,7 @@ class _AccountViewState extends State<AccountView> {
             icons: EvaIcons.logOutOutline,
             press: () async{
               showDialog(context: context, builder: (context){
-                return Center(child: CircularProgressIndicator(color: primaryColor,));
+                return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
               });
               await Future.delayed(const Duration(seconds: 1));
               if (await authProvider.logout()) {
@@ -109,7 +110,7 @@ class _AccountViewState extends State<AccountView> {
                   messageBox(context, "Vous êtes déconnecté ");
                   authProvider = Provider.of<AuthProvider>(context, listen: false);
                 });
-                context.go("/home/login");
+                Get.to(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
               }else{
                 Navigator.pop(context);
                 setState(() {

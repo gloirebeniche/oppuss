@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:oppuss/views/splash_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'api/auth_provider.dart';
 
 void main() async {
   Get.testMode = true;
+  // Ajoutez l'appel à initializeDateFormatting avec la locale appropriée
+  await initializeDateFormatting('fr_FR', null);
   runApp(
     MultiProvider(
       providers: [
@@ -15,7 +17,7 @@ void main() async {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.from(
-          colorScheme: const ColorScheme.dark(),
+          colorScheme: const ColorScheme.light(),
         ).copyWith(
           pageTransitionsTheme: const PageTransitionsTheme(
             builders: <TargetPlatform, PageTransitionsBuilder>{
@@ -28,7 +30,6 @@ void main() async {
     ),
   );
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

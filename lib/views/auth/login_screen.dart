@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/auth_provider.dart';
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
             DelayedAnimation(
             delay: transitionAnimate,
-            child: TextFieldPassword("mode de passe"),
+            child: TextFieldPassword("Mode de passe"),
           ),
           const SizedBox(height: 10,),
           DelayedAnimation(delay: transitionAnimate, 
@@ -127,80 +128,79 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }
               ),),
-              DelayedAnimation(delay: transitionAnimate, 
-                  child:  Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text("Ou connectez-vous avec :", style: TextStyle(
-                      fontSize: textSize
-                    ),),
-                  ],
-                ),
-              ),),
-            DelayedAnimation(delay: transitionAnimate, 
-            child:  Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // google button
-                Container(
-                  decoration: BoxDecoration(                    
-                    borderRadius: BorderRadius.circular(16),
-                    color: white,
-                      ),
-                         child: InkWell( 
-                              onTap: (() {}
-                                      ), 
-                              child: Image.asset("assets/google.png",
-                                  height: 40,),
-                           
-                            )),
-                                  // google button
-                Container(
-                  decoration: BoxDecoration(                    
-                    borderRadius: BorderRadius.circular(16),
-                    color: white,
-                      ),
-                         child: InkWell( 
-                              onTap: (() {}
-                                      ), 
-                              child: Image.asset("assets/facebook.png",
-                                  height: 40,),
-                           
-                            )),
-               
 
-                   
-                  ],
-                ),
-              ),),
-              //    DelayedAnimation(delay: transitionAnimate, 
-              //           child:Padding(
-              //           padding: const EdgeInsets.all(8.0),
-              //         child: InkWell(
-              //             onTap: () {
-              //               context.go("/home/Employeur_register");
-              //             },
-              //     child: Row(
-              //       mainAxisAlignment: MainAxisAlignment.center,
-              //       children:  [
-              //        const  Text("Vous n'avez pas de compte ?",
-              //             style: TextStyle(
-              //               color: Color(0xff1E232C),
-              //               fontSize: textSize,
-              //             )),
-              //         Text(" S'inscrire ici",
-              //             style: TextStyle(
-              //               color: primaryColor,
-              //               fontSize: textSize,
-              //             )),
-              //       ],
-              //     ),
+              //  DelayedAnimation(delay: transitionAnimate, 
+              //     child:  Padding(
+              //   padding:  EdgeInsets.all(10.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children:  [
+              //       customeTextStyle("Ou connectez-vous avec :", black)
+              //     ],
               //   ),
-              // ))
+              // ),),
+
+            // DelayedAnimation(delay: transitionAnimate, 
+            //   child:  Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //         children: [
+            //           // google button
+            //       Container(
+            //         decoration: BoxDecoration(                    
+            //           borderRadius: BorderRadius.circular(16),
+            //           color: white,
+            //             ),
+            //               child: InkWell( 
+            //                     onTap: (() {}
+            //                             ), 
+            //                     child: Image.asset("assets/google.png",
+            //                         height: 40,),
+                            
+            //                   )),
+            //                         // google button
+            //       Container(
+            //         decoration: BoxDecoration(                    
+            //           borderRadius: BorderRadius.circular(16),
+            //           color: white,
+            //             ),
+            //               child: InkWell( 
+            //                     onTap: (() {}
+            //                             ), 
+            //                     child: Image.asset("assets/facebook.png",
+            //                         height: 40,),
+                            
+            //                   )),
+                
+
+                    
+            //         ],
+            //       ),
+            //     ),),
+            DelayedAnimation(
+              delay: transitionAnimate, 
+              child:Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () {
+                    Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:  [
+                        customeTextStyle("Vous n'avez pas de compte ?", black),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: customeTextStyle("S'inscrire ici", primaryColor),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ))
             ],
           ),
         ),
@@ -210,46 +210,49 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextField TextFieldCustomized(String title) {
     return  TextField(
-            controller: _emailController,
-            decoration: InputDecoration(
-              floatingLabelStyle: TextStyle(
-                color: primaryColor
-              ),
-              labelText: title,
-              labelStyle: TextStyle(
-                color: grey,
-                fontSize: textSize
-              ),
-            ),
-          );
+      cursorColor: primaryColor,
+      controller: _emailController,
+      decoration: InputDecoration(
+        floatingLabelStyle: TextStyle(
+          color: primaryColor
+        ),
+        labelText: title,
+        labelStyle: TextStyle(
+          color: grey,
+          fontSize: textSize
+        ),
+      ),
+    );
   }
 
 TextField TextFieldPassword(String password) {
     return TextField(
-            controller: _passwordController,
-            obscureText: _obscureText,
-            decoration: InputDecoration(
-                floatingLabelStyle: TextStyle(
-                color: primaryColor
-              ),
-              labelStyle:  TextStyle(
-                color: grey,
-                fontSize: 20
-              ),
-              labelText: password,
-              suffixIcon: IconButton(
-                icon: const Icon(
-                  Icons.visibility,
-                  color: black,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              ),
+      
+      cursorColor: primaryColor,
+        controller: _passwordController,
+        obscureText: _obscureText,
+        decoration: InputDecoration(
+            floatingLabelStyle: TextStyle(
+            color: primaryColor
+          ),
+          labelStyle:  TextStyle(
+            color: grey,
+            fontSize: 20
+          ),
+          labelText: password,
+          suffixIcon: IconButton(
+            icon: const Icon(
+              Icons.visibility,
+              color: black,
             ),
-               );
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+          ),
+        ),
+     );
   }
 
 }

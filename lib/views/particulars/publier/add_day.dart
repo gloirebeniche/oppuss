@@ -2,11 +2,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -247,7 +249,6 @@ class _AddDayState extends State<AddDay> {
                   child: defaultButton("Publier", () async {
                     if (_adressController.text.isNotEmpty) {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      print(prefs.getString("id_domaine"));
                       final response = await http.post(
                         Uri.parse(apiOffres),
                         headers: <String, String>{
@@ -256,17 +257,22 @@ class _AddDayState extends State<AddDay> {
                         },
                         body: jsonEncode(<String, dynamic>{
                           'jour': DateFormat("yyyy-MM-dd").format(today),
-                          'heure': TimeOfDay(hour: time.hour, minute: time.minute).format(context),
+                          'heure': "${time.hour}:${time.minute}",
                           'id_domaine': prefs.getString("id_domaine"),
                           'id_travaux': prefs.getString("id_travaux"),
                           'lieu': _adressController.text,
                           'description': _descriptionController.text
                         }),
                       );
-
                       if (response.statusCode == 201) {
-                        messageBoxSuccess(context, "L'offre a été publier avec succès :)");
-                        context.go('/home');
+                        showDialog(context: context, builder:(context) {
+                          return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
+                        },);
+                        await Future.delayed(const Duration(seconds: 2));
+                        setState(() {
+                          messageBoxSuccess(context, "L'offre a été publier avec succès :)");
+                        });
+                        Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                       } else {
                         messageBox(context, "ERROR: Impossible de créer l'offre");
                       }

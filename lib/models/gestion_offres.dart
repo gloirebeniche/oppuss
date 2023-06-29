@@ -4,7 +4,7 @@ import 'package:oppuss/models/gestion_qualification.dart';
 
 class Commentaire {
   final int id;
-  final Worker worker;
+  final Staff worker;
   final int idOffre;
   final String content;
   final DateTime date;
@@ -24,7 +24,7 @@ class Commentaire {
   factory Commentaire.fromJson(Map<String, dynamic> json) {
     return Commentaire(
       id: json['id'],
-      worker: Worker.fromJson(json['worker']),
+      worker: Staff.fromJson(json['worker']),
       idOffre: json['id_offre'],
       content: json['content'],
       date: DateTime.parse(json['date']),
