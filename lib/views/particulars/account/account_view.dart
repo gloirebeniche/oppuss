@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/views/particulars/account/about.dart';
 import 'package:oppuss/views/particulars/account/help.dart';
 import 'package:oppuss/views/particulars/account/safe.dart';
 import 'package:oppuss/views/particulars/account/settings.dart';
-import 'package:oppuss/views/particulars/home_screen.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:provider/provider.dart';
@@ -110,7 +110,7 @@ class _AccountViewState extends State<AccountView> {
                   messageBox(context, "Vous êtes déconnecté ");
                   authProvider = Provider.of<AuthProvider>(context, listen: false);
                 });
-                Get.to(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                Get.offAll(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
               }else{
                 Navigator.pop(context);
                 setState(() {

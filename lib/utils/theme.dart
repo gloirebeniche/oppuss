@@ -26,9 +26,8 @@ const textColorImportant = Color.fromARGB(255, 44, 154, 245);
 const white = Colors.white;
 const black = Colors.black;
 Color grey = Colors.grey;
-Color grey1 = Colors.grey.shade400;
+Color grey1 = Colors.grey.shade100;
 Color grey2 = Colors.grey.shade700;
-Color bgColor = grey;
 
 Icon icon(IconData iconData, {color = black, double iconSize = 22}) {
   return Icon(

@@ -32,7 +32,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: grey1,
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(

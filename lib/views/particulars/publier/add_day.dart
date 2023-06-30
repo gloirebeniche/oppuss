@@ -10,6 +10,7 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/particulars/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -65,11 +66,8 @@ class _AddDayState extends State<AddDay> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade600,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.blueGrey.shade600,
-      ),
+      backgroundColor: white,
+      appBar: CustomAppBar2("", context),
       body: ListView(
         children: [
           // JOUR DE L'OFFRE
@@ -78,11 +76,11 @@ class _AddDayState extends State<AddDay> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Quels jours vous convient le mieux ?" , white, fontWeight: FontWeight.bold, size: 18),
+                customeTextStyle("Quels jours vous convient le mieux ?" , black, fontWeight: FontWeight.bold, size: 18),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
-                    color: white,
+                    color: grey1,
                     borderRadius: BorderRadius.circular(10)
                   ),
                   child: TableCalendar(
@@ -106,10 +104,10 @@ class _AddDayState extends State<AddDay> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Nous estimons l'heure du rendez-vous, cela vous convient-il ?", white, fontWeight: FontWeight.bold, size: 18),
+                customeTextStyle("Nous estimons l'heure du rendez-vous, cela vous convient-il ?", black, fontWeight: FontWeight.bold, size: 18),
                 Container(
                   margin: const EdgeInsets.only(top: 20),
-                  child: customeTextStyle("${time.hour}:${time.minute}", white, fontWeight: FontWeight.bold, size: 20)
+                  child: customeTextStyle("${time.hour}:${time.minute}", black, fontWeight: FontWeight.bold, size: 20)
                 ),
 
                 SizedBox(
@@ -135,12 +133,12 @@ class _AddDayState extends State<AddDay> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Quelle est l'adresse de la prestation ?", white, fontWeight: FontWeight.bold, size: 18),
+                customeTextStyle("Quelle est l'adresse de la prestation ?", black, fontWeight: FontWeight.bold, size: 18),
                 Container(
                   height: 50,
                   margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
-                    color: white,
+                    color: grey1,
                     borderRadius: BorderRadius.circular(5)
                   ),
                   child: Column(
@@ -207,12 +205,12 @@ class _AddDayState extends State<AddDay> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                customeTextStyle("Quel est votre besoins ?", white, fontWeight: FontWeight.bold, size: 17),
+                customeTextStyle("Quel est votre besoins ?", black, fontWeight: FontWeight.bold, size: 17),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.2,
                   margin: const EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(
-                    color: white,
+                    color: grey1,
                     borderRadius: BorderRadius.circular(5)
                   ),
                   child: Column(
@@ -272,8 +270,9 @@ class _AddDayState extends State<AddDay> {
                         setState(() {
                           messageBoxSuccess(context, "L'offre a été publier avec succès :)");
                         });
-                        Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                        Get.offAll(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                       } else {
+                        
                         messageBox(context, "ERROR: Impossible de créer l'offre");
                       }
                     } else {

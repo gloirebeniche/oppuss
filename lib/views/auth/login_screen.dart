@@ -3,12 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/auth/forgot_password.dart';
+import 'package:oppuss/views/auth/sign_up_particuler.dart';
+import 'package:oppuss/views/particulars/home_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:provider/provider.dart';
 import '../../widget/customized_appbar.dart';
@@ -111,14 +113,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (isEmailValid(_emailController.text.trim()) && _passwordController.text.trim().isNotEmpty) {
                     if(await authProvider.login(_emailController.text, _passwordController.text)){
                       showDialog(context: context, builder: (context){
-                        return Center(child: CircularProgressIndicator(color: primaryColor,));
+                        return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
                       });
                       await Future.delayed(const Duration(seconds: 2));
                       Navigator.pop(context);
                       setState(() {
                         messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
                       });
-                      context.go("/home");
+                      Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                     }else{
                       setState(() {
                         messageBox(context, "username or password incorect");
@@ -184,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   onTap: () {
-                    Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                    Get.to(() => const SignUpScreenParticuler(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
                   },
                   child: Container(
                     margin: const EdgeInsets.only(top: 25),

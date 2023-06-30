@@ -2,14 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 // ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
+
+import '../../widget/customized_appbar.dart';
 
 class SignUpScreenParticuler extends StatefulWidget {
   const SignUpScreenParticuler({super.key});
@@ -61,7 +65,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
   Widget build(BuildContext context) {
     //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      //appBar: CustomAppBar2("", context),
+      appBar: CustomAppBar2("", context),
       backgroundColor: white, //const Color(0xFFEDECF2),
       body: SingleChildScrollView(
         child: Container(
@@ -192,9 +196,9 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 child: CustomButton("S'inscrire", (
                   () async {
                     if (await createUser()) {
-                      print("ok");
+                      
                       showDialog(context: context, builder: (context){
-                       return Center(child: CircularProgressIndicator(color: primaryColor,));
+                        return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
                       });
                       
                       await Future.delayed(const Duration(seconds: 2));
@@ -202,7 +206,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                       Navigator.pop(context);
                       messageBoxSuccess(context, "Votre compte a été créer avec succèss :)");
                       
-                      context.go("/home/login");
+                      Get.off(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                     }
                     
                 })),

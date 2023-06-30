@@ -67,20 +67,20 @@ class _AddOfferState extends State<AddOffer> {
   Widget build(BuildContext context) {
     //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade600,
+      backgroundColor: white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: (){ Navigator.pop(context); },
-          icon: const Icon(EvaIcons.close, color: white, size: 35,),
+          icon: const Icon(EvaIcons.close, color: black, size: 35,),
         ),
         title: customeTextStyle("", black),
         elevation: 0,
-        backgroundColor: Colors.blueGrey.shade600,
+        backgroundColor: white,
       ),
       body: Column(
         children: [
-          customeTextStyle("Choisir", white, size: 25, fontWeight: FontWeight.bold),
-          customeTextStyle("un domaine BTP", white, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("Choisir", black, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("un domaine BTP", black, size: 25, fontWeight: FontWeight.bold),
           Container(
             margin: margin,
             child: TextField(

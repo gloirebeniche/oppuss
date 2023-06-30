@@ -296,7 +296,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20),
-                  color: bgColor,
+                  color: grey1,
                   child: Column(
                     children: [
                       cardOffer(context),

@@ -74,7 +74,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: grey1,
       appBar: AppBar(
         backgroundColor: white,
         elevation: 0,

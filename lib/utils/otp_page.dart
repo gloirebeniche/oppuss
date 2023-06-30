@@ -43,7 +43,7 @@ class _OptShareCodeState extends State<OptShareCode> {
     return Scaffold(
       
       appBar: AppBar(
-        backgroundColor: bgColor,
+        backgroundColor: grey1,
         elevation: 0,
         leading: IconButton(icon: Icon(Icons.arrow_back,color: primaryColor,), onPressed: () { 
                            Navigator.pop(context);

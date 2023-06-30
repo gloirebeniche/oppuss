@@ -11,6 +11,7 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/particulars/publier/add_travaux.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class HomePageParticular extends StatefulWidget {
@@ -69,7 +70,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: grey1,
       body: isLoading? Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),)
       :RefreshIndicator(
         onRefresh: fetchData,
@@ -85,7 +86,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
               flexibleSpace: FlexibleSpaceBar(
                 stretchModes: [StretchMode.zoomBackground],
                 background: Image(
-                  image: AssetImage("assets/home.png"),
+                  image: AssetImage("assets/BTP.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -127,7 +128,11 @@ class _HomePageParticularState extends State<HomePageParticular> {
                   //recuperation d'un domaine metier
                   final domaine = domaineFilters[index];
                   return GestureDetector(
-                    onTap: () => Get.to(() => AddTravaux(idDomaine: domaine.id), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime)),
+                    onTap: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setString('id_domaine', domaine.id.toString());
+                      Get.to(() => AddTravaux(idDomaine: domaine.id), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime));
+                    },
                     child: Container(
                       //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
                       width: MediaQuery.of(context).size.width,

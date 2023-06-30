@@ -1,7 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
+import 'package:oppuss/models/account.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
@@ -19,8 +24,8 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  late AuthProvider authProvider;
   bool showPassword = false;
+  late int idEmployeur;
   final TextEditingController _usernameUpadeController = TextEditingController();
   final TextEditingController _firstnameUpadeController = TextEditingController();
   final TextEditingController _lastnameUpadeController = TextEditingController();
@@ -30,6 +35,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _telUpadeController = TextEditingController();
   final TextEditingController _adressUpadeController = TextEditingController();
   var p;
+  
+  late AuthProvider authProvider;
 
 
   Future<void> updateEmployeur(int? employeurId, Map<String, dynamic> updatedData) async {
@@ -47,25 +54,54 @@ class _EditProfilePageState extends State<EditProfilePage> {
         messageBoxSuccess(context, "Sauvegardé");
       });
     } else {
-      print('Erreur lors de la mise à jour de l\'employeur');
-      print('Code de statut : ${response.statusCode}');
-      print('Réponse : ${response.body}');
+      setState(() {
+        messageBox(context, "ERROR : Imposible de faire la mise à jour");
+      });
     }
+  }
+
+  Future<Employeur> fetchData(String token) async {
+    try {
+      final response = await http.get(
+        Uri.parse(apiGetCurrentUser),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      if (response.statusCode != 200) {
+        throw("Token not valid");
+      }
+      final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+      return Employeur.fromJson(jsonData);
+    } catch (e) {
+      throw("Connection failed");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() async {
+    authProvider = Provider.of<AuthProvider>(context, listen: false);
+    Employeur employeur = await fetchData(authProvider.accessToken!);
+    idEmployeur = employeur.id;
+    _usernameUpadeController.text = employeur.username;
+    _firstnameUpadeController.text = employeur.firstName ?? '';
+    _lastnameUpadeController.text = employeur.lastName ?? '';
+    _emailUpadeController.text = employeur.email;
+    _genderUpadeController.text = employeur.gender ?? '';
+    _telUpadeController.text = employeur.phoneNumber ?? '';
+    _adressUpadeController.text = employeur.address ?? '';
+    p = employeur.password;
   }
 
   @override
   Widget build(BuildContext context) {
     authProvider = Provider.of<AuthProvider>(context);
-    // setState(() {
-    //   _usernameUpadeController.text = authProvider.currentUser!.username;
-    //   _firstnameUpadeController.text = authProvider.currentUser!.firstName!;
-    //   _lastnameUpadeController.text = authProvider.currentUser!.lastName!;
-    //   _emailUpadeController.text = authProvider.currentUser!.email;
-    //   _genderUpadeController.text = authProvider.currentUser!.gender!;
-    //   _telUpadeController.text = authProvider.currentUser!.phoneNumber!;
-    //   p = authProvider.currentUser!.password;
-    // });
-
     return Scaffold(
       backgroundColor: white,
       appBar: CustomAppBar2("Information personnelles", context),
@@ -89,7 +125,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               Column(
              
                 children: [
-                  defaultButton("Sauvegarder", (){
+                  defaultButton("Sauvegarder", () async {
                      var data = {
                       'username' : _usernameUpadeController.text,
                       "password" : _passwordUpadeController.text.isEmpty ? p : _passwordUpadeController.text,
@@ -101,8 +137,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       'adress' : _adressUpadeController.text
                      };
 
-                     updateEmployeur(authProvider.currentUser?.id, data);
-                     authProvider.getCurrentUser(authProvider.accessToken!);
+                     showDialog(context: context, builder: (context){
+                        return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
+                      });
+                      await Future.delayed(const Duration(seconds: 1));
+                      updateEmployeur(idEmployeur, data);
+                      Navigator.pop(context);
                   })
                 ],
               )

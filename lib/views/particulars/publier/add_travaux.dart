@@ -9,6 +9,7 @@ import 'package:oppuss/utils/theme.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:oppuss/views/particulars/publier/add_day.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
 //import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,15 +61,12 @@ class _AddTravauxState extends State<AddTravaux> {
   Widget build(BuildContext context) {
     //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade600,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.blueGrey.shade600,
-      ),
+      backgroundColor: white,
+      appBar: CustomAppBar2("", context),
       body: Column(
         children: [
-          customeTextStyle("Quelle travaux", white, size: 25, fontWeight: FontWeight.bold),
-          customeTextStyle("souhaitez-vous réalisé ?", white, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("Quelle travaux", black, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("souhaitez-vous réalisé ?", black, size: 25, fontWeight: FontWeight.bold),
           
           Expanded(
             child: Container(
@@ -85,7 +83,8 @@ class _AddTravauxState extends State<AddTravaux> {
                             height: MediaQuery.of(context).size.height * 0.07,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: white,),
+                              color: grey1,
+                            ),
                             child: TextButton(
                               onPressed: () async {
                                 SharedPreferences prefs = await SharedPreferences.getInstance();
