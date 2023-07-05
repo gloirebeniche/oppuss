@@ -120,11 +120,6 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
                         children: [
                           cardWorker("${displayWorker[index].prenom} ${displayWorker[index].nom.toUpperCase()}",
                           displayWorker[index].anneeExperience, displayWorker[index].metier.nomMetier, displayWorker[index].nombreDavis),
-                          // SearchWorkerCardView(
-                          //   fullname: "${display_list[index].firstname} ${display_list[index].name}",
-                          //   avis: display_list[index].avis,
-                          //   jobs: display_list[index].jobs,
-                          // ),
                           defaultButton("Voir le profil", (){
                             Get.to(() => WorkerProfile(worker_id: displayWorker[index].id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
                           })
