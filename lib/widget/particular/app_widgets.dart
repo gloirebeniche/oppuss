@@ -2,10 +2,13 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+
+import '../../views/auth/login_screen.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
@@ -373,7 +376,9 @@ Container cardAuth(BuildContext context){
             child: customeTextStyle("Connectez vous pour contacter un ouvrier", grey2)),
           Container(
             margin: const EdgeInsets.only(top: 8),
-            child: defaultButton("Se connecter", (){context.go("/home/login");}),
+            child: defaultButton("Se connecter", (){
+              Get.off(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+            }),
           )
         ],
       ),

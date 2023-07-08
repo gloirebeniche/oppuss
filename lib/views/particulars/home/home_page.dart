@@ -11,7 +11,11 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/particulars/publier/add_travaux.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../api/auth_provider.dart';
+import '../../auth/login_screen.dart';
 
 
 class HomePageParticular extends StatefulWidget {
@@ -67,8 +71,10 @@ class _HomePageParticularState extends State<HomePageParticular> {
     // TODO: implement initState
     fetchData();
   }
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       backgroundColor: grey1,
       body: isLoading? Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),)
@@ -131,7 +137,12 @@ class _HomePageParticularState extends State<HomePageParticular> {
                     onTap: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       prefs.setString('id_domaine', domaine.id.toString());
-                      Get.to(() => AddTravaux(idDomaine: domaine.id), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime));
+                      if (authProvider.isAuthenticated) {
+                        Get.to(() => AddTravaux(idDomaine: domaine.id), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime));
+                      } else {
+                        Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                      }
+                      
                     },
                     child: Container(
                       //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
