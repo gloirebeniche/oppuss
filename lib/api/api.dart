@@ -1,6 +1,8 @@
-const String urlBase = "http://10.10.10.20:8000/api/";
+//const String urlBase = "http://10.10.10.20:8000/api/";
 
-// API URL SUR LE PACKAGES GESTION DES COMPTE
+const String urlBase = "https://oppuss.numericdevsoft.site/api/"; // CETTE URL POINT VERS L'API
+
+// API URL SUR LE PACKAGES GESTION DES COMPTEhttps://oppuss.numericdevsoft.site/api/referentiel-btp/domaines/
 const String apiAuthentification = '${urlBase}auth';
 const String apiLogin = '$apiAuthentification/login/';
 const String apiLogout = '$apiAuthentification/logout/';

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/views/particulars/demande/reservation.dart';
+import 'package:oppuss/views/particulars/publier/publications.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 
 import '../../views/auth/login_screen.dart';
@@ -436,7 +437,9 @@ Container cardOfferAuth(BuildContext context){
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: defaultButton("J'ai besoin d'un travaux", (){}),
+            child: defaultButton("J'ai besoin d'un travaux", (){
+              Get.to(() => const AddOffer(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+            }),
           )
         ],
       ),

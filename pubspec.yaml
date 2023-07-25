@@ -61,6 +61,7 @@ dependencies:
   rating_dialog: ^2.0.4
   material_dialogs: ^1.1.4
   get:
+  connectivity:
   flutter_localizations:
     sdk: flutter
   
