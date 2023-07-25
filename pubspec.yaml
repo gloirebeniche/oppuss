@@ -51,6 +51,7 @@ dependencies:
 
   # plugin que j'ai ajouter pour ameliorer les interface
   table_calendar: ^3.0.9
+  url_launcher: ^6.1.12
   infinite_carousel: ^1.0.3
   shaky_animated_listview: ^0.0.5
   flutter_credit_card: ^3.0.6

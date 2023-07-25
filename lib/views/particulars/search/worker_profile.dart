@@ -13,10 +13,35 @@ import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class WorkerProfile extends StatelessWidget {
   final dynamic worker_id;
    WorkerProfile({super.key, required this.worker_id});
+
+    final String message = 'Bonjour, comment ça va?';
+
+    Future<void> _makePhoneCall(String phoneNumber) async {
+      final Uri launchUri = Uri(
+        scheme: 'tel',
+        path: phoneNumber,
+      );
+      await launchUrl(launchUri);
+    }
+    void _sendMessage(String phoneNumber) async {
+      final Uri smsLaunchUri = Uri(
+        scheme: 'sms',
+        path: phoneNumber,
+        queryParameters: <String, String>{
+          'body': Uri.encodeComponent("Bonjour !\nJ'ai vu votre profil sur l'application Oppuss et je voulais qu'on puisse travailler en ensemble."),
+        },
+      );
+      if (await canLaunchUrl(smsLaunchUri)) {
+        await launchUrl(smsLaunchUri);
+      } else {
+        throw 'Impossible d\'ouvrir l\'application de messagerie.';
+      }
+    }
 
 
     Future<Staff> fetchData() async {
@@ -90,9 +115,8 @@ class WorkerProfile extends StatelessWidget {
                             customeTextStyle(worker.metier.nomMetier, black),
                             customeTextStyle(worker.adress!,black),
                             customeTextStyle("${worker.nombreJobs.toString()} Travaux réalisé",black, fontWeight: FontWeight.bold),
-                            defaultButtonOutlined("Message", (){
-                              //Get.to(() => WorkerProfile(worker_id: displayWorker[index].id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
-                            })
+                            defaultButtonOutlined("Message", (){ _sendMessage(worker.tel);}),
+                            defaultButton("Appelez", () { _makePhoneCall(worker.tel); })
                           ],
                         ),
                       ),
