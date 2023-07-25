@@ -62,28 +62,31 @@ class _AccountViewState extends State<AccountView> {
             text: "Paramètre",
             icons: EvaIcons.options2Outline,
             press: (){
-              Get.to(() => const SettingsView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
+              toast(context, "Coming Soon");
+              //Get.to(() => const SettingsView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
             text: "Centre d'aide",
             icons: EvaIcons.questionMarkCircleOutline,
             press: (){
-              Get.to(() => const HelpView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
+              toast(context, "Coming Soon");
+              //Get.to(() => const HelpView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
             text: "Confidentialité et sécurité",
             icons: EvaIcons.shieldOutline,
             press: (){
-              Get.to(() => const SafeView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
+              toast(context, "Coming Soon");
+              //Get.to(() => const SafeView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(
             text: "Devenir Ouvrier",
             icons: EvaIcons.briefcaseOutline,
             press: (){
-              
+              toast(context, "Coming Soon");
             }
           ),
           const SizedBox(height: 20,),
@@ -92,7 +95,8 @@ class _AccountViewState extends State<AccountView> {
             text: "À propos",
             icons: EvaIcons.alertCircleOutline,
             press: (){
-              Get.to(() => const AboutView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
+              toast(context, "Coming Soon");
+              //Get.to(() => const AboutView(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
             }
           ),
           ProfileMenuWidget(

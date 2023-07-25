@@ -110,7 +110,11 @@ class _LoginScreenState extends State<LoginScreen> {
               //========================== Bouton de connexion =======================
               child: CustomButton("Connexion",
                 () async {
-                  if (isEmailValid(_emailController.text.trim()) && _passwordController.text.trim().isNotEmpty) {
+                  if (!isEmailValid(_emailController.text.trim())) {
+                    messageBox(context, "Veillez enter un email valide");
+                  }else if(_passwordController.text.trim().isEmpty){
+                    messageBox(context, "Veillez enter un mot de passe");
+                  }else{
                     if(await authProvider.login(_emailController.text, _passwordController.text)){
                       showDialog(context: context, builder: (context){
                         return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
@@ -126,7 +130,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         messageBox(context, "username or password incorect");
                       });
                     }
-                    
                   }
                 }
               ),),

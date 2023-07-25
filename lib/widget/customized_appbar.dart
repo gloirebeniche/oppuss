@@ -1,6 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
 
 AppBar CustomAppBar(String title, BuildContext context) {
@@ -9,16 +8,16 @@ AppBar CustomAppBar(String title, BuildContext context) {
     backgroundColor: white,
     title: customeTextStyle(title, black, size: appbarTextSize),
     automaticallyImplyLeading: false,
-    actions: [
-      Padding(
-        padding: const EdgeInsets.only(right: 15),
-        child: IconButton(
-            onPressed: () {
-              context.go("/home/message");
-            },
-            icon: icon(EvaIcons.messageCircleOutline)),
-      )
-    ],
+    // actions: [
+    //   Padding(
+    //     padding: const EdgeInsets.only(right: 15),
+    //     child: IconButton(
+    //         onPressed: () {
+    //           Get.to(() => const ChatPage(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+    //         },
+    //         icon: icon(EvaIcons.messageCircleOutline)),
+    //   )
+    // ],
   );
 }
 

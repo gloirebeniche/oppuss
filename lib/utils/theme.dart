@@ -63,6 +63,38 @@ const padding = EdgeInsets.symmetric(horizontal: 20, vertical: 20);
 const margin = EdgeInsets.all(15);
 
 
+void toast(BuildContext context, String message){
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Container(
+        height: 60,
+        padding: const EdgeInsets.all(15),
+        decoration: const BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: customeTextStyle(message, white, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            )
+          ],
+        )
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+    )
+  );
+}
 
 
 void messageBox(BuildContext context, String message){
