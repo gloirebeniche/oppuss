@@ -21,6 +21,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+import '../../../models/gestion_qualification.dart';
 import 'coments.dart';
 
 
@@ -36,6 +37,9 @@ class OfferDetailView extends StatefulWidget {
 class _OfferDetailViewState extends State<OfferDetailView> {
 
   late Offre monOffres = Offre.defaultValues();
+
+  static List<Staff> workers = [];
+  
   late bool isLoading;
   
   dynamic id = 0;
@@ -62,13 +66,36 @@ class _OfferDetailViewState extends State<OfferDetailView> {
         setState(() {
           monOffres = Offre.fromJson(jsonData);
         });
+        
         var reponse = await http.get(Uri.parse("$apiTravaux/${monOffres.idTravaux}/"));
+        
         Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(reponse.bodyBytes)));
+
+        final responses = await http.get(
+          Uri.parse('$apiGetWorkerByTravaux${travaux.id.toString()}/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token',
+          },
+        );
+
+        if (responses.statusCode == 200) {
+          var jsonData = jsonDecode(utf8.decode(responses.bodyBytes));
+          List<Staff> newData = [];
+          for (var item in jsonData) {
+            newData.add(Staff.fromJson(item));
+          }
+          setState(() {
+            workers = newData;
+          });
+        }
         setState(() {
           nom_travaux = travaux.nomtravaux!;
           isLoading = false;
         });
+        
         return true;
+
       }else{
         
         return false;
@@ -292,20 +319,20 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                 Container( margin: const EdgeInsets.only(top: 10), child: const Divider(height: 5, thickness: 1,),),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 15),
-                  child: customeTextStyle("Offres (10)", size:17, black),
+                  child: customeTextStyle("Offres (${workers.length})", size:17, black),
                 ),
+                workers.isEmpty ? Center(child: 
                 Container(
+                  padding: padding,
+                  margin: margin,
+                  child: customeTextStyle("Aucun ouvrier disponible pour cette tâche", black, size: 18, fontWeight: FontWeight.bold, align: TextAlign.center)))
+                :Container(
                   margin: const EdgeInsets.only(top: 20),
                   color: grey1,
                   child: Column(
                     children: [
-                      cardOffer(context),
-                      cardOffer(context),
-                      cardOffer(context),
-                      cardOffer(context),
-                      cardOffer(context),
-                      cardOffer(context),
-                      cardOffer(context),
+                      for(var worker in workers)
+                        cardOfferWorker(worker.id, "${worker.prenom} ${worker.nom}", worker.anneeExperience, worker.metier.nomMetier, worker.nombreDavis),
                     ],
                   ),
                 )

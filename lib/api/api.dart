@@ -13,6 +13,7 @@ const String apiReferentielBTP = '${urlBase}referentiel-btp';
 const String apiDomaines = '$apiReferentielBTP/domaines';
 const String apiTravaux = '$apiReferentielBTP/travaux';
 const String apiMetier = '$apiReferentielBTP/metier';
+const String apiGetWorkerByTravaux = '$apiReferentielBTP/get-worker-by-tash/';
 
 
 // API URL SUR LE PACKAGES GESTION DES OFFRES
