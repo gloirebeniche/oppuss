@@ -1,6 +1,8 @@
-const String urlBase = "http://10.10.10.20:8000/api/";
+//const String urlBase = "http://10.10.10.20:8000/api/";
 
-// API URL SUR LE PACKAGES GESTION DES COMPTE
+const String urlBase = "https://oppuss.numericdevsoft.site/api/"; // CETTE URL POINT VERS L'API
+
+// API URL SUR LE PACKAGES GESTION DES COMPTEhttps://oppuss.numericdevsoft.site/api/referentiel-btp/domaines/
 const String apiAuthentification = '${urlBase}auth';
 const String apiLogin = '$apiAuthentification/login/';
 const String apiLogout = '$apiAuthentification/logout/';
@@ -13,6 +15,7 @@ const String apiReferentielBTP = '${urlBase}referentiel-btp';
 const String apiDomaines = '$apiReferentielBTP/domaines';
 const String apiTravaux = '$apiReferentielBTP/travaux';
 const String apiMetier = '$apiReferentielBTP/metier';
+const String apiGetWorkerByTravaux = '$apiReferentielBTP/get-worker-by-tash/';
 
 
 // API URL SUR LE PACKAGES GESTION DES OFFRES
@@ -28,3 +31,4 @@ const String apiAppreciation = '$apiGestionOffres/appreciations/';
 const String apiGestionCompte = "${urlBase}gestion/compte";
 const String apiGetWorkers = '$apiGestionCompte/workers/';
 const String apiGetEmployeurs = '$apiGestionCompte/employeurs/';
+

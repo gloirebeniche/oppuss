@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:oppuss/api/api.dart';
-import 'package:oppuss/utils/delayed_animation.dart';
-import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/widget/button_widget_app.dart';
-// ignore: depend_on_referenced_packages
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:oppuss/views/auth/sign_up_particuler.dart';
+import 'package:oppuss/views/particulars/home_screen.dart';
 
+import '../utils/delayed_animation.dart';
+import '../utils/theme.dart';
+import '../widget/button_widget_app.dart';
+
+// ignore: depend_on_referenced_packages
 // ignore: slash_for_doc_comments
 /**
  *  author : gloire beniche 
@@ -53,12 +53,14 @@ class WelcomeAuth extends StatelessWidget {
                   children: <Widget>[
                     DelayedAnimation(
                       delay: transitionAnimate,
-                      child: CustomButton("Commencer", (){ context.go("/home"); }),
+                      child: CustomButton("Commencer", (){
+                        Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                      }),
                     ),
                     DelayedAnimation(
                       delay: transitionAnimate,
-                      child: CustomOutlinedButton("Devenir ouvrier", (() {
-                        //context.go("/worker");
+                      child: CustomOutlinedButton("S'inscrire", (() {
+                        Get.to(() => const SignUpScreenParticuler(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                       })),
                     ),
                   ],

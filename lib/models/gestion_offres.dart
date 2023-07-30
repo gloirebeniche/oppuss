@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:oppuss/models/account.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
-import 'package:oppuss/models/ref_btp.dart';
 
 class Commentaire {
   final int id;
-  final Worker worker;
+  final Staff worker;
   final int idOffre;
   final String content;
   final DateTime date;
@@ -24,7 +24,7 @@ class Commentaire {
   factory Commentaire.fromJson(Map<String, dynamic> json) {
     return Commentaire(
       id: json['id'],
-      worker: Worker.fromJson(json['worker']),
+      worker: Staff.fromJson(json['worker']),
       idOffre: json['id_offre'],
       content: json['content'],
       date: DateTime.parse(json['date']),
@@ -36,12 +36,12 @@ class Commentaire {
 
 class Offre {
   final int id;
-  final Domaine idDomaine;
-  final Travaux idTravaux;
+  final int idDomaine;
+  final int idTravaux;
   final Employeur employeur;
   final List<Commentaire> commentaires;
-  final String jour;
-  final String heure;
+  final DateTime jour;
+  final TimeOfDay heure;
   final String description;
   final String lieu;
   final bool statut;
@@ -70,14 +70,24 @@ class Offre {
         commentaireList.add(Commentaire.fromJson(commentaireJson));
       }
     }
+
+    // Conversion de la date
+    var jour = DateTime.parse(json['jour']);
+
+    // Conversion de l'heure
+    var heureParts = json['heure'].split(':');
+    var heure = TimeOfDay(
+      hour: int.parse(heureParts[0]),
+      minute: int.parse(heureParts[1]),
+    );
     return Offre(
       id: json['id'],
-      idDomaine: Domaine.fromJson(json['id_domaine']),
-      idTravaux: Travaux.fromJson(json['id_travaux']),
+      idDomaine: json['id_domaine'],
+      idTravaux: json['id_travaux'],
       employeur: Employeur.fromJson(json['employeur']),
       commentaires: commentaireList,
-      jour: json['jour'],
-      heure: json['heure'],
+      jour: jour,
+      heure: heure,
       description: json['description'],
       lieu: json['lieu'],
       statut: json['statut'],
@@ -89,12 +99,12 @@ class Offre {
   factory Offre.defaultValues() {
     return Offre(
       id: 0,
-      idDomaine: Domaine(),
-      idTravaux: Travaux(),
+      idDomaine: 1,
+      idTravaux: 2,
       employeur: Employeur(id: 0, email: '', username: '', password: '', isActive: false, isAdmin: false, createdAt: DateTime.now(), updatedAt: DateTime.now()),
       commentaires: [],
-      jour: '',
-      heure: '',
+      jour: DateTime.now(),
+      heure: TimeOfDay.now(),
       description: '',
       lieu: '',
       statut: false,

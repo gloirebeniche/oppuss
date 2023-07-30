@@ -1,11 +1,15 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/demande/reservation.dart';
+import 'package:oppuss/views/particulars/publier/publications.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
+
+import '../../views/auth/login_screen.dart';
+import '../../views/particulars/search/worker_profile.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
@@ -184,7 +188,7 @@ Container competences(String label){
   );
 }
 
-Container cardOffer (BuildContext context){
+Container cardOfferWorker(int idWorker, String fullname, int experiences, String metier, int nbre_avis){
   return Container(
     margin: const EdgeInsets.only(top: 5),
     padding: padding,
@@ -204,7 +208,7 @@ Container cardOffer (BuildContext context){
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  customeTextStyle("Elijah Walter", black, size: headingTextSize, fontWeight: FontWeight.bold),
+                  customeTextStyle(fullname, black, size: headingTextSize, fontWeight: FontWeight.bold),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
@@ -212,7 +216,7 @@ Container cardOffer (BuildContext context){
                       children: [
                         const Icon(EvaIcons.star, color: Colors.amber, size: 17,),
                         customeTextStyle("4,95", black),
-                        customeTextStyle("(105 avis)", black)
+                        customeTextStyle("($nbre_avis avis)", black)
                       ],
                     ),
                   ),
@@ -232,7 +236,7 @@ Container cardOffer (BuildContext context){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customeTextStyle("Charpentier",black),
+              customeTextStyle(metier,black),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Row(
@@ -240,13 +244,17 @@ Container cardOffer (BuildContext context){
                     const Icon(EvaIcons.briefcase),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: customeTextStyle("5 à 9 d'expériences",black),
+                      child: experiences > 1 ? customeTextStyle("$experiences ans d'expériences",black) : customeTextStyle("Une année d'expérience",black),
                     )
                   ],
                 ),
               ),
-              defaultButton("Reserver", (){}),
-              defaultButtonOutlined("Voir le profil", (){context.go("/home/offer_detail/worker_profile/");})
+              defaultButton("Reserver", (){
+                Get.to(() => const ReservationView(), transition: Transition.downToUp, duration: const Duration(milliseconds: durationAnime));
+              }),
+              defaultButtonOutlined("Voir le profil", (){
+                Get.to(() => WorkerProfile(worker_id: idWorker,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
+              })
             ],
           ),
         )
@@ -373,7 +381,9 @@ Container cardAuth(BuildContext context){
             child: customeTextStyle("Connectez vous pour contacter un ouvrier", grey2)),
           Container(
             margin: const EdgeInsets.only(top: 8),
-            child: defaultButton("Se connecter", (){context.go("/home/login");}),
+            child: defaultButton("Se connecter", (){
+              Get.off(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+            }),
           )
         ],
       ),
@@ -427,7 +437,9 @@ Container cardOfferAuth(BuildContext context){
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: defaultButton("J'ai besoin d'un travaux", (){}),
+            child: defaultButton("J'ai besoin d'un travaux", (){
+              Get.to(() => const AddOffer(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+            }),
           )
         ],
       ),

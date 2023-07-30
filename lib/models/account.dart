@@ -9,7 +9,7 @@ class Employeur {
   final String? gender;
   final String? phoneNumber;
   final String? address;
-  final DateTime? dateOfBirth;
+  final String? dateOfBirth;
   final String? city;
   final bool isActive;
   final bool isAdmin;
@@ -47,7 +47,7 @@ class Employeur {
       gender: json['civilite'],
       phoneNumber: json['tel'],
       address: json['adress'],
-      dateOfBirth: json['date_naiss'] != null ? DateTime.parse(json['date_naiss']) : null,
+      dateOfBirth: json['date_naiss'],
       city: json['ville'],
       isActive: json['is_active'],
       isAdmin: json['is_admin'],

@@ -1,14 +1,22 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/ref_btp.dart';
-import 'package:oppuss/models/service_home_page.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/fullsreen.dart';
+import 'package:oppuss/views/particulars/publier/add_travaux.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../api/auth_provider.dart';
+import '../../auth/login_screen.dart';
+
 
 class HomePageParticular extends StatefulWidget {
   const HomePageParticular({super.key});
@@ -63,11 +71,13 @@ class _HomePageParticularState extends State<HomePageParticular> {
     // TODO: implement initState
     fetchData();
   }
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: bgColor,
-      body: isLoading? const LoadingScreen()
+      backgroundColor: grey1,
+      body: isLoading? Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),)
       :RefreshIndicator(
         onRefresh: fetchData,
         child: CustomScrollView(
@@ -82,7 +92,7 @@ class _HomePageParticularState extends State<HomePageParticular> {
               flexibleSpace: FlexibleSpaceBar(
                 stretchModes: [StretchMode.zoomBackground],
                 background: Image(
-                  image: AssetImage("assets/home.png"),
+                  image: AssetImage("assets/BTP.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -124,7 +134,16 @@ class _HomePageParticularState extends State<HomePageParticular> {
                   //recuperation d'un domaine metier
                   final domaine = domaineFilters[index];
                   return GestureDetector(
-                    onTap: (){},
+                    onTap: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setString('id_domaine', domaine.id.toString());
+                      if (authProvider.isAuthenticated) {
+                        Get.to(() => AddTravaux(idDomaine: domaine.id), transition: Transition.zoom, duration: const Duration(milliseconds: durationAnime));
+                      } else {
+                        Get.to(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                      }
+                      
+                    },
                     child: Container(
                       //decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),  color: white,),
                       width: MediaQuery.of(context).size.width,

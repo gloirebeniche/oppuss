@@ -1,10 +1,8 @@
-import 'dart:async';
+
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:oppuss/api/api.dart';
-import 'package:oppuss/utils/theme.dart';
-import 'package:http/http.dart' as http;
+
+import '../utils/theme.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});

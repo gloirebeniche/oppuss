@@ -1,20 +1,17 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps, no_logic_in_create_state
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 import 'package:oppuss/api/api.dart';
-import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/login_screen.dart';
-import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:provider/provider.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:oppuss/views/particulars/publier/add_day.dart';
+import 'package:oppuss/widget/customized_appbar.dart';
+//import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddTravaux extends StatefulWidget {
   final dynamic idDomaine;
@@ -33,7 +30,7 @@ class _AddTravauxState extends State<AddTravaux> {
 
   Future<void> fetchData() async {
     try {
-      var response = await http.get(Uri.parse("$apiTravaux/$id/by_domaine/"));
+      var response = await http.get(Uri.parse("$apiTravaux/${id.toString()}/by_domaine/"));
 
       if (response.statusCode == 200) {
         // Permettre au donnée d'accepter les caractère spéciaux
@@ -62,17 +59,14 @@ class _AddTravauxState extends State<AddTravaux> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade600,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.blueGrey.shade600,
-      ),
+      backgroundColor: white,
+      appBar: CustomAppBar2("", context),
       body: Column(
         children: [
-          customeTextStyle("Quelle travaux", white, size: 25, fontWeight: FontWeight.bold),
-          customeTextStyle("souhaitez-vous réalisé ?", white, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("Quelle travaux", black, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("souhaitez-vous réalisé ?", black, size: 25, fontWeight: FontWeight.bold),
           
           Expanded(
             child: Container(
@@ -89,10 +83,13 @@ class _AddTravauxState extends State<AddTravaux> {
                             height: MediaQuery.of(context).size.height * 0.07,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: white,),
+                              color: grey1,
+                            ),
                             child: TextButton(
-                              onPressed: () {
-                                context.go('/home/add_offer/add_travaux/$id/addDay');
+                              onPressed: () async {
+                                SharedPreferences prefs = await SharedPreferences.getInstance();
+                                prefs.setString('id_travaux', item.id.toString());
+                                Get.to(() => AddDay(), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

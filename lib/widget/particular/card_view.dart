@@ -3,8 +3,10 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/particulars/demande/offer_detail.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 
@@ -31,11 +33,14 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                 nom_travaux, size:headingTextSize, black,
                 fontWeight: FontWeight.bold),
             
-            customeTextStyle(
-                "${formatDateString(day)} à partir de $hours",grey2),
             Container(
-              margin: const EdgeInsets.only(top: 20),
-              padding: padding,
+              margin: const EdgeInsets.only(top: 5),
+              child: customeTextStyle(
+                  "${formatDateString(day)} à partir de $hours",grey2),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(10),
               color: Colors.transparent,
               child: Row(
                 children: [
@@ -45,7 +50,7 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                     color: textColorImportant,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 0),
                     child: customeTextStyle("Vous avez reçu 13 offres",
                         textColorImportant,
                         fontWeight: FontWeight.bold),
@@ -57,7 +62,9 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
             Row(
               children: [
                 Expanded(
-                  child: defaultButton("Gérer ma demande", (){context.go("/home/offer_detail/$id/");})
+                  child: defaultButton("Gérer ma demande", (){
+                    Get.to(() => OfferDetailView(id_offre: id,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
+                  })
                 ),
               ],
             )
@@ -67,15 +74,8 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
     );
 }
 
-
-class CardOfferView2 extends StatelessWidget {
-  const CardOfferView2({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+Container CardOfferAchivedView(BuildContext context, String nom_travaux, String day, String hours, int id){
+  return Container(
       margin: const EdgeInsets.only(top: 5),
       width: double.infinity,
       color: white,
@@ -93,29 +93,28 @@ class CardOfferView2 extends StatelessWidget {
                               AssetImage("images/undraw_electricity_k2ft.png"),
                           fit: BoxFit.cover))),
             ),
-            
             customeTextStyle(
-                "Pose de lampes et luminaire", size:headingTextSize, black,
+                nom_travaux, size:headingTextSize, black,
                 fontWeight: FontWeight.bold),
             
-            customeTextStyle(
-                "Jeudi 25 janvier 2013 de 12 à 15:30", grey2),
+            customeTextStyle("${formatDateString(day)} à partir de $hours",grey2),
             
-            
-            Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  child: defaultButtonOutlined("Voir ma demande", () {context.go("/home/offer_detail");})
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: defaultButtonOutlined("Voir ma demande", (){context.go("/home/offer_detail/$id/");})
+                  ),
+                ],
+              ),
             )
           ],
         ),
       ),
     );
-  }
 }
+
 
 class SearchWorkerCardView extends StatelessWidget {
   const SearchWorkerCardView({
@@ -232,5 +231,3 @@ class NotificationCardView extends StatelessWidget {
     );
   }
 }
-
-

@@ -21,7 +21,7 @@ class AuthProvider with ChangeNotifier {
   String? get refreshToken => _refreshToken;
   Employeur? get currentUser => _currentUser;
 
-  Future<void> _getCurrentUser(String token) async {
+  Future<void> getCurrentUser(String token) async {
     try {
       final response = await http.get(
         Uri.parse(apiGetCurrentUser),
@@ -32,7 +32,7 @@ class AuthProvider with ChangeNotifier {
       );
 
       if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
+        final responseData = jsonDecode(utf8.decode(response.bodyBytes));
         _currentUser = Employeur.fromJson(responseData);
         notifyListeners();
       }
@@ -61,7 +61,7 @@ class AuthProvider with ChangeNotifier {
     _accessToken = prefs.getString('access_token');
     _refreshToken = prefs.getString('refresh_token');
     if (_accessToken != null) {
-      await _getCurrentUser(_accessToken!);
+      await getCurrentUser(_accessToken!);
     }
     notifyListeners();
   }
@@ -83,7 +83,7 @@ class AuthProvider with ChangeNotifier {
         final responseData = jsonDecode(response.body);
         _accessToken = responseData['access_token'];
         _refreshToken = responseData['refresh_token'];
-        await _getCurrentUser(_accessToken!);
+        await getCurrentUser(_accessToken!);
         await _saveTokens(_accessToken!, _refreshToken!);
         notifyListeners();
         return true;
@@ -92,6 +92,36 @@ class AuthProvider with ChangeNotifier {
       }
     } catch (e) {
       print(e);
+      return false;
+    }
+  }
+
+   Future<bool> register(String email, String username, String password) async {
+    try {
+      final response = await http.post(
+        Uri.parse(apiRegister),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'username': username,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        _accessToken = responseData['access_token'];
+        _refreshToken = responseData['refresh_token'];
+        await getCurrentUser(_accessToken!);
+        await _saveTokens(_accessToken!, _refreshToken!);
+        notifyListeners();
+        return true;
+      }else{
+        return false;
+      }
+    } catch (e) {
       return false;
     }
   }

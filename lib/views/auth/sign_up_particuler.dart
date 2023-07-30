@@ -1,19 +1,19 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:oppuss/api/api.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
 import 'package:oppuss/utils/theme.dart';
+import 'package:oppuss/views/auth/login_screen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:oppuss/widget/customized_appbar.dart';
-import 'dart:convert';
-
 // ignore: depend_on_referenced_packages
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../widget/customized_appbar.dart';
 
 class SignUpScreenParticuler extends StatefulWidget {
   const SignUpScreenParticuler({super.key});
@@ -27,18 +27,18 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
   var _obscureText = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _telController = TextEditingController();
+  //final TextEditingController _telController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _password2Controller = TextEditingController();
 
-  Future createUser() async {
+  Future<bool> createUser() async {
     final String email = _emailController.text.trim().replaceAll(" ", "");
     final String username = _usernameController.text.trim().replaceAll(" ", "");
-    final String tel = _telController.text.trim().replaceAll(" ", "");
+    //final String tel = _telController.text.trim().replaceAll(" ", "");
     final String password = _passwordController.text.trim().replaceAll(" ", "");
     final String password2 = _password2Controller.text.trim().replaceAll(" ", "");
 
-    if (email.isEmpty || username.isEmpty || tel.isEmpty || password.isEmpty || password2.isEmpty) {
+    if (email.isEmpty || username.isEmpty || password.isEmpty || password2.isEmpty) {
       setState(() {
         messageBox(context, "Veillez remplir tous les champs");
       });
@@ -54,45 +54,16 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
       });
       return false;
     }else{
-      final url = Uri.parse("api_user_register");
-      final response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({
-          'email': email,
-          'username': username,
-          'tel': tel,
-          'password': password,
-        }),
-      );
-      if (response.statusCode == 201) {
-        // Utilisateur créé avec succès
-        final Map<String, dynamic> responseData = jsonDecode(response.body);
-        final String? accessToken = responseData['token']['access'];
-        final String? refreshToken = responseData['token']['refresh'];
-
-        if (accessToken != null && refreshToken != null) {
-          // Stockage des jetons dans les préférences partagées
-          final SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('access_token', accessToken);
-          prefs.setString('refresh_token', refreshToken);
-          return true;
-        } else {
-          // Gestion de l'erreur
-          messageBox(context, "Erreur lors de la création des jetons");
-          return false;
-        }
-      } else {
-        // Erreur lors de la création de l'utilisateur
-        return false;
-      }
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider.register(email, username, password);
+      return true;
     } 
 
   }
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: CustomAppBar2("", context),
       backgroundColor: white, //const Color(0xFFEDECF2),
@@ -154,19 +125,19 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                   ),
                 ),
               ),
-              DelayedAnimation(
-                delay: transitionAnimate,
-                child: TextField(
-                  controller: _telController,
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    labelText: 'Télephone',
-                    labelStyle: TextStyle(
-                      color: Colors.grey[400],
-                    ),
-                  ),
-                ),
-              ),
+              // DelayedAnimation(
+              //   delay: transitionAnimate,
+              //   child: TextField(
+              //     controller: _telController,
+              //     keyboardType: TextInputType.phone,
+              //     decoration: InputDecoration(
+              //       labelText: 'Télephone',
+              //       labelStyle: TextStyle(
+              //         color: Colors.grey[400],
+              //       ),
+              //     ),
+              //   ),
+              // ),
            
               DelayedAnimation(
                 delay: transitionAnimate,
@@ -225,8 +196,9 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 child: CustomButton("S'inscrire", (
                   () async {
                     if (await createUser()) {
+                      
                       showDialog(context: context, builder: (context){
-                      return Center(child: CircularProgressIndicator(color: primaryColor,));
+                        return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
                       });
                       
                       await Future.delayed(const Duration(seconds: 2));
@@ -234,41 +206,37 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                       Navigator.pop(context);
                       messageBoxSuccess(context, "Votre compte a été créer avec succèss :)");
                       
-                      context.go("/home/login");
-                      }
+                      Get.off(() => const LoginScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+                    }
                     
                 })),
               ),
          
-              // DelayedAnimation(
-              //     delay: transitionAnimate,
-              //     child: Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: InkWell(
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const WelcomeAuth()));
-              //         },
-              //         child: Column(
-              //          mainAxisAlignment: MainAxisAlignment.center,
+              DelayedAnimation(
+                  delay: transitionAnimate,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                      },
+                      child: const Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
                        
-              //           children: const [
-              //             Text("Si vous avec déjà un compte?",
-              //                 style: TextStyle(
-              //                   color: Color(0xff1E232C),
-              //                   fontSize: 15,
-              //                 )),
-              //             Text(" Connectez vous ici",
-              //                 style: TextStyle(
-              //                   color: Color(0xff35C2C1),
-              //                   fontSize: 15,
-              //                 )),
-              //           ],
-              //         ),
-              //       ),
-              //     ))
+                        children: [
+                          Text("Si vous avec déjà un compte?",
+                              style: TextStyle(
+                                color: Color(0xff1E232C),
+                                fontSize: 15,
+                              )),
+                          Text(" Connectez vous ici",
+                              style: TextStyle(
+                                color: Color(0xff35C2C1),
+                                fontSize: 15,
+                              )),
+                        ],
+                      ),
+                    ),
+                  ))
             ],
           ),
         ),

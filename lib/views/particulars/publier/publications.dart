@@ -1,18 +1,14 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/api/api.dart';
-import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/ref_btp.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/auth/login_screen.dart';
-import 'package:oppuss/widget/button_widget_app.dart';
-import 'package:provider/provider.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:oppuss/views/particulars/publier/add_travaux.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddOffer extends StatefulWidget {
   const AddOffer({super.key});
@@ -54,7 +50,6 @@ class _AddOfferState extends State<AddOffer> {
           domaines = newData; // Mettre à jour l'état avec les nouvelles données
           domaineFilters = domaines;
         });
-        print(domaines);
       }
 
     } catch (e) {
@@ -70,22 +65,22 @@ class _AddOfferState extends State<AddOffer> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    //final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade600,
+      backgroundColor: white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: (){ Navigator.pop(context); },
-          icon: const Icon(EvaIcons.close, color: white, size: 35,),
+          icon: const Icon(EvaIcons.close, color: black, size: 35,),
         ),
         title: customeTextStyle("", black),
         elevation: 0,
-        backgroundColor: Colors.blueGrey.shade600,
+        backgroundColor: white,
       ),
       body: Column(
         children: [
-          customeTextStyle("Choisir", white, size: 25, fontWeight: FontWeight.bold),
-          customeTextStyle("un domaine BTP", white, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("Choisir", black, size: 25, fontWeight: FontWeight.bold),
+          customeTextStyle("un domaine BTP", black, size: 25, fontWeight: FontWeight.bold),
           Container(
             margin: margin,
             child: TextField(
@@ -114,7 +109,12 @@ class _AddOfferState extends State<AddOffer> {
                       children: [
                         for(var domaine in domaineFilters)
                           GestureDetector(
-                            onTap: () => context.go("/home/add_offer/add_travaux/${domaine.id}"),
+                            onTap: () async {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString('id_domaine', domaine.id.toString());
+                              //context.go("/home/add_offer/add_travaux/${domaine.id}");
+                              Get.to(() => AddTravaux(idDomaine: domaine.id,), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
+                            },
                             child: Container(
                               margin: margin,
                               width: MediaQuery.of(context).size.height * 0.20,

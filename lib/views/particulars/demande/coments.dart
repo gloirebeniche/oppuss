@@ -16,9 +16,8 @@ class ComentView extends StatelessWidget {
   const ComentView({super.key, required this.idOffre});
 
   Future<Offre> fetchData(String token) async {
-    print(idOffre);
     final response = await http.get(
-      Uri.parse(apiOffres + idOffre),
+      Uri.parse(apiOffres + idOffre.toString()),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token',
@@ -37,7 +36,7 @@ class ComentView extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: CustomAppBar2("Questions et réponses", context),
-      backgroundColor: bgColor,
+      backgroundColor: grey1,
       body: FutureBuilder<Offre>(
         future: fetchData(authProvider.accessToken!),
         builder: (context, snapshot) {

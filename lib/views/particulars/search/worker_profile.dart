@@ -2,30 +2,54 @@
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:oppuss/api/api.dart';
 import 'package:oppuss/api/auth_provider.dart';
 import 'package:oppuss/models/gestion_qualification.dart';
 import 'package:oppuss/utils/theme.dart';
-import 'package:oppuss/views/fullsreen.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 import 'package:oppuss/widget/customized_appbar.dart';
 import 'package:oppuss/widget/particular/app_widgets.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class WorkerProfile extends StatelessWidget {
   final dynamic worker_id;
    WorkerProfile({super.key, required this.worker_id});
 
+    final String message = 'Bonjour, comment ça va?';
 
-    Future<Worker> fetchData() async {
+    Future<void> _makePhoneCall(String phoneNumber) async {
+      final Uri launchUri = Uri(
+        scheme: 'tel',
+        path: phoneNumber,
+      );
+      await launchUrl(launchUri);
+    }
+    void _sendMessage(String phoneNumber) async {
+      final Uri smsLaunchUri = Uri(
+        scheme: 'sms',
+        path: phoneNumber,
+        queryParameters: <String, String>{
+          'body': Uri.encodeComponent("Bonjour !\nJ'ai vu votre profil sur l'application Oppuss et je voulais qu'on puisse travailler en ensemble."),
+        },
+      );
+      if (await canLaunchUrl(smsLaunchUri)) {
+        await launchUrl(smsLaunchUri);
+      } else {
+        throw 'Impossible d\'ouvrir l\'application de messagerie.';
+      }
+    }
+
+
+    Future<Staff> fetchData() async {
       // Appel API pour récupérer les données
-      var response = await http.get(Uri.parse(apiGetWorkers + worker_id));
+      var response = await http.get(Uri.parse(apiGetWorkers + worker_id.toString()));
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-        Worker worker = Worker.fromJson(jsonData);
+        Staff worker = Staff.fromJson(jsonData);
         return worker;
       } else {
         throw Exception('Erreur de récupération des données depuis l\'API');
@@ -40,15 +64,15 @@ class WorkerProfile extends StatelessWidget {
         appBar: CustomAppBar2("", context),
         backgroundColor: Colors.grey.shade300,
         body: !authProvider.isAuthenticated? cardAuth(context) :
-        FutureBuilder<Worker>(
+        FutureBuilder<Staff>(
           future: fetchData(),
           builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const LoadingScreen();
+                return Center(child: LoadingAnimationWidget.staggeredDotsWave(color: primaryColor, size: 50),);
               } else if (snapshot.hasError) {
                 return const Text('Erreur de récupération des données depuis l\'API');
               }else if(snapshot.hasData){
-                Worker worker = snapshot.data!;
+                Staff worker = snapshot.data!;
                 return RefreshIndicator(
                   onRefresh: fetchData,
                   child: ListView(
@@ -91,10 +115,13 @@ class WorkerProfile extends StatelessWidget {
                             customeTextStyle(worker.metier.nomMetier, black),
                             customeTextStyle(worker.adress!,black),
                             customeTextStyle("${worker.nombreJobs.toString()} Travaux réalisé",black, fontWeight: FontWeight.bold),
-                            defaultButtonOutlined("Message", (){context.go("/home/message");})
+                            defaultButtonOutlined("Message", (){ _sendMessage(worker.tel);}),
+                            defaultButton("Appelez", () { _makePhoneCall(worker.tel); })
                           ],
                         ),
                       ),
+                      
+                      
                       SizedBox(
                         width: double.infinity,
                         child: Column(

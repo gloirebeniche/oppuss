@@ -3,12 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oppuss/utils/delayed_animation.dart';
-import 'package:oppuss/utils/otp_page.dart';
 import 'package:oppuss/utils/theme.dart';
 import 'package:oppuss/widget/button_widget_app.dart';
 
-import '../../widget/customized_appbar.dart';
-import 'login_screen.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -30,7 +27,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-       appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
+      //appBar: const CustomizeAppBar(colorAppBar: white, title: '',),
       body: SingleChildScrollView(  
         child: Container(
             margin: const EdgeInsets.symmetric(
