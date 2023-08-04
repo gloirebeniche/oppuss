@@ -12,7 +12,7 @@ class _HelpViewState extends State<HelpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar2("Centre d\'aide", context),
+      appBar: CustomAppBar2("Centre d'aide", context),
     );
   }
 }

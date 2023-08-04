@@ -25,15 +25,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-    var _obscureText = true;
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-  
+  var _obscureText = true;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool isEmailValid(String email) {
     // Expression régulière pour vérifier le format de l'adresse e-mail
-    RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,}$');
-    
+    RegExp regex =
+        RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,}$');
+
     // Vérifie si la chaîne de caractères correspond à l'expression régulière
     if (regex.hasMatch(email)) {
       return true; // L'adresse e-mail est valide
@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: white,
       appBar: CustomAppBar2("", context),
       body: SingleChildScrollView(
@@ -63,78 +63,91 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SvgPicture.asset("assets/login.svg"),
                 ),
               ),
-                 DelayedAnimation(
-                    delay: transitionAnimate,
-                    child: Text(
-                      "OPPUSS.",
-                      style: GoogleFonts.poppins(
-                        color: primaryColor,
-                        fontSize: appbarTextSize,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  
-           DelayedAnimation(
-            delay: transitionAnimate,
-            child:  TextFieldCustomized("Email"),
-          ),
-            DelayedAnimation(
-            delay: transitionAnimate,
-            child: TextFieldPassword("Mode de passe"),
-          ),
-          const SizedBox(height: 10,),
-          DelayedAnimation(delay: transitionAnimate, 
-          child:  Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ForgotPassword()));
-                    },
-                    child: const Text("Mot de passe oublié?",
-                        style: TextStyle(
-                          color: Color(0xff6A707C),
-                          fontSize: textSize,
-                        )),
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: Text(
+                  " ",
+                  style: GoogleFonts.poppins(
+                    color: primaryColor,
+                    fontSize: appbarTextSize,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),),
-              DelayedAnimation(delay: transitionAnimate, 
+              ),
 
-              //========================== Bouton de connexion =======================
-              child: CustomButton("Connexion",
-                () async {
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: TextFieldCustomized("Email"),
+              ),
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: TextFieldPassword("Mode de passe"),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ForgotPassword()));
+                      },
+                      child: const Text("Mot de passe oublié?",
+                          style: TextStyle(
+                            color: Color(0xff6A707C),
+                            fontSize: textSize,
+                          )),
+                    ),
+                  ),
+                ),
+              ),
+              DelayedAnimation(
+                delay: transitionAnimate,
+
+                //========================== Bouton de connexion =======================
+                child: CustomButton("Connexion", () async {
                   if (!isEmailValid(_emailController.text.trim())) {
                     messageBox(context, "Veillez enter un email valide");
-                  }else if(_passwordController.text.trim().isEmpty){
+                  } else if (_passwordController.text.trim().isEmpty) {
                     messageBox(context, "Veillez enter un mot de passe");
-                  }else{
-                    if(await authProvider.login(_emailController.text, _passwordController.text)){
-                      showDialog(context: context, builder: (context){
-                        return Center(child: LoadingAnimationWidget.inkDrop(color: primaryColor, size: 50),);
-                      });
+                  } else {
+                    if (await authProvider.login(
+                        _emailController.text, _passwordController.text)) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Center(
+                              child: LoadingAnimationWidget.inkDrop(
+                                  color: primaryColor, size: 50),
+                            );
+                          });
                       await Future.delayed(const Duration(seconds: 2));
                       Navigator.pop(context);
                       setState(() {
-                        messageBoxSuccess(context, "Vous êtes maintenant connecté :)");
+                        messageBoxSuccess(
+                            context, "Vous êtes maintenant connecté :)");
                       });
-                      Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
-                    }else{
+                      Get.off(() => const HomeScreen(),
+                          transition: Transition.fadeIn,
+                          duration:
+                              const Duration(milliseconds: durationAnime));
+                    } else {
                       setState(() {
                         messageBox(context, "username or password incorect");
                       });
                     }
                   }
-                }
-              ),),
+                }),
+              ),
 
-              //  DelayedAnimation(delay: transitionAnimate, 
+              //  DelayedAnimation(delay: transitionAnimate,
               //     child:  Padding(
               //   padding:  EdgeInsets.all(10.0),
               //   child: Row(
@@ -145,67 +158,70 @@ class _LoginScreenState extends State<LoginScreen> {
               //   ),
               // ),),
 
-            // DelayedAnimation(delay: transitionAnimate, 
-            //   child:  Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //         children: [
-            //           // google button
-            //       Container(
-            //         decoration: BoxDecoration(                    
-            //           borderRadius: BorderRadius.circular(16),
-            //           color: white,
-            //             ),
-            //               child: InkWell( 
-            //                     onTap: (() {}
-            //                             ), 
-            //                     child: Image.asset("assets/google.png",
-            //                         height: 40,),
-                            
-            //                   )),
-            //                         // google button
-            //       Container(
-            //         decoration: BoxDecoration(                    
-            //           borderRadius: BorderRadius.circular(16),
-            //           color: white,
-            //             ),
-            //               child: InkWell( 
-            //                     onTap: (() {}
-            //                             ), 
-            //                     child: Image.asset("assets/facebook.png",
-            //                         height: 40,),
-                            
-            //                   )),
-                
+              // DelayedAnimation(delay: transitionAnimate,
+              //   child:  Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //         children: [
+              //           // google button
+              //       Container(
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(16),
+              //           color: white,
+              //             ),
+              //               child: InkWell(
+              //                     onTap: (() {}
+              //                             ),
+              //                     child: Image.asset("assets/google.png",
+              //                         height: 40,),
 
-                    
-            //         ],
-            //       ),
-            //     ),),
-            DelayedAnimation(
-              delay: transitionAnimate, 
-              child:Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(() => const SignUpScreenParticuler(), transition: Transition.rightToLeft, duration: const Duration(milliseconds: durationAnime));
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        customeTextStyle("Vous n'avez pas de compte ?", black),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: customeTextStyle("S'inscrire ici", primaryColor),
-                        )
-                      ],
+              //                   )),
+              //                         // google button
+              //       Container(
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(16),
+              //           color: white,
+              //             ),
+              //               child: InkWell(
+              //                     onTap: (() {}
+              //                             ),
+              //                     child: Image.asset("assets/facebook.png",
+              //                         height: 40,),
+
+              //                   )),
+
+              //         ],
+              //       ),
+              //     ),),
+              DelayedAnimation(
+                  delay: transitionAnimate,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => const SignUpScreenParticuler(),
+                            transition: Transition.rightToLeft,
+                            duration:
+                                const Duration(milliseconds: durationAnime));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            customeTextStyle(
+                                "Vous n'avez pas de compte ?", black),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: customeTextStyle(
+                                  "S'inscrire ici", primaryColor),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ))
+                  ))
             ],
           ),
         ),
@@ -214,50 +230,38 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   TextField TextFieldCustomized(String title) {
-    return  TextField(
+    return TextField(
       cursorColor: primaryColor,
       controller: _emailController,
       decoration: InputDecoration(
-        floatingLabelStyle: TextStyle(
-          color: primaryColor
-        ),
+        floatingLabelStyle: TextStyle(color: primaryColor),
         labelText: title,
-        labelStyle: TextStyle(
-          color: grey,
-          fontSize: textSize
-        ),
+        labelStyle: TextStyle(color: grey, fontSize: textSize),
       ),
     );
   }
 
-TextField TextFieldPassword(String password) {
+  TextField TextFieldPassword(String password) {
     return TextField(
-      
       cursorColor: primaryColor,
-        controller: _passwordController,
-        obscureText: _obscureText,
-        decoration: InputDecoration(
-            floatingLabelStyle: TextStyle(
-            color: primaryColor
+      controller: _passwordController,
+      obscureText: _obscureText,
+      decoration: InputDecoration(
+        floatingLabelStyle: TextStyle(color: primaryColor),
+        labelStyle: TextStyle(color: grey, fontSize: 20),
+        labelText: password,
+        suffixIcon: IconButton(
+          icon: const Icon(
+            Icons.visibility,
+            color: black,
           ),
-          labelStyle:  TextStyle(
-            color: grey,
-            fontSize: 20
-          ),
-          labelText: password,
-          suffixIcon: IconButton(
-            icon: const Icon(
-              Icons.visibility,
-              color: black,
-            ),
-            onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-          ),
+          onPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
         ),
-     );
+      ),
+    );
   }
-
 }

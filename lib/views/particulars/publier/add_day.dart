@@ -21,7 +21,7 @@ import '../../../api/auth_provider.dart';
 
 class AddDay extends StatefulWidget {
   //final dynamic idDomaine;
-  AddDay({super.key}); //required this.idDomaine};
+  const AddDay({super.key}); //required this.idDomaine};
 
   @override
   State<AddDay> createState() => _AddDayState();

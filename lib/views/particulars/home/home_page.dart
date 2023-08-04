@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, avoid_print
 
 import 'dart:convert';
 import 'package:get/get.dart';
@@ -181,8 +181,8 @@ class _HomePageParticularState extends State<HomePageParticular> {
         });
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        padding: EdgeInsets.all(10.0),
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: selectedService == index
               ? Colors.blue.shade50
@@ -199,12 +199,12 @@ class _HomePageParticularState extends State<HomePageParticular> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.network(image, height: 80),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 name,
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               )
             ]),
       ),

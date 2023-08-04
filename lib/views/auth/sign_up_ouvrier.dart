@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,16 +45,6 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
             children: [
               DelayedAnimation(
                 delay: transitionAnimate,
-                child: SizedBox(
-                  height: 120,
-                  child: SvgPicture.asset("assets/ouvrier.svg"),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              DelayedAnimation(
-                delay: transitionAnimate,
                 child: Text(
                   "Nous Rejoindre",
                   style: GoogleFonts.poppins(
@@ -61,6 +53,16 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+              ),
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: SizedBox(
+                  height: 120,
+                  child: SvgPicture.asset("assets/ouvrier_ic.svg"),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               DelayedAnimation(
                   delay: transitionAnimate,
@@ -120,7 +122,6 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
                                 color: black,
                                 fontSize: 11,
                               )),
-                          
                           Text(" Connectez vous ici",
                               style: TextStyle(
                                 color: primaryColor,
@@ -137,12 +138,13 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
     );
   }
 
+
   TextField TextFieldCustomized(String title) {
     return TextField(
       decoration: InputDecoration(
         floatingLabelStyle: TextStyle(color: primaryColor),
         labelText: title,
-        labelStyle:  TextStyle(color: grey, fontSize: 23),
+        labelStyle: TextStyle(color: grey, fontSize: 23),
       ),
     );
   }
@@ -152,7 +154,7 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
       obscureText: ispassword,
       decoration: InputDecoration(
         floatingLabelStyle: TextStyle(color: primaryColor),
-        labelStyle:  TextStyle(color: grey, fontSize: 23),
+        labelStyle: TextStyle(color: grey, fontSize: 23),
         labelText: password,
         suffixIcon: ispassword
             ? IconButton(
@@ -170,5 +172,4 @@ class _SignUpScreenOuvrierState extends State<SignUpScreenOuvrier> {
       ),
     );
   }
-
 }

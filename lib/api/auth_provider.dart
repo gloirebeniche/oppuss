@@ -7,7 +7,6 @@ import 'package:oppuss/api/api.dart';
 import 'package:oppuss/models/account.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class AuthProvider with ChangeNotifier {
   String? _accessToken;
   String? _refreshToken;
@@ -37,6 +36,7 @@ class AuthProvider with ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -87,7 +87,7 @@ class AuthProvider with ChangeNotifier {
         await _saveTokens(_accessToken!, _refreshToken!);
         notifyListeners();
         return true;
-      }else{
+      } else {
         return false;
       }
     } catch (e) {
@@ -96,7 +96,7 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-   Future<bool> register(String email, String username, String password) async {
+  Future<bool> register(String email, String username, String password) async {
     try {
       final response = await http.post(
         Uri.parse(apiRegister),
@@ -118,7 +118,7 @@ class AuthProvider with ChangeNotifier {
         await _saveTokens(_accessToken!, _refreshToken!);
         notifyListeners();
         return true;
-      }else{
+      } else {
         return false;
       }
     } catch (e) {
@@ -139,10 +139,11 @@ class AuthProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         await _deleteTokens();
         return true;
-      }else{
+      } else {
         return false;
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       return false;
     }

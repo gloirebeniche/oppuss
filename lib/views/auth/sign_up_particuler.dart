@@ -75,17 +75,7 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
           ),
           child: Column(
             children: [
-              DelayedAnimation(
-                delay: transitionAnimate,
-                child: SizedBox(
-                  height: 120,
-                  child: SvgPicture.asset("assets/3.svg"),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              DelayedAnimation(
+               DelayedAnimation(
                 delay: 1700,
                 child: Text(
                   "Nous Rejoindre",
@@ -96,6 +86,17 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                   ),
                 ),
               ),
+              DelayedAnimation(
+                delay: transitionAnimate,
+                child: SizedBox(
+                  height: 120,
+                  child: SvgPicture.asset("assets/ouvrier_ic.svg"),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+             
               const SizedBox(
                 height: 20,
               ),
