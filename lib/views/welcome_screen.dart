@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:oppuss/views/auth/sign_up_particuler.dart';
 import 'package:oppuss/views/particulars/home_screen.dart';
-
 import '../utils/delayed_animation.dart';
 import '../utils/theme.dart';
 import '../widget/button_widget_app.dart';

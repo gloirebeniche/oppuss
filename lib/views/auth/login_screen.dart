@@ -146,54 +146,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }),
               ),
-
-              //  DelayedAnimation(delay: transitionAnimate,
-              //     child:  Padding(
-              //   padding:  EdgeInsets.all(10.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children:  [
-              //       customeTextStyle("Ou connectez-vous avec :", black)
-              //     ],
-              //   ),
-              // ),),
-
-              // DelayedAnimation(delay: transitionAnimate,
-              //   child:  Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //         children: [
-              //           // google button
-              //       Container(
-              //         decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(16),
-              //           color: white,
-              //             ),
-              //               child: InkWell(
-              //                     onTap: (() {}
-              //                             ),
-              //                     child: Image.asset("assets/google.png",
-              //                         height: 40,),
-
-              //                   )),
-              //                         // google button
-              //       Container(
-              //         decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(16),
-              //           color: white,
-              //             ),
-              //               child: InkWell(
-              //                     onTap: (() {}
-              //                             ),
-              //                     child: Image.asset("assets/facebook.png",
-              //                         height: 40,),
-
-              //                   )),
-
-              //         ],
-              //       ),
-              //     ),),
               DelayedAnimation(
                   delay: transitionAnimate,
                   child: Padding(

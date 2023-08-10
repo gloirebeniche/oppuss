@@ -64,11 +64,21 @@ dependencies:
   connectivity:
   flutter_localizations:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo_bleu.PNG"
+  image_path_android: "assets/logo/playstore.png"
+  image_path_ios: "assets/logo/appstore.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
