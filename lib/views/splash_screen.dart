@@ -22,11 +22,11 @@ class SplashScreenState extends State<SplashScreen> {
 
     if (isFirstLaunch) {
       await prefs.setBool('first_launch', false);
-      Timer(const Duration(seconds: 2), () {
+      Timer(const Duration(seconds: 0), () {
         Get.off(() => const WelcomeAuth(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
       });
     } else {
-      Timer(const Duration(seconds: 2), () {Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
+      Timer(const Duration(seconds: 0), () {Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
       });
     }
   }
@@ -40,46 +40,9 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color(0xFF1976D2),
-                Color(0xFF82B1FF),
-              ]),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              children: [
-                Image.asset(
-                  "assets/logo_blanc.PNG",
-                  height: 300.0,
-                  width: 300.0,
-                ),
-                const Text(
-                  "Pour tous vos travaux de batiments\n et de renauvation",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
-                ),
-              ],
-            ),
-            // const CircularProgressIndicator(
-            //   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            // ),
-          ],
-        ),
-      ),
+      body: Center(
+        child: Image(image: AssetImage("assets/playstore.png")),
+      )
     );
   }
 }
