@@ -125,7 +125,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                   Container(
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image:AssetImage("images/undraw_electricity_k2ft.png"),
+                        image:AssetImage("images/bg_offer.png"),
                         fit: BoxFit.cover
                       )
                     ),
@@ -258,7 +258,7 @@ class _OfferDetailViewState extends State<OfferDetailView> {
                                                 await Future.delayed(const Duration(seconds: 2));
                                                 setState(() {
                                                   messageBoxSuccess(context, "Offre supprimer avec succès");
-                                                 
+                                                 Navigator.pop(context);
                                                   Get.off(() => const HomeScreen(), transition: Transition.fadeIn, duration: const Duration(milliseconds: durationAnime));
                                                 });
                                               } else {

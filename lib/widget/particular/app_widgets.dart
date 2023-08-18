@@ -250,7 +250,7 @@ Container cardOfferWorker(int idWorker, String fullname, int experiences, String
                 ),
               ),
               defaultButton("Reserver", (){
-                Get.to(() => ReservationView(worker_id: idWorker,), transition: Transition.downToUp, duration: const Duration(milliseconds: durationAnime));
+                Get.to(() => ReservationView(worker_id: idWorker,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
               }),
               defaultButtonOutlined("Voir le profil", (){
                 Get.to(() => WorkerProfile(worker_id: idWorker,), transition: Transition.rightToLeftWithFade, duration: const Duration(milliseconds: durationAnime));
