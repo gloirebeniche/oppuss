@@ -47,7 +47,7 @@ class _ReservationViewState extends State<ReservationView> {
   @override
   void initState() { 
     super.initState();
-    selectedRadio = 0;
+    selectedRadio = 4;
   }
 
   @override
@@ -191,7 +191,7 @@ class _ReservationViewState extends State<ReservationView> {
                                       value: 1, 
                                       groupValue: selectedRadio,
                                       activeColor: primaryColor,
-                                      onChanged: (val){setSelectedRadio(val);}
+                                      onChanged: (val){setSelectedRadio(val); Navigator.pop(context);}
                                     ),
                                     SizedBox(
                                       height: 30,
@@ -209,7 +209,7 @@ class _ReservationViewState extends State<ReservationView> {
                                       value: 2, 
                                       groupValue: selectedRadio,
                                       activeColor: primaryColor,
-                                      onChanged: (val){setSelectedRadio(val);}
+                                      onChanged: (val){setSelectedRadio(val); Navigator.pop(context);}
                                     ),
                                     SizedBox(
                                       height: 30,
@@ -227,7 +227,7 @@ class _ReservationViewState extends State<ReservationView> {
                                       value: 3, 
                                       groupValue: selectedRadio,
                                       activeColor: primaryColor,
-                                      onChanged: (val){setSelectedRadio(val);}
+                                      onChanged: (val){setSelectedRadio(val); Navigator.pop(context);}
                                     ),
                                     SizedBox(
                                       height: 30,
@@ -245,7 +245,7 @@ class _ReservationViewState extends State<ReservationView> {
                                       value: 4, 
                                       groupValue: selectedRadio,
                                       activeColor: primaryColor,
-                                      onChanged: (val){setSelectedRadio(val);}
+                                      onChanged: (val){setSelectedRadio(val); Navigator.pop(context);}
                                     ),
                                     const CircleAvatar(
                                       radius: 15,
