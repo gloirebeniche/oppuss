@@ -114,12 +114,7 @@ class _DemandesState extends State<Demandes> {
                           return FutureBuilder<http.Response>(
                             future: http.get(Uri.parse("$apiTravaux/${myOffres[index].idTravaux}/")),
                             builder: (context, snapshot) {
-                              if (snapshot.connectionState == ConnectionState.waiting) {
-                                return const CircularProgressIndicator(); // Affichez un indicateur de chargement pendant que la requête est en cours
-                              } else if (snapshot.hasError) {
-                                return Text("Erreur : ${snapshot.error}");
-                              } else {
-                                if (snapshot.hasData) {
+                              if (snapshot.hasData) {
                                   Travaux travaux = Travaux.fromJson(jsonDecode(utf8.decode(snapshot.data!.bodyBytes)));
                                   return CardOfferView(
                                     context,
@@ -129,9 +124,8 @@ class _DemandesState extends State<Demandes> {
                                     myOffres[index].id
                                   );
                                 } else {
-                                  return const Text("Aucune donnée");
+                                  return const Text("");
                                 }
-                              }
                             },
                           );
                         },

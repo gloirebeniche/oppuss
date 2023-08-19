@@ -220,6 +220,8 @@ class _AddDayState extends State<AddDay> {
                           controller: _descriptionController,
                           cursorColor: black,
                           cursorHeight: 20,
+                          minLines: 2,
+                          maxLines: 5,
                           keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                             hintText: "Votre description...",

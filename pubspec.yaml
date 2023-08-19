@@ -65,6 +65,16 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.2
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  image: "assets/logo/playstore.png"
+  color: "#FFFFFF"
+  image_dart: "assets/logo_blanc.PNG"
+  color_dark: "#000000"
   
 
 dev_dependencies:

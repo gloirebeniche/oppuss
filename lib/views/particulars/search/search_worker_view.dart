@@ -40,6 +40,7 @@ class _SearchWorkerViewState extends State<SearchWorkerView> {
         (element) => element.nom.toLowerCase().contains(value.toLowerCase())).toList();
     });
   }
+  
   Future<void> fetchData() async {
     setState(() {
       isLoading = true;

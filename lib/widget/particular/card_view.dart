@@ -26,7 +26,7 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image:
-                              AssetImage("images/undraw_electricity_k2ft.png"),
+                              AssetImage("images/bg_offer.png"),
                           fit: BoxFit.cover))),
             ),
             customeTextStyle(
@@ -51,7 +51,7 @@ Container CardOfferView(BuildContext context, String nom_travaux, String day, St
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 0),
-                    child: customeTextStyle("Vous avez reçu 13 offres",
+                    child: customeTextStyle("Vous avez reçu des offres",
                         textColorImportant,
                         fontWeight: FontWeight.bold),
                   ),

@@ -213,31 +213,31 @@ class _SignUpScreenParticulerState extends State<SignUpScreenParticuler> {
                 })),
               ),
          
-              DelayedAnimation(
-                  delay: transitionAnimate,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                      },
-                      child: const Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
+              // DelayedAnimation(
+              //     delay: transitionAnimate,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: InkWell(
+              //         onTap: () {
+              //         },
+              //         child: const Column(
+              //          mainAxisAlignment: MainAxisAlignment.center,
                        
-                        children: [
-                          Text("Si vous avec déjà un compte?",
-                              style: TextStyle(
-                                color: Color(0xff1E232C),
-                                fontSize: 15,
-                              )),
-                          Text(" Connectez vous ici",
-                              style: TextStyle(
-                                color: Color(0xff35C2C1),
-                                fontSize: 15,
-                              )),
-                        ],
-                      ),
-                    ),
-                  ))
+              //           children: [
+              //             Text("Si vous avec déjà un compte?",
+              //                 style: TextStyle(
+              //                   color: Color(0xff1E232C),
+              //                   fontSize: 15,
+              //                 )),
+              //             Text(" Connectez vous ici",
+              //                 style: TextStyle(
+              //                   color: Color(0xff35C2C1),
+              //                   fontSize: 15,
+              //                 )),
+              //           ],
+              //         ),
+              //       ),
+              //     ))
             ],
           ),
         ),

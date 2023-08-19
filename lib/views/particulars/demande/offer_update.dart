@@ -255,6 +255,8 @@ class _UpdateOfferPageState extends State<UpdateOfferPage> {
                           controller: _descriptionController,
                           cursorColor: black,
                           cursorHeight: 20,
+                          minLines: 2,
+                          maxLines: 5,
                           keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                             hintText: "Votre description...",

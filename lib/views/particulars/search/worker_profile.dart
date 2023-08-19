@@ -28,6 +28,7 @@ class WorkerProfile extends StatelessWidget {
       );
       await launchUrl(launchUri);
     }
+    
     void _sendMessage(String phoneNumber) async {
       final Uri smsLaunchUri = Uri(
         scheme: 'sms',
