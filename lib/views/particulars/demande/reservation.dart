@@ -136,24 +136,24 @@ class _ReservationViewState extends State<ReservationView> {
                     )
                   ),
 
-                  Container(
-                    margin: margin,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        customeTextStyle("Rémunération réservation", grey2),
-                        customeTextStyle("500 F CFA", black, fontWeight: FontWeight.bold)
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   margin: margin,
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       customeTextStyle("Rémunération réservation", grey2),
+                  //       customeTextStyle("500 F CFA", black, fontWeight: FontWeight.bold)
+                  //     ],
+                  //   ),
+                  // ),
 
                   Container(
                     margin: margin,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        customeTextStyle("Frais de service", grey2),
-                        customeTextStyle("500 F CFA", black, fontWeight: FontWeight.bold)
+                        customeTextStyle("Frais de réservation", grey2),
+                        customeTextStyle("500F CFA", black, fontWeight: FontWeight.bold)
                       ],
                     ),
                   ),
@@ -164,7 +164,7 @@ class _ReservationViewState extends State<ReservationView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         customeTextStyle("Montant total", grey2),
-                        customeTextStyle("1 000 F CFA", black, fontWeight: FontWeight.bold)
+                        customeTextStyle(" 500F CFA", black, fontWeight: FontWeight.bold)
                       ],
                     ),
                   ),
